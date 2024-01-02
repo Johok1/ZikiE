@@ -1,4 +1,4 @@
-class Pinlock {
+export default class Pinlock {
     constructor(parent, element) {
         this.element = element;
         //Initialize the parent div for the pinlock element
@@ -134,7 +134,3 @@ class Pinlock {
     }
 
 }
-let mainDiv = document.getElementById("mainDiv")
-let bodyDiv = document.getElementById("bodyDiv")
-
-//let pinlock = new Pinlock(bodyDiv, mainDiv)

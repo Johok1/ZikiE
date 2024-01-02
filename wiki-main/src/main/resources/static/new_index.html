@@ -106,8 +106,8 @@
         <strong >Login/Register</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Login</a></li>
-		<li><a class="dropdown-item" href="#">Register</a></li>
+        <li><a class="dropdown-item" href="auth-login-basic.html">Login</a></li>
+		<li><a class="dropdown-item" href="auth-register-basic.html">Register</a></li>
       </ul>
     </div>
     <div id="accountDropdown" class="dropdown hidden">
@@ -116,12 +116,11 @@
         <strong id="username"></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">New Wiki...</a></li>
-		   <li><a class="dropdown-item" href="#">New Page...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="wiki_editor.html">New Wiki...</a></li>
+		   <li><a class="dropdown-item" href="page_editor.html">New Page...</a></li>
+        <li><a class="dropdown-item" href="accountmanager.html">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li id="signout" ><label  class="dropdown-item">Sign out</label></li>
       </ul>
     </div>
   </div>
@@ -131,7 +130,7 @@
 	  </main>
 	 
 
-	<script src="js/newjs/homepage/pinlock.js"></script>
+	<script type="module" src="js/newjs/homepage/new_homepage.js"></script>
 	
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 

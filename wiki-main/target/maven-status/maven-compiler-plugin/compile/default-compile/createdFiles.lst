@@ -1,0 +1,16 @@
+zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskCluster.class
+zinxs\wiki\wikis\pages\PageRepository.class
+zinxs\wiki\wikis\Wiki.class
+zinxs\wiki\wikis\WikiRepository.class
+zinxs\wiki\wikis\wikipage\WikiPageRepository.class
+zinxs\wiki\admin\projectmanager\project\phase\task\message\MessageResponse.class
+zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskClusterRepository.class
+zinxs\wiki\admin\projectmanager\project\phase\task\message\Message.class
+zinxs\wiki\wikis\WikiController.class
+zinxs\wiki\admin\projectmanager\project\phase\task\message\MessageRequest.class
+zinxs\wiki\wikis\pages\PageController.class
+zinxs\wiki\wikis\WikiService.class
+zinxs\wiki\admin\projectmanager\project\phase\task\message\MessageRepository.class
+zinxs\wiki\wikis\pages\PageService.class
+zinxs\wiki\wikis\wikipage\WikiPage.class
+zinxs\wiki\wikis\pages\Page.class

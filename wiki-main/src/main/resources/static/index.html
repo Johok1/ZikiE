@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zinxs Wiki Homepage</title>
+
+    <!-- Bootstrap -->
+   
+
+  </head>
+  <body>
+	  
+	  <div class ="background">
+	<div >
+			
+			
+			<div style="position: absolute; top: 100px" id ="pinlock" class="col"></div>
+			<div id="homepageBody" style="left: 20%; position: fixed" class="col homepage-body"><br>
+				<br>
+				<div class = "hidden"><h4 class = "discover-head">Discover</h4>
+					<input type="search" class = "discover-bar" placeholder="Search...">
+				</div>
+				<br><br><br><br><br>
+				<div class="homepage-middle-body">
+					<div id="popups" class="popups hidden">
+						<div id="loginPopup" class="loginPopup hidden">
+							<div class="row">
+								<div class="col-2">
+									<img id="loginCancel" class="cancelImg" src="resources/images/cancel.png">
+								</div>
+							</div>
+							
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Email</h6>
+								<input id="loginEmailInput" type="text" class = "emailInput" placeholder="Email">
+							</div>
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Password</h6>
+								<input id="loginPasswordInput" type="password" class = "passwordInput" placeholder="Password">
+							</div>
+							<br>
+							<div id="loginButton" class="loginButton">
+								Login
+							</div>
+							
+						</div>
+						<div id="registerpopup" class="registerPopup hidden">
+							<div class="row">
+								<div class="col-2">
+									<img id="registerCancel" class="cancelImg" src="resources/images/cancel.png">
+								</div>
+								<div class="col-2">&nbsp;</div>
+							</div>
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Username</h6>
+								<input id="regUsernameInput" type="text" class = "usernameRegisterInput" placeholder="Username">
+							</div>
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Email</h6>
+								<input id="regEmailInput" type="text" class = "emailRegisterInput" placeholder="Email">
+							</div>
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Date of Birth</h6>
+								<input id="regDobInput" type="date" class="dobRegisterInput">
+							</div>
+							<br>
+							<h6 style="padding-left: 5px; cursor: default">4 Digit Security Pin</h6>
+							<div class = "row">
+								<div class ="col-2">									
+									<input id="regPincode1" maxlength="1" type="text" class="pincodeRegisterInput">
+								</div>
+								
+								<div class ="col-2">									
+									<input id="regPincode2" maxlength="1" type="text" class="pincodeRegisterInput">
+								</div>
+								
+								<div class ="col-2">
+									<input id="regPincode3" maxlength="1" type="text" class="pincodeRegisterInput">
+								</div>
+								
+								<div class ="col-2">									
+									<input id="regPincode4" maxlength="1" type="text" class="pincodeRegisterInput">
+								</div>
+							</div>
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Password</h6>
+								<input id="regPasswordInput" type="password" class="passwordRegisterInput" placeholder="Password">
+							</div>
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Confirm Password</h6>
+								<input id="regConfirmPasswordInput" type="password" class="passwordRegisterInput" placeholder="Confirm Password">
+							</div>
+							<br>
+							<div id="registerButton" class="registerButton">
+								Register Account
+							</div>
+							
+							
+						</div>
+						<div id ="accountPopup" class="accntPopup hidden">
+							<div class="row">
+		  						<div class="col-1">
+									<img id="profileCancel" class="cancelImg" src="resources/images/cancel.png">
+								</div>
+		  					</div>
+							<img id="profileBanner" class="profileBanner" src ="resources/images/homeIcon.png">
+							<img id="profilePicture" class="profileImage" src="resources/images/profile.png">
+							<br>
+							<div class="row">
+								
+								<div class="col-6">
+									<label>Banner</label>
+									<input id="bannerImageInput"  type="file">
+								</div>
+								
+								<div class="col-6">
+									<label>Profile Picture</label>
+									<input id="profileImageInput" type="file">
+								</div>
+							</div>
+							<br>
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Nickname</h6>
+								<input id="profileNickname" type="text" class="profileNicknameInput" value="Terran" placeholder="Nickname">
+							</div>
+							
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Username</h6>
+								<input id="profileUsername" type="text" class="profileUsernameInput" value="Johok" placeholder="Username">
+							</div>
+							
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Bio</h6>
+								<textarea id="profileBio" class="profileBioInput" cols = "55" rows="2"></textarea>
+							</div>
+							<hr color="#000000">
+							<div id ="parentSection" class="profilePinlockSection">
+							<div id="lockedSection" class="profilePinlockSection">
+								<div>
+								<h6 style="padding-left: 5px; cursor: default">Email</h6>
+								<input id="profileEmail" type="text" class = "profilePasswordInput" placeholder="Email">
+							</div>
+							
+							<div>
+								<h6 style="padding-left: 5px; cursor: default">Password</h6>
+								<input id="profilePassword" type="password" class = "profileEmailInput" placeholder="Password">
+							</div>
+							</div>
+								</div>
+						</div>
+					</div>
+					
+					<br><br><br><br><br><br><br><br>
+					<div id="profilepopups" class="profilepopups">
+						<div id="accountLogoutPopup" class="accntLogoutPopup hidden">
+							<br><br>
+							<h3 id="accountLabel"  class = "accntLabel"><a href="accountmanager.html">Account</a></h3>
+							<br>
+							<h3 id="logoutLabel" class = "logoutLabel">Logout</h3>
+							<br>
+							<h3 id="zikilabel" class = "hidden accntLabel">Ziki Panel</h3>
+						</div>
+						<div id="LoginRegisterPopup" class="loginRegisterPopup hidden">
+							<br><br>
+							<a href="auth-login-basic.html">Login</a>
+							<br>
+							<a href="auth-register-basic.html">Register</a>
+						</div>
+					</div>
+				</div>
+				
+		    	
+			
+		</div>
+			
+			<div id="genreBody" class="col hidden" style="left: 15%;">
+				<br>
+				<div><h4 class = "discover-head">Discover</h4>
+					<input type="search" class = "discover-bar" placeholder="Search...">
+				</div>
+				<br><br>
+				
+				<h4 style="color: white; text-align: center; padding-right: 40%">Wikis</h4>
+				<br>
+				<div id="wikisDiv">
+				
+				</div>
+				<br>
+				<h4 style="color: white; text-align: center; padding-right: 40%">Pages</h4>
+				<br>
+				<div id="pagesDiv">
+				
+				</div>
+		</div>
+	  </div>	
+		 	
+		</div>
+	</div>
+	 <div class="float-right">
+				<img id="profilepic" class ="profilepic" src="resources/images/profile.png">
+		  </div>
+  <div id="genreSidebar" class="col-2 genre-sidebar hidden" style="background-color: #191919; height: 1000px; position: fixed; top: 0px">
+				<img width="150px" height="100px" src="resources/images/ZinxsWikiLogo.png">
+				<br><br><br>
+				<div id="homeBtnGenre"  class = "row homediv">
+				
+					<div class= "col-4">
+					    <img class="homepic" height ="50px" width="50px" src="resources/images/homeIcon.png">
+					</div>
+					
+					<div class= "col">
+						
+							<h2 class="homepageTextHead">Home</h2>
+						
+					</div>
+					
+				</div>
+				<br><br>
+				<div   class = "row ">
+				
+					<div  class= "col" style="text-align: center">
+						<h2 class="homepageTextHead">Genres</h2>
+					</div>
+				</div>
+				<div id="genres"  style="text-align: center; cursor: default">
+					
+				</div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</div>
+	  <div id="homepageSidebar" style="height: 100%; width: 15%; position: fixed; top: 0px" class="col-2 homepage-sidebar">
+				<img width="150px" height="100px" src="resources/images/ZinxsWikiLogo.png">
+				<br><br><br>
+				<div  class = "row homediv">
+					<a href="zikipanel.html">
+						<div class= "col-4">
+							<img class="homepic" height ="50px" width="50px" src="resources/images/homeIcon.png">
+						</div>
+					</a>
+						<div class= "col">
+							<h2 class="homepageTextHead">Home</h2>
+						</div>
+					
+				</div>
+				<br><br>
+				<div id="genreBtn" class = "row homediv">
+					
+					<div class= "col-4">
+					    <img class="homepic" height ="50px" width="50px" src="resources/images/genres_icon.png">
+					</div>
+					
+					<div class= "col">
+						<h2 class="homepageTextHead">Genres</h2>
+					</div>
+				</div>
+				<br><br>
+				<div style="top: 45%; position: relative" id="createPageBtn"  class = "row creatediv">
+					
+					<div class= "col-4">
+					    <img class= "createpic" height ="50px" width="50px" src="resources/images/newicon.png">
+					</div>
+					
+					<div class= "col">
+						<h2 class="homepageCreateTextHead">Create</h2>
+					</div>
+					
+				</div>
+				
+			</div>
+	  
+	  
+	<script src="js/homepage.js"></script>
+    <script src="resources/popper.min.js"></script>
+    <script src="resources/bootstrap-4.4.1.js"></script>
+	<script src="resources/jquery-3.4.1.min.js"></script>
+	<link href="resources/bootstrap-4.4.1.css" rel="stylesheet">
+  </body>
+</html>

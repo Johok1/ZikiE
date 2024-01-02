@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Wiki Category Discovery</title>
+<link href="resources/pageeditor/bootstrap-4.4.1.css" rel="stylesheet">
+<script src="resources/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+
+	<div style="position: fixed; width: 100px; height:10000px;" class="col-2 homepage-sidebar">
+		<img style="padding-right: 10px;" width="80px" height="60px" src="resources/images/logo_collapsed.png">
+		<br><br><br>
+		<div  class = "row homediv">
+
+			<div style="left: 13px;" class= "col">
+				<a href="index.html">
+					<img id="home" class="homepic" height ="40px" width="40px" src="resources/images/homeIcon.png">
+				</a>
+			</div>
+		</div>
+		<br><br>
+		
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br>
+		<div  class = "row creatediv">
+
+			<div style="left: 13px;" class= "col">
+				<img  class= "createpic" height ="40px" width="40px" src="resources/images/newicon.png">
+			</div>
+		</div>
+		
+	</div>
+	<br><br><br><br>
+<div class="col">
+			 <div id="page"  style="overflow: hidden;position: absolute; margin-top: 100px; margin-left: 100px; width: 1100px; height: 1500px; background-color: white;">
+			 <br><br>
+				<div id="discoveryDiv"><h1 style="text-align: center; color: black">Discover</h1>
+					<input id="searchbar" style="position: relative; left: 100px" type="search" class = "discover-bar" placeholder="Search...">
+				</div>
+				 <br>
+				 <br><br><br>
+				 <div class = "row">
+					<div  class="col">
+						<h1 style="color: black; padding-left: 20px">Category List</h1>
+					</div>
+				</div>
+				 <div class = "row" id="pagesDiv">
+					 
+					
+					 
+				 </div>
+	</div>
+	</div>
+	<div style="position: absolute; margin-left: 250px; margin-top: 50px" class="row">
+		<img src="resources/images/Zinks_png.png" style="width: 150px; height: 150px; position: relative; bottom:90px; right: 140px">
+		<h1 style="position: relative; color: white; right: 120px; bottom: 43px">Homepage</h1>
+	</div>
+<div style="position: absolute; margin-top: 65px; margin-left: 900px; width: 250px;" class = "row">
+		<div id="searchIcon" class="col-2 toolbarIcon" style="background-color: #191919;">
+			<img width="20px" height="20px" src="resources/images/search_all.png">
+		</div>
+		<div id="categoryIcon" class="col-2 toolbarIcon" style="background-color: #191919;">
+			<img width="30px" height="30px" src="resources/images/category_icon.png">
+		</div>
+		<a href="wiki_page_list.html">
+		<div id="pageIcon" class="col-2 toolbarIcon" style="background-color: #191919;">
+			<img width="20px" height="20px" src="resources/images/pages_icon.png">
+		</div>
+		</a>
+		<div id="moreIcon" class="col-2 toolbarIcon" style="background-color: #191919;">
+			<img width="20px" height="20px" src="resources/images/more_icon.png">
+		</div>
+		
+</div>
+	
+<div style="position: absolute; margin-top: 65px; margin-left: 1120px;" class = "row">
+  <div class="col-4 toolbarIcon" style="position: relative">
+			<img height="35px" width="35px" src="resources/images/toolbar_icon.png">
+			</div>
+  <div id="settingsBtn" style="position: relative" class="col-4 toolbarIcon">
+				<a href="wiki_settings.html">
+				<img height="35px" width="35px" src="resources/images/settings_icon.png">
+				</a>
+			</div>
+		
+	</div>
+	<div id="popupDiv" style="position: relative; left: 1250px; top: 80px; width: 100px"></div>
+	
+	<div style="left: 1350px; top: 700px; position: fixed;" class="col">
+				<img class="homepic" height ="50px" width="50px" src="resources/images/profile.png">
+	</div>
+	
+</body>
+	
+<script src="js/wiki_category_discovery.js"></script>
+<script src="resources/popper.min.js"></script>
+<script src="resources/bootstrap-4.4.1.js"></script>
+
+</html>

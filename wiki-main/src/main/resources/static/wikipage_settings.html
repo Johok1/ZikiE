@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>wiki-page settings</title>
+<link href="resources/bootstrap-4.4.1.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="row">
+	<div class="col-2 " style="background-color: #191919; height: 10000px;">
+		
+		<br>
+		<img id="permbackbtn" class="backimg" src="resources/images/cancel-icon.png">
+		<br><br>
+		<h5 style="text-align: center; color: white">(Name of Page)</h5>
+		<br>
+		<h5 style="text-align: center; color: white">Roles</h5>
+		<br>
+		<h5 style="text-align: center; color: white">Page Perms</h5>
+		<br>
+		<h5 id="tagsheader" style="text-align: center; color: white">Tags</h5>
+	</div>
+	<div id="bodydiv" class="col hidden">
+		<br>
+		<br>
+		<h5 style="color: white">Roles</h5>
+		<br>
+		<div class="container">
+			<h5 style="color: white">Find User</h5>
+			<div>
+			<input id="searchbar" type="search" size="50px;" style="border-radius: 5px;">
+			<img src="resources/images/search_icon.png" style="position: absolute; left: 487px; margin-top: 5px">
+			</div>
+			<br>
+			<br>
+			<div id ="userdiv">
+			<h5 style="color: white">Users</h5>
+			<hr color="#000000" align="left" style="width: 300px;">
+			</div>
+			
+		</div>
+		</div>
+
+	<div id="permsdiv" class="container hidden">
+			<br><br><br>
+			<label id="permstitle" style="color: #B5BAC1; text-decoration: underline; text-underline-position: under;">(User name) </label>
+			<br>
+			<div class="row">
+				<div class="col-4">
+					<h3 style="color: white;">Ban</h3>
+				</div>
+				<div class="col-2">
+					<div id="banDiv" class="togglebtnOff"></div>
+				</div>
+			</div>
+			
+			
+			<label style="color: white">Allow this user to view this page</label>
+			<hr color="#000000" width="460px" align="left">
+			
+			<div class="row">
+				<div class="col-4">
+					<h3 style="color: white;">Edit Access</h3>
+				</div>
+				<div class="col-2">
+					<div id="editDiv" class="togglebtnOff"></div>
+				</div>
+			</div>
+			<label style="color: white">Allow this user to edit this page</label>
+			<hr color="#000000" width="460px" align="left">
+		</div>
+		
+	<div id="tagsdiv" class="container">
+		<br>
+		<h5 style="color: white">Tags</h5>
+		<br><br>
+		<h5 style="color: white">Internal Tags</h5>
+			<div class ="row">
+			<div class ="col-6">	
+				<input id="internalTagSearchbar" type="search" size="50px;" style="border-radius: 5px;">
+				<img src="resources/images/search_icon.png" style="position: absolute; left: 380px; margin-top: 5px">
+			</div>
+				<div class="col-2">
+					<div id="createtagbtn" class="tagbtn hidden" style="width: 80px; height: 30px; background-color: #191919;">
+						<label  style="color: white; font-size: 9px; padding-left: 18px; cursor: default">Create Tag</label>
+					</div>
+				</div>
+			</div>
+		<br>
+			<div id="internaltagsrow" class="row">
+				
+			</div>
+		
+		
+	</div>
+		
+	<div id="tagrequest" class="container hidden">
+		<br>
+		<h5 style="color: white">Tag Request</h5>
+		<br>
+		<h5 style="color: white">What is the tags name?</h5>
+		<input type="text" size="30px;">
+		<br><br><br>
+		<h5 style="color: white">What Genre is this tag in?</h5>
+		<div style="background-color: white; width: 280px; height: 30px;">
+			<div class="row">
+				<div class="col">
+					<h5 style="color: black; padding-left: 30px; padding-top: 2px;">Genre</h5>
+				</div>
+				<div class="col-3">
+					<img class="dropdownarrow" src="resources/images/arrow-down.png">
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	</div>
+	<script src="js/wikipagesettings.js"></script>
+	<script src="resources/popper.min.js"></script>
+    <script src="resources/bootstrap-4.4.1.js"></script>
+	<script src="resources/jquery-3.4.1.min.js"></script>
+</body>
+</html>

@@ -55,3 +55,20 @@ window.onload = function () {
 }
 
 
+function handleCredentialResponse(response) {
+    let controller = new Controller()
+    controller.postGoogleLoginRequest(response.credential)
+        .then(response => response.text())
+        .then(response => {
+            console.log(response)
+            if (response != "false") {
+                setCookie("token", response)
+                window.location.href = "https://www.zinxswiki.com"
+            } else {
+
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+
+

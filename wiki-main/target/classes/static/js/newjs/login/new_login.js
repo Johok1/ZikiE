@@ -70,5 +70,6 @@ function handleCredentialResponse(response) {
         }).catch(error => {
             console.error(error)
         })
+}
 
 

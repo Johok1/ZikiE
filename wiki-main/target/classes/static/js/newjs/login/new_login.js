@@ -42,19 +42,6 @@ class Model {
     }
 }
 
-const app = new Model()
-
-
-window.onload = function () {
-    if (cookie.getCookie("rememberPassword") != "" && cookie.getCookie("rememberPassword") != undefined) {
-        app.view.inputPassword.value = cookie.getCookie("rememberPassword")
-        console.log("set password")
-    } else {
-        console.log("no remember password")
-    }
-}
-
-
 function handleCredentialResponse(response) {
     let controller = new Controller()
     controller.postGoogleLoginRequest(response.credential)
@@ -72,4 +59,17 @@ function handleCredentialResponse(response) {
         })
 }
 
+window.handleCredentialResponse = handleCredentialResponse
+
+window.onload = function () {
+    if (cookie.getCookie("rememberPassword") != "" && cookie.getCookie("rememberPassword") != undefined) {
+        app.view.inputPassword.value = cookie.getCookie("rememberPassword")
+        console.log("set password")
+    } else {
+        console.log("no remember password")
+    }
+}
+
+
+const app = new Model()
 

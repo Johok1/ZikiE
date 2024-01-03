@@ -29,7 +29,7 @@ class Model {
                         cookie.setCookie("rememberPassword", this.view.inputPassword.value)
                     }
                     cookie.setCookie("token", response, 1)
-                    window.location.href = "new_index.html"
+                    window.location.href = "https://www.zinxswiki.com"
                 } else if (response != "" && response != undefined) {
                     this.view.error.classList.remove("hidden")
                     this.view.error.innerHTML = response

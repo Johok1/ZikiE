@@ -49,7 +49,7 @@ function handleCredentialResponse(response) {
         .then(response => {
             console.log(response)
             if (response != "false") {
-                setCookie("token", response)
+                cookie.setCookie("token", response)
                 window.location.href = "https://www.zinxswiki.com"
             } else {
 

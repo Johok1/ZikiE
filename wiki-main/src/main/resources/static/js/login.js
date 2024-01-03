@@ -150,9 +150,6 @@ function parseJwt(token) {
 */
 function handleCredentialResponse(response) {
     let controller = new Controller()
-   // console.log(response)
-   // console.log(parseJwt(response.credential))
-  //  console.log(parseJwt(response.credential).email)
     controller.postGoogleLoginRequest(response.credential)
         .then(response => response.text())
         .then(response => {

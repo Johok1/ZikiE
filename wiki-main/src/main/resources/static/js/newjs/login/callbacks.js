@@ -55,7 +55,7 @@ class Cookie {
         return "";
     }
 }
-
+let cookie = new Cookie()
 
 
 function handleCredentialResponse(response) {

@@ -10229,4 +10229,16 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+@media (max-width: 575.98px){
+	.sidebar{
+		position: fixed;
+	}
+}
+
+@media (min-width: 576px){
+	.sidebar{
+		position: relative;
+	}
+}
 /*# sourceMappingURL=bootstrap.css.map */

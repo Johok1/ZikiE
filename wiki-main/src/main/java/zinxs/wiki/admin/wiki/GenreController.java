@@ -35,19 +35,19 @@ public class GenreController {
     }
 
     @CrossOrigin
-    @PostMapping("addGenre/{token}/{genre}")
+    @PostMapping("/addGenre/{token}/{genre}")
     public String addGenre(@PathVariable String token, @PathVariable String genre){
         return genreService.addGenre(token,genre);
     }
 
     @CrossOrigin
-    @PostMapping("removeGenre/{token}/{genre}")
+    @PostMapping("/removeGenre/{token}/{genre}")
     public String removeGenre(@PathVariable String token, @PathVariable String genre){
         return genreService.removeGenre(token,genre);
     }
 
     @CrossOrigin
-    @PostMapping("setTopGenre/{token}/{genreId}")
+    @PostMapping("/setTopGenre/{token}/{genreId}")
     public String setTopGenre(@PathVariable String token, @PathVariable String genreId){
         return genreService.setTopGenre(token,genreId);
     }

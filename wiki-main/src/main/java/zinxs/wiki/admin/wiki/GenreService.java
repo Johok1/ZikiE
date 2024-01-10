@@ -92,6 +92,7 @@ public class GenreService {
             if(this.isAdmin(authTokenUtils.decodeEmail(tempToken))) {
                 Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
                 genre.setTopGenre(true);
+                genreRepository.save(genre);
                 return "true";
             }else{
                 return "Invalid Authorization";

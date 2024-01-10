@@ -684,7 +684,7 @@ class Model {
             }).catch(error => {
                 console.error(error)
             })
-        this.controller.getExternalTags()
+        this.controller.getGenres()
             .then(response => response.text())
             .then(response => {
                 if (response != "" && response != undefined) {
@@ -1376,8 +1376,8 @@ class Controller {
         });
     }
 
-    getExternalTags() {
-        return fetch(this.fetch_url_tag + "/getExternalTags", {
+    getGenres() {
+        return fetch(this.fetch_url_tag + "/getGenres", {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

@@ -1,0 +1,63 @@
+export default class Controller {
+    constructor() {
+        this.fetch_url_validation = "https://www.zinxswiki.com/api/v1/validation"
+        this.fetch_url_profile = "https://www.zinxswiki.com/api/v1/profile"
+        this.fetch_url_page = "https://www.zinxswiki.com/api/v1/page"
+        this.fetch_url_wiki = "https://www.zinxswiki.com/api/v1/wiki"
+        this.fetch_url_tag = "https://www.zinxswiki.com/api/v1/tag"
+    }
+
+
+    getPages() {
+        return fetch(this.fetch_url_page + "/getPages", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        });
+    }
+
+    getWikis() {
+        return fetch(this.fetch_url_wiki + "/getWikis", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        });
+    }
+
+    getIsAdmin(token) {
+        return fetch(this.fetch_url_validation + "/isAdmin/" + token, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        });
+    }
+
+    getGenres() {
+        return fetch(this.fetch_url_tag + "/getGenres", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        });
+    }
+
+}

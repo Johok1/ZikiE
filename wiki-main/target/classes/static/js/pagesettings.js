@@ -275,7 +275,7 @@ class Model {
 		this.view.handlePermBackBtnClick(this.handlePermBackBtnInput);
 		this.view.handleSearchEnter(this.searchEnterHandler);
 		this.view.tagsButtonHeaderHander(this.handleTagsHeaderButton);
-		this.view.handleExternalTagRequest(this.externalTagRequestHandler);
+		this.view.handleGenreRequest(this.GenreRequestHandler);
 		this.view.divClickHandler(this.handleDocumentClick);
 		this.userPopup = new UserPopup(this.view.body, this.users.split(","))
 		this.userPopup.div.classList.add("hidden");
@@ -432,7 +432,7 @@ class Model {
 		}
 	}
 
-	externalTagRequestHandler = () => {
+	GenreRequestHandler = () => {
 		this.requestmode = true; 
 		this.view.tagsdiv.classList.add("hidden")
 		this.view.tagrequestdiv.classList.remove("hidden");
@@ -570,7 +570,7 @@ class View{
 		this.permstitle = document.getElementById("permstitle");
 		this.internaltagsrow = document.getElementById("internaltagsrow");
 		this.tagrequestdiv = document.getElementById("tagrequest");
-		this.externalTagBtn = document.getElementById("externaltagbtn");
+		this.GenreBtn = document.getElementById("Genrebtn");
 		this.internalTagSearch = document.getElementById("internalTagSearchbar")
 		this.editBtn = document.getElementById("editDiv");
 		this.banBtn = document.getElementById("banDiv");
@@ -645,8 +645,8 @@ class View{
 		});
 	}
 
-	handleExternalTagRequest = (handler) => {
-		this.externalTagBtn.addEventListener("click", function () {
+	handleGenreRequest = (handler) => {
+		this.GenreBtn.addEventListener("click", function () {
 			handler();
 		});
 	}

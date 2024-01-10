@@ -24,9 +24,11 @@ main {
   flex-wrap: nowrap;
   height: 100vh;
   height: -webkit-fill-available;
+  width: -webkit-fill-available;
   max-height: 100vh;
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow-x: none;
+  overflow-y: none;
+  
 }
 
 .b-example-divider {

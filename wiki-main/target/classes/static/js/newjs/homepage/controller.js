@@ -292,8 +292,8 @@ export default class Controller {
         });
     }
 
-    getExternalTags() {
-        return fetch(this.fetch_url_tag + "/getExternalTags", {
+    getGenres() {
+        return fetch(this.fetch_url_tag + "/getGenres", {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

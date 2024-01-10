@@ -5,8 +5,48 @@ export default class Controller {
         this.fetch_url_page = "https://www.zinxswiki.com/api/v1/page"
         this.fetch_url_wiki = "https://www.zinxswiki.com/api/v1/wiki"
         this.fetch_url_tag = "https://www.zinxswiki.com/api/v1/tag"
+        this.fetch_url_genre = "https://www.zinxswiki.com/api/v1/genre"
+        this.fetch_url_subgenre = "https://www.zinxswiki.com/api/v1/subgenre"
     }
 
+    getTopGenres() {
+        return fetch(this.fetch_url_genre + "/getTopGenres", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getGenres() {
+        return fetch(this.fetch_url_genre + "/getGenres", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getGenreName(id) {
+        return fetch(this.fetch_url_genre + "/getGenreName" + "/" + id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
 
     getPages() {
         return fetch(this.fetch_url_page + "/getPages", {

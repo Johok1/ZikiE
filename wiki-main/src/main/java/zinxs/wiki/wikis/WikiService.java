@@ -11,6 +11,7 @@ import zinxs.wiki.wikis.pages.PageRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 @AllArgsConstructor
 public class WikiService {
@@ -360,7 +361,7 @@ public class WikiService {
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             Long wikiPageId = Long.valueOf(wikiPageIdStr);
             if(targetAccount.isEnabled()){
-                List<Page> wikiPages = wiki.getPages();
+                ArrayList<Page> wikiPages = wiki.getPages();
                 for(Page wikiPage : wikiPages) {
                     if (wikiPage.getId().equals(wikiPageId)) {
                         wikiPage.setPageContent(pageContent);

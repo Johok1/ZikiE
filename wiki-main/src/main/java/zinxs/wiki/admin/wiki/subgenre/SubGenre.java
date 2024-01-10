@@ -8,6 +8,7 @@ import zinxs.wiki.wikis.Wiki;
 import zinxs.wiki.wikis.pages.Page;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,11 +31,11 @@ public class SubGenre {
 
     private String subGenreName;
 
-    private List<CommunityWiki> communityWikiList;
+    private ArrayList<CommunityWiki> communityWikiList;
 
-    private List<Wiki> wikiList;
+    private ArrayList<Wiki> wikiList;
 
-    private List<Page> pageList;
+    private ArrayList<Page> pageList;
 
     private boolean isTopGenre;
 

@@ -52,7 +52,7 @@ class Model {
             this.mainState = true
         }
     }
-/*
+
     loadMainView() {
         this.topGenres = this.getTopGenres()
             .then(() => {
@@ -61,14 +61,16 @@ class Model {
                 this.discoveryView.initMainView(this.topGenres, this.genres)  
             })
     }
-    */
-    //be sure to add .then after each statement when you hook in the backend again 
+   
+    /*
+    //be sure to add .then after each statement when you hook in the backend again
     loadMainView() {
         this.topGenres = this.getTopGenres()
         this.genres = this.getGenres()
         this.discoveryView.initMainView(this.topGenres, this.genres)
            
     }
+    
     getTopGenres() {
         return "Top Genre 1*1,Top Genre 2*2,Top Genre 3*3,Top Genre 4*4,Top Genre 5*5"
     }
@@ -76,8 +78,8 @@ class Model {
     getGenres() {
         return "Genre 1*1,Genre 2*2,Genre 3*3,Genre 4*4,Genre 5*5,Benre 6*6,Benre 7*7"
     }
-
-    /*
+    */
+    
     getTopGenres() {
         return this.controller.getTopGenres(cookie.getCookie("token"))
             .then(response => response.text())
@@ -93,7 +95,7 @@ class Model {
                 return response
             })
     }
-    */
+    
 
     /*
     loadGenreView() {
@@ -111,11 +113,16 @@ class Model {
     //be sure to add .then after each statement when you hook in the backend again 
     loadGenreView() {
         this.topSubGenres = this.getTopSubGenres()
-            this.subGenres = this.getSubGenres()
-            this.genreName = this.getGenreName()
-            this.discoveryView.initSubGenreView(this.topSubGenres, this.subGenres, this.genreName)
+            .then(() => {
+                this.subGenres = this.getSubGenres()
+            }).then(() => {
+                this.genreName = this.getGenreName()
+            }).then(()=> {
+                this.discoveryView.initSubGenreView(this.topSubGenres, this.subGenres, this.genreName)
+            })
     }
 
+    /*
     getGenreName() {
         return "Genre Name"
     }
@@ -127,10 +134,10 @@ class Model {
     getSubGenres() {
         return "Sub Genre 1*1,Sub Genre 2*2,Sub Genre 3*3,Sub Genre 4*4,Sub Genre 5*5"
     }
-
-    /*
+    */
+    
     getGenreName() {
-        return this.controller.getGenreName(cookie.getCookie("token"), cookie.getCookie("genreId"))
+        return this.controller.getGenreName( cookie.getCookie("genreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -138,7 +145,7 @@ class Model {
     }
 
     getTopSubGenres() {
-        return this.controller.getTopGenres(cookie.getCookie("token"), cookie.getCookie("genreId"))
+        return this.controller.getTopSubGenres(cookie.getCookie("genreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -146,23 +153,32 @@ class Model {
     }
 
     getSubGenres() {
-        return this.controller.getGenres(cookie.getCookie("token"),cookie.getCookie("genreId"))
+        return this.controller.getSubGenres(cookie.getCookie("genreId"))
             .then(response => response.text())
             .then(response => {
                 return response
             })
     }
-    */
+    
 
     //be sure to add .then after each statement when you hook in the backend again 
     loadSubGenreView() {
         this.subGenreName = this.getSubGenreNameFromId(0)
-        this.subGenreCommList = this.getSubGenreCommunityWikis()
-        this.subGenreWikiList = this.getSubGenreWikis()
-        this.subGenrePageList = this.getSubGenrePages()
-        this.discoveryView.initWikiView(this.subGenreCommList, this.subGenreWikiList, this.subGenrePageList, this.subGenreName)
+            .then(() => {
+                this.subGenreCommList = this.getSubGenreCommunityWikis()
+            })
+            .then(() => {
+                this.subGenreWikiList = this.getSubGenreWikis()
+            })
+            .then(() => {
+                this.subGenrePageList = this.getSubGenrePages()
+            })
+            .then(() => {
+                this.discoveryView.initWikiView(this.subGenreCommList, this.subGenreWikiList, this.subGenrePageList, this.subGenreName)
+            })
     }
 
+    /*
     getSubGenreNameFromId(id) {
         return "Sub Genre Name"
     }
@@ -178,10 +194,12 @@ class Model {
     getSubGenrePages() {
         return "Page 1*1,Page 2*2,Page 3*3" 
     }
-    /*
+    */
+
+    
 
     getSubGenreCommunityWikis() {
-        return this.controller.getSubGenreCommunityWikis(cookie.getCookie("token"), cookie.getCookie("subGenreId"))
+        return this.controller.getSubGenreCommunityWikis(cookie.getCookie("subGenreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -189,7 +207,7 @@ class Model {
     }
     
     getSubGenreWikis() {
-        return this.controller.getSubGenreWikis(cookie.getCookie("token"), cookie.getCookie("subGenreId"))
+        return this.controller.getSubGenreWikis(cookie.getCookie("subGenreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -197,13 +215,13 @@ class Model {
     }
 
     getSubGenrePages() {
-        return this.controller.getSubGenrePages(cookie.getCookie("token"), cookie.getCookie("subGenreId"))
+        return this.controller.getSubGenrePages(cookie.getCookie("subGenreId"))
             .then(response => response.text())
             .then(response => {
                 return response
             })
-    }
-    */
+    } 
+    
 
     loadSearchTagView() {
          //get community wikis

@@ -11,7 +11,8 @@ import zinxs.wiki.wikis.community.CommunityWikiRepository;
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 @Service
 @AllArgsConstructor
@@ -38,7 +39,7 @@ public class SubGenreService{
     public String getSubGenreCommunityWikis(String subGenreId){
         try{
             SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
-            List<CommunityWiki> communityWikis = subGenre.getCommunityWikiList();
+            ArrayList<CommunityWiki> communityWikis = subGenre.getCommunityWikiList();
             String wikiList = "";
             for(CommunityWiki wiki : communityWikis){
                 wikiList += wiki.getName() +"*"+wiki.getId()+ ",";
@@ -51,7 +52,7 @@ public class SubGenreService{
     public String getSubGenreWikis(String subGenreId){
         try{
             SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
-            List<Wiki> wikis = subGenre.getWikiList();
+            ArrayList<Wiki> wikis = subGenre.getWikiList();
             String wikiList = "";
             for(Wiki wiki : wikis){
                 wikiList += wiki.getName()+"*"+wiki.getId() + ",";
@@ -64,7 +65,7 @@ public class SubGenreService{
     public String getSubGenrePages(String subGenreId){
         try{
             SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
-            List<Page> pages = subGenre.getPageList();
+            ArrayList<Page> pages = subGenre.getPageList();
             String pageList = "";
             for(Page page : pages){
                 pageList += page.getName() +"*"+page.getId()+ ",";
@@ -122,7 +123,7 @@ public class SubGenreService{
         try{
             CommunityWiki wiki = communityWikiRepository.findById(Long.valueOf(communityWikiId)).get();
             SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
-            List<CommunityWiki> wikiList = subGenre.getCommunityWikiList();
+            ArrayList<CommunityWiki> wikiList = subGenre.getCommunityWikiList();
             wikiList.add(wiki);
             subGenre.setCommunityWikiList(wikiList);
             subGenreRepository.save(subGenre);
@@ -136,7 +137,7 @@ public class SubGenreService{
         try{
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
-            List<Wiki> wikiList = subGenre.getWikiList();
+            ArrayList<Wiki> wikiList = subGenre.getWikiList();
             wikiList.add(wiki);
             subGenre.setWikiList(wikiList);
             subGenreRepository.save(subGenre);
@@ -149,7 +150,7 @@ public class SubGenreService{
     public String addPageToSubGenre(String subGenreId, String pageId){
         Page page = pageRepository.findById(Long.valueOf(pageId)).get();
         SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
-        List<Page> pageList = subGenre.getPageList();
+        ArrayList<Page> pageList = subGenre.getPageList();
         pageList.add(page);
         subGenre.setPageList(pageList);
         subGenreRepository.save(subGenre);

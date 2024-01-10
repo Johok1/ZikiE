@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.admin.wiki.subgenre.SubGenre;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -38,7 +39,7 @@ public class Genre {
 
     private boolean isTopGenre;
 
-    private List<SubGenre> subGenreList;
+    private ArrayList<SubGenre> subGenreList;
 
 
 }

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import zinxs.wiki.account.Account;
 import zinxs.wiki.wikis.pages.PageService;
-import zinxs.wiki.wikis.wikipage.WikiPage;
+
 
 @RestController
 @RequestMapping(path = "api/v1/wiki")
@@ -25,21 +25,21 @@ public class WikiController {
     }
 
     @CrossOrigin
-    @PostMapping("/getWikiExternalTags/{token}/{wikiId}")
-    public String getWikiExternalTags(@PathVariable String token, @PathVariable String wikiId){
-        return wikiService.getWikiExternalTags(token,wikiId);
+    @PostMapping("/getWikiGenres/{token}/{wikiId}")
+    public String getWikiGenres(@PathVariable String token, @PathVariable String wikiId){
+        return wikiService.getWikiGenres(token,wikiId);
     }
     @CrossOrigin
-    @PostMapping("/addWikiExternalTag/{token}/{wikiId}/{tag}")
-    public String addWikiExternalTags(@PathVariable String token, @PathVariable String wikiId,
+    @PostMapping("/addWikiGenre/{token}/{wikiId}/{tag}")
+    public String addWikiGenres(@PathVariable String token, @PathVariable String wikiId,
                                       @PathVariable String tag){
-        return wikiService.addWikiExternalTag(token,wikiId,tag);
+        return wikiService.addWikiGenre(token,wikiId,tag);
     }
     @CrossOrigin
-    @PostMapping("/removeWikiExternalTag/{token}/{wikiId}/{tag}")
-    public String removeWikiExternalTags(@PathVariable String token, @PathVariable String wikiId,
+    @PostMapping("/removeWikiGenre/{token}/{wikiId}/{tag}")
+    public String removeWikiGenres(@PathVariable String token, @PathVariable String wikiId,
                                       @PathVariable String tag){
-        return wikiService.removeWikiExternalTag(token,wikiId,tag);
+        return wikiService.removeWikiGenre(token,wikiId,tag);
     }
 
 

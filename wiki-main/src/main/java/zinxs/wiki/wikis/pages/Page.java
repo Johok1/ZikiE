@@ -31,6 +31,8 @@ public class Page implements Serializable {
     private ArrayList<String> editAccessAccounts;
     private ArrayList<String> internalTags;
 
+    private String name;
+
     public Page(){
         this.bannedAccounts = new ArrayList<>();
         this.editAccessAccounts = new ArrayList<>();

@@ -506,7 +506,7 @@ class Controller {
 
 
 	getGenres() {
-		return fetch(this.fetch_url_tags + "/getExternalTags" , {
+		return fetch(this.fetch_url_tags + "/getGenres" , {
 			method: 'GET',
 			headers: {
 				'Access-Control-Allow-Origin': '*',
@@ -519,7 +519,7 @@ class Controller {
 	}
 
 	addGenre(token, tag) {
-		return fetch(this.fetch_url_tags + "/addExternalTag/" + token + "/" + tag, {
+		return fetch(this.fetch_url_tags + "/addGenre/" + token + "/" + tag, {
 			method: 'POST',
 			headers: {
 				'Access-Control-Allow-Origin': '*',
@@ -531,7 +531,7 @@ class Controller {
 		})
 	}
 	deleteGenre(token, tag) {
-		return fetch(this.fetch_url_tags + "/removeExternalTag/" + token + "/" + tag, {
+		return fetch(this.fetch_url_tags + "/removeGenre/" + token + "/" + tag, {
 			method: 'POST',
 			headers: {
 				'Access-Control-Allow-Origin': '*',

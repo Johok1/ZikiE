@@ -241,7 +241,7 @@ class Model {
 		this.controller = controller;
 
 		this.users = ""
-		this.wikiExternalTags = ""
+		this.wikiGenres = ""
 		this.token = getCookie("token")
 		this.wikiId = getCookie("wikiId")
 		this.controller.getUsersDump(this.token)
@@ -265,15 +265,15 @@ class Model {
 				this.view.createTagPopup.handleSearchSubmitInput(this.handleCreateInternalTagInput);
 			});
 
-		this.controller.getExternalTags()
+		this.controller.getGenres()
 			.then(response => response.text())
 			.then(response => {
-				this.view.externalTagsList = response
-				this.controller.getWikiExternalTags(this.token, this.wikiId)
+				this.view.GenresList = response
+				this.controller.getWikiGenres(this.token, this.wikiId)
 					.then(response => response.text())
 					.then(response => {
-						this.wikiExternalTags = response
-						this.loadTags(this.view.externalTagsList.split(",").flat(), this.addWikiPageTag, this.removeWikiPageTag)
+						this.wikiGenres = response
+						this.loadTags(this.view.GenresList.split(",").flat(), this.addWikiPageTag, this.removeWikiPageTag)
 					})
 				
 			})
@@ -289,7 +289,7 @@ class Model {
 		this.view.handlePermBackBtnClick(this.handlePermBackBtnInput);
 		this.view.handleSearchEnter(this.searchEnterHandler);
 		this.view.tagsButtonHeaderHander(this.handleTagsHeaderButton);
-		this.view.handleExternalTagRequest(this.externalTagRequestHandler);
+		this.view.handleGenreRequest(this.GenreRequestHandler);
 		this.view.divClickHandler(this.handleDocumentClick);
 		this.userPopup = new UserPopup(this.view.body, this.users.split(","))
 		this.userPopup.div.classList.add("hidden");
@@ -300,7 +300,7 @@ class Model {
 	}
 
 	removeWikiPageTag = (tag) => {
-		this.controller.removeWikiExternalTag(this.token, this.wikiId, tag.tagname)
+		this.controller.removeWikiGenre(this.token, this.wikiId, tag.tagname)
 			.then(response => response.text())
 			.then(response => {
 				if (response == "true") {
@@ -311,7 +311,7 @@ class Model {
 	}
 
 	addWikiPageTag = (tag) => {
-		this.controller.addWikiExternalTag(this.token, this.wikiId, tag.tagname)
+		this.controller.addWikiGenre(this.token, this.wikiId, tag.tagname)
 			.then(response => response.text())
 			.then(response => {
 				if (response == "true") {
@@ -326,9 +326,9 @@ class Model {
 	loadTags(taglist, addPageFunction, removePageFunction) {
 		for (let x = 0; x < taglist.length; x++) {
 			if (taglist[x] != "") {
-				let tag = new ExternalTag(taglist[x])
-				this.view.externalTagsRow.appendChild(tag.coldiv)
-				if (this.wikiExternalTags.includes(tag.tagname)) {
+				let tag = new Genre(taglist[x])
+				this.view.GenresRow.appendChild(tag.coldiv)
+				if (this.wikiGenres.includes(tag.tagname)) {
 					tag.setEnabled()
 				}
 				tag.btnDivHandler(function () {
@@ -491,7 +491,7 @@ class Model {
 		}
 	}
 
-	externalTagRequestHandler = () => {
+	GenreRequestHandler = () => {
 		this.requestmode = true;
 		this.view.tagsdiv.classList.add("hidden")
 		this.view.tagrequestdiv.classList.remove("hidden");
@@ -616,7 +616,7 @@ class InternalTag {
 
 }
 
-class ExternalTag {
+class Genre {
 	constructor(tagname) {
 		this.tagname = tagname
 		this.coldiv = document.createElement("div");
@@ -668,15 +668,15 @@ class View {
 		this.tagsdiv = document.getElementById("tagsdiv");
 		this.permstitle = document.getElementById("permstitle");
 		this.internaltagsrow = document.getElementById("internaltagsrow");
-		this.externalTagsRow = document.getElementById("externalTagsRow");
+		this.GenresRow = document.getElementById("GenresRow");
 		this.tagrequestdiv = document.getElementById("tagrequest");
-		this.externalTagBtn = document.getElementById("externaltagbtn");
+		this.GenreBtn = document.getElementById("Genrebtn");
 		this.internalTagSearch = document.getElementById("internalTagSearchbar")
 		this.editBtn = document.getElementById("editDiv");
 		this.banBtn = document.getElementById("banDiv");
 
 		this.internaltagslist = "";
-		this.externalTagsList = ""
+		this.GenresList = ""
 
 		this.tagsearch = false;
 
@@ -746,8 +746,8 @@ class View {
 		});
 	}
 
-	handleExternalTagRequest = (handler) => {
-		this.externalTagBtn.addEventListener("click", function () {
+	handleGenreRequest = (handler) => {
+		this.GenreBtn.addEventListener("click", function () {
 			handler();
 		});
 	}
@@ -761,11 +761,11 @@ class View {
 		}
 	}
 
-	loadExternalTags(taglist) {
+	loadGenres(taglist) {
 		for (let x = 0; x < taglist.length; x++) {
 			if (taglist[x] != "") {
-				let tag = new ExternalTag(taglist[x])
-				this.externalTagsRow.appendChild(tag.coldiv)
+				let tag = new Genre(taglist[x])
+				this.GenresRow.appendChild(tag.coldiv)
 			}
 		}
 	}
@@ -844,8 +844,8 @@ class Controller {
 		this.fetch_url_tag = "http://localhost/api/v1/tag"
 	}
 
-	removeWikiExternalTag(token, wikiId, value) {
-		return fetch(this.fetch_url_wiki + "/removeWikiExternalTag/" + token + "/" + wikiId + "/" + value, {
+	removeWikiGenre(token, wikiId, value) {
+		return fetch(this.fetch_url_wiki + "/removeWikiGenre/" + token + "/" + wikiId + "/" + value, {
 			method: 'POST',
 			headers: {
 				'Access-Control-Allow-Origin': '*',
@@ -857,8 +857,8 @@ class Controller {
 		});
 	}
 
-	addWikiExternalTag(token, wikiId, value) {
-		return fetch(this.fetch_url_wiki + "/addWikiExternalTag/" + token + "/" + wikiId + "/" + value, {
+	addWikiGenre(token, wikiId, value) {
+		return fetch(this.fetch_url_wiki + "/addWikiGenre/" + token + "/" + wikiId + "/" + value, {
 			method: 'POST',
 			headers: {
 				'Access-Control-Allow-Origin': '*',
@@ -870,8 +870,8 @@ class Controller {
 		});
 	}
 
-	getWikiExternalTags(token, wikiId) {
-		return fetch(this.fetch_url_wiki + "/getWikiExternalTags/" + token+"/"+wikiId, {
+	getWikiGenres(token, wikiId) {
+		return fetch(this.fetch_url_wiki + "/getWikiGenres/" + token+"/"+wikiId, {
 			method: 'GET',
 			headers: {
 				'Access-Control-Allow-Origin': '*',
@@ -883,8 +883,8 @@ class Controller {
 		});
 	}
 
-	getExternalTags() {
-		return fetch(this.fetch_url_tag + "/getExternalTags", {
+	getGenres() {
+		return fetch(this.fetch_url_tag + "/getGenres", {
 			method: 'GET',
 			headers: {
 				'Access-Control-Allow-Origin': '*',

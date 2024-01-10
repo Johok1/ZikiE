@@ -9,29 +9,36 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
+import zinxs.wiki.admin.wiki.subgenre.SubGenre;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
+@NoArgsConstructor
 @Getter
 @Setter
-public class ExternalTag {
+public class Genre {
 
     @SequenceGenerator(
-            name = "external_tag_sequence",
-            sequenceName = "external_tag_sequence",
+            name = "genre_sequence",
+            sequenceName = "genre_sequence",
             allocationSize = 1
     )
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "external_tag_sequence"
+            generator = "genre_sequence"
     )
     private Long id;
 
-    private String tagName;
+    private String genreName;
 
-    private String status;
+    private boolean isTopGenre;
+
+    private List<SubGenre> subGenreList;
+
+
 }

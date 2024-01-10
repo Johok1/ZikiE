@@ -6,8 +6,7 @@ import zinxs.wiki.account.AccountRepository;
 import zinxs.wiki.utilities.AuthTokenUtils;
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
-import zinxs.wiki.wikis.wikipage.WikiPage;
-import zinxs.wiki.wikis.wikipage.WikiPageRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class WikiService {
     private final AuthTokenUtils authTokenUtils;
     private final AccountRepository accountRepository;
 
-    private final WikiPageRepository wikiPageRepository;
+    private final PageRepository pageRepository;
 
 
     public String hasAccess(String token, String wikiId){
@@ -69,10 +68,10 @@ public class WikiService {
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = getAccountWiki(tempToken, wikiId);
-            WikiPage page = new WikiPage();
+            Page page = new Page();
             page.setEmail(wiki.getEmail());
             wiki.getPages().add(page);
-            wikiPageRepository.save(page);
+            pageRepository.save(page);
             wikiRepository.save(wiki);
             return String.valueOf(page.getId());
         }catch (Exception e){
@@ -96,9 +95,9 @@ public class WikiService {
         try{
             Account account = getAccount(tempToken);
 
-            WikiPage wikiPage = getWikiPage(wikiId,wikiPageId);
+            Page wikiPage = getWikiPage(wikiId,wikiPageId);
             wikiPage.getInternalTags().remove(tag);
-            wikiPageRepository.save(wikiPage);
+            pageRepository.save(wikiPage);
             return "true";
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -108,9 +107,9 @@ public class WikiService {
     public String addWikiPageTag(String tempToken, String wikiId, String wikiPageId, String tag){
         try{
             Account account = getAccount(tempToken);
-            WikiPage wikiPage = getWikiPage(wikiId,wikiPageId);
+            Page wikiPage = getWikiPage(wikiId,wikiPageId);
             wikiPage.getInternalTags().add(tag);
-            wikiPageRepository.save(wikiPage);
+            pageRepository.save(wikiPage);
             return "true";
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -121,7 +120,7 @@ public class WikiService {
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            WikiPage wikiPage = getWikiPage(wikiId,wikiPageId);
+            Page wikiPage = getWikiPage(wikiId,wikiPageId);
             String tags = "";
             for(String tag : wikiPage.getInternalTags()){
                 tags += tag+",";
@@ -146,12 +145,12 @@ public class WikiService {
         }
     }
 
-    public String getWikiExternalTags(String tempToken, String wikiId){
+    public String getWikiGenres(String tempToken, String wikiId){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             String tags = "";
-            for(String tag: wiki.getExternalTags()){
+            for(String tag: wiki.getGenres()){
                 tags += tag+",";
             }
             return tags;
@@ -160,13 +159,13 @@ public class WikiService {
         }
     }
 
-    public String addWikiExternalTag(String tempToken, String wikiId, String tag){
+    public String addWikiGenre(String tempToken, String wikiId, String tag){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            ArrayList<String> externalTags = wiki.getExternalTags();
-            externalTags.add(tag);
-            wiki.setExternalTags(externalTags);
+            ArrayList<String> Genres = wiki.getGenres();
+            Genres.add(tag);
+            wiki.setGenres(Genres);
             wikiRepository.save(wiki);
             return "true";
         }catch (Exception e){
@@ -174,13 +173,13 @@ public class WikiService {
         }
     }
 
-    public String removeWikiExternalTag(String tempToken, String wikiId, String tag){
+    public String removeWikiGenre(String tempToken, String wikiId, String tag){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            ArrayList<String> externalTags = wiki.getExternalTags();
-            externalTags.remove(tag);
-            wiki.setExternalTags(externalTags);
+            ArrayList<String> Genres = wiki.getGenres();
+            Genres.remove(tag);
+            wiki.setGenres(Genres);
             wikiRepository.save(wiki);
             return "true";
         }catch (Exception e){
@@ -201,7 +200,7 @@ public class WikiService {
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             String wikiPageIds = "";
-            for(WikiPage page : wiki.getPages()) {
+            for(Page page : wiki.getPages()) {
                 wikiPageIds += page.getId()+ ",";
             }
             return wikiPageIds;
@@ -214,7 +213,7 @@ public class WikiService {
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            for(WikiPage page: wiki.getPages()){
+            for(Page page: wiki.getPages()){
                 if(page.getId().equals(Long.valueOf(wikiPageId))){
                     return page.getPageContent();
                 }
@@ -225,10 +224,10 @@ public class WikiService {
         }
     }
 
-    private WikiPage getWikiPage(String wikiId, String wikiPageId){
+    private Page getWikiPage(String wikiId, String wikiPageId){
         try{
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            for(WikiPage wikiPage : wiki.getPages()){
+            for(Page wikiPage : wiki.getPages()){
                 if(wikiPage.getId().equals(Long.valueOf(wikiPageId))){
                     return wikiPage;
                 }
@@ -361,11 +360,11 @@ public class WikiService {
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             Long wikiPageId = Long.valueOf(wikiPageIdStr);
             if(targetAccount.isEnabled()){
-                List<WikiPage> wikiPages = wiki.getPages();
-                for(WikiPage wikiPage : wikiPages) {
+                List<Page> wikiPages = wiki.getPages();
+                for(Page wikiPage : wikiPages) {
                     if (wikiPage.getId().equals(wikiPageId)) {
                         wikiPage.setPageContent(pageContent);
-                        wikiPageRepository.save(wikiPage);
+                        pageRepository.save(wikiPage);
                         return "true";
                     }
                 }

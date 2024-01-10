@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import zinxs.wiki.wikis.pages.Page;
-import zinxs.wiki.wikis.wikipage.WikiPage;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,15 +32,17 @@ public class Wiki {
     private ArrayList<String> editAccessAccounts;
     private ArrayList<String> internalTags;
 
-    private ArrayList<String> externalTags;
+    private ArrayList<String> Genres;
 
-    private ArrayList<WikiPage> pages;
+    private String name;
+
+    private ArrayList<Page> pages;
 
     public Wiki(){
         this.bannedAccounts = new ArrayList<>();
         this.editAccessAccounts = new ArrayList<>();
         this.internalTags = new ArrayList<>();
         this.pages = new ArrayList<>();
-        this.externalTags = new ArrayList<>();
+        this.Genres = new ArrayList<>();
     }
 }

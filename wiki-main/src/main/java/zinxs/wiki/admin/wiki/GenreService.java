@@ -1,97 +1,118 @@
 package zinxs.wiki.admin.wiki;
 
-import jdk.jshell.spi.ExecutionControl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import zinxs.wiki.account.Account;
 import zinxs.wiki.account.AccountRepository;
+import zinxs.wiki.admin.wiki.subgenre.SubGenre;
 import zinxs.wiki.utilities.AuthTokenUtils;
 import zinxs.wiki.wikis.Wiki;
 import zinxs.wiki.wikis.WikiRepository;
-import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
-import zinxs.wiki.wikis.wikipage.WikiPage;
-import zinxs.wiki.wikis.wikipage.WikiPageRepository;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ExternalTagService {
+public class GenreService {
 
     private final WikiRepository wikiRepository;
     private final AuthTokenUtils authTokenUtils;
     private final AccountRepository accountRepository;
-    private final WikiPageRepository wikiPageRepository;
-    private final ExternalTagRepository externalTagRepository;
+    private final PageRepository pageRepository;
+    private final GenreRepository genreRepository;
 
 
 
 
-    public String getExternalTags(){
+    public String getGenres(){
         try{
-
-
-            List<ExternalTag> tags = externalTagRepository.findAll();
-            String taglist = "";
-            for(ExternalTag tag : tags){
-                taglist += tag.getTagName() + ",";
+            List<Genre> genres = genreRepository.findAll();
+            String genreList = "";
+            for(Genre genre : genres){
+                genreList += genre.getGenreName() +"*" + genre.getId() + ",";
             }
-            return  taglist;
+            return genreList;
 
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    public String setStatus(String tempToken, String tagname, String status){
+    public String getTopGenres(){
         try{
-            String decodedToken = authTokenUtils.decodeEmail(tempToken);
-            if(!decodedToken.equals("josh.hooks@hotmail.com")){
-                throw new RuntimeException("Hey, who are you? You're not supposed to be here! " +
-                        "Recording IP Address for security breach report...");
-            }else{
-                ExternalTag tag = externalTagRepository.findByTagName(tagname).get();
-                if((status.equalsIgnoreCase("active") ||
-                        status.equalsIgnoreCase("deactive") ||
-                        status.equalsIgnoreCase("hidden"))) {
-                    tag.setStatus(status);
-                    return "true";
-                }else{
-                    throw new RuntimeException("invalid status passed");
+            List<Genre> genres = genreRepository.findAll();
+            String genreList = "";
+            for(Genre genre : genres){
+                if(genre.isTopGenre()) {
+                    genreList += genre.getGenreName() + "*" + genre.getId() + ",";
                 }
             }
+            return genreList;
+
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    public String getStatus(String tempToken, String tagname){
+    public String getTopSubGenres(String genreId){
         try{
-            String decodedToken = authTokenUtils.decodeEmail(tempToken);
-            if(!decodedToken.equals("josh.hooks@hotmail.com")){
-                throw new RuntimeException("Hey, who are you? You're not supposed to be here! " +
-                        "Recording IP Address for security breach report...");
+            List<SubGenre> genres = genreRepository.findById(Long.valueOf(genreId)).get().getSubGenreList();
+            String genreList = "";
+            for(SubGenre genre : genres){
+                if(genre.isTopGenre()) {
+                    genreList += genre.getSubGenreName() + "*" + genre.getId() +  ",";
+                }
+            }
+            return genreList;
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getSubGenres(String genreId){
+        try{
+            Genre genreResult = genreRepository.findById(Long.valueOf(genreId)).get();
+            List<SubGenre> subGenres = genreResult.getSubGenreList();
+            String genreList = "";
+            for(SubGenre subGenre : subGenres){
+                genreList += subGenre.getSubGenreName() + "*" + subGenre.getId()+ ",";
+            }
+            return genreList;
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String setTopGenre(String tempToken, String genreId){
+        try{
+            if(this.isAdmin(authTokenUtils.decodeEmail(tempToken))) {
+                Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
+                genre.setTopGenre(true);
+                return "true";
             }else{
-                ExternalTag tag = externalTagRepository.findByTagName(tagname).get();
-                return tag.getStatus();
+                return "Invalid Authorization";
             }
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    public String addTag(String tempToken, String tagname){
+
+
+    public String addGenre(String tempToken, String genreName){
         try{
             String decodedToken = authTokenUtils.decodeEmail(tempToken);
-            if(!decodedToken.equals("josh.hooks@hotmail.com")){
+            if(!isAdmin(decodedToken)){
                 throw new RuntimeException("Hey, who are you? You're not supposed to be here! " +
                         "Recording IP Address for security breach report...");
             }else{
-               ExternalTag tag = new ExternalTag();
-               tag.setTagName(tagname);
-               externalTagRepository.save(tag);
+               Genre genre = new Genre();
+               genre.setGenreName(genreName);
+               genreRepository.save(genre);
                return "true";
             }
         }catch (Exception e){
@@ -99,17 +120,26 @@ public class ExternalTagService {
         }
     }
 
-    public String removeTag(String tempToken, String tagname){
+    public String removeGenre(String tempToken, String genreName){
         try{
             String decodedToken = authTokenUtils.decodeEmail(tempToken);
-            if(!decodedToken.equals("josh.hooks@hotmail.com")){
+            if(!isAdmin(decodedToken)){
                 throw new RuntimeException("Hey, who are you? You're not supposed to be here! " +
                         "Recording IP Address for security breach report...");
             }else{
-                ExternalTag tag = externalTagRepository.findByTagName(tagname).get();
-                externalTagRepository.delete(tag);
+                Genre genre = genreRepository.findByGenreName(genreName).get();
+                genreRepository.delete(genre);
                 return "true";
             }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getGenreName(String genreId){
+        try{
+            Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
+            return genre.getGenreName();
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -148,6 +178,16 @@ public class ExternalTagService {
             }
         }catch (Exception e){
             throw new RuntimeException("getAccount error " + e);
+        }
+    }
+
+    private boolean isAdmin(String email){
+        if(email.equals("josh.hooks@hotmail.com")
+                || email.equals("zinxshosting@gmail.com")
+                || email.equals("jaydencantrelle@gmail.com")){
+            return true;
+        }else{
+            return false;
         }
     }
 

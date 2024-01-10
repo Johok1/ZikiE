@@ -81,7 +81,7 @@ class Model {
     */
     
     getTopGenres() {
-        return this.controller.getTopGenres(cookie.getCookie("token"))
+        return this.controller.getTopGenres()
             .then(response => response.text())
             .then(response => {
                 return response
@@ -89,7 +89,7 @@ class Model {
     }
 
     getGenres() {
-        return this.controller.getGenres(cookie.getCookie("token"))
+        return this.controller.getGenres()
             .then(response => response.text())
             .then(response => {
                 return response
@@ -137,7 +137,7 @@ class Model {
     */
     
     getGenreName() {
-        return this.controller.getGenreName( cookie.getCookie("genreId"))
+        return this.controller.getGenreName(this.cookie.getCookie("genreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -145,7 +145,7 @@ class Model {
     }
 
     getTopSubGenres() {
-        return this.controller.getTopSubGenres(cookie.getCookie("genreId"))
+        return this.controller.getTopSubGenres(this.cookie.getCookie("genreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -153,7 +153,7 @@ class Model {
     }
 
     getSubGenres() {
-        return this.controller.getSubGenres(cookie.getCookie("genreId"))
+        return this.controller.getSubGenres(this.cookie.getCookie("genreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -199,7 +199,7 @@ class Model {
     
 
     getSubGenreCommunityWikis() {
-        return this.controller.getSubGenreCommunityWikis(cookie.getCookie("subGenreId"))
+        return this.controller.getSubGenreCommunityWikis(this.cookie.getCookie("subGenreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -207,7 +207,7 @@ class Model {
     }
     
     getSubGenreWikis() {
-        return this.controller.getSubGenreWikis(cookie.getCookie("subGenreId"))
+        return this.controller.getSubGenreWikis(this.cookie.getCookie("subGenreId"))
             .then(response => response.text())
             .then(response => {
                 return response
@@ -215,7 +215,7 @@ class Model {
     }
 
     getSubGenrePages() {
-        return this.controller.getSubGenrePages(cookie.getCookie("subGenreId"))
+        return this.controller.getSubGenrePages(this.cookie.getCookie("subGenreId"))
             .then(response => response.text())
             .then(response => {
                 return response

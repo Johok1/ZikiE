@@ -18,7 +18,7 @@ class Search {
     checkState() {
         if (this.checkIsCookieLoaded("search")) {
             this.searchBar.value = this.cookie.getCookie("search")
-            this.cookie.setCookie("search","",1)
+            
             if (this.checkIsSubGenreCookieLoaded()) {
                 this.initSubGenreView()
             } else if (this.checkIsGenreCookieLoaded()) {
@@ -32,14 +32,30 @@ class Search {
     //discovery interface methods 
 
     initMainView() {
-        let search = this.searchBar.value
-        let genres = this.filterListByEntry(this.getAllGenres(), search)
-        let subGenres = this.filterListByEntry(this.getAllSubGenres(), search)
-        let communityWikis = this.filterListByEntry(this.getAllCommunityWikis(), search)
-        let wikis = this.filterListByEntry(this.getAllWikis(), search)
-        let pages = this.filterListByEntry(this.getAllPages(),search)
+        this.discoveryView.init()
 
-        this.discoveryView.initMainSearch(search, genres, subGenres, communityWikis, wikis, pages)
+        let search = this.searchBar.value
+        this.getAllGenres()
+            .then(allGenres => {
+                allGenres = this.filterListByEntry(allGenres,search)
+                return this.getAllSubGenres()
+                    .then(allSubGenres => {
+                        allSubGenres = this.filterListByEntry(allSubGenres, search)
+                        return this.getAllCommunityWikis()
+                            .then(allCommunityWikis => {
+                                allCommunityWikis = this.filterListByEntry(allCommunityWikis, search)
+                                return this.getAllWikis()
+                                    .then(allWikis => {
+                                        allWikis = this.filterListByEntry(allWikis, search)
+                                        return this.getAllPages()
+                                            .then(allPages => {
+                                                allPages = this.filterListByEntry(allPages, search)
+                                                this.discoveryView.initMainSearch(search, allGenres, allSubGenres, allCommunityWikis, allWikis, allPages)
+                                            })
+                                    })
+                            })
+                    })
+            })
     }
 
     initGenreView() {

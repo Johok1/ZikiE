@@ -80,8 +80,10 @@ export default class DiscoveryView {
         for (let x = 0; x < comWikisArray.length; x++) {
             //elements are formatted 'name*id'
             let comWikiName = comWikisArray[x].split("*")[0];
-            let comWikiId = comWikisArray[x].split("*")[1];
-            this.constructBigCard(comWikiName, comWikiId, topSection, this.comWikiClickHandler)
+            if (comWikiName != "") {
+                let comWikiId = comWikisArray[x].split("*")[1];
+                this.constructBigCard(comWikiName, comWikiId, topSection, this.comWikiClickHandler)
+            }
         }
         this.addSection(topSection.div)
     }
@@ -92,8 +94,10 @@ export default class DiscoveryView {
         for (let x = 0; x < comWikisArray.length; x++) {
             //elements are formatted 'name*id'
             let comWikiName = comWikisArray[x].split("*")[0];
-            let comWikiId = comWikisArray[x].split("*")[1];
-            this.constructCard(comWikiName, comWikiId, topSection, handler)
+            if (comWikiName != "") {
+                let comWikiId = comWikisArray[x].split("*")[1];
+                this.constructCard(comWikiName, comWikiId, topSection, handler)
+            }
         }
         this.addSection(topSection.div)
     }
@@ -204,26 +208,31 @@ export default class DiscoveryView {
      * Handlers will execute in a different scope, don't use this. to access variables!'
      */
     mainClickHandler(cookie, id) {
+        cookie.setCookie("search", "", 1)
         cookie.setCookie("genreId", id, 1)
         window.location.reload()
     }
 
     subGenreClickHandler(cookie, id) {
+        cookie.setCookie("search", "", 1)
         cookie.setCookie("subGenreId", id, 1)
         window.location.reload()
     }
 
     comWikiClickHandler(cookie, id) {
+        cookie.setCookie("search", "", 1)
         cookie.setCookie("comWikiId", id, 1)
         //window.location.href = our comm wiki homepage
     }
 
     wikiClickHandler(cookie, id) {
+        cookie.setCookie("search", "", 1)
         cookie.setCookie("wikiId", id, 1)
         //window.location.href = our wiki homepage
     }
 
     pageClickHandler(cookie, id) {
+        cookie.setCookie("search", "", 1)
         cookie.setCookie("pageId", id, 1)
         //window.location.href = our page homepage
     }

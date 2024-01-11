@@ -9,8 +9,7 @@ class Model {
         this.discoveryView = new DiscoveryView()
         this.controller = new Controller()
         this.cookie = new Cookie()
-        this.discoveryView.init()
-
+    
         this.mainState = true 
         this.genreState = false
         this.subGenreState = false
@@ -38,7 +37,7 @@ class Model {
 
     initializeViewState() {
         if (this.checkIsCookieLoaded("search")) {
-            this.clearViewStates
+            this.clearViewStates()
             this.searchState = true
         }else if (this.checkIsSubGenreCookieLoaded()) {
             this.clearViewStates()
@@ -60,6 +59,8 @@ class Model {
 
 
     loadMainView() {
+        this.discoveryView.init()
+
         this.getTopGenres()
             .then(topGenres => {
                 return this.getGenres()
@@ -122,6 +123,8 @@ class Model {
 
     //be sure to add .then after each statement when you hook in the backend again 
     loadGenreView() {
+        this.discoveryView.init()
+
         this.getTopSubGenres()
             .then((topSubGenres) => {
                 return this.getSubGenres()
@@ -175,6 +178,8 @@ class Model {
 
     //be sure to add .then after each statement when you hook in the backend again 
     loadSubGenreView() {
+        this.discoveryView.init()
+
         this.getSubGenreName()
             .then((subGenreName) => {
                 return this.getSubGenreCommunityWikis()

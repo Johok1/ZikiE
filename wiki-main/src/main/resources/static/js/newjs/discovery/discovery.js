@@ -54,12 +54,16 @@ class Model {
     }
 
     loadMainView() {
-        this.topGenres = this.getTopGenres()
-            .then(() => {
-                this.genres = this.getGenres()
-            }).then(() => {
-                this.discoveryView.initMainView(this.topGenres, this.genres)  
+        this.getTopGenres()
+            .then(topGenres => {
+                return this.getGenres()
+                    .then(genres => {
+                        this.discoveryView.initMainView(topGenres, genres);
+                    });
             })
+            .catch(error => {
+                console.error('Error in loadMainView:', error);
+            });
     }
    
     /*
@@ -83,16 +87,16 @@ class Model {
     getTopGenres() {
         return this.controller.getTopGenres()
             .then(response => response.text())
-            .then(response => {
-                return response
+            .then(text => {
+                return text
             })
     }
 
     getGenres() {
         return this.controller.getGenres()
             .then(response => response.text())
-            .then(response => {
-                return response
+            .then(text => {
+                return text
             })
     }
     
@@ -112,13 +116,15 @@ class Model {
 
     //be sure to add .then after each statement when you hook in the backend again 
     loadGenreView() {
-        this.topSubGenres = this.getTopSubGenres()
-            .then(() => {
-                this.subGenres = this.getSubGenres()
-            }).then(() => {
-                this.genreName = this.getGenreName()
-            }).then(()=> {
-                this.discoveryView.initSubGenreView(this.topSubGenres, this.subGenres, this.genreName)
+        this.getTopSubGenres()
+            .then((topSubGenres) => {
+                return this.getSubGenres()
+                    .then((subGenres) => {
+                        return this.getGenreName()
+                            .then((genreName) => {
+                                this.discoveryView.initSubGenreView(topSubGenres, subGenres, genreName)
+                            })
+                    })
             })
     }
 
@@ -163,18 +169,30 @@ class Model {
 
     //be sure to add .then after each statement when you hook in the backend again 
     loadSubGenreView() {
-        this.subGenreName = this.getSubGenreNameFromId(0)
-            .then(() => {
-                this.subGenreCommList = this.getSubGenreCommunityWikis()
+        this.getSubGenreName()
+            .then((subGenreName) => {
+                return this.getSubGenreCommunityWikis()
+                    .then((subGenreCommList) => {
+                        return this.getSubGenreWikis()
+                            .then((subGenreWikiList) => {
+                                return this.getSubGenrePages()
+                                    .then((subGenrePageList) => {
+                                        this.discoveryView.initWikiView(subGenreCommList, subGenreWikiList, subGenrePageList, subGenreName)
+                                    })
+                            })
+                    })
             })
-            .then(() => {
-                this.subGenreWikiList = this.getSubGenreWikis()
-            })
-            .then(() => {
-                this.subGenrePageList = this.getSubGenrePages()
-            })
-            .then(() => {
-                this.discoveryView.initWikiView(this.subGenreCommList, this.subGenreWikiList, this.subGenrePageList, this.subGenreName)
+            
+           
+           
+    }
+
+
+    getSubGenreName() {
+        return this.controller.getSubGenreName(this.cookie.getCookie("subGenreId"))
+            .then(response => response.text())
+            .then(response => {
+                return response
             })
     }
 

@@ -58,5 +58,11 @@ public class GenreController {
         return genreService.getGenreName(genreId);
     }
 
+    @CrossOrigin
+    @GetMapping("/addGenreSubGenre/{genreId}/{subGenreName}")
+    public String addGenreSubGenre(@PathVariable String genreId, @PathVariable String subGenreName){
+        return genreService.addGenreSubGenre(genreId, subGenreName);
+    }
+
 
 }

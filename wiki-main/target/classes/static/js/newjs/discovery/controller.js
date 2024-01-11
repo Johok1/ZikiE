@@ -48,8 +48,8 @@ export default class Controller {
         })
     }
 
-    getPages() {
-        return fetch(this.fetch_url_page + "/getPages", {
+    getSubGenreName(id) {
+        return fetch(this.fetch_url_subgenre + "/getSubGenreName" + "/" + id, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -58,11 +58,24 @@ export default class Controller {
             }
         }).catch(error => {
             console.error(error)
-        });
+        })
+    }
+    
+    getTopSubGenres(id) {
+        return fetch(this.fetch_url_genre + "/getTopSubGenres/"+id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
     }
 
-    getWikis() {
-        return fetch(this.fetch_url_wiki + "/getWikis", {
+    getSubGenres(id) {
+        return fetch(this.fetch_url_genre + "/getSubGenres/" + id, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -71,24 +84,51 @@ export default class Controller {
             }
         }).catch(error => {
             console.error(error)
-        });
+        })
     }
+
+    getSubGenreCommunityWikis(id) {
+        return fetch(this.fetch_url_genre + "/getSubGenreCommunityWikis/" + id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getSubGenreWikis(id) {
+        return fetch(this.fetch_url_genre + "/getSubGenreWikis/" + id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getSubGenrePages(id) {
+        return fetch(this.fetch_url_genre + "/getSubGenrePages/" + id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
 
     getIsAdmin(token) {
         return fetch(this.fetch_url_validation + "/isAdmin/" + token, {
-            method: 'GET',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'plain/text'
-            }
-        }).catch(error => {
-            console.error(error)
-        });
-    }
-
-    getGenres() {
-        return fetch(this.fetch_url_tag + "/getGenres", {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

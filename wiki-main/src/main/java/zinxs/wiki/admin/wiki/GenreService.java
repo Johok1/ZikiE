@@ -11,6 +11,7 @@ import zinxs.wiki.wikis.WikiRepository;
 import zinxs.wiki.wikis.pages.PageRepository;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -192,4 +193,18 @@ public class GenreService {
         }
     }
 
+    public String addGenreSubGenre(String genreId, String subGenreName) {
+        try{
+            Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
+            ArrayList<SubGenre> subGenres = genre.getSubGenreList();
+            SubGenre subGenre = new SubGenre();
+            subGenre.setSubGenreName(subGenreName);
+            subGenres.add(subGenre);
+            genre.setSubGenreList(subGenres);
+            genreRepository.save(genre);
+            return "true";
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

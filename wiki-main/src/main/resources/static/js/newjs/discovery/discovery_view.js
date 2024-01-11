@@ -117,12 +117,15 @@ export default class DiscoveryView {
 
     displayTopGenres(topGenreList) {
         let topSection = new ContentSection("Top Genres")
+        console.log(topGenreList)
         let genreArray = topGenreList.split(",")
         for (let x = 0; x < genreArray.length; x++) {
             //elements are formatted 'name*id'
             let genreName = genreArray[x].split("*")[0];
+            if (genreName != "") { 
             let genreId = genreArray[x].split("*")[1];
             this.constructCard(genreName, genreId, topSection, this.mainClickHandler)
+            }
         }
         this.addSection(topSection.div)
     }

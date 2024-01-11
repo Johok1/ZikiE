@@ -8,6 +8,7 @@ import zinxs.wiki.wikis.Wiki;
 import zinxs.wiki.wikis.pages.Page;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class SubGenre {
+public class SubGenre implements Serializable {
 
     @SequenceGenerator(
             name = "sub_genre_sequence",

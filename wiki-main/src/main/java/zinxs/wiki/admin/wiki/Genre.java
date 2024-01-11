@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.admin.wiki.subgenre.SubGenre;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Genre {
+public class Genre implements Serializable {
 
     @SequenceGenerator(
             name = "genre_sequence",

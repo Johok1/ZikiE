@@ -124,7 +124,7 @@ export default class DiscoveryView {
             let genreName = genreArray[x].split("*")[0];
             if (genreName != "") { 
             let genreId = genreArray[x].split("*")[1];
-            this.constructCard(genreName, genreId, topSection, this.mainClickHandler)
+            this.constructBigCard(genreName, genreId, topSection, this.mainClickHandler)
             }
         }
         this.addSection(topSection.div)
@@ -136,8 +136,10 @@ export default class DiscoveryView {
         for (let x = 0; x < genreArray.length; x++) {
             //elements are formatted 'name*id'
             let genreName = genreArray[x].split("*")[0];
-            let genreId = genreArray[x].split("*")[1];
-            this.constructCard(genreName, genreId, topSection, this.subGenreClickHandler)
+            if (genreName != "") {
+                let genreId = genreArray[x].split("*")[1];
+                this.constructBigCard(genreName, genreId, topSection, this.subGenreClickHandler)
+            }
         }
         this.addSection(topSection.div)
     }

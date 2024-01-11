@@ -25,13 +25,13 @@ class Model {
             this.loadMainView()
         } else if (this.genreState) {
             this.loadGenreView()
-            this.cookie.setCookie("genreId","",1)
+          
         } else if (this.subGenreState) {
             this.loadSubGenreView()
-            this.cookie.setCookie("subGenreId", "", 1)
+    
         } else if (this.searchTagState) {
             this.loadSearchTagView()
-            this.cookie.setCookie("searchTagId", "", 1)
+       
         } else {
             console.error("no view state set!")
         }

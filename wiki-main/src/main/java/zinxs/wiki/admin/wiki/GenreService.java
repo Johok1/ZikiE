@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import zinxs.wiki.account.Account;
 import zinxs.wiki.account.AccountRepository;
 import zinxs.wiki.admin.wiki.subgenre.SubGenre;
+import zinxs.wiki.admin.wiki.subgenre.SubGenreRepository;
 import zinxs.wiki.utilities.AuthTokenUtils;
 import zinxs.wiki.wikis.Wiki;
 import zinxs.wiki.wikis.WikiRepository;
@@ -23,6 +24,8 @@ public class GenreService {
     private final AccountRepository accountRepository;
     private final PageRepository pageRepository;
     private final GenreRepository genreRepository;
+
+    private final SubGenreRepository subGenreRepository;
 
 
 
@@ -199,6 +202,7 @@ public class GenreService {
             ArrayList<SubGenre> subGenres = genre.getSubGenreList();
             SubGenre subGenre = new SubGenre();
             subGenre.setSubGenreName(subGenreName);
+            subGenreRepository.save(subGenre);
             subGenres.add(subGenre);
             genre.setSubGenreList(subGenres);
             genreRepository.save(genre);

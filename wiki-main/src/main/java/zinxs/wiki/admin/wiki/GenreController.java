@@ -64,5 +64,45 @@ public class GenreController {
         return genreService.addGenreSubGenre(genreId, subGenreName);
     }
 
+    @CrossOrigin
+    @GetMapping("/getAllSubGenres")
+    public String getAllSubGenres(){
+        return genreService.getAllSubGenres();
+    }
 
+    @CrossOrigin
+    @GetMapping("/getAllCommunityWikis")
+    public String getAllCommunityWikis(){
+        return genreService.getAllCommunityWikis();
+    }
+
+    @CrossOrigin
+    @GetMapping("/getAllWikis")
+    public String getAllWikis(){
+        return genreService.getAllWikis();
+    }
+
+    @CrossOrigin
+    @GetMapping("/getAllPages")
+    public String getAllPages(){
+        return genreService.getAllPages();
+    }
+
+    @CrossOrigin
+    @GetMapping("/getGenreCommunityWikis/{genreId}")
+    public String getGenreCommunityWikis(@PathVariable String genreId){
+        return genreService.getGenreCommunityWikis(genreId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getGenreWikis/{genreId}")
+    public String getGenreWikis(@PathVariable String genreId){
+        return genreService.getGenreWikis(genreId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getGenrePages")
+    public String getGenrePages(@PathVariable String genreId){
+        return genreService.getGenrePages(genreId);
+    }
 }

@@ -9,9 +9,13 @@ import zinxs.wiki.admin.wiki.subgenre.SubGenreRepository;
 import zinxs.wiki.utilities.AuthTokenUtils;
 import zinxs.wiki.wikis.Wiki;
 import zinxs.wiki.wikis.WikiRepository;
+import zinxs.wiki.wikis.community.CommunityWiki;
+import zinxs.wiki.wikis.community.CommunityWikiRepository;
+import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +30,8 @@ public class GenreService {
     private final GenreRepository genreRepository;
 
     private final SubGenreRepository subGenreRepository;
+
+    private final CommunityWikiRepository communityWikiRepository;
 
 
 
@@ -150,6 +156,145 @@ public class GenreService {
         }
     }
 
+    public String addGenreSubGenre(String genreId, String subGenreName) {
+        try{
+            Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
+            ArrayList<SubGenre> subGenres = genre.getSubGenreList();
+            SubGenre subGenre = new SubGenre();
+            subGenre.setSubGenreName(subGenreName);
+            subGenreRepository.save(subGenre);
+            subGenres.add(subGenre);
+            genre.setSubGenreList(subGenres);
+            genreRepository.save(genre);
+            return "true";
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getAllSubGenres(){
+        try{
+            String subGenreList ="";
+            List<SubGenre> subGenres = subGenreRepository.findAll();
+            for(SubGenre subGenre: subGenres){
+                if(subGenre.getSubGenreName() != ""){
+                    subGenreList += subGenre.getSubGenreName() + "*" +
+                                    subGenre.getId() + ",";
+                }
+            }
+            return subGenreList;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getAllCommunityWikis(){
+        try{
+            String communityWikiList ="";
+            List<CommunityWiki> communityWikis = communityWikiRepository.findAll();
+            for(CommunityWiki communityWiki: communityWikis){
+                if(communityWiki.getName() != ""){
+                    communityWikiList += communityWiki.getName() + "*" +
+                            communityWiki.getId() + ",";
+                }
+            }
+            return communityWikiList;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getAllWikis(){
+        try{
+            String wikiList ="";
+            List<Wiki> wikis = wikiRepository.findAll();
+            for(Wiki wiki: wikis){
+                if(wiki.getName() != ""){
+                    wikiList += wiki.getName() + "*" +
+                            wiki.getId() + ",";
+                }
+            }
+            return wikiList;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getAllPages(){
+        try{
+            String pageList ="";
+            List<Page> pages = pageRepository.findAll();
+            for(Page page: pages){
+                if(page.getName() != ""){
+                    pageList += page.getName() + "*" +
+                            page.getId() + ",";
+                }
+            }
+            return pageList;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public String getGenreCommunityWikis(String genreId){
+        try{
+            Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
+            String communityWikiList = "";
+            List<SubGenre> subGenres = genre.getSubGenreList();
+            for(SubGenre subGenre:  subGenres){
+                List<CommunityWiki> communityWikis = subGenre.getCommunityWikiList();
+                for(CommunityWiki communityWiki: communityWikis){
+                    if(communityWiki.getName() !=""){
+                        communityWikiList+= communityWiki.getName() +"*"+
+                                            communityWiki.getId() + ",";
+                    }
+                }
+            }
+            return communityWikiList;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    public String getGenreWikis(String genreId){
+        try{
+            Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
+            String wikiList = "";
+            List<SubGenre> subGenres = genre.getSubGenreList();
+            for(SubGenre subGenre:  subGenres){
+                List<Wiki> wikis = subGenre.getWikiList();
+                for(Wiki wiki: wikis){
+                    if(wiki.getName() !=""){
+                        wikiList+= wiki.getName() +"*"+
+                                wiki.getId() + ",";
+                    }
+                }
+            }
+            return wikiList;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    public String getGenrePages(String genreId){
+        try{
+            Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
+            String pageList = "";
+            List<SubGenre> subGenres = genre.getSubGenreList();
+            for(SubGenre subGenre:  subGenres){
+                List<Page> pages = subGenre.getPageList();
+                for(Page page: pages){
+                    if(page.getName() !=""){
+                        pageList+= page.getName() +"*"+
+                                page.getId() + ",";
+                    }
+                }
+            }
+            return pageList;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     private Wiki getAccountWiki(String tempToken, String wikiId){
         try{
             String decodedToken = authTokenUtils.decodeEmail(tempToken);
@@ -196,19 +341,5 @@ public class GenreService {
         }
     }
 
-    public String addGenreSubGenre(String genreId, String subGenreName) {
-        try{
-            Genre genre = genreRepository.findById(Long.valueOf(genreId)).get();
-            ArrayList<SubGenre> subGenres = genre.getSubGenreList();
-            SubGenre subGenre = new SubGenre();
-            subGenre.setSubGenreName(subGenreName);
-            subGenreRepository.save(subGenre);
-            subGenres.add(subGenre);
-            genre.setSubGenreList(subGenres);
-            genreRepository.save(genre);
-            return "true";
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
+
 }

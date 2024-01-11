@@ -21,33 +21,27 @@ class Model {
     }
 
     loadViewFromState() {
-        if (this.mainState) {
-            this.loadMainView()
+        if (this.subGenreState) {
+            this.loadSubGenreView()
         } else if (this.genreState) {
             this.loadGenreView()
-          
-        } else if (this.subGenreState) {
-            this.loadSubGenreView()
+
+        } else if (this.mainState) {
+            this.loadMainView()
     
-        } else if (this.searchTagState) {
-            this.loadSearchTagView()
-       
         } else {
             console.error("no view state set!")
         }
     }
 
     initializeViewState() {
-        if (this.checkIsGenreCookieLoaded()) {
-            this.clearViewStates()
-            this.genreState = true
-        } else if (this.checkIsSubGenreCookieLoaded()) {
+         if (this.checkIsSubGenreCookieLoaded()) {
             this.clearViewStates()
             this.subGenreState = true
-        } else if (this.checkIsSearchCookieLoaded()) {
+        } else if (this.checkIsGenreCookieLoaded()) {
             this.clearViewStates()
-            this.searchTagState = true
-        } else {
+            this.genreState = true
+        }else {
             this.clearViewStates()
             this.mainState = true
         }

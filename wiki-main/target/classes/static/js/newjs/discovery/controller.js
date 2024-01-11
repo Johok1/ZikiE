@@ -88,7 +88,7 @@ export default class Controller {
     }
 
     getSubGenreCommunityWikis(id) {
-        return fetch(this.fetch_url_genre + "/getSubGenreCommunityWikis/" + id, {
+        return fetch(this.fetch_url_subgenre + "/getSubGenreCommunityWikis/" + id, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -101,7 +101,7 @@ export default class Controller {
     }
 
     getSubGenreWikis(id) {
-        return fetch(this.fetch_url_genre + "/getSubGenreWikis/" + id, {
+        return fetch(this.fetch_url_subgenre + "/getSubGenreWikis/" + id, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -114,7 +114,7 @@ export default class Controller {
     }
 
     getSubGenrePages(id) {
-        return fetch(this.fetch_url_genre + "/getSubGenrePages/" + id, {
+        return fetch(this.fetch_url_subgenre + "/getSubGenrePages/" + id, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

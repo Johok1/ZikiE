@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
+
 @Getter
 @Setter
 public class Genre {
@@ -41,5 +41,7 @@ public class Genre {
 
     private ArrayList<SubGenre> subGenreList;
 
-
+    public Genre(){
+        this.subGenreList = new ArrayList<>();
+    }
 }

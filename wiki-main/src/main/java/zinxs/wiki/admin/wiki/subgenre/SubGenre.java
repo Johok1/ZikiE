@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
+
 @Getter
 @Setter
 public class SubGenre {
@@ -38,5 +38,11 @@ public class SubGenre {
     private ArrayList<Page> pageList;
 
     private boolean isTopGenre;
+
+    public SubGenre(){
+        communityWikiList = new ArrayList<>();
+        wikiList = new ArrayList<>();
+        pageList = new ArrayList<>();
+    }
 
 }

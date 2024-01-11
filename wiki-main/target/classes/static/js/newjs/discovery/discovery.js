@@ -14,7 +14,7 @@ class Model {
         this.mainState = true 
         this.genreState = false
         this.subGenreState = false
-        this.searchTagState = false
+        this.searchState = false
 
         this.initializeViewState()
         this.loadViewFromState()
@@ -37,7 +37,10 @@ class Model {
     }
 
     initializeViewState() {
-         if (this.checkIsSubGenreCookieLoaded()) {
+        if (this.checkIsCookieLoaded("search")) {
+            this.clearViewStates
+            this.searchState = true
+        }else if (this.checkIsSubGenreCookieLoaded()) {
             this.clearViewStates()
             this.subGenreState = true
         } else if (this.checkIsGenreCookieLoaded()) {
@@ -48,6 +51,13 @@ class Model {
             this.mainState = true
         }
     }
+
+    checkIsCookieLoaded(name) {
+        let cookie = this.cookie.getCookie(name)
+        let isCookieLoaded = cookie != "" && cookie != undefined && cookie != null
+        return isCookieLoaded
+    }
+
 
     loadMainView() {
         this.getTopGenres()

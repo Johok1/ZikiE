@@ -44,9 +44,9 @@ public class WikiController {
 
 
     @CrossOrigin
-    @PostMapping("/newWiki/{tempToken}")
-    public String newWiki(@PathVariable String tempToken){
-       return wikiService.newWiki(tempToken);
+    @PostMapping("/newWiki/{tempToken}/{name}")
+    public String newWiki(@PathVariable String tempToken, @PathVariable String name){
+       return wikiService.newWiki(tempToken, name);
     }
 
     @CrossOrigin

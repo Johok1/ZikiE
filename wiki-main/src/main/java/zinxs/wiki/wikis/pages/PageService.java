@@ -19,12 +19,13 @@ public class PageService {
 
 
 
-    public String newPage(String tempToken){
+    public String newPage(String tempToken, String name){
         try {
             String decodedToken = authTokenUtils.decodeEmail(tempToken);
             Account targetAccount = accountRepository.findByEmail(decodedToken).get();
             if(targetAccount.isEnabled()) {
                 Page page = new Page();
+                page.setName(name);
                 page.setEmail(decodedToken);
                 pageRepository.save(page);
                 return String.valueOf(page.getId());

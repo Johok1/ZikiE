@@ -36,9 +36,9 @@ public class PageController {
     }
 
     @CrossOrigin
-    @GetMapping("/newPage/{token}")
-    public String newPage(@PathVariable String token){
-        String id = pageService.newPage(token);
+    @GetMapping("/newPage/{token}/{name}")
+    public String newPage(@PathVariable String token, @PathVariable String name){
+        String id = pageService.newPage(token, name);
         return id;
     }
 

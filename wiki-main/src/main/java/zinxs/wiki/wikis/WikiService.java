@@ -52,10 +52,11 @@ public class WikiService {
         }
     }
 
-    public String newWiki(String tempToken){
+    public String newWiki(String tempToken, String name ){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = new Wiki();
+            wiki.setName(name);
             wiki.setEmail(account.getEmail());
             wikiRepository.save(wiki);
             return wiki.getId() + "";

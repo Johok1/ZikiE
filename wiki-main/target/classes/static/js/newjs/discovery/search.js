@@ -59,23 +59,48 @@ class Search {
     }
 
     initGenreView() {
-        let search = this.searchBar.value
-        let subGenres = this.filterListByEntry(this.getGenreSubGenres(), search)
-        let communityWikis = this.filterListByEntry(this.getGenreCommunityWikis(), search)
-        let wikis = this.filterListByEntry(this.getGenreWikis(), search)
-        let pages = this.filterListByEntry(this.getGenrePages(), search)
+        this.discoveryView.init()
 
-        this.discoveryView.initGenreSearch(search, subGenres, communityWikis, wikis, pages)
+        let search = this.searchBar.value
+        this.getGenreSubGenres()
+                    .then(genreSubGenres => {
+                        genreSubGenres = this.filterListByEntry(genreSubGenres, search)
+                        return this.getGenreCommunityWikis()
+                            .then(genreCommunityWikis => {
+                                genreCommunityWikis = this.filterListByEntry(genreCommunityWikis, search)
+                                return this.getGenreWikis()
+                                    .then(genreWikis => {
+                                        genreWikis = this.filterListByEntry(genreWikis, search)
+                                        return this.getGenrePages()
+                                            .then(genrePages => {
+                                                genrePages = this.filterListByEntry(genrePages, search)
+                                                this.discoveryView.initGenreSearch(search, genreSubGenres, genreCommunityWikis, genreWikis, genrePages)
+                                            })
+                                    })
+                            })
+                    })
+          
     }
 
     initSubGenreView() {
+        this.discoveryView.init()
+
         let search = this.searchBar.value
-
-        let communityWikis = this.filterListByEntry(this.getSubGenreCommunityWikis(), search)
-        let wikis = this.filterListByEntry(this.getSubGenreWikis(), search)
-        let pages = this.filterListByEntry(this.getSubGenrePages(), search)
-
-        this.discoveryView.initSubGenre(search, communityWikis, wikis, pages)
+                    this.getSubGenreCommunityWikis()
+                            .then(subGenreCommunityWikis => {
+                                subGenreCommunityWikis = this.filterListByEntry(subGenreCommunityWikis, search)
+                                return this.getSubGenreWikis()
+                                    .then(subGenreWikis => {
+                                        subGenreWikis = this.filterListByEntry(subGenreWikis, search)
+                                        return this.getSubGenrePages()
+                                            .then(subGenrePages => {
+                                                subGenrePages = this.filterListByEntry(subGenrePages, search)
+                                                this.discoveryView.initSubGenreSearch(search, subGenreCommunityWikis, subGenreWikis, subGenrePages)
+                                            })
+                                    })
+                            })
+                    })
+            })
     }
 
    

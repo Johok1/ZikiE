@@ -9,7 +9,7 @@ class Model {
         this.discoveryView = new DiscoveryView()
         this.controller = new Controller()
         this.cookie = new Cookie()
-           
+        this.discoveryView.init()
 
         this.mainState = true 
         this.genreState = false
@@ -18,6 +18,8 @@ class Model {
 
         this.initializeViewState()
         this.loadViewFromState()
+
+        
     }
 
     loadViewFromState() {

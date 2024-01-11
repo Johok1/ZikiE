@@ -126,6 +126,96 @@ export default class Controller {
         })
     }
 
+    getAllSubGenres() {
+        return fetch(this.fetch_url_genre + "/getAllSubGenres", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getAllCommunityWikis() {
+        return fetch(this.fetch_url_genre + "/getAllCommunityWikis", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getAllWikis() {
+        return fetch(this.fetch_url_genre + "/getAllWikis", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getAllPages() {
+        return fetch(this.fetch_url_genre + "/getAllPages", {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getGenreCommunityWikis(id) {
+        return fetch(this.fetch_url_genre + "/getGenreCommunityWikis/" + id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getGenreWikis(id) {
+        return fetch(this.fetch_url_genre + "/getGenreWikis/" + id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
+
+    getGenrePages(id) {
+        return fetch(this.fetch_url_genre + "/getGenrePages/" + id, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'plain/text'
+            }
+        }).catch(error => {
+            console.error(error)
+        })
+    }
 
     getIsAdmin(token) {
         return fetch(this.fetch_url_validation + "/isAdmin/" + token, {

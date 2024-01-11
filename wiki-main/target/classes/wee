@@ -1,0 +1,34 @@
+getAllSubGenres() {
+        return fetch(this.fetch_url_genre + "/getAllSubGenres", {
+
+    }
+
+    getAllCommunityWikis() {
+        return fetch(this.fetch_url_genre + "/getAllCommunityWikis", {
+
+    }
+
+    getAllWikis() {
+        return fetch(this.fetch_url_genre + "/getAllWikis", {
+
+    }
+
+    getAllPages() {
+        return fetch(this.fetch_url_genre + "/getAllPages", {
+
+    }
+
+    getGenreCommunityWikis(id) {
+        return fetch(this.fetch_url_genre + "/getGenreCommunityWikis/" + id, {
+
+    }
+
+    getGenreWikis(id) {
+        return fetch(this.fetch_url_genre + "/getGenreWikis/" + id, {
+
+    }
+
+    getGenrePages(id) {
+        return fetch(this.fetch_url_genre + "/getGenrePages/" + id, {
+
+    }

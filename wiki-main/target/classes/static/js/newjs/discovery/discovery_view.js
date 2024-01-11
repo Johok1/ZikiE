@@ -5,8 +5,13 @@ import Cookie from './cookie.js'
 
 export default class DiscoveryView {
     constructor() {
+       
+    }
+
+    init() {
         this.discoveryHeader = document.getElementById("discoveryHeader")
         this.contentDiv = document.getElementById("contentDiv")
+
         this.cookie = new Cookie()
         this.bottomFiller = this.getBottomFillerContainer()
         this.contentDiv.appendChild(this.bottomFiller)
@@ -22,6 +27,33 @@ export default class DiscoveryView {
             cookie.setCookie("subGenreId", "", 1)
             window.location.reload()
         })
+    }
+
+    initMainSearch(search, genreList, subGenreList, communityWikiList, wikiList, pageList) {
+        this.discoveryHeader.innerHTML = "Results for: " + search
+
+        this.displaySectionListWithHandler(genreList, "Genres", this.mainClickHandler)
+        this.displaySectionListWithHandler(subGenreList, "Sub-Genres", this.subGenreClickHandler)
+        this.displayCommunityWikis(communityWikiList)
+        this.displaySectionListWithHandler(wikiList, "Wikis", this.wikiClickHandler)
+        this.displaySectionListWithHandler(pageList, "Pages", this.pageClickHandler)
+    }
+
+    initGenreSearch(search, subGenreList, communityWikiList, wikiList, pageList) {
+        this.discoveryHeader.innerHTML = "Results for: " + search
+
+       
+        this.displaySectionListWithHandler(subGenreList, "Sub-Genres", this.subGenreClickHandler)
+        this.displayCommunityWikis(communityWikiList)
+        this.displaySectionListWithHandler(wikiList, "Wikis", this.wikiClickHandler)
+        this.displaySectionListWithHandler(pageList, "Pages", this.pageClickHandler)
+    }
+
+    initSubGenreSearch(search, communityWikiList, wikiList, pageList) {
+        this.discoveryHeader.innerHTML = "Results for: " + search
+        this.displayCommunityWikis(communityWikiList)
+        this.displaySectionListWithHandler(wikiList, "Wikis", this.wikiClickHandler)
+        this.displaySectionListWithHandler(pageList, "Pages", this.pageClickHandler)
     }
 
     initSubGenreView(topGenres, genres, name) {

@@ -21,8 +21,7 @@ export default class Controller {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'plain/text'
+                'Access-Control-Allow-Origin': '*'
             }
         }).catch(error => {
             console.error(error);

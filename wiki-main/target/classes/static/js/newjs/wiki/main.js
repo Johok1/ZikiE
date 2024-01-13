@@ -6,17 +6,19 @@ import Controller from './controller.js'
 class Model {
     constructor() {
             this.cookie = new Cookie()
-        if (this.checkIsCookieLoaded("wikiId",this.cookie)) {
+        if (this.checkIsCookieLoaded("wikiId", this.cookie)) {
             this.view = new View()
             this.controller = new Controller()
 
-           
+
             this.token = this.cookie.getCookie("token");
             this.wikiId = this.cookie.getCookie("wikiId")
 
             this.loadWikiName()
             this.loadWikiImg()
 
+        } else {
+            console.error("no wiki id loaded")
         }
        
     }
@@ -30,8 +32,9 @@ class Model {
 
     loadWikiImg() {
         this.getWikiImgFromId(this.cookie.getCookie("wikiId"))
-            .then((wikiResponse) => {
-                this.view.wikiImg.src = this.getObjUrl(wikiResponse)
+            .then(wikiResponse => {
+                this.view.wikiImg.src = URL.createObjectURL(wikiResponse)
+                console.log(this.view.wikiImg.src)
             })
     }
 
@@ -67,9 +70,9 @@ class Model {
     }
     getWikiImgFromId(id) {
         return this.controller.getWikiImg(id)
-            .then(response => response.text())
-            .then(text => {
-                return text
+            .then(response => response.blob())
+            .then(response => {
+                return response
         })
     }
 

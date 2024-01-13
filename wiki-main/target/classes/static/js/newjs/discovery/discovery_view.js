@@ -228,7 +228,7 @@ export default class DiscoveryView {
     wikiClickHandler(cookie, id) {
         cookie.setCookie("search", "", 1)
         cookie.setCookie("wikiId", id, 1)
-        //window.location.href = our wiki homepage
+        window.location.href = "wiki-homepage.html"
     }
 
     pageClickHandler(cookie, id) {

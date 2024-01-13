@@ -1,7 +1,9 @@
 package zinxs.wiki.wikis;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.account.Account;
 import zinxs.wiki.wikis.pages.PageService;
 
@@ -155,6 +157,34 @@ public class WikiController {
     @GetMapping("/getWikis")
     public String getWikis(){
         return wikiService.getWikis();
+    }
+
+
+    @CrossOrigin
+    @PostMapping("/setWikiImage/{token}/{wikiId}")
+    public String setWikiImage(@PathVariable String token, @PathVariable String wikiId,
+                               @RequestParam("file") MultipartFile image){
+        return wikiService.setWikiImg(token, wikiId, image);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/getWikiImage/{wikiId}",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getProfileImage(@PathVariable String wikiId){
+        return wikiService.getWikiImg(wikiId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getWikiName/{wikiId}")
+    public String getWikiName(@PathVariable String wikiId){
+        return wikiService.getWikiName(wikiId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/setWikiName/{token}/{wikiId}/{wikiName}")
+    public String setWikiName(@PathVariable String token, @PathVariable String wikiId,
+                              @PathVariable String wikiName){
+        return wikiService.setWikiName(token, wikiId, wikiName);
     }
 
 }

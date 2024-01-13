@@ -1,6 +1,7 @@
 package zinxs.wiki.wikis;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.account.Account;
 import zinxs.wiki.account.AccountRepository;
 import zinxs.wiki.utilities.AuthTokenUtils;
@@ -380,6 +381,64 @@ public class WikiService {
         }
     }
 
+    public String getWikiName(String wikiId){
+        try{
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+            return wiki.getName();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
+    public String setWikiName(String token, String wikiId, String wikiName){
+        try{
+            String email = authTokenUtils.decodeEmail(token);
+            if(this.isAdmin(email)) {
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                wiki.setName(wikiName);
+                wikiRepository.save(wiki);
+                return "true";
+            }else {
+                return "Credentials Invalid for Operation";
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public byte[] getWikiImg(String wikiId){
+        try {
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+            return wiki.getImg();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String setWikiImg(String token, String wikiId, MultipartFile image){
+        try{
+            String email = authTokenUtils.decodeEmail(token);
+            if(this.isAdmin(email)) {
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                wiki.setImg(image.getBytes());
+                wikiRepository.save(wiki);
+                return "true";
+            }else {
+                return "Credentials Invalid for Operation";
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    private boolean isAdmin(String email){
+        if(email.equals("josh.hooks@hotmail.com")
+                || email.equals("zinxshosting@gmail.com")
+                || email.equals("jaydencantrelle@gmail.com")){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }

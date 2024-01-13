@@ -36,6 +36,8 @@ public class Wiki {
 
     private String name;
 
+    private byte[] img;
+
     private ArrayList<Page> pages;
 
     public Wiki(){

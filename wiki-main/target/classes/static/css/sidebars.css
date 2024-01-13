@@ -1,13 +1,53 @@
 @media (max-width: 575.98px){
-	sidebar{
-		position: fixed;
+	.sidebar{
+		position: absolute;
+	}
+	.header{
+		display: flex;
+	}
+	.spacer{
+		height: 60vh;
 	}
 }
 
 @media (min-width: 576px){
-	sidebar{
+	.sidebar{
 		position: relative;
 	}
+	.header{
+		display: none;
+	}
+	.spacer{
+		height: 70vh;
+	}
+}
+
+.imgIcon{
+	width: 2vw;
+	margin-top: 9vh;	
+}
+
+.imgIcon:hover{
+	opacity: 50%;
+}
+
+.imgIcon:active{
+	opacity: 10%;
+}
+
+.click:hover{
+	opacity: 50%;
+}
+
+.click:active{
+	opacity: 10%;
+}
+
+.wikiBody{
+	overflow-y: auto;
+	margin-left: 2vw;
+	margin-top: 2vw;
+	margin-right 2vw; 
 }
 
 body {

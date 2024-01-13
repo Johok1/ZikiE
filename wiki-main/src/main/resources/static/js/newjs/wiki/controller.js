@@ -1,6 +1,6 @@
 export default class Controller {
     constructor() {
-        this.fetch_url_wiki = "http://localhost/api/v1/wiki"
+        this.fetch_url_wiki = "https://www.zinxswiki.com/api/v1/wiki"
     }
 
     getWikiName(id) {

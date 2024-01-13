@@ -5,12 +5,12 @@ import Controller from './controller.js'
 
 class Model {
     constructor() {
-     
-        if (this.checkIsCookieLoaded("wikiId")) {
+            this.cookie = new Cookie()
+        if (this.checkIsCookieLoaded("wikiId",this.cookie)) {
             this.view = new View()
             this.controller = new Controller()
 
-            this.cookie = new Cookie()
+           
             this.token = this.cookie.getCookie("token");
             this.wikiId = this.cookie.getCookie("wikiId")
 
@@ -73,9 +73,9 @@ class Model {
         })
     }
 
-    checkIsCookieLoaded(name) {
-        let cookie = this.cookie.getCookie(name)
-        let isCookieLoaded = cookie != "" && cookie != undefined && cookie != null
+    checkIsCookieLoaded(name, cookie) {
+        let cookieVal = cookie.getCookie(name)
+        let isCookieLoaded = cookieVal != "" && cookieVal != undefined && cookieVal != null
         return isCookieLoaded
     }
 

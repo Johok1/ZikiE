@@ -15,7 +15,10 @@ class Model {
             this.wikiId = this.cookie.getCookie("wikiId")
 
             this.loadWikiName()
-            this.loadWikiImg()
+                
+                    this.loadWikiImg()
+                
+           
 
         } else {
             console.error("no wiki id loaded")
@@ -33,8 +36,11 @@ class Model {
     loadWikiImg() {
         this.getWikiImgFromId(this.cookie.getCookie("wikiId"))
             .then(wikiResponse => {
-                this.view.wikiImg.src = URL.createObjectURL(wikiResponse)
+                let response = URL.createObjectURL(wikiResponse)
+                console.log(response)
+                this.view.wikiImg.src = response
                 console.log(this.view.wikiImg.src)
+                console.log(this.view.wikiImg)
             })
     }
 
@@ -83,5 +89,6 @@ class Model {
     }
 
 }
-
-const app = new Model();
+window.onload = function () {
+    const app = new Model();
+};

@@ -41,4 +41,17 @@ export default class ProfileView{
 		let objURL = URL.createObjectURL(this.imgInput.files.item(0))
 		this.logoImg.src = objURL
 	}
+
+	setWikiName(name) {
+		if (name!= "") {
+			this.label.innerHTML = name
+			this.textInput.value = ""
+		}
+	}
+
+	setWikiLogo(logo) {
+		let objURL = URL.createObjectURL(logo)
+		this.logoImg.src = objURL
+	}
+
 }

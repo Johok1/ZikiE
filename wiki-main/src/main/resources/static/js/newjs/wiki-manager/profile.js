@@ -8,12 +8,37 @@ class Profile {
         this.cookie = new Cookie();
         this.controller = new Controller()
 
+        this.initView()
         this.attachHandlersToView()
+           
+    }
+
+    initView = () => {
+        this.initWikiLogo()
+        this.initWikiName()
     }
 
     attachHandlersToView = () => {
         this.view.attachImgInputHandler(this.handleImgInputChange)
         this.view.attachSubmitClickHandler(this.handleClickWikiSubmitBtn)
+    }
+
+    initWikiLogo = () => {
+        this.controller.getWikiImg(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
+            .then(response => response.ok)
+            .then(response => response.blob())
+            .then(response => {
+                this.view.setWikiLogo(response)
+            })
+    }
+
+    initWikiName = () => {
+        this.controller.getWikiName(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
+            .then(response => response.ok)
+            .then(response => response.text())
+            .then(response => {
+                this.view.setWikiName(response)
+            })
     }
 
     handleClickWikiSubmitBtn = () => {

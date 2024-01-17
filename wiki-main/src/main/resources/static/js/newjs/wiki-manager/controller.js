@@ -3,13 +3,14 @@ export default class Controller {
         this.fetch_url_wiki = "https://www.zinxswiki.com/api/v1/wiki"
     }
 
-    setWikiImg(token, wikiId, formData) {
+    setWikiImg(token, wikiId, input) {
+        let formData = new FormData()
+        formData.append('file', input)
         return fetch(this.fetch_url_wiki + "/setWikiImg/" + token + "/" + wikiId , {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'multipart/file'
+                'Access-Control-Allow-Origin': '*'
             },
             body: formData
         }).catch(error => {

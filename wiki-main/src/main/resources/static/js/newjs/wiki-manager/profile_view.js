@@ -9,9 +9,7 @@ export default class ProfileView{
 	}
 
 	getInputImageForm = () => {
-		let formData = new FormData()
-		formData.append('file', this.imgInput.files.item(0))
-		return formData
+		return this.imgInput.files.item(0)
 	}
 
 	getInputText = () => {

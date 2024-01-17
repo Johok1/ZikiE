@@ -31,7 +31,7 @@ export default class Controller {
     }
 
     getWikiImg(wikiId) {
-        return fetch(this.fetch_url_wiki + "/getWikiImg/" + "/" + wikiId, {
+        return fetch(this.fetch_url_wiki + "/getWikiImg/" + wikiId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

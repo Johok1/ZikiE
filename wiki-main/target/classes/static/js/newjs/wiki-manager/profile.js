@@ -51,7 +51,7 @@ class Profile {
 
     handleImgInputChange = () => {
         console.log("handleImgInputChange")
-        this.controller.setWikiImg(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"), this.view.getInputImageForm)
+        this.controller.setWikiImg(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"), this.view.getInputImageForm())
             .then(response => response.ok)
             .then(() => {
                 this.view.setWikiLogoToInput()

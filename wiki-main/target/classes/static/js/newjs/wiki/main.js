@@ -13,10 +13,11 @@ class Model {
 
             this.token = this.cookie.getCookie("token");
             this.wikiId = this.cookie.getCookie("wikiId")
+            this.loadWikiImg()
 
             this.loadWikiName()
                 
-                    this.loadWikiImg()
+                   
                 
            
 
@@ -33,12 +34,17 @@ class Model {
             })
     }
 
-    loadWikiImg() {
-        this.controller.getWikiImg(this.cookie.getCookie("wikiId"))
+    loadWikiImg = () => {
+        return this.controller.getWikiImg(this.cookie.getCookie("wikiId"))
             .then(response => response.blob())
             .then(response => {
-                let obj = URL.createObjectURL(response)
-                this.view.wikiImg.setAttribute("src",obj)
+               return URL.createObjectURL(response)
+                
+            })
+            .then(response => {
+                console.log(response)
+                this.view.wikiImg.src = response
+
             })
     }
 
@@ -87,6 +93,5 @@ class Model {
     }
 
 }
-window.onload = function () {
+
     const app = new Model();
-};

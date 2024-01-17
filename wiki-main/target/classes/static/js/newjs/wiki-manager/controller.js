@@ -6,7 +6,7 @@ export default class Controller {
     setWikiImg(token, wikiId, input) {
         let formData = new FormData()
         formData.append('file', input)
-        return fetch(this.fetch_url_wiki + "/setWikiImg/" + token + "/" + wikiId , {
+        return fetch(this.fetch_url_wiki + "/setWikiImage/" + token + "/" + wikiId , {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',

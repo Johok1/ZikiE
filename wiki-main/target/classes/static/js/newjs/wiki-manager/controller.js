@@ -30,7 +30,7 @@ export default class Controller {
         });
     }
 
-    getWikiImg(token, wikiId) {
+    getWikiImg(wikiId) {
         return fetch(this.fetch_url_wiki + "/getWikiImg/" + "/" + wikiId, {
             method: 'GET',
             headers: {
@@ -42,7 +42,7 @@ export default class Controller {
         });
     }
 
-    getWikiName(token, wikiId) {
+    getWikiName(wikiId) {
         return fetch(this.fetch_url_wiki + "/getWikiName/"  + "/" + wikiId, {
             method: 'GET',
             headers: {

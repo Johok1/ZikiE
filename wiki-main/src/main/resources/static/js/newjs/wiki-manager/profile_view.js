@@ -5,6 +5,7 @@ export default class ProfileView{
 		this.imgInput = document.getElementById("imgInput")
 		this.logoImg = document.getElementById("logoImg")
 		this.submitBtn = document.getElementById("wikiNameSubmitBtn")
+		this.imgInput.style.width = this.logoImg.style.width
 		
 	}
 
@@ -38,6 +39,7 @@ export default class ProfileView{
 	setWikiLogoToInput() {		
 		let objURL = URL.createObjectURL(this.imgInput.files.item(0))
 		this.logoImg.src = objURL
+		this.imgInput.style.width = this.logoImg.style.width
 	}
 
 	setWikiName(name) {

@@ -6,7 +6,7 @@ export default class ProfileView{
 		this.logoImg = document.getElementById("logoImg")
 		this.submitBtn = document.getElementById("wikiNameSubmitBtn")
 		this.imgInput.style.width = this.logoImg.style.width
-		
+	
 	}
 
 	getInputImageForm = () => {

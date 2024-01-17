@@ -17,7 +17,7 @@ class Model {
 
             this.loadWikiName()
                 
-                   
+              
                 
            
 
@@ -31,6 +31,8 @@ class Model {
         this.getWikiNameFromId(this.cookie.getCookie("wikiId"))
             .then((wikiName) => {
                 this.view.wikiName.innerHTML += wikiName
+            }).catch(error => {
+                console.error(error)
             })
     }
 
@@ -38,13 +40,10 @@ class Model {
         return this.controller.getWikiImg(this.cookie.getCookie("wikiId"))
             .then(response => response.blob())
             .then(response => {
-               return URL.createObjectURL(response)
-                
-            })
-            .then(response => {
-                console.log(response)
-                this.view.wikiImg.src = response
-
+                document.getElementById("img").src = URL.createObjectURL(response)
+                console.log(this.view.wikiImg)
+            }).catch(error => {
+                console.error(error)
             })
     }
 
@@ -95,3 +94,4 @@ class Model {
 }
 
     const app = new Model();
+  

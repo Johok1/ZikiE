@@ -34,13 +34,11 @@ class Model {
     }
 
     loadWikiImg() {
-        this.getWikiImgFromId(this.cookie.getCookie("wikiId"))
-            .then(wikiResponse => {
-                let response = URL.createObjectURL(wikiResponse)
-                console.log(response)
-                this.view.wikiImg.src = response
-                console.log(this.view.wikiImg.src)
-                console.log(this.view.wikiImg)
+        this.controller.getWikiImg(this.cookie.getCookie("wikiId"))
+            .then(response => response.blob())
+            .then(response => {
+                let obj = URL.createObjectURL(response)
+                this.view.wikiImg.setAttribute("src",obj)
             })
     }
 

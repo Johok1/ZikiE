@@ -24,7 +24,7 @@ class Profile {
     }
 
     initWikiLogo = () => {
-        this.controller.getWikiImg(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
+        this.controller.getWikiImg(this.cookie.getCookie("wikiId"))
             .then(response => response.blob())
             .then(response => {
                 this.view.setWikiLogo(response)
@@ -32,7 +32,7 @@ class Profile {
     }
 
     initWikiName = () => {
-        this.controller.getWikiName(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
+        this.controller.getWikiName(this.cookie.getCookie("wikiId"))
             .then(response => response.text())
             .then(response => {
                 this.view.setWikiName(response)

@@ -31,7 +31,7 @@ export default class Controller {
     }
 
     getWikiImg(token, wikiId) {
-        return fetch(this.fetch_url_wiki + "/getWikiImg/" + token + "/" + wikiId, {
+        return fetch(this.fetch_url_wiki + "/getWikiImg/" + "/" + wikiId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -43,7 +43,7 @@ export default class Controller {
     }
 
     getWikiName(token, wikiId) {
-        return fetch(this.fetch_url_wiki + "/getWikiName/" + token + "/" + wikiId, {
+        return fetch(this.fetch_url_wiki + "/getWikiName/"  + "/" + wikiId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

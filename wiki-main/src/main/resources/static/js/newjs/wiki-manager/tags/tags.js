@@ -1,13 +1,14 @@
 import TagView from './tag_view.js'
 import Cookie from './cookie.js'
 import Controller from './controller.js'
-import Search from './search.js'
 import SearchView from './search_view.js'
 
 class Tags {
     constructor() {
-        this.tagView = new TagView()
         this.cookie = new Cookie()
+        this.controller = new Controller()
+        this.tagView = new TagView()
+       
     
 
         this.searchView = new SearchView()
@@ -20,7 +21,7 @@ class Tags {
         this.initSearchInputHandlers()
 
 
-        this.controller = new Controller()
+     
     
     }
 
@@ -41,7 +42,7 @@ class Tags {
 
         //init internal search list
         this.loadGenreSearchList()
-        this.loadTagSearchList()
+        this.loadSearchTagSearchList()
                //this.loadCategorySearchList()
 
         //render internal search list

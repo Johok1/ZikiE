@@ -88,7 +88,7 @@ public class GenreService {
             List<SubGenre> subGenres = genreResult.getSubGenreList();
             String genreList = "";
             for(SubGenre subGenre : subGenres){
-                genreList += subGenre.getSubGenreName() + "*" + subGenre.getId()+ ",";
+                genreList +=  subGenre.getId()+ "*" + subGenre.getSubGenreName() + ",";
             }
             return genreList;
 

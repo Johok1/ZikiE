@@ -52,5 +52,6 @@ public class Wiki {
         this.pages = new ArrayList<>();
         this.categories = new ArrayList<>();
         this.searchTags = new ArrayList<>();
+        this.subGenres = new ArrayList<>();
     }
 }

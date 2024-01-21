@@ -6,7 +6,7 @@ export default class Controller {
     }
 
     getAllSubGenres() {
-        return fetch(this.fetch_url_genre + "/getAllSubGenres" {
+        return fetch(this.fetch_url_genre + "/getAllSubGenres", {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -18,7 +18,7 @@ export default class Controller {
     }
 
     getWikiSubGenres(token, wikiId) {
-        return fetch(this.fetch_url_wiki + "/getWikiSubGenre/" + token+"/"+wikiId, {
+        return fetch(this.fetch_url_wiki + "/getWikiSubGenres/" + token+"/"+wikiId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

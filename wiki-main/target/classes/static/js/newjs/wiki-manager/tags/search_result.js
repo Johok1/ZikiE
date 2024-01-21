@@ -5,7 +5,7 @@ export default class SearchResult{
         this.label = document.createElement("label")
         this.label.classList.add("click")
         this.label.innerHTML = name
-        this.master.appendChild(label)
+        this.master.appendChild(this.label)
     }
 
     attachLabelClickHandler = (handler, result) => {

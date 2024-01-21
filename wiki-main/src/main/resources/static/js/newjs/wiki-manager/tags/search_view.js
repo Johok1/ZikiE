@@ -7,7 +7,7 @@ export default class SearchView {
         this.genreResultsDiv = document.getElementById("genreResultsDiv")
 
         this.tagResultsDiv = document.getElementById("tagResultsDiv")
-        this.tagInput = document.getElementById("filterTagInput")
+        this.tagInput = document.getElementById("tagInput")
 
         this.categoryResultsDiv = document.getElementById("categoryResultsDiv")
         this.categoryInput = document.getElementById("categoryNameInput")

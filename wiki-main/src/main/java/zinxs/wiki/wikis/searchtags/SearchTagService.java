@@ -25,7 +25,7 @@ public class SearchTagService {
             String tagList = "";
             for(SearchTag tag : tags) {
                 if (!tag.getName().equals("")) {
-                    tagList += tag.getId() + "*" + tag.getName();
+                    tagList += tag.getId() + "*" + tag.getName()+",";
                 }
             }
             return  tagList;

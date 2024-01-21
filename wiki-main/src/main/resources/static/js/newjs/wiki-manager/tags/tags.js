@@ -97,7 +97,7 @@ class Tags {
         for (let x = 0; x < listAr.length; x++) {
             let name = listAr[x].split("*")[1]
             if (name.toLowerCase().includes(entry.toLowerCase())) {
-                newlist += listAr[x] + ","
+                newList += listAr[x] + ","
             }
         }
         return newList
@@ -155,7 +155,7 @@ class Tags {
     }
 
     tagPopupSubmitHandler = () => {
-        this.controller.newSearchTag(this.cookie.getCookie("token"), this.searchView.getTagSearchInput())
+        this.controller.newSearchTag(this.cookie.getCookie("token"), this.tagView.getTagInput())
             .then(response => response.text())
             .then(response => {
                 this.controller.addWikiSearchTag(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"), response)
@@ -220,7 +220,7 @@ class Tags {
             .then(response => response.text())
             .then(response => {
                 this.tagSearchList = response
-                this.renderCategorySearchList()
+                this.renderTagSearchList()
             })
     }
 
@@ -229,7 +229,7 @@ class Tags {
             .then(response => response.text())
             .then(response => {
                 this.categorySearchList = response
-                this.renderGenreSearchList()
+                this.renderCategorySearchList()
             })
     }
 }

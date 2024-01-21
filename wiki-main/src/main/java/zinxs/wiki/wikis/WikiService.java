@@ -203,7 +203,7 @@ public class WikiService {
             Account targetAccount = accountRepository.findByEmail(decodedToken).get();
             Long id = Long.valueOf(wikiId);
             if(targetAccount.isEnabled()){
-                List<Wiki> wikis = wikiRepository.findByEmail(decodedToken).get();
+                List<Wiki> wikis = wikiRepository.findByWikiCreator(targetAccount).get();
                 for(Wiki wiki : wikis) {
                     if (wiki.getId().equals(id)) {
                         return wiki;

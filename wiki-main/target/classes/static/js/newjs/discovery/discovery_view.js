@@ -137,8 +137,8 @@ export default class DiscoveryView {
             let counter = 0
             for (let x = 0; x < genreArray.length; x++) {
                 //elements are formatted 'name*id'
-                let genreName = genreArray[x].split("*")[0];
-                let genreId = genreArray[x].split("*")[1];
+                let genreName = genreArray[x].split("*")[1];
+                let genreId = genreArray[x].split("*")[0];
                 if (genreName.toUpperCase().startsWith(letter)) {
                     counter++
                     this.constructCard(genreName, genreId, letterSection, this.subGenreClickHandler)

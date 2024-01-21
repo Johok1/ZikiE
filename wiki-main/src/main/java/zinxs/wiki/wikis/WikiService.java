@@ -4,9 +4,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.account.Account;
 import zinxs.wiki.account.AccountRepository;
+import zinxs.wiki.admin.wiki.subgenre.SubGenre;
+import zinxs.wiki.admin.wiki.subgenre.SubGenreRepository;
 import zinxs.wiki.utilities.AuthTokenUtils;
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
+import zinxs.wiki.wikis.searchtags.SearchTag;
+import zinxs.wiki.wikis.searchtags.SearchTagRepository;
 
 
 import java.util.ArrayList;
@@ -21,20 +25,40 @@ public class WikiService {
     private final AuthTokenUtils authTokenUtils;
     private final AccountRepository accountRepository;
 
+    private final SubGenreRepository subGenreRepository;
+
     private final PageRepository pageRepository;
+
+    private final SearchTagRepository searchTagRepository;
 
 
     public String hasAccess(String token, String wikiId){
         try{
                 Account account = getAccount(token);
                 Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-                if(wiki.getEmail().equals(account.getEmail())){
+                if(wiki.getWikiCreator().getId().equals(account.getId())){
                     return "true";
-                }else if(wiki.getEditAccessAccounts().contains(account.getUsername())){
+                }else if(wiki.getEditAccessAccounts().contains(account)){
                     return "true";
                 }else{
                     return "false";
                 }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    private boolean hasAccessBool(String token, String wikiId){
+        try{
+            Account account = getAccount(token);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+            if(wiki.getWikiCreator().getId().equals(account.getId())){
+                return true;
+            }else if(wiki.getEditAccessAccounts().contains(account)){
+                return true;
+            }else{
+                return false;
+            }
 
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -58,7 +82,7 @@ public class WikiService {
             Account account = getAccount(tempToken);
             Wiki wiki = new Wiki();
             wiki.setName(name);
-            wiki.setEmail(account.getEmail());
+            wiki.setWikiCreator(account);
             wikiRepository.save(wiki);
             return wiki.getId() + "";
         }catch (Exception e){
@@ -66,7 +90,7 @@ public class WikiService {
         }
     }
 
-
+/* have to convert pages to holding account object instead of email string
     public String newWikiPage(String tempToken, String wikiId){
         try{
             Account account = getAccount(tempToken);
@@ -81,12 +105,12 @@ public class WikiService {
             throw new RuntimeException("error in new wiki page: " + e);
         }
     }
-
-    public String addWikiTag(String tempToken, String wikiId, String tag){
+*/
+    public String addWikiCategory(String tempToken, String wikiId, String category){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = getAccountWiki(tempToken, wikiId);
-            wiki.getInternalTags().add(tag);
+            wiki.getCategories().add(category);
             wikiRepository.save(wiki);
             return "true";
         }catch (Exception e){
@@ -94,81 +118,34 @@ public class WikiService {
         }
     }
 
-    public String removeWikiPageTag(String tempToken, String wikiId, String wikiPageId, String tag){
-        try{
-            Account account = getAccount(tempToken);
 
-            Page wikiPage = getWikiPage(wikiId,wikiPageId);
-            wikiPage.getInternalTags().remove(tag);
-            pageRepository.save(wikiPage);
-            return "true";
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
 
-    public String addWikiPageTag(String tempToken, String wikiId, String wikiPageId, String tag){
-        try{
-            Account account = getAccount(tempToken);
-            Page wikiPage = getWikiPage(wikiId,wikiPageId);
-            wikiPage.getInternalTags().add(tag);
-            pageRepository.save(wikiPage);
-            return "true";
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getWikiPageTags(String tempToken, String wikiId, String wikiPageId){
+    public String getWikiCategories(String tempToken, String wikiId){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            Page wikiPage = getWikiPage(wikiId,wikiPageId);
-            String tags = "";
-            for(String tag : wikiPage.getInternalTags()){
-                tags += tag+",";
+            String categories = "";
+            for(String category : wiki.getCategories()){
+                categories += category + ",";
             }
-            return tags;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getWikiTags(String tempToken, String wikiId){
-        try{
-            Account account = getAccount(tempToken);
-            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            String tags = "";
-            for(String tag : wiki.getInternalTags()){
-                tags += tag + ",";
-            }
-            return tags;
+            return categories;
         }catch (Exception e){
             throw new RuntimeException("error in get wiki tags: " + e);
         }
     }
 
-    public String getWikiGenres(String tempToken, String wikiId){
+
+    public String removeWikiCategory(String tempToken, String wikiId, String category){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            String tags = "";
-            for(String tag: wiki.getGenres()){
-                tags += tag+",";
+            ArrayList<String> categories = wiki.getCategories();
+            for(String categoryStr : categories){
+                if(categoryStr.equalsIgnoreCase(category)){
+                    categories.remove(categoryStr);
+                }
             }
-            return tags;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String addWikiGenre(String tempToken, String wikiId, String tag){
-        try{
-            Account account = getAccount(tempToken);
-            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            ArrayList<String> Genres = wiki.getGenres();
-            Genres.add(tag);
-            wiki.setGenres(Genres);
+            wiki.setCategories(categories);
             wikiRepository.save(wiki);
             return "true";
         }catch (Exception e){
@@ -176,27 +153,6 @@ public class WikiService {
         }
     }
 
-    public String removeWikiGenre(String tempToken, String wikiId, String tag){
-        try{
-            Account account = getAccount(tempToken);
-            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            ArrayList<String> Genres = wiki.getGenres();
-            Genres.remove(tag);
-            wiki.setGenres(Genres);
-            wikiRepository.save(wiki);
-            return "true";
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getWikiPagesOfTag(String tempToken, String wikiId, String tag){
-        try{
-            return "";
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
 
     public String getWikiPages(String tempToken, String wikiId){
         try{
@@ -277,7 +233,7 @@ public class WikiService {
         }
     }
 
-
+/* have to change endpoint to pass temp token rather than username
     public String setBanUser(String token, String wikiId, String username) {
         try{
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
@@ -291,6 +247,8 @@ public class WikiService {
         }
     }
 
+ */
+/* have to change endpoint to pass temp token rather than username
     public String setEditPerm(String token, String wikiId, String username) {
         try{
             Wiki wiki = getAccountWiki(token, wikiId);
@@ -304,6 +262,8 @@ public class WikiService {
         }
     }
 
+ */
+/* have to change endpoint to pass temp token rather than username
     public String removeEditPerm(String token, String wikiId, String username){
         try{
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
@@ -317,6 +277,8 @@ public class WikiService {
         }
     }
 
+ */
+/* have to change endpoint to pass temp token rather than username
     public String removeBanUser(String token, String wikiId, String username){
         try{
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
@@ -329,7 +291,9 @@ public class WikiService {
             throw new RuntimeException("error in setBanUser " + e);
         }
     }
+*/
 
+/* have to change endpont to pass temp token rather than username
     public String checkUserBanned(String token, String wikiId, String username){
         try{
             Account user = getAccount(token);
@@ -342,7 +306,8 @@ public class WikiService {
             throw new RuntimeException("error in checkUserBanned " + e);
         }
     }
-
+*/
+    /* have to change endpoint to pass temp token rather than username
     public String checkUserEditPerms(String token, String wikiId, String username){
         try{
             Account user = getAccount(token);
@@ -355,7 +320,7 @@ public class WikiService {
             throw new RuntimeException("error in checkUserEditPerms " + e);
         }
     }
-
+*/
     public String setWikiPageContent(String tempToken,String wikiId, String wikiPageIdStr,  String pageContent){
         try{
             String decodedToken = authTokenUtils.decodeEmail(tempToken);
@@ -441,4 +406,114 @@ public class WikiService {
         }
     }
 
+    public String getWikiSubGenres(String token, String wikiId) {
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<SubGenre> subGenres = wiki.getSubGenres();
+                String subGenresStr = "";
+                for(SubGenre subGenre : subGenres){
+                    subGenresStr += subGenre.getId() + "*"+subGenre.getSubGenreName() +",";
+                }
+                return subGenresStr;
+            }else{
+                throw new RuntimeException("Invalid Credentials");
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String addWikiSubGenre(String token, String wikiId, String subGenreId) {
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
+                ArrayList<SubGenre> subGenres = wiki.getSubGenres();
+                subGenres.add(subGenre);
+                wiki.setSubGenres(subGenres);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("Invalid Credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String removeWikiSubGenre(String token, String wikiId, String subGenreId) {
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                SubGenre subGenre = subGenreRepository.findById(Long.valueOf(subGenreId)).get();
+                ArrayList<SubGenre> subGenres = wiki.getSubGenres();
+                subGenres.remove(subGenre);
+                wiki.setSubGenres(subGenres);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("Invalid Credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public String getWikiSearchTags(String token, String wikiId) {
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<SearchTag> searchTags = wiki.getSearchTags();
+                String searchTagsStr = "";
+                for(SearchTag searchTag : searchTags){
+                    searchTagsStr += searchTag.getId() + "*"+searchTag.getName() +",";
+                }
+                return searchTagsStr;
+            }else{
+                throw new RuntimeException("Invalid Credentials");
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String addWikiSearchTag(String token, String wikiId, String searchTagId) {
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                SearchTag searchTag = searchTagRepository.findById(Long.valueOf(searchTagId)).get();
+                ArrayList<SearchTag> searchTags = wiki.getSearchTags();
+                searchTags.add(searchTag);
+                wiki.setSearchTags(searchTags);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("Invalid Credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String removeWikiSearchTag(String token, String wikiId, String searchTagId) {
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                SearchTag searchTag = searchTagRepository.findById(Long.valueOf(searchTagId)).get();
+                ArrayList<SearchTag> searchTags = wiki.getSearchTags();
+                searchTags.remove(searchTag);
+                wiki.setSearchTags(searchTags);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("Invalid Credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

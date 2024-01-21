@@ -111,7 +111,12 @@
 			<div class="row">
 				<div class="col">
 					<h4>Genres</h4>
-					<input type="text" size="50vw" class="form-control form-control-dark">
+					<input id="genreInput" type="text" size="50vw" data-bs-toggle="dropdown" class="form-control form-control-dark">
+					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="padding-left: 1vw; background-color:hsla(210,11%,11%,1.00);"aria-labelledby="dropdownUser1">
+						<div id="genreResultsDiv" style="opacity: none ;color: white">
+						
+						</div>
+		 			 </ul>
 					<div id="genresRow" class="row" style="margin: 1vw">
 						
 						
@@ -120,54 +125,22 @@
 				<div class="col-3  phoneHide">
 					<div class="card click" data-bs-toggle="dropdown" style="color: white; background-color:hsla(210,11%,26%,1.00); text-align: center; width: 80%; margin-top: 22%; user-select: none">Request Addition</div>
 					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-						<li><input id="wikiNameInput" type="text" class="dropdown-item" placeholder="Request New Genre..."></li>
-						<li><button style="background-color: transparent" onClick="createGenreGraphic()">Submit Changes</button></li>
+						<li><input id="genreRequestInput" type="text" class="dropdown-item" placeholder="Request New Genre..."></li>
+						<li><button id="genreSubmitBtn" style="background-color: transparent" >Submit Changes</button></li>
 		 			 </ul>
-					<script>
-						class GenreGraphic {
-							constructor(name) {
-								this.name = name
-								
-								this.master = document.createElement("div");
-								this.master.className = "col-3";
-								
-								this.cardDiv = document.createElement("div");
-								this.cardDiv.className = "click card";
-								this.cardDiv.style.width = "80%";
-								this.cardDiv.style.color = "black";
-								this.cardDiv.title = this.name;
-								
-								this.inputField = document.createElement("input");
-								this.inputField.style.textAlign = "center";
-								this.inputField.style.border = "none";
-								this.inputField.style.backgroundColor = "transparent";
-								this.inputField.style.userSelect = "all";
-								this.inputField.disabled = true;
-								this.inputField.type = "text";
-								this.inputField.value = this.name;
-
-								this.cardDiv.appendChild(this.inputField);
-								this.master.appendChild(this.cardDiv);
-							}
-						}
-						function createGenreGraphic(){
-							let wikiNameInput = document.getElementById("wikiNameInput")
-							let genresRow = document.getElementById("genresRow")
-						
-							if(wikiNameInput.value != ""){
-								const graphic = new GenreGraphic(wikiNameInput.value)
-								genresRow.appendChild(graphic.master)
-								wikiNameInput.value = ""
-							}
-						}
-					</script>
+					
 				</div>
 			</div>
 				<br><br><br>
 			<div class="row">
 				<div class="col">
 					<h4>Filter Tags</h4>
-					<input type="text" size="50vw" class="form-control form-control-dark">
+					<input id="tagInput" data-bs-toggle="dropdown" type="text" size="50vw" class="form-control form-control-dark">
+					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="padding-left: 1vw; background-color:hsla(210,11%,11%,1.00);"aria-labelledby="dropdownUser1">
+						<div id="tagResultsDiv" style="opacity: none ;color: white">
+						
+						</div>
+		 			 </ul>
 					<div id="tagsRow" class="row" style="margin: 1vw">
 						
 						
@@ -177,53 +150,22 @@
 					<div class="card click"  data-bs-toggle="dropdown" style="color: white; background-color:hsla(210,11%,26%,1.00); text-align: center; width: 80%; margin-top: 22%; user-select: none">Create Filter Tag</div>
 						<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 						<li><input id="filterTagInput" type="text" class="dropdown-item" placeholder="Create New Filter Tag..."></li>
-						<li><button style="background-color: transparent" onClick="createTagGraphic()">Submit Changes</button></li>
+						<li><button id="tagSubmitBtn" style="background-color: transparent">Submit Changes</button></li>
 		 			 </ul>
 					
-					<script>
-						class TagGraphic {
-							constructor(name) {
-								this.name = name
-								
-								this.master = document.createElement("div");
-								this.master.className = "col-3";
-								
-								this.cardDiv = document.createElement("div");
-								this.cardDiv.className = "click card";
-								this.cardDiv.style.width = "80%";
-								this.cardDiv.style.color = "black";
-								this.cardDiv.title = this.name;
-								this.inputField = document.createElement("input");
-								this.inputField.style.textAlign = "center";
-								this.inputField.style.border = "none";
-								this.inputField.style.backgroundColor = "transparent";
-								this.inputField.style.userSelect = "all";
-								this.inputField.disabled = true;
-								this.inputField.type = "text";
-								this.inputField.value = this.name;
-
-								this.cardDiv.appendChild(this.inputField);
-								this.master.appendChild(this.cardDiv);
-							}
-						}
-						function createTagGraphic(){
-							let filterTagInput = document.getElementById("filterTagInput")
-							let tagsRow = document.getElementById("tagsRow")
-						
-							if(filterTagInput.value != ""){
-								const graphic = new TagGraphic(filterTagInput.value)
-								tagsRow.appendChild(graphic.master)
-								filterTagInput.value = ""
-							}
-						}
-					</script>
+					
 				</div>
 			</div>
 			<br><br><br>
 			<div class="row">
 				<div class="col">
 					<h4>Categories</h4>
-					<input type="text" size="50vw" class="form-control form-control-dark">
+					<input id="categoryInput" data-bs-toggle="dropdown" type="text" size="50vw" class="form-control form-control-dark">
+					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="padding-left: 1vw; background-color:hsla(210,11%,11%,1.00);"aria-labelledby="dropdownUser1">
+						<div id="categoryResultsDiv" style="opacity: none ;color: white">
+						
+						</div>
+		 			 </ul>
 					<div id="categoriesRow" class="row" style="margin: 1vw">
 						
 						
@@ -233,47 +175,8 @@
 					<div class="card click" data-bs-toggle="dropdown" style="color: white; background-color:hsla(210,11%,26%,1.00); text-align: center; width: 80%; margin-top: 22%; user-select: none">Create Category</div>
 					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 						<li><input id="categoryNameInput" type="text" class="dropdown-item" placeholder="Create New Category..."></li>
-						<li><button style="background-color: transparent" onClick="createCategoryGraphic()">Submit Changes</button></li>
-		 			 </ul>
-					
-						<script>
-						class CategoryGraphic {
-							constructor(name) {
-								this.name = name
-								
-								this.master = document.createElement("div");
-								this.master.className = "col-3";
-								
-								this.cardDiv = document.createElement("div");
-								this.cardDiv.className = "click card";
-								this.cardDiv.style.width = "80%";
-								this.cardDiv.style.color = "black";
-								this.cardDiv.title = this.name;
-								
-								this.inputField = document.createElement("input");
-								this.inputField.style.textAlign = "center";
-								this.inputField.style.border = "none";
-								this.inputField.style.backgroundColor = "transparent";
-								this.inputField.style.userSelect = "all";
-								this.inputField.disabled = true;
-								this.inputField.type = "text";
-								this.inputField.value = this.name;
-
-								this.cardDiv.appendChild(this.inputField);
-								this.master.appendChild(this.cardDiv);
-							}
-						}
-						function createCategoryGraphic(){
-							let categoryNameInput = document.getElementById("categoryNameInput")
-							let categoriesRow = document.getElementById("categoriesRow")
-						
-							if(categoryNameInput.value != ""){
-								const graphic = new TagGraphic(categoryNameInput.value)
-								categoriesRow.appendChild(graphic.master)
-								categoryNameInput.value = ""
-							}
-						}
-					</script>
+						<li><button id="categorySubmitBtn" style="background-color: transparent" >Submit Changes</button></li>
+					</ul>
 				</div>
 			</div>
 			</div>
@@ -288,7 +191,7 @@
 	  
 	      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-
+	<script type="module" src="js/newjs/wiki-manager/tags/tags.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/popper.min.js"></script> 
 	<script src="js/bootstrap-4.4.1.js"></script>

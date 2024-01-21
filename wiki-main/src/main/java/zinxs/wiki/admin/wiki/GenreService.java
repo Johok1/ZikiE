@@ -178,8 +178,8 @@ public class GenreService {
             List<SubGenre> subGenres = subGenreRepository.findAll();
             for(SubGenre subGenre: subGenres){
                 if(subGenre.getSubGenreName() != ""){
-                    subGenreList += subGenre.getSubGenreName() + "*" +
-                                    subGenre.getId() + ",";
+                    subGenreList +=  subGenre.getId() + "*" +subGenre.getSubGenreName()
+                                     + ",";
                 }
             }
             return subGenreList;

@@ -27,21 +27,41 @@ public class WikiController {
     }
 
     @CrossOrigin
-    @PostMapping("/getWikiGenres/{token}/{wikiId}")
-    public String getWikiGenres(@PathVariable String token, @PathVariable String wikiId){
-        return wikiService.getWikiGenres(token,wikiId);
+    @GetMapping("/getWikiSubGenres/{token}/{wikiId}")
+    public String getWikiSubGenres(@PathVariable String token, @PathVariable String wikiId){
+        return wikiService.getWikiSubGenres(token,wikiId);
     }
     @CrossOrigin
-    @PostMapping("/addWikiGenre/{token}/{wikiId}/{tag}")
+    @PostMapping("/addWikiSubGenre/{token}/{wikiId}/{subGenreId}")
     public String addWikiGenres(@PathVariable String token, @PathVariable String wikiId,
-                                      @PathVariable String tag){
-        return wikiService.addWikiGenre(token,wikiId,tag);
+                                      @PathVariable String subGenreId){
+        return wikiService.addWikiSubGenre(token,wikiId,subGenreId);
     }
     @CrossOrigin
-    @PostMapping("/removeWikiGenre/{token}/{wikiId}/{tag}")
+    @PostMapping("/removeWikiSubGenre/{token}/{wikiId}/{subGenreId}")
     public String removeWikiGenres(@PathVariable String token, @PathVariable String wikiId,
-                                      @PathVariable String tag){
-        return wikiService.removeWikiGenre(token,wikiId,tag);
+                                      @PathVariable String subGenreId){
+        return wikiService.removeWikiSubGenre(token,wikiId,subGenreId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getWikiSearchTags/{token}/{wikiId}")
+    public String getWikiSearchTags(@PathVariable String token, @PathVariable String wikiId){
+        return wikiService.getWikiSearchTags(token, wikiId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/addWikiSearchTag/{token}/{wikiId}/{searchTagId}")
+    public String addWikiSearchTag(@PathVariable String token, @PathVariable String wikiId,
+                                   @PathVariable String searchTagId){
+        return wikiService.addWikiSearchTag(token, wikiId, searchTagId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/removeWikiSearchTag/{token}/{wikiId}/{searchTagId}")
+    public String removeWikiSearchTag(@PathVariable String token, @PathVariable String wikiId,
+                                   @PathVariable String searchTagId){
+        return wikiService.removeWikiSearchTag(token, wikiId, searchTagId);
     }
 
 
@@ -50,45 +70,33 @@ public class WikiController {
     public String newWiki(@PathVariable String tempToken, @PathVariable String name){
        return wikiService.newWiki(tempToken, name);
     }
-
+    /*
     @CrossOrigin
     @PostMapping("/newWikiPage/{tempToken}/{wikiId}")
     public String newWikiPage(@PathVariable  String tempToken, @PathVariable String wikiId){
         return wikiService.newWikiPage(tempToken,wikiId);
     }
-
+    */
     @CrossOrigin
-    @PostMapping("/addWikiTag/{tempToken}/{wikiId}/{tag}")
-    public String addWikiTag(@PathVariable String tempToken, @PathVariable  String wikiId,
-                             @PathVariable String tag){
-        return wikiService.addWikiTag(tempToken,wikiId,tag);
+    @PostMapping("/addWikiCategory/{tempToken}/{wikiId}/{category}")
+    public String addWikiCategory(@PathVariable String tempToken, @PathVariable  String wikiId,
+                             @PathVariable String category){
+        return wikiService.addWikiCategory(tempToken,wikiId,category);
     }
 
     @CrossOrigin
-    @PostMapping("/removeWikiPageTag/{tempToken}/{wikiId}/{wikiPageId}/{tag}")
-    public String removeWikiPageTag(@PathVariable String tempToken, @PathVariable  String wikiId,
-                             @PathVariable String wikiPageId, @PathVariable String tag){
-        return wikiService.removeWikiPageTag(tempToken,wikiId, wikiPageId, tag);
+    @PostMapping("/removeWikiCategory/{tempToken}/{wikiId}/{category}")
+    public String removeWikiCategory(@PathVariable String tempToken, @PathVariable  String wikiId,
+                             @PathVariable String category){
+        return wikiService.removeWikiCategory(tempToken,wikiId,category);
     }
 
-    @CrossOrigin
-    @PostMapping("/addWikiPageTag/{tempToken}/{wikiId}/{wikiPageId}/{tag}")
-    public String addWikiPageTag(@PathVariable String tempToken, @PathVariable  String wikiId,
-                                 @PathVariable String wikiPageId, @PathVariable String tag){
-        return wikiService.addWikiPageTag(tempToken,wikiId,wikiPageId,tag);
-    }
+
 
     @CrossOrigin
-    @GetMapping("/getWikiPageTags/{tempToken}/{wikiId}/{wikiPageId}")
-    public String getWikiPageTags(@PathVariable String tempToken, @PathVariable String wikiId,
-                                  @PathVariable String wikiPageId){
-        return wikiService.getWikiPageTags(tempToken, wikiId,wikiPageId);
-    }
-
-    @CrossOrigin
-    @GetMapping("/getWikiTags/{tempToken}/{wikiId}")
-    public String getWikiTags(@PathVariable String tempToken, @PathVariable String wikiId){
-        return wikiService.getWikiTags(tempToken,wikiId);
+    @GetMapping("/getWikiCategories/{tempToken}/{wikiId}")
+    public String getWikiCategories(@PathVariable String tempToken, @PathVariable String wikiId){
+        return wikiService.getWikiCategories(tempToken,wikiId);
     }
 
     @CrossOrigin
@@ -104,6 +112,7 @@ public class WikiController {
         return wikiService.getWikiPage(tempToken,wikiId,wikiPageId);
     }
 
+    /*
     @CrossOrigin
     @GetMapping("/setBanUser/{token}/{wikiId}/{username}")
     public String setBanUser(@PathVariable String token, @PathVariable String wikiId,
@@ -145,6 +154,8 @@ public class WikiController {
                                      @PathVariable String username){
         return wikiService.checkUserEditPerms(token, wikiId, username);
     }
+
+     */
 
     @CrossOrigin
     @PostMapping("/setPageContent/{token}/{wikiId}/{wikiPageId}")

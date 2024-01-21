@@ -19,18 +19,26 @@ class Tags {
 
         this.initView()
         this.initSearchInputHandlers()
-
+        this.initPopupSubmitHandlers()
 
      
     
     }
 
+    renderTagListNoId(creator, list) {
+        let listAr = list.split(",")
+        for (let x = 0; x < listAr.length; x++) {
+            if (listAr[x] != "") {
+                creator(listAr[x])
+            }
+        }
+    }
     
     renderTagList(creator, list) {
         let listAr = list.split(",")
         for (let x = 0; x < listAr.length; x++) {
             if (listAr[x] != "") {
-                creator(listAr[x])
+                creator(listAr[x].split("*")[1])
             }
         }
     }
@@ -56,10 +64,15 @@ class Tags {
         this.loadSearchTagTagList()
     }
 
+    initPopupSubmitHandlers = () => {
+        this.tagView.attachCategorySubmit(this.categoryPopupSubmitHandler)
+        this.tagView.attachFilterTagSubmit(this.tagPopupSubmitHandler)
+    }
+
     initSearchInputHandlers = () => {
         this.searchView.attachGenreInputKeypressHandler(this.genreSearchInputHandler)
         this.searchView.attachTagInputKeypressHandler(this.tagSearchInputHandler)
-        this.searchView.attachCategoryInputKeypressHandler(this.categorySearchInputHandler)
+    //    this.searchView.attachCategoryInputKeypressHandler(this.categorySearchInputHandler)
     }
 
     //render lists from stores variables
@@ -93,17 +106,17 @@ class Tags {
     //search input handlers
 
     genreSearchInputHandler = () => {
-        this.genreSearchList = this.filterSearchListByEntry(this.genreSearchList, this.view.getGenreSearchInput())
+        this.genreSearchList = this.filterSearchListByEntry(this.genreSearchList, this.searchView.getGenreSearchInput())
         this.renderGenreSearchList()
     }
 
     tagSearchInputHandler = () => {
-        this.tagSearchList = this.filterSearchListByEntry(this.tagSearchList, this.view.getTagSearchInput())
+        this.tagSearchList = this.filterSearchListByEntry(this.tagSearchList, this.searchView.getTagSearchInput())
         this.renderTagSearchList()
     }
 
     categorySearchInputHandler = () => {
-        this.categorySearchList = this.filterSearchListByEntry(this.categorySearchList, this.view.getCategorySearchInput())
+        this.categorySearchList = this.filterSearchListByEntry(this.categorySearchList, this.searchView.getCategorySearchInput())
         this.renderCategorySearchList()
     }
 
@@ -189,7 +202,7 @@ class Tags {
         this.controller.getWikiCategories(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
             .then(response => response.text())
             .then(response => {
-                this.renderTagList(this.tagView.createCategoryGraphic, response)
+                this.renderTagListNoId(this.tagView.createCategoryGraphic, response)
             })
     }
 

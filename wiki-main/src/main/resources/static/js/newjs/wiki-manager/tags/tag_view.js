@@ -12,7 +12,7 @@ export default class TagView {
 
 		this.categoryNameInput = document.getElementById("categoryNameInput")
 		this.categoriesRow = document.getElementById("categoriesRow")
-		this.categorySubmitBtn = document.getElementById("categorySubitBtn")
+		this.categorySubmitBtn = document.getElementById("categorySubmitBtn")
 
 	}
 

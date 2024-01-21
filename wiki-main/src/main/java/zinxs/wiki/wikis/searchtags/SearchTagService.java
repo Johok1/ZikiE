@@ -23,8 +23,10 @@ public class SearchTagService {
         try{
             List<SearchTag> tags = searchTagRepository.findAll();
             String tagList = "";
-            for(SearchTag tag : tags){
-                tagList += tag.getId() + "*" + tag.getName();
+            for(SearchTag tag : tags) {
+                if (!tag.getName().equals("")) {
+                    tagList += tag.getId() + "*" + tag.getName();
+                }
             }
             return  tagList;
         }catch (Exception e){

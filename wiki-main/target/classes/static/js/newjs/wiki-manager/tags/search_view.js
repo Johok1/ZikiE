@@ -7,10 +7,10 @@ export default class SearchView {
         this.genreResultsDiv = document.getElementById("genreResultsDiv")
 
         this.tagResultsDiv = document.getElementById("tagResultsDiv")
-        this.tagInput = document.getElementById("tagInput")
+        this.tagInput = document.getElementById("filterTagInput")
 
         this.categoryResultsDiv = document.getElementById("categoryResultsDiv")
-        this.categoryInput = document.getElementById("categoryInput")
+        this.categoryInput = document.getElementById("categoryNameInput")
 
         this.genreResultObjects = []
 
@@ -79,7 +79,7 @@ export default class SearchView {
         for (let x = 0; x < strAr.length; x++) {
             let name = strAr[x].split("*")[1]
             let id = strAr[x].split("*")[0]
-            if (name != "") {
+            if (name != "" && name != undefined) {
                 let result = this.createSearchItem(name, id, div)
                 result.attachLabelClickHandler(handler, result)
             }

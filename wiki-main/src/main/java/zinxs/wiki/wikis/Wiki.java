@@ -44,6 +44,9 @@ public class Wiki {
 
     private byte[] img;
 
+    private ArrayList<String> imageNames;
+    private ArrayList<String> videoNames;
+
     private ArrayList<Page> pages;
 
     public Wiki(){
@@ -53,5 +56,7 @@ public class Wiki {
         this.categories = new ArrayList<>();
         this.searchTags = new ArrayList<>();
         this.subGenres = new ArrayList<>();
+        this.imageNames = new ArrayList<>();
+        this.videoNames = new ArrayList<>();
     }
 }

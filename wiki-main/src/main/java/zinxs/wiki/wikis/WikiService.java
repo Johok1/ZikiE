@@ -516,4 +516,107 @@ public class WikiService {
             throw new RuntimeException(e);
         }
     }
+
+    public String getWikiImages(String token, String wikiId){
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<String> wikiImages = wiki.getImageNames();
+                String imageNames = "";
+                for(String wikiImg : wikiImages){
+                    imageNames += wikiImg + ",";
+                }
+                return imageNames;
+            }else{
+                throw new RuntimeException("invalid access credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String addWikiImage(String token, String wikiId, String filename){
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<String> wikiImages = wiki.getImageNames();
+                wikiImages.add(filename);
+                wiki.setImageNames(wikiImages);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("invalid access credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    public String removeWikiImage(String token, String wikiId, String filename){
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<String> wikiImages = wiki.getImageNames();
+                wikiImages.remove(filename);
+                wiki.setImageNames(wikiImages);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("invalid access credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getWikiVideos(String token, String wikiId){
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<String> wikiVideos = wiki.getVideoNames();
+                String videoNames = "";
+                for(String wikiVid : wikiVideos){
+                    videoNames += wikiVid + ",";
+                }
+                return videoNames;
+            }else{
+                throw new RuntimeException("invalid access credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String addWikiVideo(String token, String wikiId, String filename){
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<String> wikiVideos = wiki.getVideoNames();
+                wikiVideos.add(filename);
+                wiki.setVideoNames(wikiVideos);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("invalid access credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    public String removeWikiVideo(String token, String wikiId, String filename){
+        try{
+            if(hasAccessBool(token, wikiId)){
+                Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+                ArrayList<String> wikiVideos = wiki.getVideoNames();
+                wikiVideos.remove(filename);
+                wiki.setVideoNames(wikiVideos);
+                wikiRepository.save(wiki);
+                return "true";
+            }else{
+                throw new RuntimeException("invalid access credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }

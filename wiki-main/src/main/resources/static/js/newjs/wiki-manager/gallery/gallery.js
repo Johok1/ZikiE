@@ -18,12 +18,14 @@ class Gallery {
                 let list = response.split(",")
                 for (let x = 0; x < list.length; x++) {
                     let filename = list[x]
-                    this.controller.getImage(filename)
-                        .then(response => response.blob())
-                        .then(response => {
-                            let url = URL.createObjectURL(response)
-                            this.galleryView.renderImageUrl(url)
-                        })
+                    if (filename != "") {
+                        this.controller.getImage(filename)
+                            .then(response => response.blob())
+                            .then(response => {
+                                let url = URL.createObjectURL(response)
+                                this.galleryView.renderImageUrl(url)
+                            })
+                    }
                 }
             })
     }

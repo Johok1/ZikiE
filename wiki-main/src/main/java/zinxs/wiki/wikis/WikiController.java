@@ -198,4 +198,30 @@ public class WikiController {
         return wikiService.setWikiName(token, wikiId, wikiName);
     }
 
+    @CrossOrigin
+    @GetMapping("/getWikiImages/{token}/{wikiId}")
+    public String getWikiImages(@PathVariable String token, @PathVariable String wikiId){
+        return wikiService.getWikiImages(token, wikiId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/addWikiImage/{token}/{wikiId}/{filename}")
+    public String addWikiImage(@PathVariable String token, @PathVariable String wikiId,
+                               @PathVariable String filename){
+        return wikiService.addWikiImage(token, wikiId, filename);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getWikiVideos/{token}/{wikiId}")
+    public String getWikiVideos(@PathVariable String token, @PathVariable String wikiId){
+        return wikiService.getWikiVideos(token, wikiId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/addWikiVideo/{token}/{wikiId}/{filename}")
+    public String addWikiVideo(@PathVariable String token, @PathVariable String wikiId,
+                               @PathVariable String filename){
+        return wikiService.addWikiVideo(token, wikiId, filename);
+    }
+
 }

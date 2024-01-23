@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
 
-@Controller("api/v1/file")
+@RestController
+@RequestMapping(path = "api/v1/file")
 public class FileManagerController {
     @Autowired
     FileManagerService fileManagerService;

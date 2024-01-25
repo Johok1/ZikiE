@@ -18,6 +18,53 @@ public class PageService {
     private final AccountRepository accountRepository;
 
 
+    public String togglePageStatus(String token, String pageId){
+        try{
+            Account account = getAccount(token);
+            if(account.isEnabled()){
+                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                page.setStatus(!page.isStatus());
+                return page.isStatus() +"";
+            }else{
+                throw new RuntimeException("account is disabled");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getPageStatus(String token, String pageId){
+        try{
+            Account account = getAccount(token);
+            if(account.isEnabled()){
+                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                if(page.isStatus()){
+                    return "true";
+                }else{
+                    return "false";
+                }
+            }else{
+                throw new RuntimeException("account is disabled");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getPageName(String token, String pageId){
+        try{
+            Account account = getAccount(token);
+            if(account.isEnabled()){
+                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                return page.getName();
+            }else{
+                throw new RuntimeException("account is disabled");
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
     public String newPage(String tempToken, String name){
         try {

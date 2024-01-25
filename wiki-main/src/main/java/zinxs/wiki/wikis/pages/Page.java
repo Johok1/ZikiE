@@ -31,11 +31,17 @@ public class Page implements Serializable {
     private ArrayList<String> editAccessAccounts;
     private ArrayList<String> internalTags;
 
+    private ArrayList<String> imageContext;
+
+    private ArrayList<String> videoContext;
+
+    private boolean status;
     private String name;
 
     public Page(){
         this.bannedAccounts = new ArrayList<>();
         this.editAccessAccounts = new ArrayList<>();
         this.internalTags = new ArrayList<>();
+        this.status = true;
     }
 }

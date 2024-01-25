@@ -205,10 +205,10 @@ public class WikiController {
     }
 
     @CrossOrigin
-    @PostMapping("/addWikiImage/{token}/{wikiId}/{filename}")
+    @PostMapping("/addWikiImage/{token}/{wikiId}/{fileContextId}")
     public String addWikiImage(@PathVariable String token, @PathVariable String wikiId,
-                               @PathVariable String filename){
-        return wikiService.addWikiImage(token, wikiId, filename);
+                               @PathVariable String fileContextId){
+        return wikiService.addWikiImage(token, wikiId, fileContextId);
     }
 
     @CrossOrigin
@@ -218,10 +218,10 @@ public class WikiController {
     }
 
     @CrossOrigin
-    @PostMapping("/addWikiVideo/{token}/{wikiId}/{filename}")
+    @PostMapping("/addWikiVideo/{token}/{wikiId}/{fileContextId}")
     public String addWikiVideo(@PathVariable String token, @PathVariable String wikiId,
-                               @PathVariable String filename){
-        return wikiService.addWikiVideo(token, wikiId, filename);
+                               @PathVariable String fileContextId){
+        return wikiService.addWikiVideo(token, wikiId, fileContextId);
     }
 
 }

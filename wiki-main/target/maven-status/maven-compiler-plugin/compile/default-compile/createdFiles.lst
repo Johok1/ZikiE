@@ -32,10 +32,12 @@ zinxs\wiki\admin\projectmanager\project\phase\task\DescriptionRequest.class
 zinxs\wiki\admin\wiki\subgenre\SubGenre.class
 zinxs\wiki\wikis\community\CommunityWikiRepository.class
 zinxs\wiki\directories\ResetPasswordController.class
+zinxs\wiki\wikis\files\FileContext.class
 zinxs\wiki\account\AccountProfileResponse.class
 zinxs\wiki\validation\TokenRequest.class
 zinxs\wiki\validation\email\EmailSender.class
 zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskClusterRepository.class
+zinxs\wiki\wikis\files\FileContextRepository.class
 zinxs\wiki\validation\LoginRequest.class
 zinxs\wiki\account\AccountService.class
 zinxs\wiki\account\profilesettings\ProfileController.class
@@ -56,6 +58,7 @@ zinxs\wiki\wikis\pages\PageService.class
 zinxs\wiki\validation\RegistrationRequest.class
 zinxs\wiki\admin\projectmanager\project\Project.class
 zinxs\wiki\admin\projectmanager\project\ProjectRepository.class
+zinxs\wiki\wikis\files\dao\FileContextResponse.class
 zinxs\wiki\admin\wiki\subgenre\SubGenreRepository.class
 zinxs\wiki\wikis\pages\Page.class
 zinxs\wiki\utilities\AuthTokenUtils.class

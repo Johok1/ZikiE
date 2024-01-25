@@ -96,4 +96,16 @@ public class PageController {
         return pageService.checkUserEditPerms(token, pageId, username);
     }
 
+    @CrossOrigin
+    @GetMapping("getPageStatus/{token}/{pageId}")
+    public String getPageStatus(@PathVariable String token, @PathVariable String pageId){
+        return pageService.getPageStatus(token, pageId);
+    }
+
+    @CrossOrigin
+    @PostMapping("togglePageStatus/{token}/{pageId}")
+    public String togglePageStatus(@PathVariable String token, @PathVariable String pageId){
+        return pageService.togglePageStatus(token, pageId);
+    }
+
 }

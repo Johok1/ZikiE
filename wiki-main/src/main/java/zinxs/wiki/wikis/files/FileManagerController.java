@@ -11,7 +11,7 @@ import zinxs.wiki.wikis.files.dao.FileContextResponse;
 
 import java.io.IOException;
 
-@CrossOrigin("https://www.zinxswiki")
+@CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/file")
 public class FileManagerController {

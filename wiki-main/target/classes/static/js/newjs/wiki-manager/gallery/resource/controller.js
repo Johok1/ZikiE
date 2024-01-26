@@ -2,10 +2,11 @@ export default class Controller{
     constructor(){
         this.fetch_url_wiki = "https://www.zinxswiki.com/api/v1/wiki"
         this.fetch_url_file = "https://www.zinxswiki.com/api/v1/file"
+        this.fetch_url_page = "https://www.zinxswiki.com/api/v1/page"
     }
 
-    getFileContext(fileContextId){
-        return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
+    getFileContext(fileContextId) {
+        return fetch(this.fetch_url_file + "/getFileContext/" + fileContextId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -17,7 +18,7 @@ export default class Controller{
     }
 
     getPageName(token, pageId){
-        return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
+        return fetch(this.fetch_url_page + "/getPageName/" + token +"/" +pageId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -28,8 +29,8 @@ export default class Controller{
         });
     }
 
-    deleteFile(wikiId, fileContextId){
-        return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
+    deleteFile(wikiId, fileContextId) {
+        return fetch(this.fetch_url_file + "/deleteFile/" + wikiId + "/" + fileContextId, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -41,7 +42,7 @@ export default class Controller{
     }
 
     getPageStatus(token, pageId){
-        return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
+        return fetch(this.fetch_url_page + "/getPageStatus/" + token + "/" + pageId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -53,7 +54,7 @@ export default class Controller{
     }
 
     togglePageStatus(token, pageId) {
-        return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
+        return fetch(this.fetch_url_page + "/togglePageStatus/" + token +"/" + pageId, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -65,7 +66,7 @@ export default class Controller{
     }
 
     getImage(fileContextId) {
-        return fetch(this.fetch_url_file + "/getImage/" + filename, {
+        return fetch(this.fetch_url_file + "/getImage/" + fileContextId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -77,7 +78,7 @@ export default class Controller{
     }
 
     getVideo(fileContextId) {
-        return fetch(this.fetch_url_file + "/getVideo/" + filename, {
+        return fetch(this.fetch_url_file + "/getVideo/" + fileContextId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',

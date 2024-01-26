@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
 import zinxs.wiki.wikis.files.dao.FileContextResponse;
 
+@CrossOrigin("https://www.zinxswiki")
 @RestController
 @RequestMapping(path = "api/v1/file")
 public class FileManagerController {
@@ -29,14 +30,12 @@ public class FileManagerController {
     }
 
     @GetMapping("/getImage/{fileContextId}")
-    @ResponseBody
     public Resource getImage(@PathVariable String fileContextId) {
         Resource file = fileManagerService.getImage(fileContextId);
         return file;
     }
 
     @GetMapping("/getVideo/{fileContextId}")
-    @ResponseBody
     public Resource getVideo(@PathVariable String fileContextId) {
         Resource file = fileManagerService.getVideo(fileContextId);
         return file;

@@ -10,7 +10,7 @@ class Resource {
         this.loadCookieResource()
     }
 
-    loadCookieResource() {
+    loadCookieResource = () => {
         if (this.cookie.getCookie("imageContextId")) {
             let id = this.cookie.getCookie("imageContextId")
             this.loadImageResourceFromContext(id)
@@ -22,7 +22,7 @@ class Resource {
         }
     }
 
-    loadImageResourceFromContext(contextId) {
+    loadImageResourceFromContext = (contextId) => {
         this.controller.getImage(contextId)
             .then(response => response.blob())
             .then(response => {
@@ -31,7 +31,7 @@ class Resource {
      
     }
 
-    loadVideoResourceFromContext(contextId) {
+    loadVideoResourceFromContext = (contextId) => {
         this.controller.getVideo(contextId)
             .then(response => response.blob())
             .then(response => {
@@ -49,12 +49,13 @@ class Resource {
                 console.log("file context: " + data.authorImage)
                
                 this.resourceView.loadProfileName(data.authorUsername)
-                this.resourceView.renderProfileImage(data.authorImage)
+                let url = URL.createObjectURL(new MediaSource(data.authorImage))
+                this.resourceView.renderProfileImage(url)
                 this.loadPageContext(data.pageId)
             })
     }
 
-    loadPageContext(id) {
+    loadPageContext = (id) => {
         let token = this.cookie.getCookie("token")
         this.controller.getPageName(token, id)
             .then(response => response.text())
@@ -64,9 +65,9 @@ class Resource {
                     .then(response => response.text())
                     .then(response => {
                         if (response == "true") {
-                            this.resourceView.setPageState(response)
+                            this.resourceView.setPageState(true)
                         } else if (response == "false") {
-                            this.resourceView.setPageState(response)
+                            this.resourceView.setPageState(false)
                         }
                         this.resourceView.attachCheckboxHandler(this.checkBoxHandler, this.loadPageContext,token, id)
                     })

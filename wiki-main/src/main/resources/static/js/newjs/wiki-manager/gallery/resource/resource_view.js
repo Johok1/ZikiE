@@ -29,7 +29,7 @@ export default class ResourceView{
 	}
 
 	renderProfileImage = (url) => {
-		this.profilePicture.src = URL.createObjectURL(new MediaSource(url))
+		this.profilePicture.src = url
 	}
 
 	loadPageName(name) {

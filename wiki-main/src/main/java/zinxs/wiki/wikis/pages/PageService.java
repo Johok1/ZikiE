@@ -24,6 +24,7 @@ public class PageService {
             if(account.isEnabled()){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 page.setStatus(!page.isStatus());
+                pageRepository.save(page);
                 return page.isStatus() +"";
             }else{
                 throw new RuntimeException("account is disabled");

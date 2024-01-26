@@ -8,6 +8,7 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\Project.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\research\Research.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\wiki\subgenre\SubGenre.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\FileContext.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskCluster.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskClusterRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\utilities\AuthTokenUtils.java
@@ -15,6 +16,7 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\community\CommunityWiki.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\FileManagerController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\account\profilesettings\ProfileService.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\dao\FileContextResponse.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\DescriptionRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\FileManagerService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\searchtags\SearchTagController.java
@@ -34,6 +36,7 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\directories\ResetPasswordRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validation\confirmation\ConfirmationToken.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\account\AccountProfileResponse.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\FileContextRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\TaskRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validation\LoginRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validation\ValidationService.java

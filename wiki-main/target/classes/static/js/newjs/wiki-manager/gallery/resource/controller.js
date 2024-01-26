@@ -4,7 +4,7 @@ export default class Controller{
         this.fetch_url_file = "https://www.zinxswiki.com/api/v1/file"
     }
 
-    getFileContext(token, filename){
+    getFileContext(fileContextId){
         return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
             method: 'GET',
             headers: {
@@ -28,7 +28,7 @@ export default class Controller{
         });
     }
 
-    deleteFile(token, wikiId, filename){
+    deleteFile(wikiId, fileContextId){
         return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
             method: 'POST',
             headers: {
@@ -55,6 +55,30 @@ export default class Controller{
     togglePageStatus(token, pageId) {
         return fetch(this.fetch_url_ + "/endpoint/" + pathparam, {
             method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
+    getImage(fileContextId) {
+        return fetch(this.fetch_url_file + "/getImage/" + filename, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
+    getVideo(fileContextId) {
+        return fetch(this.fetch_url_file + "/getVideo/" + filename, {
+            method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Origin': '*'

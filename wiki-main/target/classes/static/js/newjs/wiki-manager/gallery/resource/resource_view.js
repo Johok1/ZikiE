@@ -42,9 +42,9 @@ export default class ResourceView{
 		this.enabledCheckbox.checked = !this.enabledCheckbox.checked
 	}
 
-	attachCheckboxHandler = (handler, loadPageContent) => {
+	attachCheckboxHandler = (handler, loadPageContent,token, id) => {
 		this.enabledCheckbox.addEventListener("change", function () {
-			handler(loadPageContent);
+			handler(loadPageContent, token, id);
 		})
 	}
 

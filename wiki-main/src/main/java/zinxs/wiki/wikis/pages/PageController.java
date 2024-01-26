@@ -97,6 +97,12 @@ public class PageController {
     }
 
     @CrossOrigin
+    @GetMapping("getPageName/{token}/{pageId}")
+    public String getPageName(@PathVariable String token, @PathVariable String pageId){
+        return pageService.getPageName(token, pageId);
+    }
+
+    @CrossOrigin
     @GetMapping("getPageStatus/{token}/{pageId}")
     public String getPageStatus(@PathVariable String token, @PathVariable String pageId){
         return pageService.getPageStatus(token, pageId);

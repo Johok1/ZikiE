@@ -26,7 +26,7 @@ class Resource {
         this.controller.getImage(contextId)
             .then(response => response.blob())
             .then(response => {
-                this.resourceView.renderImageUrl(URL.createObjectURL(response))
+                this.resourceView.renderImageUrl(response)
             })
      
     }
@@ -35,7 +35,7 @@ class Resource {
         this.controller.getVideo(contextId)
             .then(response => response.blob())
             .then(response => {
-                this.resourceView.renderVideoUrl(URL.createObjectURL(response))
+                this.resourceView.renderVideoUrl(response)
             })
     }
 

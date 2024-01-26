@@ -43,5 +43,7 @@ public class Page implements Serializable {
         this.editAccessAccounts = new ArrayList<>();
         this.internalTags = new ArrayList<>();
         this.status = true;
+        this.imageContext = new ArrayList<>();
+        this.videoContext = new ArrayList<>();
     }
 }

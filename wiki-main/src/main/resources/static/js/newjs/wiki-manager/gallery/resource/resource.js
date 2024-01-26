@@ -45,6 +45,9 @@ class Resource {
             .then(response => response.json())
             .then(data => {
                 console.log("file context: " + data)
+                console.log("file context: " + data.authorUsername)
+                console.log("file context: " + data.authorImage)
+                console.log("file context: " + JSON.parse(data))
                 this.resourceView.loadProfileName(data.authorUsername)
                 this.resourceView.renderProfileImage(URL.createObjectURL(data.authorImage))
                 this.loadPageContext(data.pageId)

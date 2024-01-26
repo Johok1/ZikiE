@@ -43,11 +43,11 @@ class Resource {
     loadFileContext(id) {
         this.controller.getFileContext(id)
             .then(response => response.json())
-            .then(response => {
-                console.log("file context: " + response)
-                this.resourceView.loadProfileName(response.authorUsername)
-                this.resourceView.renderProfileImage(URL.createObjectURL(response.authorImage))
-                this.loadPageContext(response.pageId)
+            .then(data => {
+                console.log("file context: " + data)
+                this.resourceView.loadProfileName(data.authorUsername)
+                this.resourceView.renderProfileImage(URL.createObjectURL(data.authorImage))
+                this.loadPageContext(data.pageId)
             })
     }
 

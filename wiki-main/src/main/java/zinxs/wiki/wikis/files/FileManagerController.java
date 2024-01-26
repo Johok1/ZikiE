@@ -1,12 +1,15 @@
 package zinxs.wiki.wikis.files;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
 import zinxs.wiki.wikis.files.dao.FileContextResponse;
+
+import java.io.IOException;
 
 @CrossOrigin("https://www.zinxswiki")
 @RestController
@@ -30,15 +33,15 @@ public class FileManagerController {
     }
 
     @GetMapping("/getImage/{fileContextId}")
-    public Resource getImage(@PathVariable String fileContextId) {
+    public Resource getImage(@PathVariable String fileContextId) throws IOException {
         Resource file = fileManagerService.getImage(fileContextId);
-        return file;
+        return new UrlResource(file.getURI());
     }
 
     @GetMapping("/getVideo/{fileContextId}")
-    public Resource getVideo(@PathVariable String fileContextId) {
+    public Resource getVideo(@PathVariable String fileContextId) throws IOException {
         Resource file = fileManagerService.getVideo(fileContextId);
-        return file;
+        return new UrlResource(file.getURI());
     }
 
     @CrossOrigin

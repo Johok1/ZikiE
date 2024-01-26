@@ -7,7 +7,9 @@ export default class ResourceView{
 		this.pageName = document.getElementById("pageName")
 		this.enabledCheckbox = document.getElementById("pageEnabled")
 		this.profilePicture = document.getElementById("profilePicture")
-		this.username = document.getElementById("username")
+		this.username = document.getElementById("profileUsername")
+		console.log(this.profilePicture)
+		console.log(this.username)
 	}
 
 	renderVideoUrl(url) {
@@ -22,12 +24,12 @@ export default class ResourceView{
 		this.resourceDiv.appendChild(image.master)
 	}
 
-	loadProfileName(name) {
+	loadProfileName = (name) => {
 		this.username.innerHTML = name 
 	}
 
-	renderProfileImage(url) {
-		this.profilePicture.src = URL.createObjectURL(url)
+	renderProfileImage = (url) => {
+		this.profilePicture.src = URL.createObjectURL(new MediaSource(url))
 	}
 
 	loadPageName(name) {

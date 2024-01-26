@@ -69,6 +69,7 @@ public class FileManagerService {
             pageRepository.save(page);
             wikiRepository.save(wiki);
             Files.copy(file.getInputStream(), this.imgRoot.resolve(file.getOriginalFilename()));
+            fileContextRepository.save(fileContext);
             return fileContext.getId() +"";
         } catch (Exception e) {
             if (e instanceof FileAlreadyExistsException) {
@@ -94,6 +95,7 @@ public class FileManagerService {
             pageRepository.save(page);
             wikiRepository.save(wiki);
             Files.copy(file.getInputStream(), this.vidRoot.resolve(file.getOriginalFilename()));
+            fileContextRepository.save(fileContext);
             return fileContext.getId() +"";
         } catch (Exception e) {
             if (e instanceof FileAlreadyExistsException) {

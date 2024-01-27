@@ -8,6 +8,7 @@ export default class ResourceView{
 		this.enabledCheckbox = document.getElementById("pageEnabled")
 		this.profilePicture = document.getElementById("profilePicture")
 		this.username = document.getElementById("profileUsername")
+		this.deleteBtn = document.getElementById("deleteBtn")
 		console.log(this.profilePicture)
 		console.log(this.username)
 	}
@@ -42,6 +43,12 @@ export default class ResourceView{
 
 	togglePageState() {
 		this.enabledCheckbox.checked = !this.enabledCheckbox.checked
+	}
+
+	attachDeleteBtnHandler = (handler) => {
+		this.deleteBtn.addEventListener("click", function () {
+			handler()
+		})
 	}
 
 	attachCheckboxHandler = (handler, loadPageContent,token, id) => {

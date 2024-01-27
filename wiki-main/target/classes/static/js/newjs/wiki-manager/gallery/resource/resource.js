@@ -11,14 +11,18 @@ class Resource {
     }
 
     loadCookieResource = () => {
-        if (this.cookie.getCookie("imageContextId")) {
+        if (this.cookie.getCookie("imageContextId") != "") {
             let id = this.cookie.getCookie("imageContextId")
+            this.resourceView.attachDeleteBtnHandler(this.deleteBtnHandlerImage)
             this.loadImageResourceFromContext(id)
             this.loadFileContext(id)
-        } else if (this.cookie.getCookie("videoContextId")) {
+    
+        } else if (this.cookie.getCookie("videoContextId") != "") {
             let id = this.cookie.getCookie("videoContextId")
+            this.resourceView.attachDeleteBtnHandler(this.deleteBtnHandlerVideo)
             this.loadVideoResourceFromContext(id)
             this.loadFileContext(id)
+   
         }
     }
 
@@ -47,11 +51,13 @@ class Resource {
                 console.log("file context: " + data)
                 console.log("file context: " + data.authorUsername)
                 console.log("file context: " + data.authorImage)
-               
+
+      
                 this.resourceView.loadProfileName(data.authorUsername)
                 let url = URL.createObjectURL(new MediaSource(data.authorImage))
                 this.resourceView.renderProfileImage(url)
                 this.loadPageContext(data.pageId)
+
             })
     }
 
@@ -71,6 +77,22 @@ class Resource {
                         }
                         this.resourceView.attachCheckboxHandler(this.checkBoxHandler, this.loadPageContext,token, id)
                     })
+            })
+    }
+
+    deleteBtnHandlerImage = () => {
+        this.controller.deleteFile(this.cookie.getCookie("wikiId"), this.cookie.getCookie("imageContextId"))
+            .then(response => response.ok)
+            .then(() => {
+                window.location.href = "wiki-manager.html"
+            })
+    }
+
+    deleteBtnHandlerVideo = () => {
+        this.controller.deleteFile(this.cookie.getCookie("wikiId"), this.cookie.getCookie("videoContextId"))
+            .then(response => response.ok)
+            .then(() => {
+                window.location.href = "wiki-manager.html"
             })
     }
 

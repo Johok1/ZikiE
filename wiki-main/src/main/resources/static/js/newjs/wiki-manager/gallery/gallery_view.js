@@ -7,15 +7,19 @@ export default class GalleryView {
         this.videoRow = document.getElementById("videoRow")
     }
 
-    renderImageUrl(url) {
+    renderImageUrl = (url, handler, id) => {
         let image = new Image()
         image.setImgSrc(url)
+        image.attachClickHandler(handler, id)
         this.imageRow.appendChild(image.master)
+       
     }
 
-    renderVideoUrl(url) {
+    renderVideoUrl = (url, handler, id) => {
         let video = new Video()
         video.setVidSrc(url)
+        video.attachClickHandler(handler, id)
         this.videoRow.appendChild(video.master)
+        
     }
 }

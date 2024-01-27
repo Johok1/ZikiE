@@ -12,7 +12,7 @@ class Gallery {
         this.loadWikiVideos()
     }
 
-    loadWikiImages() {
+    loadWikiImages = () => {
         this.controller.getWikiImages(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
             .then(response => response.text())
             .then(response => {
@@ -24,14 +24,14 @@ class Gallery {
                             .then(response => response.blob())
                             .then(response => {
                                 let url = URL.createObjectURL(response)
-                                this.galleryView.renderImageUrl(url)
+                                this.galleryView.renderImageUrl(url, this.imageClickHandler, filename)
                             })
                     }
                 }
             })
     }
 
-    loadWikiVideos() {
+    loadWikiVideos = () => {
         this.controller.getWikiVideos(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
             .then(response => response.text())
             .then(response => {
@@ -42,12 +42,23 @@ class Gallery {
                         .then(response => response.blob())
                         .then(response => {
                             let url = URL.createObjectURL(response)
-                            this.galleryView.renderVideoUrl(url)
+                            this.galleryView.renderVideoUrl(url, this.videoClickHandler, filename)
                         })
                 }
             })
     }
-    
+
+
+    imageClickHandler = (id) => {
+        this.cookie.setCookie("imageContextId", id, 1)
+        window.location.href ="wiki-manager-inspect.html"
+    }
+
+    videoClickHandler = (id) => {
+        this.cookie.setCookie("videoContextId", id, 1)
+        window.location.href = "wiki-manager-inspect.html"
+    }
+
 }
 
 const gal = new Gallery()

@@ -8,6 +8,12 @@ export default class Video {
         this.master.appendChild(this.vid)
     }
 
+    attachClickHandler = (handler, id) => {
+        this.master.addEventListener("click", function () {
+            handler(id)
+        })
+    }
+
     setVidSrc(src) {
         this.vid.src = src
     }

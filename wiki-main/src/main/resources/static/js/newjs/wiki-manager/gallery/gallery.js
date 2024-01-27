@@ -9,22 +9,26 @@ class Gallery {
         this.cookie = new Cookie()
 
         this.loadWikiImages()
-        this.loadWikiVideos()
+        //this.loadWikiVideos()
     }
 
     loadWikiImages = () => {
         this.controller.getWikiImages(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
+
             .then(response => response.text())
             .then(response => {
                 let list = response.split(",")
                 for (let x = 0; x < list.length; x++) {
                     let filename = list[x]
-                    if (filename != "") {
+                    if (filename != "" && filename != undefined && filename != null && filename != "null") {
                         this.controller.getImage(filename)
+                            
                             .then(response => response.blob())
                             .then(response => {
-                                let url = URL.createObjectURL(response)
-                                this.galleryView.renderImageUrl(url, this.imageClickHandler, filename)
+                               
+                                    let url = URL.createObjectURL(response)
+                                    this.galleryView.renderImageUrl(url, this.imageClickHandler, filename)
+                                
                             })
                     }
                 }
@@ -33,16 +37,20 @@ class Gallery {
 
     loadWikiVideos = () => {
         this.controller.getWikiVideos(this.cookie.getCookie("token"), this.cookie.getCookie("wikiId"))
+           
             .then(response => response.text())
             .then(response => {
                 let list = response.split(",")
                 for (let x = 0; x < list.length; x++) {
                     let filename = list[x]
                     this.controller.getVideo(filename)
+                      
                         .then(response => response.blob())
                         .then(response => {
-                            let url = URL.createObjectURL(response)
-                            this.galleryView.renderVideoUrl(url, this.videoClickHandler, filename)
+                            if (response.ok) {
+                                let url = URL.createObjectURL(response)
+                                this.galleryView.renderVideoUrl(url, this.videoClickHandler, filename)
+                            }
                         })
                 }
             })

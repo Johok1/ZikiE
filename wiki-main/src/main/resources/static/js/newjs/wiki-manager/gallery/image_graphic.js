@@ -6,6 +6,11 @@ export default class Image{
         this.img.style.height = "10vh";
         this.master.appendChild(this.img)
     }
+    attachClickHandler = (handler, id) => {
+        this.master.addEventListener("click", function () {
+            handler(id)
+        })
+    }
 
     setImgSrc(src) {
         this.img.src = src

@@ -5,12 +5,13 @@ import lombok.Setter;
 import zinxs.wiki.wikis.pages.Page;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity
 @Getter
 @Setter
-public class Category {
+public class Category implements Serializable {
 
     @SequenceGenerator(
             name = "page_sequence",

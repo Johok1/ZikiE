@@ -60,9 +60,11 @@ export default class CategoryDiscoveryView {
                 //elements are formatted 'id*name'
                 let categoryName = categoryArray[x].split("*")[1];
                 let categoryId = categoryArray[x].split("*")[0];
-                if (categoryName.toUpperCase().startsWith(letter)) {
-                    counter++
-                    this.constructCard(categoryName, categoryId, letterCategory, this.mainClickHandler)
+                if (categoryName != undefined && categoryName != "" && categoryName != null) {
+                    if (categoryName.toUpperCase().startsWith(letter)) {
+                        counter++
+                        this.constructCard(categoryName, categoryId, letterCategory, this.mainClickHandler)
+                    }
                 }
             }
             if (counter > 0) {

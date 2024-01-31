@@ -4,6 +4,7 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\message\Message.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\message\MessageRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\pages\PageService.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\categories\CategoryService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\account\AccountService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\Project.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\research\Research.java
@@ -11,11 +12,13 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\FileContext.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskCluster.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskClusterRepository.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\categories\CategoryRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\utilities\AuthTokenUtils.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\PhaseRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\community\CommunityWiki.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\FileManagerController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\account\profilesettings\ProfileService.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\categories\CategoryController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\dao\FileContextResponse.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\DescriptionRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\FileManagerService.java
@@ -67,5 +70,6 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\Phase.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\research\ResearchRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\ProjectManagerController.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\wikis\files\categories\Category.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\AlphaApplication.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\admin\projectmanager\project\phase\task\Task.java

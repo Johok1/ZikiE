@@ -39,7 +39,7 @@ export default class CategoryDiscoveryView {
         for (let x = 0; x < categoryArray.length; x++) {
             //elements are formatted 'id*name'
             let categoryName = categoryArray[x].split("*")[1];
-            if (categoryName != "") {
+            if (categoryName != "" && categoryName != null && categoryName != undefined) {
                 let categoryId = categoryArray[x].split("*")[0];
                 this.constructCard(categoryName, categoryId, category, this.mainClickHandler)
             }

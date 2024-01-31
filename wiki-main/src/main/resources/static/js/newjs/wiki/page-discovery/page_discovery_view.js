@@ -39,7 +39,7 @@ export default class PageDiscoveryView {
         for (let x = 0; x < categoryArray.length; x++) {
             //elements are formatted 'id*name'
             let categoryName = categoryArray[x].split("*")[1];
-            if (categoryName != "") {
+            if (categoryName != "" && categoryName != undefined && categoryName != null) {
                 let categoryId = categoryArray[x].split("*")[0];
                 this.constructCard(categoryName, categoryId, category, this.mainClickHandler)
             }
@@ -60,9 +60,11 @@ export default class PageDiscoveryView {
                 //elements are formatted 'id*name'
                 let categoryName = categoryArray[x].split("*")[1];
                 let categoryId = categoryArray[x].split("*")[0];
-                if (categoryName.toUpperCase().startsWith(letter)) {
-                    counter++
-                    this.constructCard(categoryName, categoryId, letterCategory, this.mainClickHandler)
+                if (categoryName != undefined && categoryName != "" && categoryName != null) {
+                    if (categoryName.toUpperCase().startsWith(letter)) {
+                        counter++
+                        this.constructCard(categoryName, categoryId, letterCategory, this.mainClickHandler)
+                    }
                 }
             }
             if (counter > 0) {

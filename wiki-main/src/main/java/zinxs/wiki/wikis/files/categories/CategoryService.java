@@ -41,6 +41,18 @@ public class CategoryService {
         }
     }
 
+    public String addCategoryPage(String categoryId, String pageId){
+        try{
+            Category category = categoryRepository.findById(Long.valueOf(categoryId)).get();
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            category.getPageList().add(page);
+            categoryRepository.save(category);
+            return "true";
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public String getCategoryName(String categoryId){
         try{

@@ -116,7 +116,7 @@ public class WikiService {
     public String addWikiCategory(String tempToken, String wikiId, String category){
         try{
             Account account = getAccount(tempToken);
-            Wiki wiki = getAccountWiki(tempToken, wikiId);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             Category catObj = new Category();
             catObj.setName(category);
             categoryRepository.save(catObj);
@@ -166,7 +166,7 @@ public class WikiService {
     public String addWikiTopCategory(String tempToken, String wikiId, String category){
         try{
             Account account = getAccount(tempToken);
-            Wiki wiki = getAccountWiki(tempToken, wikiId);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             Category catObj = new Category();
             catObj.setName(category);
             categoryRepository.save(catObj);

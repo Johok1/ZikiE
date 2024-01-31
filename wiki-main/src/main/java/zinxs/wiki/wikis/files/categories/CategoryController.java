@@ -22,4 +22,10 @@ public class CategoryController {
         return categoryService.getCategoryName(categoryId);
     }
 
+    @CrossOrigin
+    @PostMapping("/addCategoryPage/{categoryId}/{pageId}")
+    public String addCategoryPage(@PathVariable String categoryId, @PathVariable String pageId){
+        return categoryService.addCategoryPage(categoryId , pageId);
+    }
+
 }

@@ -2,6 +2,7 @@ package zinxs.wiki.wikis;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.account.Account;
@@ -84,11 +85,12 @@ public class WikiController {
         return wikiService.addWikiCategory(tempToken,wikiId,category);
     }
 
+
     @CrossOrigin
-    @PostMapping("/removeWikiCategory/{tempToken}/{wikiId}/{category}")
+    @PostMapping("/removeWikiCategory/{tempToken}/{wikiId}/{categoryId}")
     public String removeWikiCategory(@PathVariable String tempToken, @PathVariable  String wikiId,
-                             @PathVariable String category){
-        return wikiService.removeWikiCategory(tempToken,wikiId,category);
+                             @PathVariable String categoryId){
+        return wikiService.removeWikiCategory(tempToken,wikiId,categoryId);
     }
 
 
@@ -100,9 +102,44 @@ public class WikiController {
     }
 
     @CrossOrigin
+    @GetMapping("/getWikiTopCategories/{tempToken}/{wikiId}")
+    public String getWikiTopCategories(@PathVariable String tempToken, @PathVariable String
+                                       wikiId){
+        return wikiService.getWikiTopCategories(tempToken, wikiId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/addWikiTopCategory/{token}/{wikiId}/{category}")
+    public String addWikiTopCategory(@PathVariable String token,@PathVariable String
+                                     wikiId, @PathVariable String category)
+    {
+        return wikiService.addWikiTopCategory(token, wikiId, category);
+    }
+
+    @CrossOrigin
     @GetMapping("/getWikiPages/{tempToken}/{wikiId}")
     public String getWikiPages(@PathVariable String tempToken, @PathVariable String wikiId){
         return  wikiService.getWikiPages(tempToken,wikiId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getWikiTopPages/{token}/{wikiId}")
+    public String getWikiTopPages(@PathVariable String token, @PathVariable String wikiId){
+        return  wikiService.getWikiTopPages(token, wikiId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/addWikiPage/{token}/{wikiId}/{pageId}")
+    public String addWikiPage(@PathVariable String token, @PathVariable String wikiId,
+                              @PathVariable String pageId){
+        return wikiService.addWikiPage(token, wikiId, pageId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/addWikiTopPage/{token}/{wikiId}/{pageId}")
+    public String addWikiTopPage(@PathVariable String token, @PathVariable String wikiId,
+                                 @PathVariable String pageId){
+        return wikiService.addWikiTopPage(token, wikiId, pageId);
     }
 
     @CrossOrigin

@@ -9,7 +9,7 @@ class Gallery {
         this.cookie = new Cookie()
 
         this.loadWikiImages()
-        //this.loadWikiVideos()
+        this.loadWikiVideos()
     }
 
     loadWikiImages = () => {

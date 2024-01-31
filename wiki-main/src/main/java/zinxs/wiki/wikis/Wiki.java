@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import zinxs.wiki.account.Account;
 import zinxs.wiki.admin.wiki.subgenre.SubGenre;
+import zinxs.wiki.wikis.files.categories.Category;
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.searchtags.SearchTag;
 
@@ -38,7 +39,11 @@ public class Wiki {
 
     private ArrayList<SearchTag> searchTags;
 
-    private ArrayList<String> categories;
+    private ArrayList<Category> categories;
+
+    private ArrayList<Category> topCategories;
+
+    private ArrayList<Page> topPages;
 
     private String name;
 
@@ -54,6 +59,8 @@ public class Wiki {
         this.editAccessAccounts = new ArrayList<>();
         this.pages = new ArrayList<>();
         this.categories = new ArrayList<>();
+        this.topPages = new ArrayList<>();
+        this.topCategories = new ArrayList<>();
         this.searchTags = new ArrayList<>();
         this.subGenres = new ArrayList<>();
         this.imageNames = new ArrayList<>();

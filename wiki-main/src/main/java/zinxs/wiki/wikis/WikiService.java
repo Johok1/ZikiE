@@ -7,6 +7,8 @@ import zinxs.wiki.account.AccountRepository;
 import zinxs.wiki.admin.wiki.subgenre.SubGenre;
 import zinxs.wiki.admin.wiki.subgenre.SubGenreRepository;
 import zinxs.wiki.utilities.AuthTokenUtils;
+import zinxs.wiki.wikis.files.categories.Category;
+import zinxs.wiki.wikis.files.categories.CategoryRepository;
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
 import zinxs.wiki.wikis.searchtags.SearchTag;
@@ -30,6 +32,8 @@ public class WikiService {
     private final PageRepository pageRepository;
 
     private final SearchTagRepository searchTagRepository;
+
+    private final CategoryRepository categoryRepository;
 
 
     public String hasAccess(String token, String wikiId){
@@ -106,11 +110,17 @@ public class WikiService {
         }
     }
 */
+
+
+
     public String addWikiCategory(String tempToken, String wikiId, String category){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = getAccountWiki(tempToken, wikiId);
-            wiki.getCategories().add(category);
+            Category catObj = new Category();
+            catObj.setName(category);
+            categoryRepository.save(catObj);
+            wiki.getCategories().add(catObj);
             wikiRepository.save(wiki);
             return "true";
         }catch (Exception e){
@@ -124,9 +134,10 @@ public class WikiService {
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+
             String categories = "";
-            for(String category : wiki.getCategories()){
-                categories += category + ",";
+            for(Category category : wiki.getCategories()){
+                categories += category.getId()+"*"+category.getName() + ",";
             }
             return categories;
         }catch (Exception e){
@@ -135,23 +146,72 @@ public class WikiService {
     }
 
 
-    public String removeWikiCategory(String tempToken, String wikiId, String category){
+    public String removeWikiCategory(String tempToken, String wikiId, String categoryId){
         try{
             Account account = getAccount(tempToken);
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
-            ArrayList<String> categories = wiki.getCategories();
-            for(String categoryStr : categories){
-                if(categoryStr.equalsIgnoreCase(category)){
-                    categories.remove(categoryStr);
-                }
-            }
+            Category category = categoryRepository.findById(Long.valueOf(categoryId)).get();
+            ArrayList<Category> categories = wiki.getCategories();
+            categories.remove(category);
             wiki.setCategories(categories);
             wikiRepository.save(wiki);
+            categoryRepository.delete(category);
             return "true";
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
+
+
+    public String addWikiTopCategory(String tempToken, String wikiId, String category){
+        try{
+            Account account = getAccount(tempToken);
+            Wiki wiki = getAccountWiki(tempToken, wikiId);
+            Category catObj = new Category();
+            catObj.setName(category);
+            categoryRepository.save(catObj);
+            wiki.getTopCategories().add(catObj);
+            wikiRepository.save(wiki);
+            return "true";
+        }catch (Exception e){
+            throw new RuntimeException("error in add wiki tag: " + e);
+        }
+    }
+
+
+
+    public String getWikiTopCategories(String tempToken, String wikiId){
+        try{
+            Account account = getAccount(tempToken);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+
+            String categories = "";
+            for(Category category : wiki.getTopCategories()){
+                categories += category.getId()+"*"+category.getName() + ",";
+            }
+            return categories;
+        }catch (Exception e){
+            throw new RuntimeException("error in get wiki tags: " + e);
+        }
+    }
+
+
+    public String removeWikiTopCategory(String tempToken, String wikiId, String categoryId){
+        try{
+            Account account = getAccount(tempToken);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+            Category category = categoryRepository.findById(Long.valueOf(categoryId)).get();
+            ArrayList<Category> categories = wiki.getTopCategories();
+            categories.remove(category);
+            wiki.setTopCategories(categories);
+            wikiRepository.save(wiki);
+            categoryRepository.delete(category);
+            return "true";
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
     public String getWikiPages(String tempToken, String wikiId){
@@ -160,11 +220,51 @@ public class WikiService {
             Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
             String wikiPageIds = "";
             for(Page page : wiki.getPages()) {
-                wikiPageIds += page.getId()+ ",";
+                wikiPageIds += page.getId()+"*"+page.getName()+ ",";
             }
             return wikiPageIds;
         }catch (Exception e){
             throw new RuntimeException("error in get wiki pagess " + e);
+        }
+    }
+
+    public String getWikiTopPages(String tempToken, String wikiId){
+        try{
+            Account account = getAccount(tempToken);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+            String wikiPageIds = "";
+            for(Page page : wiki.getTopPages()) {
+                wikiPageIds += page.getId()+"*"+page.getName()+ ",";
+            }
+            return wikiPageIds;
+        }catch (Exception e){
+            throw new RuntimeException("error in get wiki pagess " + e);
+        }
+    }
+
+    public String addWikiPage(String token, String wikiId, String pageId){
+        try{
+            Account account = getAccount(token);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            wiki.getPages().add(page);
+            wikiRepository.save(wiki);
+            return "true";
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
+
+    public String addWikiTopPage(String token, String wikiId, String pageId){
+        try{
+            Account account = getAccount(token);
+            Wiki wiki = wikiRepository.findById(Long.valueOf(wikiId)).get();
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            wiki.getTopPages().add(page);
+            wikiRepository.save(wiki);
+            return "true";
+        }catch (Exception e){
+            throw  new RuntimeException(e);
         }
     }
 

@@ -40,6 +40,7 @@ zinxs\wiki\account\AccountRepository.class
 zinxs\wiki\validation\confirmation\ConfirmationToken.class
 zinxs\wiki\admin\projectmanager\ProjectManagerController.class
 zinxs\wiki\wikis\pages\PageRepository.class
+zinxs\wiki\directories\EditorDirectoryController.class
 zinxs\wiki\admin\wiki\GenreService.class
 zinxs\wiki\wikis\community\CommunityWiki.class
 zinxs\wiki\admin\wiki\subgenre\SubGenreController.class

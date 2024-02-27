@@ -1,6 +1,8 @@
 zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskCluster.class
 zinxs\wiki\account\AccountRole.class
+zinxs\wiki\account\wix\AccountPageHeaderResponse.class
 zinxs\wiki\wikis\Wiki.class
+zinxs\wiki\account\wix\WixAccountController.class
 zinxs\wiki\validation\email\EmailService.class
 zinxs\wiki\security\PasswordEncoder.class
 zinxs\wiki\account\profilesettings\ProfileService.class
@@ -18,8 +20,10 @@ zinxs\wiki\admin\projectmanager\project\phase\task\TaskRepository.class
 zinxs\wiki\admin\projectmanager\project\phase\task\message\MessageResponse.class
 zinxs\wiki\account\AccountProfileResponse.class
 zinxs\wiki\validation\LoginRequest.class
+zinxs\wiki\account\wix\WixAccountService.class
 zinxs\wiki\account\profilesettings\ProfileController.class
 zinxs\wiki\admin\projectmanager\project\phase\task\message\Message.class
+zinxs\wiki\account\wix\WixAccount.class
 zinxs\wiki\admin\projectmanager\project\phase\task\research\Research.class
 zinxs\wiki\wikis\WikiController.class
 zinxs\wiki\admin\projectmanager\project\phase\task\message\MessageRequest.class
@@ -58,6 +62,7 @@ zinxs\wiki\directories\ResetPasswordController.class
 zinxs\wiki\wikis\files\FileContext.class
 zinxs\wiki\validation\TokenRequest.class
 zinxs\wiki\validation\email\EmailSender.class
+zinxs\wiki\account\wix\WixAccountRepository.class
 zinxs\wiki\admin\projectmanager\project\phase\task\taskcluster\TaskClusterRepository.class
 zinxs\wiki\wikis\files\FileContextRepository.class
 zinxs\wiki\account\AccountService.class

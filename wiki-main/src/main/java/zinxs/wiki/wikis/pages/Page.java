@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import zinxs.wiki.account.wix.WixAccount;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,6 +24,9 @@ public class Page implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "page_sequence"
     )
+
+    private WixAccount creator;
+
     private Long id;
     private String email;
     @Column(columnDefinition="text", length=10485760)

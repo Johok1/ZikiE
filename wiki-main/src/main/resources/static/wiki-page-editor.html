@@ -40,8 +40,36 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 	  
   </head>
-  <body id="bodyDiv" style="background-imag">
+  <body id="bodyDiv" style="">
+	  <script src="js/jscolor.js"></script>
 
+
+
+
+
+	<script>
+		
+			
+		
+	// Here we can adjust defaults for all color pickers on page:
+	jscolor.presets.default = {
+		palette: [
+			'#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26', '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
+			'#ffffff', '#c3c3c3', '#b87957', '#feaec9', '#ffc80d', '#eee3af', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7',
+		],
+		//paletteCols: 12,
+		//hideOnPaletteClick: true,
+		//width: 271,
+		//height: 151,
+		//position: 'right',
+		//previewPosition: 'right',
+		//backgroundColor: 'rgba(51,51,51,1)', controlBorderColor: 'rgba(153,153,153,1)', buttonColor: 'rgba(240,240,240,1)',
+	}
+	
+	</script>
+
+	  
+	  
 	  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow row header">
   
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 col-2" href="#"><img id="userImage" src="resources/images/Zinks_png.png" alt="" width="40" height="40" class="rounded-circle me-2">Zinxs Wikis</a>
@@ -185,13 +213,7 @@
 				  <a class="navbar-brand" href="#">
 				  <img id="textBtn" src="resources/images/text_icon.png"  width="20" height="17" class="d-inline-block align-text-top">
 				</a>
-				 <a class="navbar-brand" href="#">
-				  <img id="utilityBtn" src="resources/images/search_all.png"  width="20" height="17" class="d-inline-block align-text-top"
-					    data-bs-toggle="collapse" data-bs-target="#collapseUtility">
-					 <div class="collapse" id="collapseUtility" style="position: fixed; z-index: 9999; background-color: hsla(0,0%,38%,1.00); right: 80px; width: 250px; height: 280px; border-radius: 3px; box-shadow: 1px 1px 10px black; color: white; padding: 5px;">
-					 		
-					 </div>
-				</a>  			 
+				  			 
     		 
 			</nav>
 			</div>
@@ -201,9 +223,8 @@
 			
 	
 			<div style="width: 94vw" class="row">
-			
 			<div class="col-8">
-			<div id="page" class=" card" style="height: 200vh; width: 63vw; margin-right: 0vw; z-index: 4; opacity: 80%; box-shadow: 1px 1px 10px black">
+			<div id="page" class=" card" style="height: 200vh; width: 63vw; margin-right: 0vw; z-index: 4; opacity: 100%">
 				
 				
 				</div>
@@ -211,12 +232,12 @@
 				
 			</div>
 				<div class="collapse" style="background-color: #1C1F23; border-color: transparent;position: fixed; margin-left: 65%" id="collapseExample">
-				  <div id="toolbarDiv" class="card card-body" style="background-color: transparent;border-color: transparent; width: 20vw; height: 80vh; z-index: 99; position: relative">
+				  <div id="toolbarDiv" class="card card-body" style="background-color: transparent;border-color: transparent; width: 20vw; height: 80vh; ">
 					  
 						
 				  </div>
 				</div>
-				<div class="" style="z-index: 1; width: 10px"><img id="clickImg" class="click" style="width: 2vw; margin-top: 0%; margin-left: 1% ;z-index: 2; position: fixed" src="resources/images/collapse_right.png" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+				<div class="col-1"><img id="clickImg" class="click" style="width: 2vw; margin-top: 0%; margin-left: 0% ;z-index: 2; position: fixed" src="resources/images/collapse_right.png" data-bs-toggle="collapse" data-bs-target="#collapseExample">
 				
 				</div>
 				<script>

@@ -33,6 +33,23 @@ public class WixAccountService {
         }
     }
 
+    public List<String> getWixAccounts(String pincode){
+        try{
+            if(pincode.equals("BUST")){
+                List<String> accounts = new ArrayList<>();
+                List<WixAccount> wixAccounts = wixAccountRepository.findAll();
+                for(WixAccount wixAccount : wixAccounts){
+                    accounts.add(wixAccount.getWixId());
+                }
+                return accounts;
+            }else{
+                throw new Exception("wrong pincode");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
     public List<AccountPageHeaderResponse> getAccountPageHeaders(String wixId){

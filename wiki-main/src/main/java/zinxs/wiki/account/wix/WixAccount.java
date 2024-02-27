@@ -22,14 +22,14 @@ public class WixAccount {
 
 
     @SequenceGenerator(
-            name = "account_sequence",
-            sequenceName = "account_sequence",
+            name = "wix_account_sequence",
+            sequenceName = "wix_account_sequence",
             allocationSize = 1
     )
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "account_sequence"
+            generator = "wix_account_sequence"
     )
     private Long id;
 

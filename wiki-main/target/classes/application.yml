@@ -4,7 +4,7 @@ server:
     key-store: keystore.jks
     key-store-password: LordhaveMercyImBoutToBust127590
     keyStoreType: PKCS12
-    keyAlias: tomcat
+    keyAlias: mykey
   error:
     include-message: always
     include-binding-errors: always

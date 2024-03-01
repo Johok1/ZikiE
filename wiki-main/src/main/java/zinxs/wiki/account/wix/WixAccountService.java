@@ -24,8 +24,8 @@ public class WixAccountService {
 
     public String newWixAccount(String memberId){
         try{
-            WixAccount account = new WixAccount();
-            account.setWixId(memberId);
+            WixAccount account = new WixAccount(memberId);
+
             wixAccountRepository.save(account);
             return "true";
         }catch (Exception e){

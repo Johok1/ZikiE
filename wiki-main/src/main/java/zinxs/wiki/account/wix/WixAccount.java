@@ -17,7 +17,6 @@ import java.util.Collections;
 @Getter
 @Setter
 @EqualsAndHashCode
-@NoArgsConstructor
 @Entity
 public class WixAccount implements Serializable {
 

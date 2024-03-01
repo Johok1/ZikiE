@@ -39,7 +39,7 @@ public class WixAccountService {
                 List<String> accounts = new ArrayList<>();
                 List<WixAccount> wixAccounts = wixAccountRepository.findAll();
                 for(WixAccount wixAccount : wixAccounts){
-                    accounts.add(wixAccount.getWixId());
+                    accounts.add(wixAccount.getWixCode());
                 }
                 return accounts;
             }else{
@@ -90,7 +90,7 @@ public class WixAccountService {
 
     private WixAccount getWixAccount(String wixId){
         try{
-            return wixAccountRepository.findByWixId(wixId).get();
+            return wixAccountRepository.findByWixCode(wixId).get();
         }catch (Exception e){
             throw new RuntimeException(e);
         }

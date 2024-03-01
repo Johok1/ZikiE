@@ -35,13 +35,13 @@ public class WixAccount implements Serializable {
 
     private ArrayList<Page> pages;
 
-    private String wixId;
+    private String wixCode;
 
     public WixAccount(){
         this.pages = new ArrayList<>();
     }
-    public WixAccount(String wixId){
-        this.wixId = wixId;
+    public WixAccount(String wixCode){
+        this.wixCode = wixCode;
         this.pages = new ArrayList<>();
     }
 

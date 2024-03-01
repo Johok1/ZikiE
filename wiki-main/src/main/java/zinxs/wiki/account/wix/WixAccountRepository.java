@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface WixAccountRepository extends JpaRepository<WixAccount, Long> {
 
-    Optional<WixAccount> findByWixId(String wixId);
+    Optional<WixAccount> findByWixCode(String wixCode);
 }

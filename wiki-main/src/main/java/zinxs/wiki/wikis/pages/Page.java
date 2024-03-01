@@ -24,10 +24,11 @@ public class Page implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "page_sequence"
     )
+    private Long id;
 
     private WixAccount creator;
 
-    private Long id;
+
     private String email;
     @Column(columnDefinition="text", length=10485760)
     private String pageContent;

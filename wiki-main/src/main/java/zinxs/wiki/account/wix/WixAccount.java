@@ -37,6 +37,9 @@ public class WixAccount implements Serializable {
 
     private String wixId;
 
+    public WixAccount(){
+        this.pages = new ArrayList<>();
+    }
     public WixAccount(String wixId){
         this.wixId = wixId;
         this.pages = new ArrayList<>();

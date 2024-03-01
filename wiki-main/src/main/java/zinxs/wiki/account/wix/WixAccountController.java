@@ -23,4 +23,10 @@ public class WixAccountController {
         return wixAccountService.getWixAccounts(pincode);
     }
 
+    @CrossOrigin
+    @PostMapping("postNewAccountPage/{wixId}/{pageName}")
+    public String postNewAccountPage(@PathVariable String wixId, @PathVariable String pageName){
+        return wixAccountService.newAccountPage(wixId, pageName);
+    }
+
 }

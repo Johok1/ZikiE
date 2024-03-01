@@ -82,7 +82,7 @@ public class WixAccountService {
             wixAccountRepository.save(account);
             pageRepository.save(page);
 
-            return "true";
+            return String.valueOf(page.getId());
         }catch (Exception e){
             throw new RuntimeException(e);
         }

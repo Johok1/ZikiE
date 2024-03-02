@@ -96,4 +96,27 @@ public class WixAccountService {
         }
     }
 
+    public String postAccountPageContent(String wixId, String pageId, String content) {
+        try{
+            WixAccount account = getWixAccount(wixId);
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            page.setPageContent(content);
+            pageRepository.save(page);
+            ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
+            account.setPages(newPageList);
+            wixAccountRepository.save(account);
+            return "true";
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Page> replacePageInList(ArrayList<Page> pages, String replaceId, Page replaceWith){
+        for(int x = 0; x<pages.size(); x++){
+            if(pages.get(x).getId().equals(replaceId)){
+                pages.set(x,replaceWith);
+            }
+        }
+        return pages;
+    }
 }

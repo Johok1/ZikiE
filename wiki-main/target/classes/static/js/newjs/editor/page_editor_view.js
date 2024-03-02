@@ -2,6 +2,8 @@ import TextUtility from './utilities/text_utility_v2.js'
 import ImageUtility from './utilities/image_utility.js'
 import UtilityFactory from './utilities/utility_factory.js'
 import UtilityHelper from './utilities/utility_helper.js'
+import Controller from './controller.js'
+import Cookie from './cookie.js'
 
 class View {
     constructor() {
@@ -13,10 +15,24 @@ class View {
         this.utilityDiv = document.getElementById("collapseUtility")
         this.utilityHelper = new UtilityHelper()
         this.utilityFactory = new UtilityFactory()
+        this.controller = new Controller()
+        this.cookie = new Cookie()
+        this.submitBtn = document.getElementById("submitBtn")
+        let controller = this.controller
+        let cookie = this.cookie
+        let page = this.page
+        this.submitBtn.addEventListener("click", function () {
+            controller.postAccountPageContent(cookie.getCookie("memberId"), cookie.getCookie("pageId"), page.innerHTML)
+                .then(response => response.text())
+                .then(response => {
+                    console.log("post page response: " + response)
+                })
+        })
         this.textBtn = document.getElementById("textBtn")
         this.imgBtn = document.getElementById("imgBtn")
         this.imgBtn.addEventListener("click", this.createImageBtnHandler)
         this.textBtn.addEventListener("click", this.createTextBtnHandler)
+
        //select variables
         this.select = false
         this.initSelectHandler()
@@ -26,7 +42,7 @@ class View {
         this.drag = false 
        // this.attachToggleHandler(this.toggleDragEvent)
 
-        this.addUtility("Text Utility", this.utilityFactory.constructTextUtility)
+       // this.addUtility("Text Utility", this.utilityFactory.constructTextUtility)
     }
 
     addUtility = (name, construct) => {

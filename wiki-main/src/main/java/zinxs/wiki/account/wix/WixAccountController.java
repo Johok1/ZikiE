@@ -29,4 +29,11 @@ public class WixAccountController {
         return wixAccountService.newAccountPage(wixId, pageName);
     }
 
+    @CrossOrigin
+    @PostMapping("postAccountPageContent/{wixId}/{pageId}")
+    public String postAccountPageContent(@PathVariable String wixId, @PathVariable String pageId, @RequestBody String content){
+        return wixAccountService.postAccountPageContent(wixId, pageId, content);
+    }
+
+
 }

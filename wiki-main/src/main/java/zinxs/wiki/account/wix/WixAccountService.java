@@ -3,7 +3,9 @@ package zinxs.wiki.account.wix;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.account.Account;
+import zinxs.wiki.wikis.Wiki;
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
 import zinxs.wiki.wikis.pages.PageService;
@@ -83,6 +85,70 @@ public class WixAccountService {
             pageRepository.save(page);
 
             return String.valueOf(page.getId());
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getPageName(String pageId){
+        try{
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            return page.getName();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    public String setPageName(String memberId, String pageId, String pageName){
+        try{
+            if(isPageCreator(memberId, pageId)){
+                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                page.setName(pageName);
+                pageRepository.save(page);
+                return "true";
+            }else{
+                throw new RuntimeException("Invalid credentials for operation setPageName");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public byte[] getPageImg(String pageId){
+        try {
+            Page page  = pageRepository.findById(Long.valueOf(pageId)).get();
+            return page.getImg();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String setPageImg(String memberId, String pageId, MultipartFile image){
+        try{
+            if(isPageCreator(memberId, pageId)){
+                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                page.setImg(image.getBytes());
+                pageRepository.save(page);
+                return "true";
+            }else{
+                throw new RuntimeException("invalid credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    private boolean isPageCreator(String memberId, String pageId){
+        try{
+            WixAccount account = getWixAccount(memberId);
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            if(page.getCreator().getId().equals(account.getId())) {
+                return true;
+            }else{
+                return false;
+            }
         }catch (Exception e){
             throw new RuntimeException(e);
         }

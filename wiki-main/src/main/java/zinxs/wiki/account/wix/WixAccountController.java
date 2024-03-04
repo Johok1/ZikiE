@@ -1,7 +1,9 @@
 package zinxs.wiki.account.wix;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -10,6 +12,33 @@ import java.util.List;
 @AllArgsConstructor
 public class WixAccountController {
     private final WixAccountService wixAccountService;
+
+    @CrossOrigin
+    @GetMapping("getPageName/{pageId}")
+    public String getPageName(@PathVariable String pageId){
+        return wixAccountService.getPageName(pageId);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "getPageImage/{pageId}",
+            produces = MediaType.IMAGE_PNG_VALUE)
+    public @ResponseBody byte[] getPageImage(@PathVariable String pageId){
+        return wixAccountService.getPageImg(pageId);
+    }
+
+    @CrossOrigin
+    @PostMapping("postPageName/{memberId}/{pageId}/{pageName}")
+    public String postPageName(@PathVariable String memberId, @PathVariable String pageId,
+                               @PathVariable String pageName){
+        return wixAccountService.setPageName(memberId, pageId, pageName);
+    }
+
+    @CrossOrigin
+    @PostMapping("postPageImage/{memberId}/{pageId}")
+    public String postPageImage(@PathVariable String memberId, @PathVariable String pageId,
+                                @RequestParam("file") MultipartFile image){
+        return wixAccountService.setPageImg(memberId, pageId, image);
+    }
 
     @CrossOrigin
     @PostMapping("postNewAccount/{wixMemberId}")

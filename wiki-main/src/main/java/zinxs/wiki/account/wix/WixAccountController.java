@@ -21,7 +21,7 @@ public class WixAccountController {
 
     @CrossOrigin
     @GetMapping(value = "getPageImage/{pageId}",
-            produces = MediaType.IMAGE_PNG_VALUE)
+            produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getPageImage(@PathVariable String pageId){
         return wixAccountService.getPageImg(pageId);
     }

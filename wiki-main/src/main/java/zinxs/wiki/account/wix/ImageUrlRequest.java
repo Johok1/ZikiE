@@ -7,13 +7,9 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-
+@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class ImageUrlRequest {
-    private String url;
-
-    public ImageUrlRequest(String url){
-        this.url = url ;
-    }
+    private final String url;
 }

@@ -125,11 +125,11 @@ public class WixAccountService {
         }
     }
 
-    public String setPageImg(String memberId, String pageId, String imgUrl){
+    public String setPageImg(String memberId, String pageId, ImageUrlRequest request){
         try{
             if(isPageCreator(memberId, pageId)){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-                page.setImgUrl(imgUrl);
+                page.setImgUrl(request.getUrl());
                 pageRepository.save(page);
                 return "true";
             }else{

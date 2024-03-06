@@ -18,6 +18,7 @@ zinxs\wiki\AlphaApplication.class
 zinxs\wiki\validation\confirmation\ConfirmationTokenService.class
 zinxs\wiki\admin\projectmanager\project\phase\task\TaskRepository.class
 zinxs\wiki\admin\projectmanager\project\phase\task\message\MessageResponse.class
+zinxs\wiki\account\wix\ImageUrlRequest.class
 zinxs\wiki\account\AccountProfileResponse.class
 zinxs\wiki\validation\LoginRequest.class
 zinxs\wiki\account\wix\WixAccountService.class

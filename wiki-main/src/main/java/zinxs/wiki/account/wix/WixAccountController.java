@@ -20,9 +20,8 @@ public class WixAccountController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "getPageImage/{pageId}",
-            produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getPageImage(@PathVariable String pageId){
+    @GetMapping("getPageImage/{pageId}")
+    public String getPageImage(@PathVariable String pageId){
         return wixAccountService.getPageImg(pageId);
     }
 
@@ -36,8 +35,8 @@ public class WixAccountController {
     @CrossOrigin
     @PostMapping("postPageImage/{memberId}/{pageId}")
     public String postPageImage(@PathVariable String memberId, @PathVariable String pageId,
-                                @RequestParam("file") MultipartFile image){
-        return wixAccountService.setPageImg(memberId, pageId, image);
+                                @RequestBody ImageUrlRequest request){
+        return wixAccountService.setPageImg(memberId, pageId, request.url);
     }
 
     @CrossOrigin

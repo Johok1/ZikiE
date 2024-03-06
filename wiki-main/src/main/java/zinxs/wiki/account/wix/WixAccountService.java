@@ -116,20 +116,20 @@ public class WixAccountService {
         }
     }
 
-    public byte[] getPageImg(String pageId){
+    public String getPageImg(String pageId){
         try {
             Page page  = pageRepository.findById(Long.valueOf(pageId)).get();
-            return page.getImg();
+            return page.getImgUrl();
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    public String setPageImg(String memberId, String pageId, MultipartFile image){
+    public String setPageImg(String memberId, String pageId, String imgUrl){
         try{
             if(isPageCreator(memberId, pageId)){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-                page.setImg(image.getBytes());
+                page.setImgUrl(imgUrl);
                 pageRepository.save(page);
                 return "true";
             }else{

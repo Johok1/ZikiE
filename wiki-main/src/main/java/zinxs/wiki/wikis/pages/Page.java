@@ -28,7 +28,7 @@ public class Page implements Serializable {
 
     private WixAccount creator;
 
-    private byte[] img;
+    private String imgUrl;
 
     private String email;
     @Column(columnDefinition="text", length=10485760)

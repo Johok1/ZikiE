@@ -10,5 +10,5 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class ImageUrlRequest {
-    String url;
+    private final String url;
 }

@@ -36,7 +36,7 @@ public class WixAccountController {
     @PostMapping("postPageImage/{memberId}/{pageId}")
     public String postPageImage(@PathVariable String memberId, @PathVariable String pageId,
                                 @RequestBody ImageUrlRequest request){
-        return wixAccountService.setPageImg(memberId, pageId, request.url);
+        return wixAccountService.setPageImg(memberId, pageId, request.getUrl());
     }
 
     @CrossOrigin

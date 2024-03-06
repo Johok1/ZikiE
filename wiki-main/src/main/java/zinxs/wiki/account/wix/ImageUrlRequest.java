@@ -12,4 +12,5 @@ import lombok.ToString;
 @ToString
 public class ImageUrlRequest {
     private final String url;
+    private final String blank;
 }

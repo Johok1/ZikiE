@@ -13,4 +13,6 @@ import lombok.ToString;
 public class AccountPageHeaderResponse {
     String pageId;
     String pageName;
+
+    String url;
 }

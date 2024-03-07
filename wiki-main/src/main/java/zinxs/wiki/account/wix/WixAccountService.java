@@ -62,7 +62,8 @@ public class WixAccountService {
             for(Page page: pages){
                 AccountPageHeaderResponse response = new AccountPageHeaderResponse(
                         String.valueOf(page.getId()),
-                        page.getName()
+                        page.getName(),
+                        page.getImgUrl()
                 );
                 pageHeaders.add(response);
             }

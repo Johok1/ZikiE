@@ -188,7 +188,7 @@ public class WixAccountService {
 
     public ArrayList<Page> replacePageInList(ArrayList<Page> pages, String replaceId, Page replaceWith){
         for(int x = 0; x<pages.size(); x++){
-            if(pages.get(x).getId().equals(replaceId)){
+            if(pages.get(x).getId().equals(Long.valueOf(replaceId))){
                 pages.set(x,replaceWith);
             }
         }

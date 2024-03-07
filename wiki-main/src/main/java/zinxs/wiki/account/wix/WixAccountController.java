@@ -20,6 +20,12 @@ public class WixAccountController {
     }
 
     @CrossOrigin
+    @GetMapping("getAccountPageHeaders/{wixId}")
+    public List<AccountPageHeaderResponse> getAccountPageHeaders(@PathVariable String wixId){
+        return wixAccountService.getAccountPageHeaders(wixId);
+    }
+
+    @CrossOrigin
     @GetMapping("getPageImage/{pageId}")
     public String getPageImage(@PathVariable String pageId){
         return wixAccountService.getPageImg(pageId);

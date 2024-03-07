@@ -105,9 +105,13 @@ public class WixAccountService {
     public String setPageName(String memberId, String pageId, String pageName){
         try{
             if(isPageCreator(memberId, pageId)){
+                WixAccount account = getWixAccount(memberId);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 page.setName(pageName);
                 pageRepository.save(page);
+                ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
+                account.setPages(newPageList);
+                wixAccountRepository.save(account);
                 return "true";
             }else{
                 throw new RuntimeException("Invalid credentials for operation setPageName");
@@ -129,9 +133,13 @@ public class WixAccountService {
     public String setPageImg(String memberId, String pageId, ImageUrlRequest request){
         try{
             if(isPageCreator(memberId, pageId)){
+                WixAccount account = getWixAccount(memberId);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 page.setImgUrl(request.getUrl());
                 pageRepository.save(page);
+                ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
+                account.setPages(newPageList);
+                wixAccountRepository.save(account);
                 return "true";
             }else{
                 throw new RuntimeException("invalid credentials");

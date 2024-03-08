@@ -33,6 +33,8 @@ class View {
         this.imgBtn.addEventListener("click", this.createImageBtnHandler)
         this.textBtn.addEventListener("click", this.createTextBtnHandler)
 
+        this.loadPageContent()
+
        //select variables
         this.select = false
         this.initSelectHandler()
@@ -43,6 +45,14 @@ class View {
        // this.attachToggleHandler(this.toggleDragEvent)
 
        // this.addUtility("Text Utility", this.utilityFactory.constructTextUtility)
+    }
+
+    loadPageContent = () => {
+        this.controller.getAccountPageContent(this.cookie.getCookie("memberId"), this.cookie.getCookie("pageId"))
+            .then(response => response.text())
+            .then(response => {
+                this.page.innerHTML = response
+            })
     }
 
     addUtility = (name, construct) => {

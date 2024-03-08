@@ -175,12 +175,30 @@ public class WixAccountService {
         try{
             WixAccount account = getWixAccount(wixId);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-            page.setPageContent(content);
-            pageRepository.save(page);
-            ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
-            account.setPages(newPageList);
-            wixAccountRepository.save(account);
-            return "true";
+            if(account.getId().equals(page.getCreator().getId())) {
+                page.setPageContent(content);
+                pageRepository.save(page);
+                ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
+                account.setPages(newPageList);
+                wixAccountRepository.save(account);
+                return "true";
+            }else {
+                throw new RuntimeException("Invalid Credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getPageContent(String wixId, String pageId){
+        try{
+            WixAccount account = getWixAccount(wixId);
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            if(page.getCreator().getId().equals(account.getId())) {
+                return page.getPageContent();
+            }else {
+                throw new RuntimeException("Invalid Credentials");
+            }
         }catch (Exception e){
             throw new RuntimeException(e);
         }

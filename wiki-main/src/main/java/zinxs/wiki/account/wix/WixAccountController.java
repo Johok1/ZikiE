@@ -20,6 +20,11 @@ public class WixAccountController {
     }
 
     @CrossOrigin
+    @GetMapping("getAccountPageContent/{wixId}/{pageId}")
+    public String getAccountPageContent(@PathVariable String wixId, @PathVariable String pageId){
+        return wixAccountService.getPageContent(wixId, pageId);
+    }
+    @CrossOrigin
     @GetMapping("getAccountPageHeaders/{wixId}")
     public List<AccountPageHeaderResponse> getAccountPageHeaders(@PathVariable String wixId){
         return wixAccountService.getAccountPageHeaders(wixId);

@@ -4,11 +4,10 @@ package zinxs.wiki.account.wix;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import zinxs.wiki.account.Account;
-import zinxs.wiki.wikis.Wiki;
+
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
-import zinxs.wiki.wikis.pages.PageService;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ public class WixAccountService {
 
     private final PageRepository pageRepository;
 
-    private final PageService pageService;
+
 
 
     public String newWixAccount(String memberId){

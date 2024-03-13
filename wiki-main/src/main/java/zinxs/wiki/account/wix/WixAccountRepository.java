@@ -1,7 +1,7 @@
 package zinxs.wiki.account.wix;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import zinxs.wiki.account.Account;
+
 
 import java.util.Optional;
 

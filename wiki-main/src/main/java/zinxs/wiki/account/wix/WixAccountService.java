@@ -2,6 +2,7 @@ package zinxs.wiki.account.wix;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,24 +17,21 @@ import java.util.List;
 @AllArgsConstructor
 public class WixAccountService {
 
-    private final WixAccountRepository wixAccountRepository;
+    @Autowired
+    private  WixAccountRepository wixAccountRepository;
+    @Autowired
+    private  PageRepository pageRepository;
 
-    private final PageRepository pageRepository;
 
-
-
-
-    public String newWixAccount(String memberId){
-        try{
-            WixAccount account = new WixAccount(memberId);
-
-            wixAccountRepository.save(account);
-            return "true";
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
+    public void setWixAccountRepository(WixAccountRepository repository){
+        this.wixAccountRepository = repository;
     }
 
+    public void setPageRepository(PageRepository repository){
+        this.pageRepository = repository;
+    }
+
+    //Test/admin endpoint
     public List<String> getWixAccounts(String pincode){
         try{
             if(pincode.equals("BUST")){
@@ -50,6 +48,20 @@ public class WixAccountService {
             throw new RuntimeException(e);
         }
     }
+
+
+
+    public String newWixAccount(String memberId){
+        try{
+            WixAccount account = new WixAccount(memberId);
+
+            wixAccountRepository.save(account);
+            return "true";
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 
@@ -148,27 +160,7 @@ public class WixAccountService {
         }
     }
 
-    private boolean isPageCreator(String memberId, String pageId){
-        try{
-            WixAccount account = getWixAccount(memberId);
-            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-            if(page.getCreator().getId().equals(account.getId())) {
-                return true;
-            }else{
-                return false;
-            }
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
 
-    private WixAccount getWixAccount(String wixId){
-        try{
-            return wixAccountRepository.findByWixCode(wixId).get();
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
 
     public String postAccountPageContent(String wixId, String pageId, String content) {
         try{
@@ -203,7 +195,29 @@ public class WixAccountService {
         }
     }
 
-    public ArrayList<Page> replacePageInList(ArrayList<Page> pages, String replaceId, Page replaceWith){
+    private boolean isPageCreator(String memberId, String pageId){
+        try{
+            WixAccount account = getWixAccount(memberId);
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            if(page.getCreator().getId().equals(account.getId())) {
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    private WixAccount getWixAccount(String wixId){
+        try{
+            return wixAccountRepository.findByWixCode(wixId).get();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    private ArrayList<Page> replacePageInList(ArrayList<Page> pages, String replaceId, Page replaceWith){
         for(int x = 0; x<pages.size(); x++){
             if(pages.get(x).getId().equals(Long.valueOf(replaceId))){
                 pages.set(x,replaceWith);

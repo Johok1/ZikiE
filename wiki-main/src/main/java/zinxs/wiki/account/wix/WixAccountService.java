@@ -132,6 +132,32 @@ public class WixAccountService {
         }
     }
 
+    public String getPageImageUrls(String pageId){
+        try{
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+            return page.getImageUrls().toString();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String addPageImage(String memberId, String pageId, ImageUrlRequest request){
+        try{
+            if(isPageCreator(memberId, pageId)){
+                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                ArrayList<String> imageUrls = page.getImageUrls();
+                imageUrls.add(request.getUrl());
+                page.setImageUrls(imageUrls);
+                pageRepository.save(page);
+                return "true";
+            }else{
+                throw new Exception("Invalid credentials");
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public String getPageImg(String pageId){
         try {
             Page page  = pageRepository.findById(Long.valueOf(pageId)).get();

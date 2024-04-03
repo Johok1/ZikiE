@@ -41,6 +41,8 @@ public class Page implements Serializable {
 
     private ArrayList<String> videoContext;
 
+    private ArrayList<String> imageUrls;
+
     private boolean status;
     private String name;
 
@@ -51,5 +53,6 @@ public class Page implements Serializable {
         this.status = true;
         this.imageContext = new ArrayList<>();
         this.videoContext = new ArrayList<>();
+        this.imageUrls = new ArrayList<>();
     }
 }

@@ -76,14 +76,14 @@ public class WixAccountController {
 
     @CrossOrigin
     @GetMapping("getPageImageUrls/{pageId}")
-    public String getPageImageUrls(@PathVariable String pageId){
+    public List<ImageObjResponse> getPageImageUrls(@PathVariable String pageId){
         return wixAccountService.getPageImageUrls(pageId);
     }
 
     @CrossOrigin
     @PostMapping("addPageImageUrl/{memberId}/{pageId}")
     public String addPageImageUrl(@PathVariable String memberId, @PathVariable String pageId,
-                                @RequestBody ImageUrlRequest request){
+                                @RequestBody ImageItemUrlRequest request){
         return wixAccountService.addPageImage(memberId, pageId, request);
     }
 

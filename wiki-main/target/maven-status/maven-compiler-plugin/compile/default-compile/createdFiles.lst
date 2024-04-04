@@ -1,6 +1,10 @@
+zinxs\wiki\account\wix\ImageObjResponse.class
+zinxs\wiki\account\wix\ImageItemUrlRequest.class
 zinxs\wiki\account\wix\WixAccountService.class
+zinxs\wiki\wikis\pages\images\Image.class
 zinxs\wiki\account\wix\WixAccountRepository.class
 zinxs\wiki\account\wix\WixAccountController.class
+zinxs\wiki\wikis\pages\images\ImageRepository.class
 zinxs\wiki\account\wix\AccountPageHeaderResponse.class
 zinxs\wiki\account\wix\ImageUrlRequest.class
 zinxs\wiki\wikis\pages\Page.class

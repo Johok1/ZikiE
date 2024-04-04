@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import zinxs.wiki.wikis.pages.Page;
 import zinxs.wiki.wikis.pages.PageRepository;
+import zinxs.wiki.wikis.pages.images.Image;
 
 
 import java.util.ArrayList;
@@ -132,22 +133,32 @@ public class WixAccountService {
         }
     }
 
-    public String getPageImageUrls(String pageId){
+    public List<ImageObjResponse> getPageImageUrls(String pageId){
         try{
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-            return page.getImageUrls().toString();
+            List<ImageObjResponse> imageObjResponses = new ArrayList<>();
+            for(Image image : page.getImageObjs()){
+                ImageObjResponse response = new ImageObjResponse(
+                        image.getFilename(), image.getData()
+                );
+                imageObjResponses.add(response);
+            }
+            return imageObjResponses;
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    public String addPageImage(String memberId, String pageId, ImageUrlRequest request){
+    public String addPageImage(String memberId, String pageId, ImageItemUrlRequest request){
         try{
             if(isPageCreator(memberId, pageId)){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-                ArrayList<String> imageUrls = page.getImageUrls();
-                imageUrls.add(request.getUrl());
-                page.setImageUrls(imageUrls);
+                ArrayList<Image> imageObjs = page.getImageObjs();
+                Image image = new Image();
+                image.setData(request.getUrl());
+                image.setFilename(request.getFilename());
+                imageObjs.add(image);
+                page.setImageObjs(imageObjs);
                 pageRepository.save(page);
                 return "true";
             }else{

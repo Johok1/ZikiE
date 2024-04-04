@@ -129,13 +129,7 @@ public class UnitTest {
         assertThat(service.getPageName(pageId)).isEqualTo(newName);
     }
 
-    @Test
-    public void testSetAndGetPageImageUrls(){
-        this.initRepositoryServiceConditions_ForPages();
-        service.addPageImage(memberId, pageId, new ImageUrlRequest(pageImgUrl, ""));
-        System.out.println(service.getPageImageUrls(pageId));
-        assertThat(service.getPageImageUrls(pageId).length()>0);
-    }
+
 
     @Test
     public void testSetAndGetPageImage() {

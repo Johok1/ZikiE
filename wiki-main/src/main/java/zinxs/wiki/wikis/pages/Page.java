@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import zinxs.wiki.account.wix.WixAccount;
+import zinxs.wiki.wikis.pages.images.Image;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -41,7 +42,7 @@ public class Page implements Serializable {
 
     private ArrayList<String> videoContext;
 
-    private ArrayList<String> imageUrls;
+    private ArrayList<Image> imageObjs;
 
     private boolean status;
     private String name;
@@ -53,6 +54,6 @@ public class Page implements Serializable {
         this.status = true;
         this.imageContext = new ArrayList<>();
         this.videoContext = new ArrayList<>();
-        this.imageUrls = new ArrayList<>();
+        this.imageObjs = new ArrayList<>();
     }
 }

@@ -139,7 +139,7 @@ public class WixAccountService {
             List<ImageObjResponse> imageObjResponses = new ArrayList<>();
             for(Image image : page.getImageObjs()){
                 ImageObjResponse response = new ImageObjResponse(
-                        image.getFilename(), image.getData()
+                        image.getFilename(), image.getFile()
                 );
                 imageObjResponses.add(response);
             }
@@ -155,7 +155,7 @@ public class WixAccountService {
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 ArrayList<Image> imageObjs = page.getImageObjs();
                 Image image = new Image();
-                image.setData(request.getUrl());
+                image.setFile(request.getFile());
                 image.setFilename(request.getFilename());
                 imageObjs.add(image);
                 page.setImageObjs(imageObjs);

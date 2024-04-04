@@ -13,7 +13,7 @@ import java.io.File;
 @EqualsAndHashCode
 @ToString
 public class ImageItemUrlRequest {
-    private final File file;
+    private final byte[] file;
 
     private final String filename;
     private final String blank;

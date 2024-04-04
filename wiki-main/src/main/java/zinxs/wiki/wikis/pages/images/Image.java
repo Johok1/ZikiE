@@ -26,5 +26,5 @@ public class Image implements Serializable {
 
     private String filename;
 
-    private File file;
+    private byte[] file;
 }

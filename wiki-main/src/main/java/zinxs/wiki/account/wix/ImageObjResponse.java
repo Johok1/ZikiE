@@ -13,5 +13,5 @@ import java.io.File;
 @ToString
 public class ImageObjResponse {
     private final String filename;
-    private final File file;
+    private final byte[] file;
 }

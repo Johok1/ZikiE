@@ -1,11 +1,15 @@
 package zinxs.wiki.pages;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import zinxs.wiki.accounts.WixAccount;
 import zinxs.wiki.accounts.WixAccountRepository;
 
 import java.util.ArrayList;
 
+@Service
+@AllArgsConstructor
 public class PageService implements PageServiceInterface{
 
     @Autowired

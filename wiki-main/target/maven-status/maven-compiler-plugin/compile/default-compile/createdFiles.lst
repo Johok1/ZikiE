@@ -5,7 +5,6 @@ zinxs\wiki\accounts\WixAccountController.class
 zinxs\wiki\images\ImageRepository.class
 zinxs\wiki\pages\PageServiceInterface.class
 zinxs\wiki\pages\PageService.class
-zinxs\wiki\pages\PageInterface.class
 zinxs\wiki\reactobjects\AccountPageHeaderResponse.class
 zinxs\wiki\images\Image.class
 zinxs\wiki\AlphaApplication.class

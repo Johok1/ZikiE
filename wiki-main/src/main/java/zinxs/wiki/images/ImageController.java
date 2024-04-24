@@ -10,10 +10,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "image")
-@AllArgsConstructor
+
 public class ImageController {
 
-    private final ImageService imageService;  
+    private final ImageServiceInterface imageService;
+
+    public ImageController(ImageServiceInterface imageService){
+        this.imageService = imageService;
+    }
 
     @CrossOrigin
     @GetMapping("getPageImage/{pageId}")

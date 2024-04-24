@@ -1,6 +1,7 @@
 package zinxs.wiki.accounts;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import zinxs.wiki.reactobjects.AccountPageHeaderResponse;
 import zinxs.wiki.reactobjects.ImageItemUrlRequest;
@@ -11,9 +12,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "account")
-@AllArgsConstructor
 public class WixAccountController {
-    private final WixAccountService wixAccountService;
+
+
+    private final WixAccountServiceInterface wixAccountService;
+
+    public WixAccountController(WixAccountServiceInterface wixAccountService){
+        this.wixAccountService = wixAccountService;
+    }
 
 
     @CrossOrigin

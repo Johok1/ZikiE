@@ -5,10 +5,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "page")
-@AllArgsConstructor
 public class PageController {
 
-    private final PageService pageService;
+    private final PageServiceInterface pageService;
+
+    public PageController(PageServiceInterface pageService){
+        this.pageService = pageService;
+    }
 
     @CrossOrigin
     @GetMapping("getPageName/{pageId}")

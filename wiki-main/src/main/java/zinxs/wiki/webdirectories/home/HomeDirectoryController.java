@@ -15,7 +15,7 @@ public class HomeDirectoryController {
     @GetMapping
     public ModelAndView getLoginPage(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home/homepage-logged-out.html");
+        modelAndView.setViewName("homepage-logged-out.html");
         return modelAndView;
     }
 }

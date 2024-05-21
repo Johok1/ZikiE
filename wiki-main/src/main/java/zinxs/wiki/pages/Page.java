@@ -2,7 +2,8 @@ package zinxs.wiki.pages;
 
 import lombok.Getter;
 import lombok.Setter;
-import zinxs.wiki.accounts.WixAccount;
+import zinxs.wiki.accounts.Account;
+
 import zinxs.wiki.images.Image;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Page implements Serializable {
     )
     private Long id;
 
-    private WixAccount creator;
+    private Account creator;
 
     private String imgUrl;
 

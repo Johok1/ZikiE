@@ -3,8 +3,10 @@ package zinxs.wiki.pages;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zinxs.wiki.accounts.WixAccount;
-import zinxs.wiki.accounts.WixAccountRepository;
+import zinxs.wiki.accounts.Account;
+import zinxs.wiki.accounts.AccountRepository;
+import zinxs.wiki.accounts.utilities.AuthTokenUtils;
+
 
 import java.util.ArrayList;
 
@@ -16,19 +18,22 @@ public class PageService implements PageServiceInterface{
     private PageRepository pageRepository;
 
     @Autowired
-    private WixAccountRepository wixAccountRepository;
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private AuthTokenUtils authTokenUtils;
 
     @Override
-    public String newAccountPage(String wixId, String pageName){
+    public String newAccountPage(String token, String pageName){
         try{
             Page page = new Page();
-            WixAccount account = getWixAccount(wixId);
+            Account account = getAccount(token);
             page.setCreator(account);
             page.setName(pageName);
             ArrayList<Page> pages = account.getPages();
             pages.add(page);
             account.setPages(pages);
-            wixAccountRepository.save(account);
+            accountRepository.save(account);
             pageRepository.save(page);
 
             return String.valueOf(page.getId());
@@ -51,13 +56,13 @@ public class PageService implements PageServiceInterface{
     public String setPageName(String memberId, String pageId, String pageName){
         try{
             if(isPageCreator(memberId, pageId)){
-                WixAccount account = getWixAccount(memberId);
+                Account account = getAccount(memberId);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 page.setName(pageName);
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);
-                wixAccountRepository.save(account);
+                accountRepository.save(account);
                 return "true";
             }else{
                 throw new RuntimeException("Invalid credentials for operation setPageName");
@@ -70,14 +75,14 @@ public class PageService implements PageServiceInterface{
     @Override
     public String postAccountPageContent(String wixId, String pageId, String content) {
         try{
-            WixAccount account = getWixAccount(wixId);
+            Account account = getAccount(wixId);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
             if(account.getId().equals(page.getCreator().getId())) {
                 page.setPageContent(content);
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);
-                wixAccountRepository.save(account);
+                accountRepository.save(account);
                 return "true";
             }else {
                 throw new RuntimeException("Invalid Credentials");
@@ -90,7 +95,7 @@ public class PageService implements PageServiceInterface{
     @Override
     public String getPageContent(String wixId, String pageId){
         try{
-            WixAccount account = getWixAccount(wixId);
+            Account account = getAccount(wixId);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
             if(page.getCreator().getId().equals(account.getId())) {
                 return page.getPageContent();
@@ -105,7 +110,7 @@ public class PageService implements PageServiceInterface{
 
     private boolean isPageCreator(String memberId, String pageId){
         try{
-            WixAccount account = getWixAccount(memberId);
+            Account account = getAccount(memberId);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
             if(page.getCreator().getId().equals(account.getId())) {
                 return true;
@@ -117,11 +122,17 @@ public class PageService implements PageServiceInterface{
         }
     }
 
-    private WixAccount getWixAccount(String wixId){
+    private Account getAccount(String token){
         try{
-            return wixAccountRepository.findByWixCode(wixId).get();
+            String decodedToken = authTokenUtils.decodeEmail(token);
+            Account targetAccount = accountRepository.findByEmail(decodedToken).get();
+            if(targetAccount.isEnabled()){
+                return targetAccount;
+            }else{
+                throw new RuntimeException("Account " + decodedToken + " is disabled!");
+            }
         }catch (Exception e){
-            throw new RuntimeException(e);
+            throw new RuntimeException("getAccount error " + e);
         }
     }
 

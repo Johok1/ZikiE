@@ -3,8 +3,10 @@ package zinxs.wiki.images;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zinxs.wiki.accounts.WixAccount;
-import zinxs.wiki.accounts.WixAccountRepository;
+
+import zinxs.wiki.accounts.Account;
+import zinxs.wiki.accounts.AccountRepository;
+import zinxs.wiki.accounts.utilities.AuthTokenUtils;
 import zinxs.wiki.pages.Page;
 import zinxs.wiki.pages.PageRepository;
 import zinxs.wiki.reactobjects.ImageItemUrlRequest;
@@ -25,7 +27,10 @@ public class ImageService implements  ImageServiceInterface{
     private ImageRepository imageRepository;
 
     @Autowired
-    private WixAccountRepository wixAccountRepository;
+    private AuthTokenUtils authTokenUtils;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Autowired
     private PageRepository pageRepository;
@@ -79,16 +84,16 @@ public class ImageService implements  ImageServiceInterface{
     }
 
     @Override
-    public String setPageImg(String memberId, String pageId, ImageUrlRequest request){
+    public String setPageImg(String token, String pageId, ImageUrlRequest request){
         try{
-            if(isPageCreator(memberId, pageId)){
-                WixAccount account = getWixAccount(memberId);
+            if(isPageCreator(token, pageId)){
+                Account account = getAccount(token);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 page.setImgUrl(request.getUrl());
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);
-                wixAccountRepository.save(account);
+                accountRepository.save(account);
                 return "true";
             }else{
                 throw new RuntimeException("invalid credentials");
@@ -100,9 +105,9 @@ public class ImageService implements  ImageServiceInterface{
 
 
 
-    private boolean isPageCreator(String memberId, String pageId){
+    private boolean isPageCreator(String token, String pageId){
         try{
-            WixAccount account = getWixAccount(memberId);
+            Account account = getAccount(token);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
             if(page.getCreator().getId().equals(account.getId())) {
                 return true;
@@ -114,11 +119,17 @@ public class ImageService implements  ImageServiceInterface{
         }
     }
 
-    private WixAccount getWixAccount(String wixId){
+    private Account getAccount(String token){
         try{
-            return wixAccountRepository.findByWixCode(wixId).get();
+            String decodedToken = authTokenUtils.decodeEmail(token);
+            Account targetAccount = accountRepository.findByEmail(decodedToken).get();
+            if(targetAccount.isEnabled()){
+                return targetAccount;
+            }else{
+                throw new RuntimeException("Account " + decodedToken + " is disabled!");
+            }
         }catch (Exception e){
-            throw new RuntimeException(e);
+            throw new RuntimeException("getAccount error " + e);
         }
     }
     private ArrayList<Page> replacePageInList(ArrayList<Page> pages, String replaceId, Page replaceWith){

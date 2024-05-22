@@ -15,7 +15,7 @@ public class PageSettingsDirectoryController {
     private AuthTokenUtils authTokenUtils;
 
     @CrossOrigin
-    @GetMapping(path = "settings")
+    @GetMapping
     public ModelAndView getPageSettingsPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){

@@ -8,7 +8,7 @@ import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "pageeditor")
+@RequestMapping
 public class PageEditorDirectoryController {
 
     @Autowired

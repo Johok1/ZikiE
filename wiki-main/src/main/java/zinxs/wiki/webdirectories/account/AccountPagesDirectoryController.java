@@ -15,7 +15,7 @@ public class AccountPagesDirectoryController {
     private AuthTokenUtils authTokenUtils;
 
     @CrossOrigin
-    @GetMapping(path = "pages")
+    @GetMapping
     public ModelAndView getAccountPagesPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){

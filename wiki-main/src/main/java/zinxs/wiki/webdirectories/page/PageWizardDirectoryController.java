@@ -15,7 +15,7 @@ public class PageWizardDirectoryController {
     private AuthTokenUtils authTokenUtils;
 
     @CrossOrigin
-    @GetMapping(path = "wizard")
+    @GetMapping
     public ModelAndView getPageWizardPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){

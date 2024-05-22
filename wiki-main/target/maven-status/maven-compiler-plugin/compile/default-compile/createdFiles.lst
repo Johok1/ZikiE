@@ -15,6 +15,7 @@ zinxs\wiki\validationapi\TokenRequest.class
 zinxs\wiki\imagesapi\Image.class
 zinxs\wiki\pagesapi\PageRepository.class
 zinxs\wiki\validationapi\email\EmailSender.class
+zinxs\wiki\cacheconfig\NoCacheFilter.class
 zinxs\wiki\accountsapi\utilities\AuthTokenUtils.class
 zinxs\wiki\pagesapi\PageService.class
 zinxs\wiki\validationapi\ValidationController.class

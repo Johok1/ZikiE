@@ -15,7 +15,7 @@ public class AccountDirectoryController {
     @Autowired
     private AuthTokenUtils authTokenUtils;
     @CrossOrigin
-    @GetMapping("settings")
+    @RequestMapping("settings")
     public ModelAndView getAccountSettingsPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){
@@ -39,7 +39,7 @@ public class AccountDirectoryController {
     }
 
     @CrossOrigin
-    @GetMapping("pages")
+    @RequestMapping("pages")
     public ModelAndView getAccountPagesPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){

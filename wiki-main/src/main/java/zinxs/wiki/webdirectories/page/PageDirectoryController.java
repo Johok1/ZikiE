@@ -21,7 +21,7 @@ public class PageDirectoryController {
      */
 
     @CrossOrigin
-    @GetMapping("editor")
+    @RequestMapping("editor")
     public ModelAndView getPageEditorPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){
@@ -46,7 +46,7 @@ public class PageDirectoryController {
     }
 
     @CrossOrigin
-    @GetMapping("settings")
+    @RequestMapping("settings")
     public ModelAndView getPageSettingsPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){
@@ -71,7 +71,7 @@ public class PageDirectoryController {
     }
 
     @CrossOrigin
-    @GetMapping("wizard")
+    @RequestMapping("wizard")
     public ModelAndView getPageWizardPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){

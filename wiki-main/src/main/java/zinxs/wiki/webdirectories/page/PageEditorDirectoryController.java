@@ -20,7 +20,7 @@ public class PageEditorDirectoryController {
      */
 
     @CrossOrigin
-    @GetMapping(path = "editor")
+    @GetMapping
     public ModelAndView getPageEditorPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){

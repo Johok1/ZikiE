@@ -1,7 +1,5 @@
 
 server:
-
-
   port: 443
   ssl:
     key-store: keystore.jks
@@ -17,8 +15,7 @@ config:
     jwtExpirationMs: 86400000
 
 spring:
-  cache:
-    type: NONE
+
   datasource:
     password: 21387866
     url: jdbc:postgresql://localhost:5432/postgres

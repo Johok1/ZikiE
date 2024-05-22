@@ -9,12 +9,15 @@ zinxs\wiki\pagesapi\PageServiceInterface.class
 zinxs\wiki\validationapi\LoginRequest.class
 zinxs\wiki\jsonobjects\ImageItemUrlRequest.class
 zinxs\wiki\accountsapi\Account.class
+zinxs\wiki\webdirectories\login\LoginDirectoryController.class
 zinxs\wiki\accountsapi\profilesettings\ProfileController.class
+zinxs\wiki\webdirectories\register\RegisterDirectoryController.class
 zinxs\wiki\security\PasswordEncoder.class
 zinxs\wiki\validationapi\TokenRequest.class
 zinxs\wiki\imagesapi\Image.class
 zinxs\wiki\pagesapi\PageRepository.class
 zinxs\wiki\validationapi\email\EmailSender.class
+zinxs\wiki\webdirectories\account\AccountDirectoryController.class
 zinxs\wiki\cacheconfig\NoCacheFilter.class
 zinxs\wiki\accountsapi\utilities\AuthTokenUtils.class
 zinxs\wiki\pagesapi\PageService.class
@@ -26,8 +29,10 @@ zinxs\wiki\AlphaApplication.class
 zinxs\wiki\accountsapi\AccountRole.class
 zinxs\wiki\imagesapi\ImageRepository.class
 zinxs\wiki\validationapi\email\EmailService.class
+zinxs\wiki\webdirectories\passwordreset\PasswordResetDirectoryController.class
 zinxs\wiki\accountsapi\profilesettings\ProfileService.class
 zinxs\wiki\validationapi\ValidationService.class
+zinxs\wiki\webdirectories\page\PageDirectoryController.class
 zinxs\wiki\jsonobjects\AccountPageHeaderResponse.class
 zinxs\wiki\accountsapi\AccountRepository.class
 zinxs\wiki\imagesapi\ImageService.class

@@ -16,22 +16,22 @@ public class HomeDirectoryController {
 
     @CrossOrigin
     @GetMapping
-    public ModelAndView getLoginPage(@CookieValue(value = "token", defaultValue = "none") String token){
+    public ModelAndView getHomePage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){
-            System.out.println("Token was None");
+           // System.out.println("Token was None");
             modelAndView.setViewName("homepage-logged-out.html");
         }else{
             try {
                 if (authTokenUtils.isExpired(token)) {
-                    System.out.println("token was expired");
+                   // System.out.println("token was expired");
                     modelAndView.setViewName("homepage-logged-out.html");
                 } else {
-                    System.out.println("token was valid");
+                   // System.out.println("token was valid");
                     modelAndView.setViewName("homepage-logged-in.html");
                 }
             }catch (Exception e){
-                System.out.println("token process gave error :" + e);
+             //   System.out.println("token process gave error :" + e);
                 modelAndView.setViewName("homepage-logged-out.html");
             }
         }

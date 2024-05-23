@@ -1,10 +1,3 @@
-/*
- * 
- * read all of the fields, submit to backend, attempt to set response as cookie for token, redirection should
- * happen automatically to the homepage, the backend should load the correct one if the user is logged in. Perhaps it would be better to
- * not simply be redirected back into the login-register page upon failure, but instead given an error message and the chance to try agai
- * 
- */
 import BackendManager from './backend/backend_manager.js'
 
 

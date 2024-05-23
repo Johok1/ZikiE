@@ -1,10 +1,3 @@
-/*
- * 
- * read all of the fields, put them into an appropriate json format, pass them into the backend to submit registration requestion upon
- * button press, redirection should happen automatically to the login page, perhaps need a message here telling them to check their email,
- * otherwise they might not even know they need to verify first. 
- * 
- */
 import BackendManager from './backend/backend_manager.js'
 
 class Register {

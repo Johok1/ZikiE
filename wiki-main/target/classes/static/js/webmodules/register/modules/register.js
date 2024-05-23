@@ -24,6 +24,9 @@ class Register {
                     if (response == "true") {
                         this.errorDiv.classList.remove("visually-hidden")
                         this.errorDiv.innerHTML = "Check your email and login!"
+                    } else {
+                        this.errorDiv.innerHTML = response
+                        this.errorDiv.classList.remove("visually-hidden")
                     }
                 })
         }

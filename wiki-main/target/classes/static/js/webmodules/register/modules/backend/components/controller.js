@@ -9,7 +9,7 @@ export default class Controller {
             "email": email,
             "password": password
         };
-        return fetch(this.fetch_url_validation + "/static/login", {
+        return fetch(this.fetch_url_validation + "/register", {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',

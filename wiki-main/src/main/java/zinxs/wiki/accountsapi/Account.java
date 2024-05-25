@@ -21,6 +21,7 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Account implements UserDetails {
 
     @SequenceGenerator(

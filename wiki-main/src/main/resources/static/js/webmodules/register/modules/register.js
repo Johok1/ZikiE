@@ -1,4 +1,80 @@
-import BackendManager from './backend/backend_manager.js'
+class Controller {
+    constructor() {
+        this.fetch_url_validation = "https://www.zinxswiki.com/api/v1/validation"
+    }
+
+    postGoogleRegisterRequest(token) {
+        const googleRegistrationRequest = {
+            "token": token,
+            "blank": ""
+        }
+
+        return fetch(this.fetch_url_validation + "/googleRegister", {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registrationRequest)
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
+    postRegisterRequest(username, email, password) {
+        const registrationRequest = {
+            "username": username,
+            "email": email,
+            "password": password
+        };
+        return fetch(this.fetch_url_validation + "/register", {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registrationRequest)
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
+
+
+
+}
+
+class Cookie {
+    setCookie(cname, cvalue, exhours) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exhours * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+}
+
+class BackendManager {
+    constructor() {
+        this.cookie = new Cookie()
+        this.controller = new Controller()
+    }
+}
 
 class Register {
     constructor() {
@@ -11,19 +87,6 @@ class Register {
         this.errorDiv = document.getElementById("errorDiv")
         this.errorDiv.classList.add("visually-hidden")
         this.createAccountBtn.addEventListener("click", this.sendRegisterRequest)
-        document.getElementById("g_id_onload").dataCallback = this.handleCredentialResponse
-    }
-
-    handleCredentialResponse = (response) => {
-        this.backendManager.controller.postGoogleRegisterRequest(response.credential)
-            .then(response => response.text())
-            .then(response => {
-                if (response == "true") {
-                    window.location.href = "https://www.zinxswiki.com/login"
-                } else {
-                    console.error("google registration request failed in the backend")
-                }
-            })
     }
 
     sendRegisterRequest = () => {
@@ -49,4 +112,15 @@ class Register {
 
 const app = new Register()
 
+function handleCredentialResponse(response) {
+    app.backendManager.controller.postGoogleRegisterRequest(response.credential)
+        .then(response => response.text())
+        .then(response => {
+            if (response == "true") {
+                window.location.href = "https://www.zinxswiki.com/login"
+            } else {
+                console.error("google registration request failed in the backend")
+            }
+        })
+}
 

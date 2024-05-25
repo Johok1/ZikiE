@@ -1,4 +1,5 @@
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\webdirectories\register\RegisterDirectoryController.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\jsonobjects\GoogleRegistrationRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validationapi\email\EmailService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\imagesapi\ImageRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\security\PasswordEncoder.java
@@ -9,6 +10,8 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validationapi\confirmation\ConfirmationTokenRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validationapi\ValidationService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\imagesapi\ImageController.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\jsonobjects\RegistrationRequest.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\accountsapi\google\GoogleAccount.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\cacheconfig\NoCacheFilter.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\accountsapi\AccountService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\jsonobjects\ImageUrlRequest.java
@@ -17,15 +20,14 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\pagesapi\PageRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\webdirectories\account\AccountPagesDirectoryController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\pagesapi\Page.java
-E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validationapi\LoginRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\accountsapi\AccountRepository.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\webdirectories\account\AccountSettingsDirectoryController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\imagesapi\ImageServiceInterface.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\jsonobjects\LoginRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\accountsapi\profilesettings\ProfileService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\pagesapi\PageService.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\accountsapi\profilesettings\ProfileController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\imagesapi\ImageService.java
-E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validationapi\TokenRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\webdirectories\page\PageWizardDirectoryController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\pagesapi\PageServiceInterface.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\webdirectories\page\PageEditorDirectoryController.java
@@ -35,9 +37,9 @@ E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\imagesapi\Image.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\webdirectories\page\PageSettingsDirectoryController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\jsonobjects\AccountPageHeaderResponse.java
+E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\jsonobjects\TokenRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\accountsapi\utilities\AuthTokenUtils.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\AlphaApplication.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\jsonobjects\ImageItemUrlRequest.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validationapi\ValidationController.java
 E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\webdirectories\login\LoginDirectoryController.java
-E:\Program Files\zinxs\zikiSystem\zikiE\ZikiE\wiki-main\src\main\java\zinxs\wiki\validationapi\RegistrationRequest.java

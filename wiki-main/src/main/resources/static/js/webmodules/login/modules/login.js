@@ -8,7 +8,23 @@ class Login {
         this.passwordInput = document.getElementById("passwordInput")
         this.emailInput = document.getElementById("emailInput")
         this.loginBtn.addEventListener("click", this.sendLoginRequest)
+        document.getElementById("g_id_onload").dataCallback = this.handleCredentialResponse
     }
+
+    handleCredentialResponse = (response) => {
+        app.backendManager.controller.postGoogleLoginRequest(response.credential)
+            .then(response => response.text())
+            .then(response => {
+                if (response != false) {
+                    this.backendManager.cookie.setCookie("token", response, 8)
+                    window.location.href = "https://www.zinxswiki.com"
+                } else {
+                    console.error("google login request failed!")
+                }
+            })
+    }
+
+
 
     sendLoginRequest = () => {
         let backendManager = this.backendManager
@@ -25,18 +41,3 @@ class Login {
 }
 
 const app = new Login() 
-
-function handleCredentialResponse(response) {
-    app.backendManager.controller.postGoogleLoginRequest(response.credential)
-        .then(response => response.text())
-        .then(response =>{
-            if (response != false) {
-                app.backendManager.cookie.setCookie("token", response, 8)
-                window.location.href = "https://www.zinxswiki.com"
-            } else {
-                console.error("google login request failed!")
-            }
-        })
-}
-
-document.getElementById("g-id-onload").dataCallback = this.handleCredentialResponse

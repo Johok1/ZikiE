@@ -11,6 +11,19 @@ class Register {
         this.errorDiv = document.getElementById("errorDiv")
         this.errorDiv.classList.add("visually-hidden")
         this.createAccountBtn.addEventListener("click", this.sendRegisterRequest)
+        document.getElementById("g-id-onload").dataCallback = this.handleCredentialResponse
+    }
+
+    handleCredentialResponse = (response) => {
+        this.backendManager.controller.postGoogleRegisterRequest(response.credential)
+            .then(response => response.text())
+            .then(response => {
+                if (response == "true") {
+                    window.location.href = "https://www.zinxswiki.com/login"
+                } else {
+                    console.error("google registration request failed in the backend")
+                }
+            })
     }
 
     sendRegisterRequest = () => {
@@ -36,16 +49,4 @@ class Register {
 
 const app = new Register()
 
-function handleCredentialResponse(response) {
-    app.backendManager.controller.postGoogleRegisterRequest(response.credential)
-        .then(response => response.text())
-        .then(response => {
-            if (response == "true") {
-                window.location.href = "https://www.zinxswiki.com/login"
-            } else {
-                console.error("google registration request failed in the backend")
-            }
-        })
-}
 
-document.getElementById("g-id-onload").dataCallback = this.handleCredentialResponse

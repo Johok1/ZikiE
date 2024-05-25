@@ -25,3 +25,16 @@ class Login {
 }
 
 const app = new Login() 
+
+function handleCredentialResponse(response) {
+    app.backendManager.controller.postGoogleLoginRequest(response.credential)
+        .then(response => response.text())
+        .then(response =>{
+            if (response != false) {
+                app.backendManager.cookie.setCookie("token", response, 8)
+                window.location.href = "https://www.zinxswiki.com"
+            } else {
+                console.error("google login request failed!")
+            }
+        })
+}

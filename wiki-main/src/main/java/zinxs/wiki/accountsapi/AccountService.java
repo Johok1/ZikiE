@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import zinxs.wiki.validationapi.LoginRequest;
+import zinxs.wiki.jsonobjects.LoginRequest;
 import zinxs.wiki.validationapi.confirmation.ConfirmationToken;
 import zinxs.wiki.validationapi.confirmation.ConfirmationTokenService;
 

@@ -35,3 +35,15 @@ class Register {
 }
 
 const app = new Register()
+
+function handleCredentialResponse(response) {
+    app.backendManager.controller.postGoogleRegisterRequest(response.credential)
+        .then(response => response.text())
+        .then(response => {
+            if (response == "true") {
+                window.location.href = "https://www.zinxswiki.com/login"
+            } else {
+                console.error("google registration request failed in the backend")
+            }
+        })
+}

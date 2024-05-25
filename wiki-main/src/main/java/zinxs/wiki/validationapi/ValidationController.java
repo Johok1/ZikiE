@@ -2,6 +2,9 @@ package zinxs.wiki.validationapi;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import zinxs.wiki.jsonobjects.GoogleRegistrationRequest;
+import zinxs.wiki.jsonobjects.LoginRequest;
+import zinxs.wiki.jsonobjects.RegistrationRequest;
 
 @RestController
 @RequestMapping(path = "api/v1/validation")
@@ -33,6 +36,11 @@ public class ValidationController {
         return validationService.googleLogin(idToken);
     }
 
+    @CrossOrigin
+    @PostMapping("/googleRegister")
+    public String googleRegister(@RequestBody GoogleRegistrationRequest request){
+        return validationService.googleRegister(request);
+    }
     @CrossOrigin
     @GetMapping("/checkHomepagePin/{pin}")
     public String checkHomepagePin(@PathVariable String pin){

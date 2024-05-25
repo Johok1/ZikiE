@@ -13,7 +13,11 @@ import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
 import zinxs.wiki.accountsapi.AccountRole;
 import zinxs.wiki.accountsapi.AccountService;
+import zinxs.wiki.accountsapi.google.GoogleAccount;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
+import zinxs.wiki.jsonobjects.GoogleRegistrationRequest;
+import zinxs.wiki.jsonobjects.LoginRequest;
+import zinxs.wiki.jsonobjects.RegistrationRequest;
 import zinxs.wiki.validationapi.confirmation.ConfirmationToken;
 import zinxs.wiki.validationapi.confirmation.ConfirmationTokenService;
 import zinxs.wiki.validationapi.email.EmailSender;
@@ -158,7 +162,52 @@ public class ValidationService {
             return "Failed to send email";
         }
     }
+    public String googleRegister(GoogleRegistrationRequest request) {
+        try{
+            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
+                    // Specify the CLIENT_ID of the app that accesses the backend:
+                    .setAudience(Collections.singletonList(CLIENT_ID))
+                    // Or, if multiple clients access the backend:
+                    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+                    .build();
+            GoogleIdToken idToken = verifier.verify(request.getToken());
+            if (idToken != null) {
+                Payload payload = idToken.getPayload();
 
+                // Print user identifier
+                String userId = payload.getSubject();
+                System.out.println("User ID: " + userId);
+
+                // Get profile information from payload
+                String email = payload.getEmail();
+                String username = email.split("@")[0];
+
+                String token = accountService.signUpUser(
+                        new GoogleAccount(
+                                username,
+                                email,
+                                request.getToken(),
+                                AccountRole.USER
+
+                        )
+                );
+
+                new Thread(() -> {
+                    String link = "https://www.zinxswiki.com/api/v1/validation/confirm?token=" + token;
+                    emailSender.send(
+                            email,
+                            buildEmail(username, link));
+                }).start();
+
+                return "true";
+            } else {
+                return "false";
+            }
+        }catch (Exception e){
+            return "Failed to send email";
+        }
+
+    }
     public String resetPassword(String email){
         try{
             String token = authTokenUtils.generateTempTokenNoPassword(email,"none");

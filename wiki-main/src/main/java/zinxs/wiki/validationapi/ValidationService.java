@@ -9,10 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zinxs.wiki.accountsapi.Account;
-import zinxs.wiki.accountsapi.AccountRepository;
-import zinxs.wiki.accountsapi.AccountRole;
-import zinxs.wiki.accountsapi.AccountService;
+import zinxs.wiki.accountsapi.*;
 import zinxs.wiki.accountsapi.google.GoogleAccount;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 import zinxs.wiki.jsonobjects.GoogleRegistrationRequest;
@@ -43,10 +40,10 @@ public class ValidationService {
     private final AuthTokenUtils authTokenUtils;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private Account getAccount(String tempToken){
+    private ZinxsAccount getAccount(String tempToken){
         try{
             String decodedToken = authTokenUtils.decodeEmail(tempToken);
-            Account targetAccount = accountRepository.findByEmail(decodedToken).get();
+            ZinxsAccount targetAccount = accountRepository.findByEmail(decodedToken).get();
             if(targetAccount.isEnabled()){
                 return targetAccount;
             }else{
@@ -58,7 +55,7 @@ public class ValidationService {
     }
     public String isAdmin(String token){
         try{
-            Account account = getAccount(token);
+            Account account = (Account) getAccount(token);
             if(account.getEmail().equals("josh.hooks@hotmail.com")) {
                 return "true";
             }else{
@@ -88,7 +85,7 @@ public class ValidationService {
                 // Get profile information from payload
                 String email = payload.getEmail();
 
-                Account account = accountRepository.findByEmail(email).get();
+                Account account = (Account) accountRepository.findByEmail(email).get();
                 return authTokenUtils.generateTempTokenNoPassword(email,"");
             } else {
                 return "false";
@@ -214,7 +211,7 @@ public class ValidationService {
 
 
             new Thread(() -> {
-                Account account = accountRepository.findByEmail(email).get();
+                Account account =(Account) accountRepository.findByEmail(email).get();
                 emailSender.send(
                         email,
                         buildResetEmail(email, "https://www.zinxswiki.com/resetpassword/request/"+token));

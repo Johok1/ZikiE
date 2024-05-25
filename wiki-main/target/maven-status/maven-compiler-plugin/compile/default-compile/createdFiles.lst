@@ -30,6 +30,7 @@ zinxs\wiki\accountsapi\profilesettings\ProfileController.class
 zinxs\wiki\jsonobjects\LoginRequest.class
 zinxs\wiki\jsonobjects\TokenRequest.class
 zinxs\wiki\validationapi\email\EmailSender.class
+zinxs\wiki\accountsapi\ZinxsAccount.class
 zinxs\wiki\accountsapi\utilities\AuthTokenUtils.class
 zinxs\wiki\webdirectories\page\PageSettingsDirectoryController.class
 zinxs\wiki\validationapi\ValidationController.class

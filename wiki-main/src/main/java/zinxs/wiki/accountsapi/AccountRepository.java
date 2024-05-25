@@ -10,9 +10,9 @@ import java.util.Optional;
 @Repository
 @Transactional(readOnly = true)
 public interface AccountRepository
-        extends JpaRepository<Account, Long> {
+        extends JpaRepository<ZinxsAccount, Long> {
 
-    Optional<Account> findByEmail(String email);
+    Optional<ZinxsAccount> findByEmail(String email);
 
     @Transactional
     @Modifying

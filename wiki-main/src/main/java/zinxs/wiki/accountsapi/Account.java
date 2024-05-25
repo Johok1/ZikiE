@@ -20,7 +20,7 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class Account implements UserDetails {
+public class Account implements UserDetails, ZinxsAccount {
 
     @SequenceGenerator(
             name = "account_sequence",

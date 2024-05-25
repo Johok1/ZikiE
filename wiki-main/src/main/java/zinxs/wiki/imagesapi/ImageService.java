@@ -122,7 +122,7 @@ public class ImageService implements  ImageServiceInterface{
     private Account getAccount(String token){
         try{
             String decodedToken = authTokenUtils.decodeEmail(token);
-            Account targetAccount = accountRepository.findByEmail(decodedToken).get();
+            Account targetAccount = (Account) accountRepository.findByEmail(decodedToken).get();
             if(targetAccount.isEnabled()){
                 return targetAccount;
             }else{

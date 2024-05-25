@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
+import zinxs.wiki.accountsapi.ZinxsAccount;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 
 import java.util.Optional;
@@ -21,10 +22,10 @@ public class ProfileService {
     private Account getAccount(String tempToken){
         String email = authTokenUtils.decodeEmail(tempToken);
         System.out.println("ProfileService getAccount email " + email);
-        Optional<Account> account = accountRepository.findByEmail(email);
+        Optional<ZinxsAccount> account = accountRepository.findByEmail(email);
         boolean accountExists = account.isPresent();
         if(accountExists){
-            return account.get();
+            return (Account) account.get();
         }else {
             throw new RuntimeException("accessing profile service with account that is not present in the database");
         }

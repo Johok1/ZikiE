@@ -28,7 +28,7 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-        return accountRepository.findByEmail(email)
+        return (Account) accountRepository.findByEmail(email)
                 .orElseThrow(() ->
                         new UsernameNotFoundException(
                                 String.format(USER_NOT_FOUND_MSG, email)));
@@ -43,9 +43,9 @@ public class AccountService implements UserDetailsService {
     public Account getAccount(LoginRequest request){
         String email = request.getEmail();
         System.out.println("AccountService getAccount account email " + email);
-        Optional<Account> accountByEmail = accountRepository.findByEmail(email);
+        Optional<ZinxsAccount> accountByEmail = accountRepository.findByEmail(email);
         if(accountByEmail.isPresent()){
-            Account account = accountByEmail.get();
+            Account account = (Account) accountByEmail.get();
             System.out.println("AccountService getAccount account " + account);
             System.out.println("AccountService getAccount account enabled " + account.isEnabled());
             if(bCryptPasswordEncoder.matches(request.getPassword(),account.getPassword()) && account.isEnabled()){

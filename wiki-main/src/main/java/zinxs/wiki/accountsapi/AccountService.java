@@ -43,7 +43,7 @@ public class AccountService implements UserDetailsService {
     public Account getAccount(LoginRequest request){
         String email = request.getEmail();
         System.out.println("AccountService getAccount account email " + email);
-        Optional<ZinxsAccount> accountByEmail = accountRepository.findByEmail(email);
+        Optional<Account> accountByEmail = accountRepository.findByEmail(email);
         if(accountByEmail.isPresent()){
             Account account = (Account) accountByEmail.get();
             System.out.println("AccountService getAccount account " + account);
@@ -78,7 +78,7 @@ public class AccountService implements UserDetailsService {
         System.out.println("AccountService signupUser account to save " + account);
         System.out.println("AccountService signupUser account to save email " + account.getEmail());
 
-        accountRepository.save(account);
+        accountRepository.save( (Account) account);
 
         String token = UUID.randomUUID().toString();
 

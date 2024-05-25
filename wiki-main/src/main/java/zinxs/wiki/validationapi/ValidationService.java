@@ -40,10 +40,10 @@ public class ValidationService {
     private final AuthTokenUtils authTokenUtils;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private ZinxsAccount getAccount(String tempToken){
+    private Account getAccount(String tempToken){
         try{
             String decodedToken = authTokenUtils.decodeEmail(tempToken);
-            ZinxsAccount targetAccount = accountRepository.findByEmail(decodedToken).get();
+            Account targetAccount = accountRepository.findByEmail(decodedToken).get();
             if(targetAccount.isEnabled()){
                 return targetAccount;
             }else{

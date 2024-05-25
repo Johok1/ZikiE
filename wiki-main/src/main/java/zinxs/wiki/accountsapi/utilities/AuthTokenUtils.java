@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
-import zinxs.wiki.accountsapi.ZinxsAccount;
+
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -43,7 +43,7 @@ public class AuthTokenUtils {
     public  String generateTempToken(String email, String password) throws Exception {
 
 
-        Optional<ZinxsAccount> account = accountRepository.findByEmail(email);
+        Optional<Account> account = accountRepository.findByEmail(email);
         if(account.isPresent()){
 
             if(bCryptPasswordEncoder.matches(password,account.get().getPassword())){
@@ -68,7 +68,7 @@ public class AuthTokenUtils {
     public  String generateTempTokenNoPassword(String email, String password) throws Exception {
 
 
-        Optional<ZinxsAccount> account = accountRepository.findByEmail(email);
+        Optional<Account> account = accountRepository.findByEmail(email);
         if(account.isPresent()){
 
 

@@ -204,7 +204,7 @@ public class ValidationService {
                 return "false";
             }
         }catch (Exception e){
-            return "Failed to send email";
+            throw new RuntimeException(e);
         }
 
     }

@@ -15,7 +15,7 @@ class Controller {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(registrationRequest)
+            body: JSON.stringify(googleRegistrationRequest)
         }).catch(error => {
             console.error(error);
         });

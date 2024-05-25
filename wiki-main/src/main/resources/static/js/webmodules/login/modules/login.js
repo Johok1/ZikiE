@@ -38,3 +38,5 @@ function handleCredentialResponse(response) {
             }
         })
 }
+
+document.getElementById("g-id-onload").dataCallback = this.handleCredentialResponse

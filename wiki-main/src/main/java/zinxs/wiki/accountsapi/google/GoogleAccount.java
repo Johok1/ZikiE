@@ -9,12 +9,11 @@ import javax.persistence.*;
 public class GoogleAccount extends Account {
 
 
-    private String googleToken;
+
     public GoogleAccount(String username,
                          String email,
-                         String googleToken,
                          AccountRole accountRole){
-        super(username, email, googleToken, accountRole);
-        this.googleToken = googleToken;
+        super(username, email, "" , accountRole);
+
     }
 }

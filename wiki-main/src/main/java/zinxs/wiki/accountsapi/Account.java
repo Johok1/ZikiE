@@ -41,7 +41,7 @@ public class Account implements UserDetails {
     private byte[] profileImage;
     private boolean locked = false, enabled = false;
     @Enumerated(EnumType.STRING)
-    private AccountRole accountRole;
+    protected AccountRole accountRole;
 
 
     public Account(String username,

@@ -183,7 +183,6 @@ public class ValidationService {
                         new GoogleAccount(
                                 username,
                                 email,
-                                request.getToken(),
                                 AccountRole.USER
 
                         )

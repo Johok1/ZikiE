@@ -24,7 +24,7 @@ class PageViewer {
     constructCard = (pageName, pageId) => {
         let card = new CustomCard(this.cardDiv, pageName, pageId)
         let backendManager = this.backendManager
-        card.viewPageLink.addEventListener("click", function{
+        card.viewPageLink.addEventListener("click", () => { 
             backendManager.cookie.setCookie("pageId", pageId)
         })
     }

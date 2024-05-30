@@ -33,7 +33,7 @@ class AccountSettings {
 
 
     submitNewPassword = () => {
-        let newPassword = this.passwordInput.value
+        let newPassword = this.changePasswordInput.value
         
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
@@ -50,7 +50,7 @@ class AccountSettings {
     }
 
     submitNewEmail = () => {
-        let newEmail = this.emailInput.value
+        let newEmail = this.changeEmailInput.value
       
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager

@@ -12,7 +12,7 @@ class Navbar {
 
 
     loadProfilePicture = () => {
-        let token = this.backendManager.getCookie("token")
+        let token = this.backendManager.cookie.getCookie("token")
 
         //we need a better way of verifying the token from the frontend, probably by sending it to a backend endpoint first. 
         if (this.backendManager.cookie.getCookie("token") != null) {
@@ -29,9 +29,9 @@ class Navbar {
     }
 
     loadProfileUsername = () => {
-        let token = this.backendManager.getCookie("token")
+        let token = this.backendManager.cookie.getCookie("token")
         if (this.backendManager.cookie.getCookie("token") != null) {
-            this.backend.controller.getProfileUsername(token)
+            this.backendManager.controller.getProfileUsername(token)
                 .then(response => response.text())
                 .then(response => {
                     this.profileUsername.innerText = response 

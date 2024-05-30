@@ -29,8 +29,8 @@ class PageWizard {
                 .then(response => response.text()).bind(this)
                 .then(response => {
                     this.backendManager.cookie.setCookie("pageId", response)
-                }).bind(this)
-        }).bind(this)
+                })
+        })
     }
 
     setLogoChangeHandler = () => {
@@ -47,9 +47,9 @@ class PageWizard {
                         "blank": "",
                         "url": base64
                    }
-                }).bind(this)
+                })
 
-        }).bind(this)
+        })
     }
 
 }

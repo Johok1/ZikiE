@@ -15,9 +15,9 @@ class PageSettings {
     }
 
     attachUpdatePageHandler = () => {
-        let token = backendManager.cookie.getCookie("token")
-        let pageId = backendManager.cookie.getCookie("pageId")
-        this.updatePageBtn.addEventListener("click", function () {
+        let token = this.backendManager.cookie.getCookie("token")
+        let pageId = this.backendManager.cookie.getCookie("pageId")
+        this.updatePageBtn.addEventListener("click", ()=> {
             if (this.pageNameInput.value != "") {
                 let name = pageNameInput.value
                 this.backendManager.controller.postPageName(token, pageId, name)
@@ -26,7 +26,7 @@ class PageSettings {
                     })
             }
 
-        }).bind(this)
+        })
     }
 
     attachChangePageLogoHandler = () => {

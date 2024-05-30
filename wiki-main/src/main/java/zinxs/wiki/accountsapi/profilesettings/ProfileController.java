@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import zinxs.wiki.jsonobjects.AccountPageHeaderResponse;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/profile")
@@ -66,6 +69,13 @@ public class ProfileController {
     @GetMapping("/setPassword/{token}/{password}")
     public String setPassword(@PathVariable String token, @PathVariable String password){
         return profileService.setProfilePassword(token,password);
+    }
+
+
+    @CrossOrigin
+    @GetMapping("getAccountPageHeaders/{token}")
+    public List<AccountPageHeaderResponse> getAccountPageHeaders(@PathVariable String token){
+        return profileService.getAccountPageHeaders(token);
     }
 
 }

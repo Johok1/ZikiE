@@ -145,14 +145,16 @@
                             <div class="col-xl-4">
                                 <!-- Profile picture card-->
                                 <div class="card mb-4 mb-xl-0">
-                                    <div class="card-header">Profile Picture</div>
+                                    <div id="profilePicture" class="card-header">Profile Picture</div>
                                     <div class="card-body text-center">
                                         <!-- Profile picture image-->
                                         <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="" />
                                         <!-- Profile picture help block-->
                                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                                         <!-- Profile picture upload button-->
-                                        <button class="btn btn-primary" type="button">Upload new image</button>
+                                        <input id="uploadImageBtn" class="btn " type="file">Upload new image</input>
+										<hr>
+										<button id="changePictureBtn" class="btn btn-primary" type="button">Change Profile Picture</button>
                                     </div>
                                 </div>
                             </div>
@@ -167,27 +169,37 @@
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputFirstName">Your Display Name</label>
-                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter new display name" value="" />
-                                                </div>
+                                                
                                                 <!-- Form Group (last name)-->
                                                 <div class="col-md-6">
                                                     <label class="small mb-1" for="inputLastName">Username</label>
-                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Your Username (Permanent)" value="" readonly />
+                                                    <input id="usernameInput" class="form-control" id="inputLastName" type="text" placeholder="New Username" value="" readonly />
                                                 </div>
                                             </div>
-                                            <!-- Form Row        -->
-                                            <div class="row gx-3 mb-3">
-                                                <!-- Form Group (organization name)-->
-                                              
-                                            </div>
-                                            <!-- Form Group (email address)-->
-                                            
+                                           
+                                           
                                             <!-- Form Row-->
                                            
                                             <!-- Save changes button-->
-                                            <button class="btn btn-primary" type="button">Save changes</button>
+                                            <button id="changeUsernameBtn" class="btn btn-primary" type="button">Change Username</button>
+											<hr>
+											<div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputLastName">Email</label>
+                                                    <input id="changeEmailInput" class="form-control" id="inputLastName" type="text" placeholder="New Email" value="" readonly />
+                                                </div>
+												
+												 <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputLastName">Password</label>
+                                                    <input id="changePasswordInput" class="form-control" id="inputLastName" type="text" placeholder="New Password" value="" readonly />
+                                                </div>
+                                            </div>
+											 <button id="changeEmailBtn" class="btn btn-primary" type="button">Change Email</button>
+											 <button id="changePasswordBtn" class="btn btn-primary" style="margin-left: 15vw" type="button">Change Password</button>
+											
                                         </form>
                                     </div>
                                 </div>
@@ -210,6 +222,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="js/webmodules/accountsettings/modules/accountsettings.js" type="module"></script>
+		<script src="js/webmodules/navbar/modules/navbar.js" type="module"></script>
     </body>
 </html>

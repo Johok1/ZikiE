@@ -7,7 +7,11 @@ import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
 
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
+import zinxs.wiki.jsonobjects.AccountPageHeaderResponse;
+import zinxs.wiki.pagesapi.Page;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +32,27 @@ public class ProfileService {
             return  account.get();
         }else {
             throw new RuntimeException("accessing profile service with account that is not present in the database");
+        }
+    }
+
+
+
+    public List<AccountPageHeaderResponse> getAccountPageHeaders(String token){
+        try{
+            Account account = getAccount(token);
+            List<AccountPageHeaderResponse> pageHeaders = new ArrayList<>();
+            List<Page> pages = account.getPages();
+            for(Page page: pages){
+                AccountPageHeaderResponse response = new AccountPageHeaderResponse(
+                        String.valueOf(page.getId()),
+                        page.getName(),
+                        page.getImgUrl()
+                );
+                pageHeaders.add(response);
+            }
+            return pageHeaders;
+        }catch (Exception e){
+            throw new RuntimeException(e);
         }
     }
 

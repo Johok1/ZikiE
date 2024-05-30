@@ -15,13 +15,50 @@ class View {
         this.page = document.getElementById("page")
 
 
+
         this.loadPageContent()
 
 
         this.pageSubmitTimer = new PageSubmitTimer(page)
         this.pageSubmitTimer.setSubmitTimer(10)
 
+        this.pageLogo = document.getElementById("pageLogo")
+        this.pageName = document.getElementById("pageName")
+
+        this.selectLayerInput = document.getElementById("selectLayerInput")
+        this.selectLayerBtn = document.getElementById("selectLayerBtn")
+
+        this.hideLayerInput = document.getElementById("hideLayerInput")
+        this.hideLayerBtn = document.getElementById("hideLayerBtn")
+
+        this.textUtilityBtn = document.getElementById("textUtilityBtn")
+        this.imageUtilityBtn = document.getElementById("imageUtilityBtn")
+
+        this.initPageDetails()
+
+        this.selectLayerBtn.addEventListener("click", this.selectLayer.bind(this))
+        this.hideLayerBtn.addEventListener("click", this.hideLayer.bind(this))
+        this.textUtilityBtn.addEventListener("click", this.createTextBtnHandler.bind(this))
+        this.imageUtilityBtn.addEventListener("click", this.createImageBtnHandler.bind(this))
+       
     }
+
+
+
+    initPageDetails = () => {
+        let pageId = this.backendManager.cookie.getCookie("pageId")
+        let pageLogo = this.pageLogo
+        let pageName = this.pageName
+        this.backendManager.controller.getPageImage(pageId)
+            .then(response => {
+                pageLogo.src = response 
+            })
+        this.backendManager.controller.getPageName(pageId)
+            .then(response => response.text())
+            .then(response => {
+                pageName.innerText = response 
+            })
+     }
 
     loadPageContent = () => {
         let page = this.page
@@ -126,17 +163,17 @@ class View {
         this.registerAllHandlersSelect()
     }
 
-    hideLayer(layer) {
+    hideLayer() {
         let layerManager = this.utilityHelper.layerManagerModule
-        layerManager.toggleHideLayer(layer)
+        layerManager.toggleHideLayer(this.selectLayerInput.value)
     }
 
-    selectLayer(layer) {
+    selectLayer() {
         let layerManager = this.utilityHelper.layerManagerModule
-        layerManager.setSelectedLayer(layer)
+        layerManager.setSelectedLayer(this.selectLayerInput.value)
         this.utilityHelper.utilityHandlerModule.resetAllElementHandlers()
         this.registerAllHandlersSelect()
-        this.utilityHelper.utilityTranslationModule.enableDragAll(layer)
+        this.utilityHelper.utilityTranslationModule.enableDragAll(this.selectLayerInput.value)
     }
 
  

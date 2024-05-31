@@ -26,8 +26,8 @@ class AccountSettings {
 
         this.changeProfilePictureHandler()
         this.changePasswordBtn.addEventListener("click", this.submitNewPassword)
-        this.submitNewEmail()
-        this.submitNewUsername()
+        this.changeEmailBtn.addEventListener("click", this.submitNewEmail)
+        this.changeUsernameBtn.addEventListener("click", this.submitNewUsername)
 
     }
 
@@ -51,15 +51,15 @@ class AccountSettings {
       
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
-        this.changeEmailBtn.addEventListener("click", function () {
+      
         
-                backendManager.controller.setProfileEmail(token, newEmail)
-                    .then(response => response.text())
-                    .then(response => {
-                        console.log(response)
-                    })
+        backendManager.controller.setProfileEmail(token, newEmail)
+            .then(response => response.text())
+            .then(response => {
+                console.log(response)
+            })
             
-        })
+      
         
     }
 
@@ -68,15 +68,14 @@ class AccountSettings {
      
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
-        this.changeUsernameBtn.addEventListener("click", function () {
+      
             
-                backendManager.controller.setProfileUsername(token, newUsername)
-                    .then(response => response.text())
-                    .then(response => {
-                        console.log(response)
-                   })
-            
-        })
+        backendManager.controller.setProfileUsername(token, newUsername)
+            .then(response => response.text())
+            .then(response => {
+                console.log(response)
+            })
+    
         
     }
 

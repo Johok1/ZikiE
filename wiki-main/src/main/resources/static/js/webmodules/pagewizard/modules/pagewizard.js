@@ -30,7 +30,7 @@ class PageWizard {
                 .then(response => response.text())
                 .then(response => {
                     backendManager.cookie.setCookie("pageId", response)
-                    window.href.location = "https://www.zinxswiki.com/pageeditor"
+                    window.location.href = "https://www.zinxswiki.com/pageeditor"
                 })
         
     }

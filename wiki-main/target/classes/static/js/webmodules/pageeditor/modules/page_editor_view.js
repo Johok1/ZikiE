@@ -1,5 +1,6 @@
-import UtilityHelper from './utilities/utility_helper.js';
+
 import BackendManager from './backend/backend_manager.js';
+import UtilityHelper from './editor/utility_helper.js';
 import PageSubmitTimer from './submit/page_submit_timer.js';
 
 

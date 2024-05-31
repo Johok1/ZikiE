@@ -7,7 +7,7 @@ class Navbar {
         this.profilePicture = document.getElementById("dropdownImage")
         this.profileUsername = document.getElementById("dropdownUsername")
 
-        this.navbarProfilePicture = document.getElementById("navProfilePicture")
+        this.navbarProfilePicture = document.getElementById("navProfileImage")
 
 
     }

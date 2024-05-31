@@ -24,11 +24,12 @@ class PageWizard {
     setPageNameChangeHandler = () => {
 
     
-            let name = pageNameInput.value 
+        let name = pageNameInput.value
+        let backendManager = this.backendManager
             this.backendManager.controller.createAccountPage(this.backendManager.cookie.getCookie("token"), name)
-                .then(response => response.text()).bind(this)
+                .then(response => response.text())
                 .then(response => {
-                    this.backendManager.cookie.setCookie("pageId", response)
+                    backendManager.cookie.setCookie("pageId", response)
                 })
         
     }

@@ -38,13 +38,13 @@ class AccountSettings {
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
         this.changePasswordBtn.addEventListener("click", function () {
-            if (newPassword != "") {
+        
                 backendManager.controller.setProfilePassword(token, newPassword)
                     .then(response => response.text())
                     .then(response => {
                         console.log(response)
                     })
-            }
+            
         })
         
     }
@@ -55,13 +55,13 @@ class AccountSettings {
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
         this.changeEmailBtn.addEventListener("click", function () {
-            if (newEmail != "") {
+        
                 backendManager.controller.setProfileEmail(token, newEmail)
                     .then(response => response.text())
                     .then(response => {
                         console.log(response)
                     })
-            }
+            
         })
         
     }
@@ -72,13 +72,13 @@ class AccountSettings {
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
         this.changeUsernameBtn.addEventListener("click", function () {
-            if (newUsername != "") {
-                backendManager.controller.setProfileUsername(token, username)
+            
+                backendManager.controller.setProfileUsername(token, newUsername)
                     .then(response => response.text())
                     .then(response => {
                         console.log(response)
-                    })
-            }
+                   })
+            
         })
         
     }

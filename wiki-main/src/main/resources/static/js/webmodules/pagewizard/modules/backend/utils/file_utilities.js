@@ -20,12 +20,9 @@ export default class FileUtilities {
 
         const base64String = btoa(String.fromCharCode.apply(null, byteArray));
 
-        const imageObj = {
-            "base64String": base64String,
-            "fileName": file.name
-            }
+       
 
-        return imageObj
+        return base64String
     }
 
 

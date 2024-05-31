@@ -33,13 +33,13 @@ class AccountSettings {
 
 
     submitNewPassword = () => {
-        let newPassword = this.changePasswordInput.value
+       
         
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
         this.changePasswordBtn.addEventListener("click", function () {
-            if (newPassword != "") {
-                backendManager.controller.setProfilePassword(token, newPassword)
+            if (this.changePasswordInput.value != "") {
+                backendManager.controller.setProfilePassword(token, this.changePasswordInput.value)
                     .then(response => response.text())
                     .then(response => {
                         console.log(response)
@@ -50,13 +50,13 @@ class AccountSettings {
     }
 
     submitNewEmail = () => {
-        let newEmail = this.changeEmailInput.value
+       
       
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
         this.changeEmailBtn.addEventListener("click", function () {
-            if (newEmail != "") {
-                backendManager.controller.setProfileEmail(token, newEmail)
+            if (this.changeEmailInput.value != "") {
+                backendManager.controller.setProfileEmail(token, this.changeEmailInput.value)
                     .then(response => response.text())
                     .then(response => {
                         console.log(response)
@@ -67,13 +67,13 @@ class AccountSettings {
     }
 
     submitNewUsername = () => {
-        let newUsername = this.usernameInput.value
+
      
         let token = this.backendManager.cookie.getCookie("token")
         let backendManager = this.backendManager
         this.changeUsernameBtn.addEventListener("click", function () {
-            if (newUsername != "") {
-                backendManager.controller.setProfileUsername(token, username)
+            if (this.usernameInput.value != "") {
+                backendManager.controller.setProfileUsername(token, this.usernameInput.value)
                     .then(response => response.text())
                     .then(response => {
                         console.log(response)

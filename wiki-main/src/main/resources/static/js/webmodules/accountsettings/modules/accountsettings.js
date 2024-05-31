@@ -87,7 +87,7 @@ class AccountSettings {
         let fileUtilities = this.fileUtilities
         let profilePicture = this.profilePicture
         let backendManager = this.backendManager
-        this.submitImageBtn.addEventListener("change", (e) => {
+        this.uploadBtn.addEventListener("change", (e) => {
             let file = e.dataTransfer.files.item(0)
             backendManager.controller.setProfilePicture(backendManager.cookie.getCookie("token"), file)
                 .then( ()=> {

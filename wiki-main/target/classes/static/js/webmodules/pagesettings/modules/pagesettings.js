@@ -1,4 +1,4 @@
-import FileUtilities from "../../pageviewer/modules/backend/utils/file_utilities.js"
+import FileUtilities from "./backend/utils/file_utilities.js"
 import BackendManager from "./backend/backend_manager.js"
 
 class PageSettings {

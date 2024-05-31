@@ -54,6 +54,7 @@ public class Account implements UserDetails {
         this.email = email;
         this.password = password;
         this.accountRole = accountRole;
+        this.pages = new ArrayList<>();
     }
 
     public String getUsername(){

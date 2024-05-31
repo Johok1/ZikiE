@@ -1,4 +1,4 @@
-import FileUtilities from '../../pageviewer/modules/backend/utils/file_utilities.js'
+import FileUtilities from './backend/utils/file_utilities.js'
 import BackendManager from './backend/backend_manager.js'
 
 class PageWizard {
@@ -18,19 +18,19 @@ class PageWizard {
         this.imageObjRes = null
 
         this.setLogoChangeHandler()
-        this.setPageNameChangeHandler()
+        this.createPageLink.addEventListener("click", this.setPageNameChangeHandler)
     }
 
     setPageNameChangeHandler = () => {
 
-        this.createPageLink.addEventListener("click", function () {
+    
             let name = pageNameInput.value 
             this.backendManager.controller.createAccountPage(this.backendManager.cookie.getCookie("token"), name)
                 .then(response => response.text()).bind(this)
                 .then(response => {
                     this.backendManager.cookie.setCookie("pageId", response)
                 })
-        })
+        
     }
 
     setLogoChangeHandler = () => {

@@ -92,8 +92,11 @@ class AccountSettings {
             backendManager.controller.setProfilePicture(backendManager.cookie.getCookie("token"), file)
                 .then( ()=> {
                     fileUtilities.processFile(file)
-                        .then(response => {
+                        .then(response => response.blob())
+                    .then(response => {
                             let url = URL.createObjectURL(response)
+                            console.log(response)
+                            console.log(url)
                             profilePicture.src = url;
 
                         })

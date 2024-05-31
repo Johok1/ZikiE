@@ -7,6 +7,8 @@ class Navbar {
         this.profilePicture = document.getElementById("dropdownImage")
         this.profileUsername = document.getElementById("dropdownUsername")
 
+        this.navbarProfilePicture = document.getElementById("navProfilePicture")
+
 
     }
 
@@ -22,6 +24,7 @@ class Navbar {
                 .then(response => {
                     let imageUrl = URL.createObjectURL(response)
                     this.profilePicture.src = imageUrl;
+                    this.navbarProfilePicture.src = imageUrl; 
                 })
         } else {
             window.location.href = "https://www.zinxswiki.com"

@@ -33,19 +33,19 @@ class AccountSettings {
 
 
     submitNewPassword = () => {
-        let newPassword = this.changePasswordInput.value
         
-        let token = this.backendManager.cookie.getCookie("token")
-        let backendManager = this.backendManager
         this.changePasswordBtn.addEventListener("click", function () {
-        
+            let newPassword = this.changePasswordInput.value
+
+            let token = this.backendManager.cookie.getCookie("token")
+            let backendManager = this.backendManager
                 backendManager.controller.setProfilePassword(token, newPassword)
                     .then(response => response.text())
                     .then(response => {
                         console.log(response)
                     })
             
-        })
+        }).bind(this)
         
     }
 

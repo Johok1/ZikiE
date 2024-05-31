@@ -35,7 +35,7 @@ class PageWizard {
 
     setLogoChangeHandler = () => {
         this.logoInput.addEventListener("change", (e) => {
-            let file = e.dataTransfer.files.item(0)
+            let file = e.target.files.item(0)
             this.fileUtilities.processFile(file)
                 .then(response => {
                     let url = URL.createObjectURL(response)

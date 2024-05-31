@@ -34,7 +34,7 @@ class PageSettings {
         let profilePicture = this.pageLogoDisplay
         let backendManager = this.backendManager
         this.pageLogoInput.addEventListener("change", (e) => {
-            let file = e.dataTransfer.files.item(0)
+            let file = e.target.files.item(0)
            
             fileUtilities.processFile(file)
                 .then(response => {

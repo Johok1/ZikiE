@@ -22,7 +22,7 @@ class PageViewer {
 
 
                     backendManager.controller.getAccountPageLogo(token, response[x].pageId)
-                        .then(data => data.blob)
+                        .then(data => data.blob())
                         .then(data => {
                             constructCard(response[x].pageName, response[x].pageId, data)
                         })

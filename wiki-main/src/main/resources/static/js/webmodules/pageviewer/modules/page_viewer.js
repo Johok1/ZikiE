@@ -1,9 +1,11 @@
 import BackendManager from './backend/backend_manager.js'
+import FileUtilities from './backend/utils/file_utilities.js'
 import CustomCard from './visuals/custom_card.js'
 
 class PageViewer {
     constructor() {
         this.backendManager = new BackendManager()
+        this.fileUtilities = new FileUtilities()
         this.cardDiv = document.getElementById("cardContainer")
         this.makePageList()
     }
@@ -14,8 +16,8 @@ class PageViewer {
             .then(response => response.json())
             .then(response => {
                 for (let x = 0; x < response.length; x++) {
-                   
-                    constructCard(response[x].pageName, response[x].pageId, response[x].data)
+                    
+                    constructCard(response[x].pageName, response[x].pageId, response[x].data.blob())
 
                 }
             })

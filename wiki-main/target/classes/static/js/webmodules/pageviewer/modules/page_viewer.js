@@ -22,14 +22,16 @@ class PageViewer {
     }
 
     constructCard = (pageName, pageId, pageLogo) => {
-        pageLogo.blob()
-            .then(response => {
-                let card = new CustomCard(this.cardDiv, pageName, pageId, URL.createObjectURL(response))
-                let backendManager = this.backendManager
-                card.viewPageLink.addEventListener("click", () => {
-                    backendManager.cookie.setCookie("pageId", pageId)
-                })
-            })
+        console.log(pageLogo)
+        let url = URL.createObjectURL(pageLogo)
+        console.log(url)
+            
+        let card = new CustomCard(this.cardDiv, pageName, pageId, url)
+        let backendManager = this.backendManager
+        card.viewPageLink.addEventListener("click", () => {
+            backendManager.cookie.setCookie("pageId", pageId)
+        })
+          
        
     }
 

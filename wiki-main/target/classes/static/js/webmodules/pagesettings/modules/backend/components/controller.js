@@ -5,6 +5,7 @@ export default class Controller {
     }
 
     postPageImage(token, pageId, request) {
+        request = JSON.parse(request)
         return fetch(this.fetch_url_image + "/postPageImage/" + token + "/" + pageId, {
             method: 'POST',
             headers: {

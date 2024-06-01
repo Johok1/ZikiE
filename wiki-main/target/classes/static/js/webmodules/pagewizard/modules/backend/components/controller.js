@@ -18,6 +18,7 @@ export default class Controller {
     }
 
     postPageImage(token, pageId, imageObj) {
+        imageObj = JSON.parse(imageObj)
         return fetch(this.fetch_url_image + "/postPageImage/" + token + "/" + pageId, {
             method: 'POST',
             headers: {

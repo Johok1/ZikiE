@@ -36,6 +36,20 @@ public class ProfileService {
     }
 
 
+    public byte[] getAccountPageLogo(String token, String pageId){
+        try{
+            Account account = getAccount(token);
+            List<Page> pages = account.getPages();
+            for(Page page: pages){
+                if(page.getId().equals(Long.valueOf(pageId))){
+                    return page.getImgData();
+                }
+            }
+            throw new Exception("no pages matching id!");
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
     public List<AccountPageHeaderResponse> getAccountPageHeaders(String token){
         try{
@@ -45,8 +59,7 @@ public class ProfileService {
             for(Page page: pages){
                 AccountPageHeaderResponse response = new AccountPageHeaderResponse(
                         String.valueOf(page.getId()),
-                        page.getName(),
-                        page.getImgData()
+                        page.getName()
                 );
                 pageHeaders.add(response);
             }

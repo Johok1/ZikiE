@@ -12,12 +12,21 @@ class PageViewer {
 
     makePageList = () => {
         let constructCard = this.constructCard
+        let backendManager = this.backendManager
+        let token = this.backendManager.cookie.getCookie("token")
+       
         this.backendManager.controller.getAccountPageHeaders(this.backendManager.cookie.getCookie("token"))
             .then(response => response.json())
             .then(response => {
                 for (let x = 0; x < response.length; x++) {
-                    
-                    constructCard(response[x].pageName, response[x].pageId, response[x].data.blob())
+
+
+                    backendManager.getAccountPageLogo(token, response[x].pageId)
+                        .then(data => data.blob)
+                        .then(data => {
+                            constructCard(response[x].pageName, response[x].pageId, data)
+                        })
+                  
 
                 }
             })

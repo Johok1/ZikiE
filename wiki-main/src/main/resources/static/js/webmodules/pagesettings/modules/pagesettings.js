@@ -46,8 +46,8 @@ class PageSettings {
 
                     let base64String = reader.readAsArrayBuffer(response)
                     let imageUrlRequest = {
-                        "blank": "",
-                        "url": base64String
+                        "url": base64String,
+                        "blank":""
                     }
                     let token = backendManager.cookie.getCookie("token")
                     let pageId = backendManager.cookie.getCookie("pageId")

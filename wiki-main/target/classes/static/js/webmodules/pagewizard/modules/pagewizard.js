@@ -30,7 +30,11 @@ class PageWizard {
                 .then(response => response.text())
                 .then(response => {
                     backendManager.cookie.setCookie("pageId", response)
-                    window.location.href = "https://www.zinxswiki.com/pageeditor"
+                    backendManager.controller.postPageImage(backendManager.cookie.getCookie("token"), response, this.imageObjRes)
+                        .then(response.ok)
+                        .then(() => {
+                            window.location.href = "https://www.zinxswiki.com/pageeditor"
+                        })
                 })
         
     }
@@ -48,7 +52,8 @@ class PageWizard {
                     this.imageObjRes = {
                         "blank": "",
                         "url": base64
-                   }
+                    }
+
                 })
 
         })

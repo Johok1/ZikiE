@@ -15,7 +15,7 @@ class PageViewer {
             .then(response => {
                 for (let x = 0; x < response.length; x++) {
                    
-                    constructCard(response[x].pageName, response[x].pageId)
+                    constructCard(response[x].pageName, response[x].pageId, response[x].data)
 
                 }
             })

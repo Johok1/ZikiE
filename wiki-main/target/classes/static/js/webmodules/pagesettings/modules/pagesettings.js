@@ -35,27 +35,17 @@ class PageSettings {
         let backendManager = this.backendManager
         this.pageLogoInput.addEventListener("change", (e) => {
             let file = e.target.files.item(0)
-           
-            fileUtilities.processFile(file)
-                .then(response => {
-                    let url = URL.createObjectURL(response)
-                    profilePicture.src = url;
-
-                    let reader = new FileReader()
-                    reader.onload = fileUtilities.blobToBase64ReaderOnLoadHandler
-
-                    let base64String = reader.readAsArrayBuffer(response)
-                    let imageUrlRequest = {
-                        "url": base64String,
-                        "blank":""
-                    }
-                    let token = backendManager.cookie.getCookie("token")
-                    let pageId = backendManager.cookie.getCookie("pageId")
-                    backendManager.controller.postPageImage(token, pageId, imageUrlRequest)
+            let token = backendManager.cookie.getCookie("token")
+            let pageId = backendManager.cookie.getCookie("pageId")
+            backendManager.controller.postPageImage(token, pageId, file)
+                .then(() => {
+                    fileUtilities.processFile(file)
                         .then(response => {
-                            console.log(response)
+                            let url = URL.createObjectURL(response)
+                            profilePicture.src = url;
                         })
                 })
+           
                 
         })
 

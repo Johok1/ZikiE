@@ -4,15 +4,16 @@ export default class Controller {
         this.fetch_url_image = "https://www.zinxswiki.com/image"
     }
 
-    postPageImage(token, pageId, request) {
-        request = JSON.parse(request)
+    postPageImage(token, pageId,file) {
+        let formData = new FormData()
+        formData.append('file', file)
         return fetch(this.fetch_url_image + "/postPageImage/" + token + "/" + pageId, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify(request)
+            body: formData
         }).catch(error => {
             console.error(error)
         });

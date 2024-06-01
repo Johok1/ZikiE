@@ -1,6 +1,8 @@
 package zinxs.wiki.imagesapi;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.jsonobjects.ImageItemUrlRequest;
 import zinxs.wiki.jsonobjects.ImageObjResponse;
 import zinxs.wiki.jsonobjects.ImageUrlRequest;
@@ -19,16 +21,17 @@ public class ImageController {
     }
 
     @CrossOrigin
-    @GetMapping("getPageImage/{pageId}")
-    public String getPageImage(@PathVariable String pageId){
+    @GetMapping(value = "getPageImage/{pageId}",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getPageImage(@PathVariable String pageId){
         return imageService.getPageImg(pageId);
     }
 
     @CrossOrigin
     @PostMapping("postPageImage/{memberId}/{pageId}")
     public String postPageImage(@PathVariable String memberId, @PathVariable String pageId,
-                                @RequestBody ImageUrlRequest request){
-        return imageService.setPageImg(memberId, pageId, request);
+                                @RequestParam("file")MultipartFile file){
+        return imageService.setPageImg(memberId, pageId, file);
     }
     @CrossOrigin
     @GetMapping("getPageImageUrls/{pageId}")

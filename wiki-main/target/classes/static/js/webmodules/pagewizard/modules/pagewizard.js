@@ -15,7 +15,7 @@ class PageWizard {
 
         this.pageLogo = document.getElementById("pageLogo")
 
-        this.imageObjRes = null
+        this.imageLogoFile
 
         this.setLogoChangeHandler()
         this.createPageLink.addEventListener("click", this.setPageNameChangeHandler)
@@ -30,7 +30,7 @@ class PageWizard {
                 .then(response => response.text())
                 .then(response => {
                     backendManager.cookie.setCookie("pageId", response)
-                    backendManager.controller.postPageImage(backendManager.cookie.getCookie("token"), response, this.imageObjRes)
+                    backendManager.controller.postPageImage(backendManager.cookie.getCookie("token"), response, this.imageLogoFile)
                         .then(response.ok)
                         .then(() => {
                             window.location.href = "https://www.zinxswiki.com/pageeditor"
@@ -42,17 +42,12 @@ class PageWizard {
     setLogoChangeHandler = () => {
         this.logoInput.addEventListener("change", (e) => {
             let file = e.target.files.item(0)
+            this.imageLogoFile = file 
             this.fileUtilities.processFile(file)
                 .then(response => {
                     let url = URL.createObjectURL(response)
                     this.pageLogo.src = url
-                    let reader = new FileReader()
-                    reader.onload = this.fileUtilities.blobToBase64ReaderOnLoadHandler
-                    let base64 = reader.readAsArrayBuffer(response)
-                    this.imageObjRes = {
-                        "blank": "",
-                        "url": base64
-                    }
+                   
 
                 })
 

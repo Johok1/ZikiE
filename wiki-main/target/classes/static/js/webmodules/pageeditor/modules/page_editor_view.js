@@ -16,8 +16,8 @@ class View {
         this.page = document.getElementById("page")
 
 
-
-        this.loadPageContent()
+        this.initPageDetails()
+       
 
 
         this.pageSubmitTimer = new PageSubmitTimer(page)
@@ -35,12 +35,14 @@ class View {
         this.textUtilityBtn = document.getElementById("textUtilityBtn")
         this.imageUtilityBtn = document.getElementById("imageUtilityBtn")
 
-        this.initPageDetails()
+       
 
         this.selectLayerBtn.addEventListener("click", this.selectLayer.bind(this))
         this.hideLayerBtn.addEventListener("click", this.hideLayer.bind(this))
         this.textUtilityBtn.addEventListener("click", this.createTextBtnHandler.bind(this))
         this.imageUtilityBtn.addEventListener("click", this.createImageBtnHandler.bind(this))
+
+        this.loadPageContent()
        
     }
 
@@ -51,8 +53,9 @@ class View {
         let pageLogo = this.pageLogo
         let pageName = this.pageName
         this.backendManager.controller.getPageImage(pageId)
+            .then(response => response.blob())
             .then(response => {
-                pageLogo.src = response 
+                pageLogo.src = URL.createObjectURL(response) 
             })
         this.backendManager.controller.getPageName(pageId)
             .then(response => response.text())

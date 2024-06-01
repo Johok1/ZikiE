@@ -46,7 +46,7 @@ public class ProfileService {
                 AccountPageHeaderResponse response = new AccountPageHeaderResponse(
                         String.valueOf(page.getId()),
                         page.getName(),
-                        page.getImgUrl()
+                        page.getImgData()
                 );
                 pageHeaders.add(response);
             }

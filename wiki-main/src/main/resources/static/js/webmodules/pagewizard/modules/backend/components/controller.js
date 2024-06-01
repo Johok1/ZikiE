@@ -17,15 +17,16 @@ export default class Controller {
         });
     }
 
-    postPageImage(token, pageId, imageObj) {
-        imageObj = JSON.parse(imageObj)
+    postPageImage(token, pageId, file) {
+        let formData = new FormData()
+        formData.append('file', file)
         return fetch(this.fetch_url_image + "/postPageImage/" + token + "/" + pageId, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify(imageObj)
+            body: formData
         }).catch(error => {
             console.error(error)
         });

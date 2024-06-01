@@ -14,5 +14,5 @@ public class AccountPageHeaderResponse {
     String pageId;
     String pageName;
 
-    String url;
+    byte[] data;
 }

@@ -1,5 +1,5 @@
 export default class CustomCard {
-    constructor(masterDiv, pageName, pageId) {
+    constructor(masterDiv, pageName, pageId,logoUrl) {
         this.pageId = pageId 
         this.master = document.createElement("div");
         this.master.className = "col-xl-4 col-lg-6 mb-4 mb-xl-0";
@@ -28,7 +28,7 @@ export default class CustomCard {
         this.sidebarToggleImg = document.createElement("img");
         this.sidebarToggleImg.style.width = "100%";
         this.sidebarToggleImg.style.height = "100%";
-        this.sidebarToggleImg.src = "assets/img/Zinks_png.png";
+        this.sidebarToggleImg.src = logoUrl;
 
         this.sidebarToggleBtn.appendChild(this.sidebarToggleImg);
         this.col1.appendChild(this.sidebarToggleBtn);

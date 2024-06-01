@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
@@ -74,22 +75,22 @@ public class ImageService implements  ImageServiceInterface{
     }
 
     @Override
-    public String getPageImg(String pageId){
+    public byte[] getPageImg(String pageId){
         try {
             Page page  = pageRepository.findById(Long.valueOf(pageId)).get();
-            return page.getImgUrl();
+            return page.getImgData();
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public String setPageImg(String token, String pageId, ImageUrlRequest request){
+    public String setPageImg(String token, String pageId, MultipartFile request){
         try{
             if(isPageCreator(token, pageId)){
                 Account account = getAccount(token);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-                page.setImgUrl(request.getUrl());
+                page.setImgData(request.getBytes());
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);

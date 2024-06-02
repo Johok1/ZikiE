@@ -1,4 +1,4 @@
-import EditorUtilityInterface from '..interfaces/editor_utility_interface.js'
+import EditorUtilityInterface from '../interfaces/editor_utility_interface.js'
 export default class UtilitySelectionModuleInterface {
     constructor() {
         this.editorUtilityInterface = new EditorUtilityInterface()

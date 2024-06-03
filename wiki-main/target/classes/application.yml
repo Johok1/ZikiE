@@ -1,7 +1,11 @@
 
 server:
-  port: 80
-
+  port: 443
+  ssl:
+    key-store: keystore.jks
+    key-store-password: LordhaveMercyImBoutToBust127590
+    keyStoreType: PKCS12
+    keyAlias: 1
   error:
     include-message: always
     include-binding-errors: always

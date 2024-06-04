@@ -86,7 +86,7 @@ export default class ImageBackendFunction extends Function{
     }
 
     addImageToBackend = (url, filename) => {
-        const memberId = this.cookie.getCookie("memberId")
+        const memberId = this.cookie.getCookie("token")
         const pageId = this.cookie.getCookie("pageId")
         this.controller.addPageImageUrl(memberId, pageId, url, filename)
             .then(response => response.text())

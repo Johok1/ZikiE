@@ -5,6 +5,31 @@ export default class Controller {
         this.fetch_url_image = "https://www.zinxswiki.com/image"
     }
 
+    getPageName(pageId) {
+        return fetch(this.fetch_url_page + "/getPageName/" + pageId, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).catch(error => {
+            console.error(error)
+        });
+    }
+
+    getPageImage(token, pageId) {
+        return fetch(this.fetch_url_profile + "/getAccountPageLogo/" + token + "/" + pageId, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).catch(error => {
+            console.error(error)
+        });
+
+    }
+
     getPageUrlList(pageId) {
         return fetch(this.fetch_url_image+ "/getPageImageUrls/" + pageId, {
             method: 'GET',

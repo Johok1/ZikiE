@@ -1,5 +1,5 @@
+﻿import Function from '../function.js'
 import '../summernote.js'
-import Function from '../function.js'
 
 export default class SummernoteFunction extends Function{
 

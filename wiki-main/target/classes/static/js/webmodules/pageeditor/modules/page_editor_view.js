@@ -49,9 +49,10 @@ class View {
 
     initPageDetails = () => {
         let pageId = this.backendManager.cookie.getCookie("pageId")
+        let token = this.backendManager.cookie.getCookie("token") 
         let pageLogo = this.pageLogo
         let pageName = this.pageName
-        this.backendManager.controller.getPageImage(pageId)
+        this.backendManager.controller.getPageImage(token, pageId)
             .then(response => response.blob())
             .then(response => {
                 pageLogo.src = URL.createObjectURL(response) 

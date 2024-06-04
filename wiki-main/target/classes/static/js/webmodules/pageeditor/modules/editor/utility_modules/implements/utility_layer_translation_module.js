@@ -1,4 +1,4 @@
-import UtilityTranslationModule from "./utility_translation_module";
+import UtilityTranslationModule from "./utility_translation_module.js";
 
 export default class UtilityLayerTranslationModule extends UtilityTranslationModule {
     constructor() {

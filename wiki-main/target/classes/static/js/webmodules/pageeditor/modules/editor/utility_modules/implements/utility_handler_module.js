@@ -1,3 +1,4 @@
+import UtilityHandlerModuleInterface from '../utility_handler_module_interface.js'
 export default class UtilityHandlerModule extends UtilityHandlerModuleInterface {
 
     constructor() {

@@ -1,4 +1,4 @@
-import UtilityTranslationModuleInterface from "../utility_translation_module_interface";
+import UtilityTranslationModuleInterface from "../utility_translation_module_interface.js";
 
 export default class UtilityTranslationModule extends UtilityTranslationModuleInterface{
 

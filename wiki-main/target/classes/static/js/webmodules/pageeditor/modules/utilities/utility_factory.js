@@ -1,5 +1,5 @@
-import ImageUtility from './utility/implements/image_utility';
-import TextUtility from './utility/implements/text_utility_v2';
+import ImageUtility from './utility/implements/image_utility.js';
+import TextUtility from './utility/implements/text_utility_v2.js';
 
 export default class UtilityFactory {
 

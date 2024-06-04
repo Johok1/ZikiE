@@ -1,4 +1,4 @@
-import UtilitySelectionModuleInterface from "../utility_selection_module_interface";
+import UtilitySelectionModuleInterface from "../utility_selection_module_interface.js";
 
 export default class UtilitySelectionModule extends UtilitySelectionModuleInterface {
     constructor() {

@@ -1,4 +1,4 @@
-import UtilityFactory from './utility_factory.js';
+import UtilityFactory from '../../utilities/utility_factory.js'
 
 export default class EditorUtilityInterface {
     constructor() {

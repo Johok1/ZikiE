@@ -1,4 +1,4 @@
-import UtilityHandlerModule from "./utility_handler_module";
+import UtilityHandlerModule from "./utility_handler_module.js";
 
 export default class UtilityLayerHandlerModule extends UtilityHandlerModule {
     constructor() {

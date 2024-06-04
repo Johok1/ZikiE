@@ -22,8 +22,8 @@ class View {
         this.pageSubmitTimer = new PageSubmitTimer(page)
         this.pageSubmitTimer.setSubmitTimer(10)
 
-        this.pageLogo = document.getElementById("pageLogo")
-        this.pageName = document.getElementById("pageName")
+        this.pageLogo =
+        this.pageName =
 
         this.selectLayerInput = document.getElementById("selectLayerInput")
         this.selectLayerBtn = document.getElementById("selectLayerBtn")
@@ -55,12 +55,12 @@ class View {
         this.backendManager.controller.getPageImage(token, pageId)
             .then(response => response.blob())
             .then(response => {
-                pageLogo.src = URL.createObjectURL(response) 
+                document.getElementById("pageLogo").src = URL.createObjectURL(response)
             })
         this.backendManager.controller.getPageName(pageId)
             .then(response => response.text())
             .then(response => {
-                pageName.innerText = response 
+                document.getElementById("pageName").innerText = response
             })
      }
 

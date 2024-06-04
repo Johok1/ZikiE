@@ -1,6 +1,6 @@
 export default class Controller {
     constructor() {
-        this.fetch_url_account = "https://www.zinxswiki.com/account"
+        this.fetch_url_profile = "https://www.zinxswiki.com/api/v1/profile"
         this.fetch_url_page = "https://www.zinxswiki.com/page"
         this.fetch_url_image = "https://www.zinxswiki.com/image"
     }

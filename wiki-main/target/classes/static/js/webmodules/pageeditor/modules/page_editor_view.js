@@ -72,7 +72,7 @@ class View {
         let enableDragAll = this.utilityHelper.utilityTranslationModule.enableDragAll
         let layerManager = this.utilityHelper.layerManagerModule 
         let loadPageImages = this.loadPageImages
-        this.controller.getAccountPageContent(this.cookie.getCookie("memberId"), this.cookie.getCookie("pageId"))
+        this.controller.getAccountPageContent(this.cookie.getCookie("token"), this.cookie.getCookie("pageId"))
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()

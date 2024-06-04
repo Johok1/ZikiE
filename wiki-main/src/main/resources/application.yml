@@ -2,7 +2,7 @@
 server:
   port: 443
   ssl:
-    key-store: keystore.jks
+    key-store: j2vprojectkeystore.jks
     key-store-password: LordhaveMercyImBoutToBust127590
     keyStoreType: PKCS12
     keyAlias: 1

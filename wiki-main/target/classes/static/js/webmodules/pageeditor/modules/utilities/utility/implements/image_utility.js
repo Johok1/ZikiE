@@ -8,12 +8,14 @@ export default class ImageUtility extends Utility {
         this.toolbar = this.toolbarInterface.imageToolbar
         this.toolbar.registerElement(this.element)
         this.functions = this.utilityFunctionInterface.functionFacade.imageFunctionFacade
+        this.functions.boxResizeFunction.setElement(element)
     }
 
 
 
     selectElement = () => {
         document.getElementById("page").classList.add("editing")
+        this.element.querySelector(".image-main").style.border = "2px solid red "
         this.functions.imageBackendFunction.disableDragMode(this.element)
         //   this.element.querySelector(".image-main").style.border = "3px solid red"
         this.functions.imageBackendFunction.attachFileInputHandler(this.element)

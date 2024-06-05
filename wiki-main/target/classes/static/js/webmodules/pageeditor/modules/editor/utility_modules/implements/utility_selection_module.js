@@ -24,7 +24,7 @@ export default class UtilitySelectionModule extends UtilitySelectionModuleInterf
             utilityElementSelected.constructToolbar()
             utilityElementSelected.selectElement()
             this.selectedEl = utilityElementSelected
-    
+            
             this.select = true
         }
 

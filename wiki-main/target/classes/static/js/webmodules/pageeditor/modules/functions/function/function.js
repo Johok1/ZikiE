@@ -41,7 +41,9 @@ export default class Function extends FunctionPrototype{
     }
 
     stopDrag = (event) => {
-        this.element.querySelector(".main").style.border = "none"
+        if (!document.getElementById("page").classList.contains("editing")) {
+            this.element.querySelector(".main").style.border = "none"
+        }
         document.getElementById("page").classList.remove("dragging")
         event.currentTarget.removeEventListener("mousemove", this.drag)
         this.element.style.zIndex = this.element.getAttribute("layer")
@@ -52,7 +54,7 @@ export default class Function extends FunctionPrototype{
         page.classList.add("dragging")
         this.drag = this.onMouseDrag
        
-        this.element.querySelector(".main").style.border = "2px red solid"
+       this.element.querySelector(".main").style.border = "2px red solid"
         
         
         event.currentTarget.addEventListener("mousemove", this.drag)
@@ -77,9 +79,14 @@ export default class Function extends FunctionPrototype{
         let utilityCollision = this.isUtilityCollision(utilityList, newRect)
 
         if (utilityCollision) {
-           
+
             this.element.style.left = oldLeft
             this.element.style.top = oldTop
+           
+        } else {
+            for (let z = 0; z < utilityList.length; z++) {
+                utilityList[z].style.border = "none"
+            }
         }
     }
 
@@ -125,6 +132,7 @@ export default class Function extends FunctionPrototype{
                     rect2.y + rect2.height < rect1.y)) {
                     utilityCollision = true
                     console.log("isColliding")
+                    utilityList[x].style.border = "2px solid red"
                 }
             } else {
                 console.log("no collisions on different layers")

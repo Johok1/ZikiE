@@ -7,20 +7,21 @@ export default class TextUtility extends Utility {
         this.toolbar = this.toolbarInterface.textToolbar;
         this.toolbar.registerElement(this.element)
         this.functions = this.utilityFunctionInterface.functionFacade.textFunctionFacade
+        this.functions.horizontalResizeFunction.setElement(this.element)
     }
 
     selectElement = () => {
         document.getElementById("page").classList.add("editing")
-
+     
         this.functions.summernoteFunction.disableDragMode(this.element)
-        //  this.element.querySelector(".textParagraph").style.border = "solid 2px red"
+        this.element.querySelector(".main").style.border = "solid 2px red"
     }
 
     deselectElement = () => {
 
         document.getElementById("page").classList.remove("editing")
 
-        // this.element.querySelector(".textParagraph").style.border = "none"
+        this.element.querySelector(".main").style.border = "none"
         this.functions.summernoteFunction.handleDisableEditText(this.constructToolbar, this.element)
         this.functions.summernoteFunction.enableDragMode(this.element)
         this.deconstructToolbar()

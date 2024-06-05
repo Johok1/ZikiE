@@ -15,27 +15,77 @@ export default class TextToolbar extends Toolbar{
 
       
 
-        this.resizeButton = document.createElement("button")
-        this.resizeButton.innerText = "Resize"
+        this.resizeButton = document.createElement("btn")
+
+        this.resizeButtonSVG = document.createElement("svg")
+        this.resizeButtonSVG.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+        this.resizeButtonSVG.setAttribute("width", "24")
+        this.resizeButtonSVG.setAttribute("height", "24")
+        this.resizeButtonSVG.style.width = "30px"
+        this.resizeButtonSVG.style.height = "30px"
+        this.resizeButtonSVG.setAttribute("viewBox", "0 0 24 24")
+        this.resizeButtonSVG.setAttribute("fill", "none")
+        this.resizeButtonSVG.setAttribute("stroke", "currentColor")
+        this.resizeButtonSVG.setAttribute("stroke-width", "3")
+        this.resizeButtonSVG.setAttribute("stroke-linecap", "round")
+        this.resizeButtonSVG.setAttribute("stroke-linejoin", "round")
+        this.resizeButtonSVG.setAttribute("data-feather", "arrow-right")
+        this.resizeButtonSVG.classList.add("feather")
+        this.resizeButtonSVG.classList.add("feather-arrow-down-right")
+        this.resizeButtonSVG.style.color = "#BAA21F"
+
+        this.resizeButton.appendChild(this.resizeButtonSVG)
+
         this.resizeButton.classList.add("text-popup")
         this.resizeButton.classList.add("resize-popup")
-
         this.resizeButton.style.position = "absolute"
         this.resizeButton.style.zIndex = "100"
-       // this.resizeButton.style.top = (parseInt(this.element.querySelector(".textParagraph").style.height) / 2 +17) +  "px"
-        //this.resizeButton.style.right = "0px"
-
+      
  
-        this.editTextBtn = document.createElement("button")
-        this.editTextBtn.innerText = "Edit"
+        this.editTextBtn = document.createElement("btn")
+
+        this.editTextSVG = document.createElement("svg")
+        this.editTextSVG.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+        this.editTextSVG.setAttribute("width", "24")
+        this.editTextSVG.setAttribute("height", "24")
+        this.editTextSVG.setAttribute("viewBox", "0 0 24 24")
+        this.editTextSVG.setAttribute("fill", "none")
+        this.editTextSVG.setAttribute("stroke", "currentColor")
+        this.editTextSVG.setAttribute("stroke-width", "2")
+        this.editTextSVG.setAttribute("stroke-linecap", "round")
+        this.editTextSVG.setAttribute("stroke-linejoin", "round")
+        this.editTextSVG.setAttribute("data-feather", "edit-2")
+        this.editTextSVG.classList.add("feather")
+        this.editTextSVG.classList.add("feather-edit")
+        this.editTextSVG.style.color = "#BAA21F"
+        this.editTextBtn.appendChild(this.editTextSVG)
+
         this.editTextBtn.classList.add("text-popup")
         this.editTextBtn.style.position = "absolute"
         this.editTextBtn.style.zIndex = "100"
        
-     //   this.editTextBtn.style.left = "0px"
+   
 
-        this.cancelSelectionBtn = document.createElement("button")
-        this.cancelSelectionBtn.innerText = "Exit"
+        this.cancelSelectionBtn = document.createElement("btn")
+
+        this.cancelSelectionBtnSVG = document.createElement("svg")
+        this.cancelSelectionBtnSVG.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+        this.cancelSelectionBtnSVG.setAttribute("width", "24")
+        this.cancelSelectionBtnSVG.setAttribute("height", "24")
+        this.cancelSelectionBtnSVG.setAttribute("viewBox", "0 0 24 24")
+        this.cancelSelectionBtnSVG.setAttribute("fill", "none")
+        this.cancelSelectionBtnSVG.setAttribute("stroke", "currentColor")
+        this.cancelSelectionBtnSVG.setAttribute("stroke-width", "2")
+        this.cancelSelectionBtnSVG.setAttribute("stroke-linecap", "round")
+        this.cancelSelectionBtnSVG.setAttribute("stroke-linejoin", "round")
+        this.cancelSelectionBtnSVG.setAttribute("data-feather", "x")
+        this.cancelSelectionBtnSVG.classList.add("feather")
+        this.cancelSelectionBtnSVG.classList.add("feather-x")
+        this.cancelSelectionBtnSVG.style.color = "#BAA21F"
+        this.cancelSelectionBtn.appendChild(this.cancelSelectionBtnSVG)
+
+
+ 
         this.cancelSelectionBtn.classList.add("text-popup")
         this.cancelSelectionBtn.style.position = "absolute"
         this.cancelSelectionBtn.style.zIndex = "100"
@@ -53,7 +103,7 @@ export default class TextToolbar extends Toolbar{
         this.positionExitBtn(this.element, this.cancelSelectionBtn)
         this.positionResizeElement(this.element, this.resizeButton)
    
-      
+        document.feather.replace()
         
       
 
@@ -74,12 +124,12 @@ export default class TextToolbar extends Toolbar{
 
         // Get dimensions and position of the first element
         var rect = element1.getBoundingClientRect();
-        var top = rect.top + rect.height
+        var pageRect = document.getElementById("page").getBoundingClientRect();
 
         // Set position of the second element
         element2.style.position = 'absolute';
-        element2.style.left = (rect.left-200) + 'px';
-        element2.style.top = (top - 10) + 'px';
+        element2.style.left = ((rect.left - pageRect.left)) + 'px';
+        element2.style.top = (rect.height+50 + (rect.top - pageRect.top)) + 'px';
     }
 
     positionExitBtn = (element1, element2) => {
@@ -88,12 +138,12 @@ export default class TextToolbar extends Toolbar{
 
         // Get dimensions and position of the first element
         var rect = element1.getBoundingClientRect();
-        var top = rect.top + rect.height 
+        var pageRect = document.getElementById("page").getBoundingClientRect();
 
         // Set position of the second element
         element2.style.position = 'absolute';
-        element2.style.left = (rect.left - 200) + 'px';
-        element2.style.top = (top - 45) + 'px';
+        element2.style.left = ((rect.left - pageRect.left)) + 'px';
+        element2.style.top = (rect.height + (rect.top - pageRect.top)) + 'px';
     }
 
     positionResizeElement = (element1, element2) => {
@@ -101,13 +151,12 @@ export default class TextToolbar extends Toolbar{
         var styles = window.getComputedStyle(element1);
 
         // Get dimensions and position of the first element
-        var rect = element1.getBoundingClientRect();
-        var top = rect.top + rect.height 
-
+        var rect = element1.querySelector(".main").getBoundingClientRect();
+        var pageRect = document.getElementById("page").getBoundingClientRect();
         // Set position of the second element
         element2.style.position = 'absolute';
-        element2.style.left = (rect.left-100+rect.width) + 'px';
-        element2.style.top = (top -(rect.height/2)) + 'px';
+        element2.style.left = (rect.width + (rect.left - pageRect.left)) + 'px';
+        element2.style.top = (rect.height + (rect.top - pageRect.top)) + 'px';
     }
 
 

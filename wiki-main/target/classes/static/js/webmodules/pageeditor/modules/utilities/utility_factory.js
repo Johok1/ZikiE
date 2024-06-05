@@ -49,8 +49,9 @@ export default class UtilityFactory {
         const imgStyles = {};
         let img = this.createElement('img');
         img.style.backgroundColor = "transparent"
-        img.style.width = "75px"
+         img.style.width = "75px"
         img.style.height = "75px"
+        img.style.objectFit = "cover"
         img.draggable = false
         img.classList.add("image-main")
         img.classList.add("main")

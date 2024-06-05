@@ -169,7 +169,7 @@ class View {
 
     hideLayer() {
         let layerManager = this.utilityHelper.layerManagerModule
-        layerManager.toggleHideLayer(this.selectLayerInput.value)
+        layerManager.toggleHideLayer(this.hideLayerInput.value)
     }
 
     selectLayer() {

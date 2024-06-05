@@ -10,6 +10,7 @@ export default class BoxResizeFunction extends Function {
         let container = document.getElementById("page");
         let containerRect = container.getBoundingClientRect();
         let resizeButton = document.getElementById("page").querySelector(".resize-popup")
+        let cancelImageButton = document.getElementById("page").querySelector(".cancel-image")
         let elementStyles = window.getComputedStyle(this.element);
         let elementWidth = parseFloat(elementStyles.width) || 0; // Use 0 if width is not defined
         let elementHeight = parseFloat(elementStyles.height) || 0; // Use 0 if height is not defined
@@ -39,19 +40,23 @@ export default class BoxResizeFunction extends Function {
         let oldResizeButtonTop = resizeButton.style.top
 
         resizeButton.style.left = (movementX + parseInt(resizeButton.style.left)) + "px";
-        resizeButton.style.top = (movementX + parseInt(resizeButton.style.top)) + "px";
+        resizeButton.style.top = (movementY + parseInt(resizeButton.style.top)) + "px";
+
+        let oldCancelImageButtonStyleTop = cancelImageButton.style.top 
+
+        cancelImageButton.style.top = (movementY + parseInt(resizeButton.style.top)) + "px";
 
         let newImageWidth = imageWidth + movementX
         let newImageHeight = imageHeight + movementY
 
         let oldImageWidth = this.element.querySelector(".image-main").style.width
-
+        let oldImageHeight = this.element.querySelector(".image-main").style.height 
 
         this.element.style.width = `${newWidth}px`;
-        this.element.style.height = `${newWidth}px`;
+        this.element.style.height = `${newHeight}px`;
 
         this.element.querySelector(".image-main").style.width = newImageWidth + "px"
-        this.element.querySelector(".image-main").style.height = newImageWidth + "px"
+        this.element.querySelector(".image-main").style.height = newImageHeight + "px"
 
         let newRect = this.element.getBoundingClientRect()
         let utilityList = container.querySelectorAll(".utility")
@@ -59,11 +64,12 @@ export default class BoxResizeFunction extends Function {
 
         if (utilityCollision) {
             this.element.style.width = oldWidth
-            this.element.style.height = oldWidth
+            this.element.style.height = oldHeight
             resizeButton.style.left = oldResizeButtonLeft
             resizeButton.style.top = oldResizeButtonTop
+            cancelImageButton.style.top = oldCancelImageButtonStyleTop
             this.element.querySelector(".image-main").style.width = oldImageWidth  
-            this.element.querySelector(".image-main").style.height = oldImageWidth 
+            this.element.querySelector(".image-main").style.height = oldImageHeight 
            
 
         } else {

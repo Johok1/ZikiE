@@ -81,14 +81,16 @@ export default class SummernoteFunction extends Function{
     }
 
     attachDisableEditButton = (constructToolbar, element) => {
-        let disableEditBtn = $('<button class="disable-edit-button">Disable Edit</button>');
-
+        let disableEditBtn = $('<btn class="disable-edit-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="x" class="feather feather-x" style="color: #BAA21F;"></svg></btn>');
+        
         // Add an event listener to the button
 
 
         $('.note-editor').append(disableEditBtn)
 
         $('.disable-edit-button').on("click", () => this.handleDisableEditText(constructToolbar, element));
+
+        document.feather.replace()
     }
 
     preventSummernoteParagraphDeletion = (parList) => {

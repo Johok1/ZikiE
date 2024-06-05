@@ -48,6 +48,9 @@ export default class ImageBackendFunction extends Function{
 
     handleFileInput = (e) => {
         this.element.querySelector(".image-main").style.backgroundColor = "transparent"
+        //this.element.querySelector(".image-main").style.width = ""
+      //  this.element.querySelector(".image-main").style.height = ""
+      
         let file = e.dataTransfer.files.item(0)
         this.processFile(file)
             .then(result => {
@@ -56,6 +59,8 @@ export default class ImageBackendFunction extends Function{
 
                 this.element.querySelector(".image-main").src = URL.createObjectURL(result)
 
+
+               
 
                 this.element.querySelector(".image-main").id = file.name
 

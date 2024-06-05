@@ -13,25 +13,65 @@ export default class ImageToolbar extends Toolbar{
       
 
         let page = document.getElementById("page")
-        this.resizeButton = document.createElement("button")
-        this.resizeButton.innerText = "Resize Image"
+
+
+        this.resizeButton = document.createElement("btn")
+
+
+
+        this.resizeButtonSVG = document.createElement("svg")
+        this.resizeButtonSVG.setAttribute("xmlns" , "http://www.w3.org/2000/svg")
+        this.resizeButtonSVG.setAttribute("width", "24")
+        this.resizeButtonSVG.setAttribute("height", "24")
+        this.resizeButtonSVG.style.width = "40px"
+        this.resizeButtonSVG.style.height = "40px"
+        this.resizeButtonSVG.setAttribute("viewBox" , "0 0 24 24")
+        this.resizeButtonSVG.setAttribute("fill" , "none")
+        this.resizeButtonSVG.setAttribute("stroke" ,"currentColor")
+        this.resizeButtonSVG.setAttribute("stroke-width", "3")
+        this.resizeButtonSVG.setAttribute("stroke-linecap", "round")
+        this.resizeButtonSVG.setAttribute("stroke-linejoin", "round")
+        this.resizeButtonSVG.setAttribute("data-feather","arrow-down-right")
+        this.resizeButtonSVG.classList.add("feather")
+        this.resizeButtonSVG.classList.add("feather-arrow-down-right")
+        this.resizeButtonSVG.style.color = "#BAA21F"
+
+        this.resizeButton.appendChild(this.resizeButtonSVG)
+
+       // this.resizeButton.innerText = "Resize Image"
         this.resizeButton.classList.add("image-popup")
         this.resizeButton.classList.add("resize-popup")
         this.resizeButton.style.position = "absolute"
         this.resizeButton.style.zIndex = "100"
-       
 
-        this.cancelSelectionBtn = document.createElement("button")
-        this.cancelSelectionBtn.innerText = "Exit"
+        this.cancelSelectionBtn = document.createElement("btn")
+
+        this.cancelSelectionBtnSVG = document.createElement("svg")
+        this.cancelSelectionBtnSVG.setAttribute("xmlns" , "http://www.w3.org/2000/svg")
+        this.cancelSelectionBtnSVG.setAttribute("width" ,"24")
+        this.cancelSelectionBtnSVG.setAttribute("height",  "24")
+        this.cancelSelectionBtnSVG.setAttribute("viewBox",  "0 0 24 24")
+        this.cancelSelectionBtnSVG.setAttribute("fill" , "none")
+        this.cancelSelectionBtnSVG.setAttribute("stroke",  "currentColor")
+        this.cancelSelectionBtnSVG.setAttribute("stroke-width","2")
+        this.cancelSelectionBtnSVG.setAttribute("stroke-linecap","round")
+        this.cancelSelectionBtnSVG.setAttribute("stroke-linejoin","round")
+        this.cancelSelectionBtnSVG.setAttribute("data-feather","x")
+        this.cancelSelectionBtnSVG.classList.add("feather")
+        this.cancelSelectionBtnSVG.classList.add("feather-x")
+        this.cancelSelectionBtnSVG.style.color = "#BAA21F"
+        this.cancelSelectionBtn.appendChild(this.cancelSelectionBtnSVG)
+
         this.cancelSelectionBtn.classList.add("image-popup")
+        this.cancelSelectionBtn.classList.add("cancel-image")
         this.cancelSelectionBtn.style.position = "absolute"
         this.cancelSelectionBtn.style.zIndex = "100"
 
         page.appendChild(this.resizeButton)
         page.appendChild(this.cancelSelectionBtn)
-
+       
         this.updateToolbarPosition()
-
+        document.feather.replace()
 
     }
 
@@ -47,13 +87,12 @@ export default class ImageToolbar extends Toolbar{
         var styles = window.getComputedStyle(element1);
 
         // Get dimensions and position of the first element
-        var rect = element1.getBoundingClientRect();
-        var top = rect.top + rect.height
-
+        var rect = element1.querySelector(".image-main").getBoundingClientRect();
+        var pageRect = document.getElementById("page").getBoundingClientRect();
         // Set position of the second element
         element2.style.position = 'absolute';
-        element2.style.left = (rect.left - 100 + rect.width) + 'px';
-        element2.style.top = (top - (rect.height / 2)) + 'px';
+        element2.style.left = (rect.width + (rect.left-pageRect.left)) + 'px';
+        element2.style.top =  (rect.height + (rect.top-pageRect.top)) + 'px';
     }
 
 
@@ -64,12 +103,12 @@ export default class ImageToolbar extends Toolbar{
 
         // Get dimensions and position of the first element
         var rect = element1.getBoundingClientRect();
-        var top = rect.top + rect.height
+        var pageRect = document.getElementById("page").getBoundingClientRect();
 
         // Set position of the second element
         element2.style.position = 'absolute';
-        element2.style.left = (rect.left - 200) + 'px';
-        element2.style.top = (top - 10) + 'px';
+        element2.style.left = ((rect.left - pageRect.left)) + 'px';
+        element2.style.top = (rect.height + (rect.top - pageRect.top)) + 'px';
     }
 
     deconstructToolbar = () => {

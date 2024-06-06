@@ -104,9 +104,7 @@ public class AuthTokenUtils {
     }
 
     public String decodeEmail(String tempToken) throws RuntimeException{
-        if(isExpired(tempToken)){
-            throw new RuntimeException("temp token is expired, not granting access!");
-        }else {
+
             String email = Jwts.parserBuilder().setSigningKey(key()).build()
                     .parseClaimsJws(tempToken).getBody().getSubject();
 
@@ -115,7 +113,7 @@ public class AuthTokenUtils {
             } else {
                 throw new RuntimeException("unable to decode the email correctly");
             }
-        }
+
     }
 
 }

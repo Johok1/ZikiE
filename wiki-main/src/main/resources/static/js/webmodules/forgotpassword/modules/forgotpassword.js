@@ -36,3 +36,5 @@ class ForgotPassword {
         }
     }
 }
+
+const app = new ForgotPassword()

@@ -31,3 +31,5 @@ class ResetPassword {
         }
     }
 }
+
+const app = new ResetPassword()

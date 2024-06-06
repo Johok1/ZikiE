@@ -31,11 +31,12 @@ public class PasswordResetDirectoryController {
                 modelAndView.setViewName("auth-reset-password.html");
                 return modelAndView;
             }else{
-                modelAndView.setViewName("redirect:/https://www.zinxswiki.com/login");
+                modelAndView.setViewName("redirect:/login");
                 return modelAndView;
             }
         }catch (Exception e){
-            modelAndView.setViewName("redirect:/https://www.zinxswiki.com");
+            modelAndView.setViewName("redirect:/");
+            System.out.println(e.getMessage());
             return modelAndView;
         }
     }

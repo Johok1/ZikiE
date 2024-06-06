@@ -94,9 +94,7 @@ class Login {
             .then(response => response.text())
             .then(response => {
                 if (!(response === "false")) {
-                    if (rememberPasswordInput.checked && passwordInput.value != "") {
-                        backendManager.cookie.setCookie("rememberPassword", this.passwordInput.value, 72)
-                    }
+                    
                     backendManager.cookie.setCookie("token", response, 8)
                     window.location.href = "https://www.zinxswiki.com"
                 } else {
@@ -117,11 +115,15 @@ function handleCredentialResponse(response) {
     app.backendManager.controller.postGoogleLoginRequest(response.credential)
         .then(response => response.text())
         .then(response => {    
-            if (response != false) {
+            if (response != "false") {
+                if (app.rememberPasswordInput.checked && app.passwordInput.value != "") {
+                    app.backendManager.cookie.setCookie("rememberPassword", app.passwordInput.value, 72)
+                }
                 app.backendManager.cookie.setCookie("token", response, 8)
                 window.location.href = "https://www.zinxswiki.com"
             } else {
-                console.error("google login request failed!")
+                app.errorDiv.innerText = "Please ensure you validate your email"
+                app.errorDiv.classList.remove("visually-hidden")
             }
         })
 }

@@ -8,7 +8,7 @@ class ForgotPassword {
         this.errorDiv.classList.add("visually-hidden")
         this.passDiv = document.getElementById("passDiv")
         this.passDiv.classList.add("visually-hidden")
-
+        this.resetBtn.addEventListener("click", this.sendResetRequest)
     }
 
     sendResetRequest = () => {

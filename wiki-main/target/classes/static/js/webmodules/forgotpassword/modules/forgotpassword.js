@@ -1,12 +1,38 @@
-/*
- * 
- * from the backend   buildResetEmail(email, "https://www.zinxswiki.com/resetpassword/request/"+token));
- * this is how the reset system works, you pass in the email it generates a token and sends you a url with the token as 
- * a path parameter, from this url your supposed to be able to, using this token, reset your password, there was another directory controller
- * from the old system that i didn't bring over that would control what happens after you enter this directory, should look at that as well
- * 
- * ---
- * 
- * backend needs more stuff before this system is ready
- * 
- * /
+import BackendManager from './backend/backend_manager.js'
+class ForgotPassword {
+    constructor() {
+        this.backendManager = new BackendManager()
+        this.emailInput = document.getElementById("emailInput")
+        this.resetBtn = document.getElementById("resetBtn")
+        this.errorDiv = document.getElementById("errorDiv")
+        this.errorDiv.classList.add("visually-hidden")
+        this.passDiv = document.getElementById("passDiv")
+        this.passDiv.classList.add("visually-hidden")
+
+    }
+
+    sendResetRequest = () => {
+        let passDiv = this.passDiv 
+        let email = this.emailInput.value
+        let isValid = email != "" && email.includes("@")
+        if (isValid) {
+            this.errorDiv.classList.add("visually-hidden")
+            let errorDiv = this.errorDiv
+            this.backendManager.controller.postResetPasswordRequest(this.emailInput.value)
+                .then(response => response.text())
+                .then(response => {
+                    if (response == "true") {
+                        passDiv.innerText = "Check your Email !"
+                        passDiv.classList.remove("visually-hidden")
+                       
+                    } else {
+                        errorDiv.innerText = response
+                        errorDiv.classList.remove("visually-hidden")
+                    }
+                })
+        } else {
+            this.errorDiv.innerText = "Invalid Email"
+            this.errorDiv.classList.remove("visually-hidden")
+        }
+    }
+}

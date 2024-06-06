@@ -228,7 +228,7 @@ public class ValidationService {
                 Account account =(Account) accountRepository.findByEmail(email).get();
                 emailSender.send(
                         email,
-                        buildResetEmail(email, "https://www.zinxswiki.com/resetpassword/request/"+token));
+                        buildResetEmail(email, "https://www.zinxswiki.com/passwordreset/request/"+token));
             }).start();
             return "true";
         }catch (Exception e){

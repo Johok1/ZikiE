@@ -59,7 +59,7 @@ public class ValidationController {
     }
 
     @CrossOrigin
-    @GetMapping("resetPassword/{email}")
+    @PostMapping("resetPassword/{email}")
     public String resetPassword(@PathVariable String email){
         return validationService.resetPassword(email);
     }

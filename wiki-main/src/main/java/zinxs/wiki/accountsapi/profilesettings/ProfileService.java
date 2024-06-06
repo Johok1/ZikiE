@@ -115,10 +115,14 @@ public class ProfileService {
     }
 
     public String setProfilePassword(String tempToken, String newPassword){
-        Account account = getAccount(tempToken);
-        account.setPassword(authTokenUtils.bCryptPasswordEncoder.encode(newPassword));
-        accountRepository.save(account);
-        return account.getPassword();
+        try {
+            Account account = getAccount(tempToken);
+            account.setPassword(authTokenUtils.bCryptPasswordEncoder.encode(newPassword));
+            accountRepository.save(account);
+            return "true";
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
 
     public String getProfileNickname(String tempToken){

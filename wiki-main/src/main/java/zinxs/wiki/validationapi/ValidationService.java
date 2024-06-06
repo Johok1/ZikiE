@@ -232,7 +232,7 @@ public class ValidationService {
             }).start();
             return "true";
         }catch (Exception e){
-            return "Failed to process request";
+            return "Failed to process request " + e.getMessage();
         }
     }
 

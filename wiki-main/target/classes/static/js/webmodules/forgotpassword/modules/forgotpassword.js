@@ -1,4 +1,5 @@
 import BackendManager from './backend/backend_manager.js'
+
 class ForgotPassword {
     constructor() {
         this.backendManager = new BackendManager()

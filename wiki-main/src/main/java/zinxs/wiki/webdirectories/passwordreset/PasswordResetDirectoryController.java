@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 
@@ -26,14 +27,14 @@ public class PasswordResetDirectoryController {
     public ModelAndView resetPasswordWithToken(@PathVariable String token, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView();
         try {
-            if (accountRepository.findByEmail(authTokenUtils.decodeEmail(token)).get().isEnabled()) {
+            Account account = accountRepository.findByEmail(authTokenUtils.decodeEmail(token)).get();
+            if (account.isEnabled()) {
                 response.addCookie(new Cookie("token", token));
                 modelAndView.setViewName("auth-reset-password.html");
-                return modelAndView;
             }else{
                 modelAndView.setViewName("redirect:/login");
-                return modelAndView;
             }
+            return modelAndView;
         }catch (Exception e){
             modelAndView.setViewName("redirect:/");
             e.printStackTrace();
@@ -55,7 +56,7 @@ public class PasswordResetDirectoryController {
                     modelAndView.setViewName("auth-password-social.html");
                 } else {
                     //  System.out.println("token was valid");
-                    modelAndView.setViewName("redirect:/https://www.zinxswiki.com");
+                    modelAndView.setViewName("auth-password-social.html");
                 }
             }catch (Exception e){
                 //  System.out.println("token process gave error :" + e);

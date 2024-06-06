@@ -86,7 +86,12 @@ public class ValidationService {
                 String email = payload.getEmail();
 
                 Account account = (Account) accountRepository.findByEmail(email).get();
-                return authTokenUtils.generateTempTokenNoPassword(email,"");
+
+                if(account.isEnabled()) {
+                    return authTokenUtils.generateTempTokenNoPassword(email, "");
+                }else{
+                    return "false";
+                }
             } else {
                 return "false";
             }
@@ -101,8 +106,12 @@ public class ValidationService {
         try{
             Account account = accountService.getAccount(loginRequest);
             if(account != null) {
-                token = authTokenUtils.generateTempToken(loginRequest.getEmail(), loginRequest.getPassword());
-                System.out.println("ValidationService login generated token " + token);
+                if(account.isEnabled()) {
+                    token = authTokenUtils.generateTempToken(loginRequest.getEmail(), loginRequest.getPassword());
+                    System.out.println("ValidationService login generated token " + token);
+                }else{
+                    return "Must validate email in order to login!";
+                }
             }else{
                 return "Error: Invalid account credentials";
             }
@@ -128,6 +137,12 @@ public class ValidationService {
             if(!request.getEmail().contains("@")){
                 return "Email is invalid";
             }
+
+            if(request.getPassword().length()<8){
+                return "Password must be greater than 7 characters";
+            }
+
+
             /*
             if(!request.getConfirmPassword().equals(request.getPassword())){
                 return "Passwords do no match";

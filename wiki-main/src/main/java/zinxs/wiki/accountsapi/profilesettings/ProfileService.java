@@ -105,9 +105,13 @@ public class ProfileService {
 
     public String setProfileEmail(String tempToken, String email){
         Account account = getAccount(tempToken);
-        account.setEmail(email);
-        accountRepository.save(account);
-        return account.getEmail();
+        if(email.contains("@")) {
+            account.setEmail(email);
+            accountRepository.save(account);
+            return account.getEmail();
+        }else{
+            return "Invalid Email";
+        }
     }
 
     public String setProfilePassword(String tempToken, String newPassword){

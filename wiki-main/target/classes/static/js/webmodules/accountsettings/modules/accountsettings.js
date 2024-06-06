@@ -22,29 +22,17 @@ class AccountSettings {
 
         this.changePasswordInput = document.getElementById("changePasswordInput")
 
-        this.changePasswordBtn = document.getElementById("changePasswordBtn")
+
 
         this.changeProfilePictureHandler()
-        this.changePasswordBtn.addEventListener("click", this.submitNewPassword)
+       
         this.changeEmailBtn.addEventListener("click", this.submitNewEmail)
         this.changeUsernameBtn.addEventListener("click", this.submitNewUsername)
 
     }
 
 
-    submitNewPassword = () => {
-        let newPassword = this.changePasswordInput.value
-
-        let token = this.backendManager.cookie.getCookie("token")
-        let backendManager = this.backendManager
-        backendManager.controller.setProfilePassword(token, newPassword)
-            .then(response => response.text())
-            .then(response => {
-                console.log(response)
-            })
-        
-        
-    }
+   
 
     submitNewEmail = () => {
         let newEmail = this.changeEmailInput.value

@@ -36,7 +36,7 @@ public class PasswordResetDirectoryController {
             }
         }catch (Exception e){
             modelAndView.setViewName("redirect:/");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return modelAndView;
         }
     }

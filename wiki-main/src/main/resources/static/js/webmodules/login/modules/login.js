@@ -89,11 +89,12 @@ class Login {
         let backendManager = this.backendManager
         let rememberPasswordInput = this.rememberPasswordInput
         let errorDiv = this.errorDiv
+        let passwordInput = this.passwordInput
         this.backendManager.controller.postLoginRequest(this.emailInput.value, this.passwordInput.value)
             .then(response => response.text())
             .then(response => {
-                if (!(response == "false")) {
-                    if (rememberPasswordInput.checked) {
+                if (!(response === "false")) {
+                    if (rememberPasswordInput.checked && passwordInput.value != "") {
                         backendManager.cookie.setCookie("rememberPassword", this.passwordInput.value, 72)
                     }
                     backendManager.cookie.setCookie("token", response, 8)

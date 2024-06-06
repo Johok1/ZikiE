@@ -77,15 +77,32 @@ class Login {
         this.passwordInput = document.getElementById("passwordInput")
         this.emailInput = document.getElementById("emailInput")
         this.loginBtn.addEventListener("click", this.sendLoginRequest)
+        this.errorDiv = document.getElementById("errorDiv")
+        this.errorDiv.classList.add("visually-hidden")
+        this.rememberPasswordInput = document.getElementById("rememberPasswordInput")
+        if (this.backendManager.cookie.getCookie("rememberPassword") != null) {
+            this.passwordInput.value = this.backendManager.cookie.getCookie("rememberPassword")
+        }
     }
 
     sendLoginRequest = () => {
         let backendManager = this.backendManager
+        let rememberPasswordInput = this.rememberPasswordInput
+        let errorDiv = this.errorDiv
         this.backendManager.controller.postLoginRequest(this.emailInput.value, this.passwordInput.value)
             .then(response => response.text())
             .then(response => {
-                backendManager.cookie.setCookie("token", response, 8)
-                window.location.href = "https://www.zinxswiki.com"
+                if (!(response == "false")) {
+                    if (rememberPasswordInput.checked) {
+                        backendManager.cookie.setCookie("rememberPassword", this.passwordInput.value, 72)
+                    }
+                    backendManager.cookie.setCookie("token", response, 8)
+                    window.location.href = "https://www.zinxswiki.com"
+                } else {
+                    errorDiv.innerText = "Please ensure you validate your email"
+                    errorDiv.classList.remove("visually-hidden")
+                }
+
             })
     }
 

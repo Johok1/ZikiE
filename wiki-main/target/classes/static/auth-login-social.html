@@ -91,11 +91,7 @@
                                     <div class="card-body p-5 text-center">
                                         <div class="h3 fw-light mb-3">Sign In</div>
                                         <!-- Social login links-->
-                                        <a class="btn btn-icon btn-facebook mx-1" href="#!"><i class="fab fa-facebook-f fa-fw fa-sm"></i></a>
-                                        <a class="btn btn-icon btn-github mx-1" href="#!"><i class="fab fa-github fa-fw fa-sm"></i></a>
-                                        <a class="btn btn-icon btn-google mx-1" href="#!"><i class="fab fa-google fa-fw fa-sm"></i></a>
-                                        <a class="btn btn-icon btn-twitter mx-1" href="#!"><i class="fab fa-twitter fa-fw fa-sm text-white"></i></a>
-                                    </div>
+                                        <label id="errorDiv" style="color: red">Error</label>
                                     <hr class="my-0" />
                                     <div class="card-body p-5">
                                         <!-- Login form-->
@@ -115,7 +111,7 @@
                                             <!-- Form Group (login box)-->
                                             <div class="d-flex align-items-center justify-content-between mb-0">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" id="checkRememberPassword" type="checkbox" value="" />
+                                                    <input id="rememberPasswordInput" class="form-check-input" id="checkRememberPassword" type="checkbox" value="" />
                                                     <label class="form-check-label" for="checkRememberPassword">Remember password</label>
                                                 </div>
                                                 <a id="loginBtn" class="btn btn-primary" href="#!">Login</a>

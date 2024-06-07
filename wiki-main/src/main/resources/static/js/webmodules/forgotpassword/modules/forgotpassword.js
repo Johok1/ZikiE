@@ -19,6 +19,7 @@ class ForgotPassword {
         if (isValid) {
             this.errorDiv.classList.add("visually-hidden")
             let errorDiv = this.errorDiv
+            console.log("email" + this.emailInput.value)
             this.backendManager.controller.postResetPasswordRequest(this.emailInput.value)
                 .then(response => response.text())
                 .then(response => {

@@ -229,7 +229,7 @@ public class ValidationService {
                 Account account =(Account) accountRepository.findByEmail(email).get();
                 emailSender.send(
                         email,
-                        buildResetEmail(email, "https://www.zinxswiki.com/passwordreset/request?="+token));
+                        buildResetEmail(email, "https://www.zinxswiki.com/passwordreset/request?=token"+token));
             }).start();
             return "true";
         }catch (Exception e){
@@ -260,7 +260,7 @@ public class ValidationService {
         accountService.enableAccount(
                 confirmationToken.getAccount().getEmail());
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/login");
         return modelAndView;
     }
 

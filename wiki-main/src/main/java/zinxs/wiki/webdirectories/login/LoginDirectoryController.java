@@ -29,7 +29,7 @@ public class LoginDirectoryController {
                     modelAndView.setViewName("auth-login-social.html");
                 } else {
                   //  System.out.println("token was valid");
-                    modelAndView.setViewName("homepage-logged-in.html");
+                    modelAndView.setViewName("redirect:/");
                 }
             }catch (Exception e){
               //  System.out.println("token process gave error :" + e);

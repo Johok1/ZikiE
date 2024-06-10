@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 import zinxs.wiki.accountsapi.*;
 import zinxs.wiki.accountsapi.google.GoogleAccount;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
@@ -228,7 +229,7 @@ public class ValidationService {
                 Account account =(Account) accountRepository.findByEmail(email).get();
                 emailSender.send(
                         email,
-                        buildResetEmail(email, "https://www.zinxswiki.com/passwordreset/request/"+token));
+                        buildResetEmail(email, "https://www.zinxswiki.com/passwordreset/request?="+token));
             }).start();
             return "true";
         }catch (Exception e){
@@ -239,7 +240,7 @@ public class ValidationService {
 
 
     @Transactional
-    public String confirmToken(String token) {
+    public ModelAndView confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)
                 .orElseThrow(() ->
@@ -258,7 +259,9 @@ public class ValidationService {
         confirmationTokenService.setConfirmedAt(token);
         accountService.enableAccount(
                 confirmationToken.getAccount().getEmail());
-        return "confirmed";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
     }
 
     private String buildEmail(String name, String link) {

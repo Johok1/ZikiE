@@ -2,6 +2,7 @@ package zinxs.wiki.validationapi;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import zinxs.wiki.jsonobjects.GoogleRegistrationRequest;
 import zinxs.wiki.jsonobjects.LoginRequest;
 import zinxs.wiki.jsonobjects.RegistrationRequest;
@@ -66,7 +67,7 @@ public class ValidationController {
 
     @CrossOrigin
     @GetMapping(path = "confirm")
-    public String confirm(@RequestParam("token") String token) {
+    public ModelAndView confirm(@RequestParam("token") String token) {
         return validationService.confirmToken(token);
     }
 

@@ -23,7 +23,7 @@ public class PasswordResetDirectoryController {
     private AccountRepository accountRepository;
 
     @CrossOrigin
-    @GetMapping("/request")
+    @GetMapping(path="request")
     public ModelAndView resetPasswordWithToken(@RequestParam("token") String token, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView();
         try {

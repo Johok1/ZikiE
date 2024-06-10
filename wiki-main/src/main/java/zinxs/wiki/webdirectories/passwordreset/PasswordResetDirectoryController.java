@@ -2,6 +2,7 @@ package zinxs.wiki.webdirectories.passwordreset;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import zinxs.wiki.accountsapi.Account;
@@ -24,6 +25,7 @@ public class PasswordResetDirectoryController {
 
     @CrossOrigin
     @GetMapping(path="request")
+    @Transactional
     public ModelAndView resetPasswordWithToken(@RequestParam("token") String token, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView();
         try {
@@ -37,8 +39,8 @@ public class PasswordResetDirectoryController {
             return modelAndView;
         }catch (Exception e){
             modelAndView.setViewName("redirect:/");
-            e.printStackTrace();
-            return modelAndView;
+            throw new RuntimeException(e);
+
         }
     }
 

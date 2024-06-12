@@ -40,7 +40,8 @@ export default class UtilityFactory {
         labelDiv.style.width = parDiv.style.width
         page.appendChild(labelDiv);
         let utility = this.getUtility(labelDiv)
-        utility.enableDrag()
+        return utility
+      
     }
 
     // Method to construct the image utility
@@ -71,7 +72,8 @@ export default class UtilityFactory {
         div.appendChild(img)
         page.appendChild(div);
         let utility = this.getUtility(div)
-        utility.enableDrag()
+        return utility
+      
     }
 
     // Method to get the utility based on the element type

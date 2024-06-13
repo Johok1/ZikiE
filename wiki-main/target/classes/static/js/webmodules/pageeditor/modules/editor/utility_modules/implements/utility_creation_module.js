@@ -60,7 +60,14 @@ export default class UtilityCreationModule{
         this.utility.element.style.transform = 'translateY(' + (event.clientY - 80) + 'px)'
         this.utility.element.style.transform += 'translateX(' + (event.clientX - 50) + 'px)';
 
+      
+     
+
+
     }
+
+
+   
 
     placeUtility = (utility, event) => {
         if (this.page.classList.contains("placing")) {
@@ -75,11 +82,41 @@ export default class UtilityCreationModule{
             //utility.element.style.transform += 'translateX(' + (event.clientX - 110) + 'px)';
             utility.element.style.transform = ""
             utility.element.style.left = `${event.clientX-110 }px`
-            utility.element.style.top = `${event.clientY-230 }px`
+            utility.element.style.top = `${event.clientY - 230}px`
+
+            let newRect = utility.element.getBoundingClientRect()
+            let utilityList = this.page.querySelectorAll(".utility")
+            if (this.isUtilityCollision(utilityList, newRect,utility.element)) {
+                utility.element.remove()
+            }
+
             utility.enableDrag()
             this.registerAllHandlersSelect()
             this.page.classList.remove("placing")
         }
+    }
+
+    isUtilityCollision = (utilityList, newRect, element) => {
+        let utilityCollision = false
+        for (let x = 0; x < utilityList.length; x++) {
+            if ((utilityList[x].getAttribute("layer") == element.getAttribute("layer")) && utilityList[x] != element) {
+                let utilityRect = utilityList[x].getBoundingClientRect()
+                let rect1 = newRect
+                let rect2 = utilityRect
+                console.log("same layer collision possible")
+                if (!(rect2.x > rect1.x + rect1.width ||
+                    rect2.x + rect2.width < rect1.x ||
+                    rect2.y > rect1.y + rect1.height ||
+                    rect2.y + rect2.height < rect1.y)) {
+                    utilityCollision = true
+                    console.log("isColliding")
+                    utilityList[x].style.border = "2px solid red"
+                }
+            } else {
+                console.log("no collisions on different layers")
+            }
+        }
+        return utilityCollision;
     }
 
     //set utility to placement mode and add eventer for placement 

@@ -38,7 +38,7 @@ export default class UtilityFactory {
         labelDiv.appendChild(parDiv);
         labelDiv.style.height = parDiv.style.height
         labelDiv.style.width = parDiv.style.width
-        page.appendChild(labelDiv);
+        
         let utility = this.getUtility(labelDiv)
         return utility
       
@@ -70,7 +70,7 @@ export default class UtilityFactory {
         div.style.zIndex = layer
         div.setAttribute("layer",layer)
         div.appendChild(img)
-        page.appendChild(div);
+       
         let utility = this.getUtility(div)
         return utility
       

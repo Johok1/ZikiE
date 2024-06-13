@@ -33,13 +33,18 @@ export default class UtilityCreationModule{
     }
 
     setUtilityPlacementMode = (utility) => {
-        utility.element.style.position = "absolute"
+        utility.element.style.position = "fixed"
         utility.element.style.opacity = "50%"
 
-        document.addEventListener("mousemove", function ({ movementX, movementY }) {
-            utility.element.style.left = utility.element.style.left + movementX
-            utility.element.style.top = utility.element.style.top + movementY 
+        document.getElementById("layoutSidenav_content").appendChild(utility.element)
+        utility.element.style.zIndex = "9999"
+        
+        document.getElementById("layoutSidenav_content").addEventListener("mousemove", function (event) {
+            utility.element.style.transform = 'translateY(' + (event.clientY - 80) + 'px)'
+            utility.element.style.transform += 'translateX(' + (event.clientX - 50) + 'px)';
+         
         })
+       
     }
 
     //set utility to placement mode and add eventer for placement 

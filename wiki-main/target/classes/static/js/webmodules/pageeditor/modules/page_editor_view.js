@@ -1,5 +1,6 @@
 import BackendManager from './backend/backend_manager.js';
 import UtilityHelper from './editor/utility_helper.js';
+import UtilityCreationModule from './editor/utility_modules/implements/utility_creation_module.js';
 import PageSubmitTimer from './submit/page_submit_timer.js';
 
 
@@ -22,8 +23,7 @@ class View {
         this.pageSubmitTimer = new PageSubmitTimer(page)
         this.pageSubmitTimer.setSubmitTimer(10)
 
-        this.pageLogo =
-        this.pageName =
+       
 
         this.selectLayerInput = document.getElementById("selectLayerInput")
         this.selectLayerBtn = document.getElementById("selectLayerBtn")
@@ -42,6 +42,8 @@ class View {
         this.imageUtilityBtn.addEventListener("click", this.createImageBtnHandler.bind(this))
 
         this.loadPageContent()
+
+        this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
        
     }
 
@@ -155,16 +157,12 @@ class View {
 
 
     createTextBtnHandler() {
-        let layerManager = this.utilityHelper.layerManagerModule
-        this.utilityHelper.utilityFactory.constructTextUtility(layerManager.getCurrentSelectedLayer())
-        this.registerAllHandlersSelect()
+        this.utilityCreationModule.createTextUtility()
 
     }
 
     createImageBtnHandler() {
-        let layerManager = this.utilityHelper.layerManagerModule
-        this.utilityHelper.utilityFactory.constructImageUtility(layerManager.getCurrentSelectedLayer())
-        this.registerAllHandlersSelect()
+        this.utilityCreationModule.createImageUtility()
     }
 
     hideLayer() {

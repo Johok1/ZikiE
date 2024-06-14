@@ -64,15 +64,42 @@ public class ImageService implements  ImageServiceInterface{
         try{
             if(isPageCreator(memberId, pageId)){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+
+                String basePath = "/classes/static/images/pages/images/" + pageId + "/";
+
+                Path directoryPath = Paths.get(basePath);
+                Files.createDirectories(directoryPath);
+                Path filePath = directoryPath.resolve(request.getFilename());
+
+
+                File dir = new File(basePath , request.getFilename());
+
+                if (dir.exists()) {
+                    return "EXIST";
+                }
+
+                try {
+                    Files.copy(request.getFile().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+
+
+
+
                 ArrayList<Image> imageObjs = page.getImageObjs();
                 Image image = new Image();
-                File file = request.getFile().getResource().getFile();
-                file.renameTo(new File(pageId + "/" + file.getName()));
 
-                image.setFilepath(file.getAbsolutePath());
-                image.setFilename(file.getName());
+
+                image.setFilepath(filePath.toString());
+                image.setFilename(request.getFilename());
                 imageObjs.add(image);
                 page.setImageObjs(imageObjs);
+
+
+
                 pageRepository.save(page);
                 imageRepository.save(image);
                 return "true";

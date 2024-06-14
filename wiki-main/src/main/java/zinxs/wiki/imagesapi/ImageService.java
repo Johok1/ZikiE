@@ -7,6 +7,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -106,23 +107,27 @@ public class ImageService implements  ImageServiceInterface{
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
 
 
-                String basePath = "\\classes\\static\\images\\pages\\logos\\" + pageId + "\\";
+                String basePath = "/classes/static/images/pages/logos/" + pageId + "/";
+
+                Path directoryPath = Paths.get(basePath);
+                Files.createDirectories(directoryPath);
+                Path filePath = directoryPath.resolve(fileName);
+
 
                 File dir = new File(basePath , fileName);
 
                 if (dir.exists()) {
                     return "EXIST";
                 }
-                Path path = Path.of(basePath , fileName);
-                dir.mkdir();
+
                 try {
-                    Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+                    Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
 
-                page.setImgFilepath(path.toString());
+                page.setImgFilepath(filePath.toString());
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);

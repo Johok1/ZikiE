@@ -114,7 +114,7 @@ public class ImageService implements  ImageServiceInterface{
                     return "EXIST";
                 }
                 Path path = Path.of(basePath + fileName);
-
+                dir.mkdir();
                 try {
                     Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 

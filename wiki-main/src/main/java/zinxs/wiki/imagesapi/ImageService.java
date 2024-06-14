@@ -99,7 +99,7 @@ public class ImageService implements  ImageServiceInterface{
             if(isPageCreator(token, pageId)){
                 Account account = getAccount(token);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-                File file = ResourceUtils.getFile(request.getResource().getURI());
+                File file = ResourceUtils.getFile(request.getResource().getURL());
                 file.renameTo(new File("images/pages/logos/pageId"+"/"+request.getOriginalFilename()));
                 file.mkdirs();
 

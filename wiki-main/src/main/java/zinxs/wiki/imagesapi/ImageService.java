@@ -103,7 +103,7 @@ public class ImageService implements  ImageServiceInterface{
                 file.renameTo(new File("images/pages/logos/pageId"+"/"+request.getOriginalFilename()));
                 file.mkdirs();
 
-                page.setImgFilepath(file.getAbsolutePath());
+                page.setImgFilepath(file.getPath());
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);

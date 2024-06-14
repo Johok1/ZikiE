@@ -40,10 +40,10 @@ public class ImageController {
         return imageService.getPageImageUrls(pageId);
     }
     @CrossOrigin
-    @PostMapping("addPageImageUrl/{memberId}/{pageId}")
+    @PostMapping("addPageImageUrl/{memberId}/{pageId}/{filename}")
     public String addPageImageUrl(@PathVariable String memberId, @PathVariable String pageId,
-                                  @RequestBody ImageItemUrlRequest request){
-        return imageService.addPageImage(memberId, pageId, request);
+                                  @PathVariable String filename, @RequestBody MultipartFile file){
+        return imageService.addPageImage(memberId, pageId,filename, file);
     }
 
 }

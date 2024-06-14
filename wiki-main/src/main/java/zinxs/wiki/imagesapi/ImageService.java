@@ -16,7 +16,6 @@ import zinxs.wiki.accountsapi.AccountRepository;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 import zinxs.wiki.pagesapi.Page;
 import zinxs.wiki.pagesapi.PageRepository;
-import zinxs.wiki.jsonobjects.ImageItemUrlRequest;
 import zinxs.wiki.jsonobjects.ImageObjResponse;
 
 import java.io.File;
@@ -60,7 +59,7 @@ public class ImageService implements  ImageServiceInterface{
     }
 
     @Override
-    public String addPageImage(String memberId, String pageId, ImageItemUrlRequest request){
+    public String addPageImage(String memberId, String pageId, String filename, MultipartFile file){
         try{
             if(isPageCreator(memberId, pageId)){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
@@ -69,17 +68,17 @@ public class ImageService implements  ImageServiceInterface{
 
                 Path directoryPath = Paths.get(basePath);
                 Files.createDirectories(directoryPath);
-                Path filePath = directoryPath.resolve(request.getFilename());
+                Path filePath = directoryPath.resolve(filename);
 
 
-                File dir = new File(basePath , request.getFilename());
+                File dir = new File(basePath , filename);
 
                 if (dir.exists()) {
                     return "EXIST";
                 }
 
                 try {
-                    Files.copy(request.getFile().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                    Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
@@ -94,7 +93,7 @@ public class ImageService implements  ImageServiceInterface{
 
 
                 image.setFilepath(filePath.toString());
-                image.setFilename(request.getFilename());
+                image.setFilename(filename);
                 imageObjs.add(image);
                 page.setImageObjs(imageObjs);
 

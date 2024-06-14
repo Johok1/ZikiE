@@ -44,19 +44,15 @@ export default class Controller {
     addPageImageUrl(wixId, pageId, file, filename) {
         let formData = new FormData()
         formData.append('file', file)
-        const imageUrlRequest = {
-            "file": file,
-            "filename": filename
-        };
+        
         console.log(imageUrlRequest)
-        return fetch(this.fetch_url_image + "/addPageImageUrl/" + wixId + "/" + pageId, {
+        return fetch(this.fetch_url_image + "/addPageImageUrl/" + wixId + "/" + pageId + "/" + filename, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
+                'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify(imageUrlRequest)
+            body: formData
         }).catch(error => {
             console.error(error);
         });

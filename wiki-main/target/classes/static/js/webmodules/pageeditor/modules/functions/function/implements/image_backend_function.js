@@ -53,7 +53,7 @@ export default class ImageBackendFunction extends Function{
       
         let file = e.dataTransfer.files.item(0)
         this.addImageToBackend(file, file.name)
-        /*
+        
         this.processFile(file)
             .then(result => {
                 console.log("process file result " + result)
@@ -80,7 +80,7 @@ export default class ImageBackendFunction extends Function{
                     const base64String = btoa(String.fromCharCode.apply(null, byteArray));
 
                     // Now you can send the byteArray to the backend
-                    addImageToBackend(base64String, file.name);
+                  //  addImageToBackend(base64String, file.name);
                 };
 
                 // Read the Blob as an ArrayBuffer
@@ -90,7 +90,7 @@ export default class ImageBackendFunction extends Function{
 
 
             })
-            */
+            
     }
 
     addImageToBackend = (file, filename) => {

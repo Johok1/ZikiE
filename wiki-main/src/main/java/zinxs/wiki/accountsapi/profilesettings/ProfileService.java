@@ -1,6 +1,8 @@
 package zinxs.wiki.accountsapi.profilesettings;
 
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.accountsapi.Account;
@@ -10,6 +12,7 @@ import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 import zinxs.wiki.jsonobjects.AccountPageHeaderResponse;
 import zinxs.wiki.pagesapi.Page;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,13 +39,14 @@ public class ProfileService {
     }
 
 
-    public byte[] getAccountPageLogo(String token, String pageId){
+    public Resource getAccountPageLogo(String token, String pageId){
         try{
             Account account = getAccount(token);
             List<Page> pages = account.getPages();
             for(Page page: pages){
                 if(page.getId().equals(Long.valueOf(pageId))){
-                    return page.getImgData();
+                    return new UrlResource(new File(page.getImgFilepath()).toURI());
+
                 }
             }
             throw new Exception("no pages matching id!");

@@ -1,6 +1,7 @@
 package zinxs.wiki.accountsapi.profilesettings;
 
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -80,7 +81,7 @@ public class ProfileController {
 
     @CrossOrigin
     @GetMapping( value ="getAccountPageLogo/{token}/{pageId}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getAccountPageLogo(@PathVariable String token, @PathVariable String pageId){
+    public @ResponseBody Resource getAccountPageLogo(@PathVariable String token, @PathVariable String pageId){
         return profileService.getAccountPageLogo(token, pageId);
     }
 

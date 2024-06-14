@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
@@ -93,29 +95,49 @@ public class ImageService implements  ImageServiceInterface{
         }
     }
 
+
     @Override
-    public String setPageImg(String token, String pageId, MultipartFile request){
-        try{
+    public String setPageImg(String token, String pageId, String fileName, MultipartFile multipartFile) {
+        try {
+
+
             if(isPageCreator(token, pageId)){
                 Account account = getAccount(token);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-                File file = ResourceUtils.getFile(request.getResource().getURL());
-                file.renameTo(new File("images/pages/logos/pageId"+"/"+request.getOriginalFilename()));
-                file.mkdirs();
 
-                page.setImgFilepath(file.getPath());
+
+                String basePath = "/images/pages/logos/" + pageId + "/";
+
+                File dir = new File(basePath + fileName);
+
+                if (dir.exists()) {
+                    return "EXIST";
+                }
+
+                Path path = Path.of(basePath + fileName);
+
+                try {
+                    Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+                page.setImgFilepath(basePath + fileName);
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);
                 accountRepository.save(account);
-                return "true";
+                return "CREATED";
             }else{
                 throw new RuntimeException("invalid credentials");
             }
         }catch (Exception e){
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+            return "FAILED " + e.getMessage() ;
         }
     }
+
 
 
 

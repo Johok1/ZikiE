@@ -29,10 +29,10 @@ public class ImageController {
     }
 
     @CrossOrigin
-    @PostMapping("postPageImage/{memberId}/{pageId}")
-    public String postPageImage(@PathVariable String memberId, @PathVariable String pageId,
+    @PostMapping("postPageImage/{memberId}/{pageId}/{filename}")
+    public String postPageImage( @PathVariable String memberId, @PathVariable String pageId,@PathVariable String filename,
                                 @RequestParam("file")MultipartFile file){
-        return imageService.setPageImg(memberId, pageId, file);
+        return imageService.setPageImg(memberId, pageId,filename, file);
     }
     @CrossOrigin
     @GetMapping("getPageImageUrls/{pageId}")

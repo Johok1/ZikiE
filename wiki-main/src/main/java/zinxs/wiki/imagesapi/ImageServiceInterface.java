@@ -13,5 +13,6 @@ public interface ImageServiceInterface {
     List<ImageObjResponse> getPageImageUrls(String pageId);
     String addPageImage(String memberId, String pageId, ImageItemUrlRequest request);
     Resource getPageImg(String pageId);
-    String setPageImg(String memberId, String pageId, MultipartFile request);
+
+    String setPageImg(String token, String pageId, String fileName, MultipartFile multipartFile);
 }

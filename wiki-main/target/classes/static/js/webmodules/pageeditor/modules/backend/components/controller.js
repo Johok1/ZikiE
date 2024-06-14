@@ -45,7 +45,7 @@ export default class Controller {
         let formData = new FormData()
         formData.append('file', file)
         
-        console.log(imageUrlRequest)
+      
         return fetch(this.fetch_url_image + "/addPageImageUrl/" + wixId + "/" + pageId + "/" + filename, {
             method: 'POST',
             headers: {

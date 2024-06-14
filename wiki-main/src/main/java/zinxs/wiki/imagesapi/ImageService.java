@@ -6,6 +6,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
@@ -98,8 +99,7 @@ public class ImageService implements  ImageServiceInterface{
             if(isPageCreator(token, pageId)){
                 Account account = getAccount(token);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-
-                File file = request.getResource().getFile();
+                File file = ResourceUtils.getFile(request.getResource().getURI());
                 file.renameTo(new File("images/pages/logos/pageId"+"/"+request.getOriginalFilename()));
                 file.mkdirs();
 

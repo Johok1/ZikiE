@@ -108,12 +108,12 @@ public class ImageService implements  ImageServiceInterface{
 
                 String basePath = "\\classes\\static\\images\\pages\\logos\\" + pageId + "\\";
 
-                File dir = new File(basePath + fileName);
+                File dir = new File(basePath , fileName);
 
                 if (dir.exists()) {
                     return "EXIST";
                 }
-                Path path = Path.of(basePath + fileName);
+                Path path = Path.of(basePath , fileName);
                 dir.mkdir();
                 try {
                     Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
@@ -122,7 +122,7 @@ public class ImageService implements  ImageServiceInterface{
                     System.out.println(e.getMessage());
                 }
 
-                page.setImgFilepath(basePath + fileName);
+                page.setImgFilepath(path.toString());
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);

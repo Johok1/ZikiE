@@ -52,6 +52,8 @@ export default class ImageBackendFunction extends Function{
       //  this.element.querySelector(".image-main").style.height = ""
       
         let file = e.dataTransfer.files.item(0)
+        this.addImageToBackend(file, file.name)
+        /*
         this.processFile(file)
             .then(result => {
                 console.log("process file result " + result)
@@ -88,12 +90,13 @@ export default class ImageBackendFunction extends Function{
 
 
             })
+            */
     }
 
-    addImageToBackend = (url, filename) => {
+    addImageToBackend = (file, filename) => {
         const memberId = this.cookie.getCookie("token")
         const pageId = this.cookie.getCookie("pageId")
-        this.controller.addPageImageUrl(memberId, pageId, url, filename)
+        this.controller.addPageImageUrl(memberId, pageId, file, filename)
             .then(response => response.text())
             .then(response => {
                 if (response === "true") {

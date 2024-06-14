@@ -41,9 +41,11 @@ export default class Controller {
         });
     }
 
-    addPageImageUrl(wixId, pageId,url, filename) {
+    addPageImageUrl(wixId, pageId, file, filename) {
+        let formData = new FormData()
+        formData.append('file', file)
         const imageUrlRequest = {
-            "file": url,
+            "file": file,
             "filename": filename
         };
         console.log(imageUrlRequest)

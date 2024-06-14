@@ -112,10 +112,7 @@ public class ImageService implements  ImageServiceInterface{
 
                 if (dir.exists()) {
                     return "EXIST";
-                }else{
-                    dir.mkdirs();
                 }
-
                 Path path = Path.of(basePath + fileName);
 
                 try {

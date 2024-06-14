@@ -17,10 +17,10 @@ export default class Controller {
         });
     }
 
-    postPageImage(token, pageId, file) {
+    postPageImage(token, pageId, fileName,  file) {
         let formData = new FormData()
         formData.append('file', file)
-        return fetch(this.fetch_url_image + "/postPageImage/" + token + "/" + pageId, {
+        return fetch(this.fetch_url_image + "/postPageImage/" + token + "/" + pageId + "/" + fileName, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': '*',

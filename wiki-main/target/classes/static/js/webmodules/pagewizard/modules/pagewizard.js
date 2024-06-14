@@ -30,7 +30,7 @@ class PageWizard {
                 .then(response => response.text())
                 .then(response => {
                     backendManager.cookie.setCookie("pageId", response)
-                    backendManager.controller.postPageImage(backendManager.cookie.getCookie("token"), response, this.imageLogoFile)
+                    backendManager.controller.postPageImage(backendManager.cookie.getCookie("token"), response, this.imageLogoFile.name, this.imageLogoFile)
                         .then(response.ok)
                         .then(() => {
                             window.location.href = "https://www.zinxswiki.com/pageeditor"

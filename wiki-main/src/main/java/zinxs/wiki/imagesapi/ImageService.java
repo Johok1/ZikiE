@@ -100,7 +100,7 @@ public class ImageService implements  ImageServiceInterface{
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
 
                 File file = request.getResource().getFile();
-                file.renameTo(new File(pageId+"/"+file.getPath()));
+                file.renameTo(new File("images/pages/logos/pageId"+"/"+request.getOriginalFilename()));
                 file.mkdirs();
 
                 page.setImgFilepath(file.getAbsolutePath());

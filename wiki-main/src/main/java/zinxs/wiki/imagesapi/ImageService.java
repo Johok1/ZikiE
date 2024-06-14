@@ -106,12 +106,14 @@ public class ImageService implements  ImageServiceInterface{
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
 
 
-                String basePath = "/images/pages/logos/" + pageId + "/";
+                String basePath = "\\static\\images\\pages\\logos\\" + pageId + "\\";
 
                 File dir = new File(basePath + fileName);
 
                 if (dir.exists()) {
                     return "EXIST";
+                }else{
+                    dir.mkdirs();
                 }
 
                 Path path = Path.of(basePath + fileName);

@@ -28,7 +28,7 @@ public class Page implements Serializable {
 
     private Account creator;
 
-    private byte[] imgData;
+    private String imgFilepath;
 
     private String email;
     @Column(columnDefinition="text", length=10485760)

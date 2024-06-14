@@ -2,6 +2,8 @@ package zinxs.wiki.imagesapi;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -12,8 +14,8 @@ import zinxs.wiki.pagesapi.Page;
 import zinxs.wiki.pagesapi.PageRepository;
 import zinxs.wiki.jsonobjects.ImageItemUrlRequest;
 import zinxs.wiki.jsonobjects.ImageObjResponse;
-import zinxs.wiki.jsonobjects.ImageUrlRequest;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class ImageService implements  ImageServiceInterface{
             List<ImageObjResponse> imageObjResponses = new ArrayList<>();
             for(Image image : page.getImageObjs()){
                 ImageObjResponse response = new ImageObjResponse(
-                        image.getFilename(), image.getFile()
+                        image.getFilename(), new UrlResource(new File(image.getFilepath()).toURI())
                 );
                 imageObjResponses.add(response);
             }
@@ -60,11 +62,15 @@ public class ImageService implements  ImageServiceInterface{
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 ArrayList<Image> imageObjs = page.getImageObjs();
                 Image image = new Image();
-                image.setFile(request.getFile());
-                image.setFilename(request.getFilename());
+                File file = request.getFile().getResource().getFile();
+                file.renameTo(new File(pageId + "/" + file.getName()));
+
+                image.setFilepath(file.getAbsolutePath());
+                image.setFilename(file.getName());
                 imageObjs.add(image);
                 page.setImageObjs(imageObjs);
                 pageRepository.save(page);
+                imageRepository.save(image);
                 return "true";
             }else{
                 throw new Exception("Invalid credentials");
@@ -75,10 +81,12 @@ public class ImageService implements  ImageServiceInterface{
     }
 
     @Override
-    public byte[] getPageImg(String pageId){
+    public Resource getPageImg(String pageId){
         try {
             Page page  = pageRepository.findById(Long.valueOf(pageId)).get();
-            return page.getImgData();
+            File image =  new File(page.getImgFilepath());
+            Resource imageResource = new UrlResource(image.toURI());
+            return imageResource;
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -90,7 +98,12 @@ public class ImageService implements  ImageServiceInterface{
             if(isPageCreator(token, pageId)){
                 Account account = getAccount(token);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-                page.setImgData(request.getBytes());
+
+                File file = request.getResource().getFile();
+                file.renameTo(new File(pageId+"/"+file.getPath()));
+                file.mkdirs();
+
+                page.setImgFilepath(file.getAbsolutePath());
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);

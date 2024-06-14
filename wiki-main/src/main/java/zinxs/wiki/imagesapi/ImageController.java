@@ -1,5 +1,6 @@
 package zinxs.wiki.imagesapi;
 
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +24,7 @@ public class ImageController {
     @CrossOrigin
     @GetMapping(value = "getPageImage/{pageId}",
             produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getPageImage(@PathVariable String pageId){
+    public @ResponseBody Resource getPageImage(@PathVariable String pageId){
         return imageService.getPageImg(pageId);
     }
 

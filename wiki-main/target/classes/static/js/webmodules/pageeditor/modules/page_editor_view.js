@@ -109,8 +109,8 @@ class View {
                             .then(response => {
 
                                 console.log(response)
-                                const filename = response.filename
-                                console.log(response.filename)
+                                const filename = response.name
+                                console.log(response.name)
 
                                 let imgList = document.querySelectorAll(".image-main")
                                 for (let y = 0; y < imgList.length; y++) {

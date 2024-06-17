@@ -92,49 +92,56 @@ class View {
     }
 
     loadPageImages = () => {
-        this.controller.getPageUrlList(this.cookie.getCookie("pageId"))
+        let pageId = this.cookie.getCookie("pageId")
+        let controller = this.controller
+        this.controller.getPageImageIds(pageId)
             .then(response => response.text())
             .then(response => {
-                console.log(response)
-                let parsed = JSON.parse(response)
-                parsed.forEach((obj, index) => {
-                    // Access properties of each object
-                   
-                    const file = obj.blob()
-                    const filename = file.filename
-                    let imgList = document.querySelectorAll(".image-main")
-                    for (let y = 0; y < imgList.length; y++) {
+                let idList = response.split(",")
 
-                        let imgId = imgList[y].getAttribute("id");
-                        console.log("imgList[y] " + imgList[y])
-                        console.log("imgList[y] " + imgId)
-                        console.log("filename  " + filename)
-                        if (imgId === filename) {
-                            console.log("imgId === filename true")
-                       /*     const binaryString = atob(file);
+                for (let x = 0; x < idList.length; x++){
+                     let imageId = idList[x];
 
-                            // Create ArrayBuffer from binary string
-                            const arrayBuffer = new ArrayBuffer(binaryString.length);
-                            const uint8Array = new Uint8Array(arrayBuffer);
-                            for (let i = 0; i < binaryString.length; i++) {
-                                uint8Array[i] = binaryString.charCodeAt(i);
-                            }
-                            let url = URL.createObjectURL(new Blob([uint8Array], { type: "image/webp" }));
-                            */
-                            imgList[y].src = file
-                        } else {
-                            console.log("imgId === filename false")
-                        }
-                        
-                    }
-                    // You can perform further processing with the filename and data here
-                    console.log(`Object ${index + 1}:`);
-                    console.log(`Filename: ${filename}`);
-                    console.log(`File: ${file}`);
-                    console.log(''); // Just for spacing between objects
-                });
 
+
+                    controller.getPageImageUrl(pageId, imageId)
+                        .then(response => response.blob())
+                        .then(response => {
+                           
+                                console.log(response)                         
+                                const filename = response.filename
+                                console.log(response.filename)
+
+                                let imgList = document.querySelectorAll(".image-main")
+                                for (let y = 0; y < imgList.length; y++) {
+
+                                    let imgId = imgList[y].getAttribute("id");
+                                    console.log("imgList[y] " + imgList[y])
+                                    console.log("imgList[y] " + imgId)
+                                    console.log("filename  " + filename)
+                                    if (imgId === filename) {
+                                        console.log("imgId === filename true")
+                                        let logo = URL.createObjectURL(response)
+                                        imgList[y].src = logo
+                                    } else {
+                                        console.log("imgId === filename false")
+                                    }
+
+                                }
+                                // You can perform further processing with the filename and data here
+                                console.log(`Object ${index + 1}:`);
+                                console.log(`Filename: ${filename}`);
+                                console.log(`File: ${file}`);
+                                console.log(''); // Just for spacing between objects
+                            });
+
+                        })
+
+                }
             })
+        
+
+       
     }
 
 

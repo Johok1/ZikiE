@@ -35,10 +35,17 @@ public class ImageController {
         return imageService.setPageImg(memberId, pageId,filename, file);
     }
     @CrossOrigin
-    @GetMapping("getPageImageUrls/{pageId}")
-    public List<Resource> getPageImageUrls(@PathVariable String pageId){
-        return imageService.getPageImageUrls(pageId);
+    @GetMapping("getPageImageUrl/{pageId}/{imageId}")
+    public Resource getPageImageUrl(@PathVariable String pageId, @PathVariable String imageId){
+        return imageService.getPageImageUrl(pageId, imageId);
     }
+
+    @CrossOrigin
+    @GetMapping("getPageImageIds/{pageId}")
+    public String getPageImageIds(@PathVariable String pageId){
+        return imageService.getPageImageIds(pageId);
+    }
+
     @CrossOrigin
     @PostMapping("addPageImageUrl/{memberId}/{pageId}/{filename}")
     public String addPageImageUrl(@PathVariable String memberId, @PathVariable String pageId,

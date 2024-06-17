@@ -19,7 +19,6 @@ import zinxs.wiki.pagesapi.PageRepository;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -40,17 +39,39 @@ public class ImageService implements  ImageServiceInterface{
     @Autowired
     private PageRepository pageRepository;
 
-    @Override
-    public List<Resource> getPageImageUrls(String pageId){
+    public String getPageImageIds(String pageId){
         try{
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-            List<Resource> imageResources= new ArrayList<>();
-            for(Image image : page.getImageObjs()){
-
-                Resource imgResource = new UrlResource(new File(image.getFilepath()).toURI());
-                imageResources.add(imgResource);
+            ArrayList<Image> images = page.getImageObjs();
+            String ids = "";
+            for(Image image: images){
+                ids += image.getId() + ",";
             }
-            return imageResources;
+            return ids;
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Resource getPageImageUrl(String pageId, String imageId){
+        try{
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+
+            ArrayList<Image> images = page.getImageObjs();
+
+
+
+            for(Image imgObj : images){
+                if(imgObj.getId().equals(Long.valueOf(imageId))){
+                    Resource imgResource = new UrlResource(new File(imgObj.getFilepath()).toURI());
+                    return imgResource;
+                }
+            }
+
+            throw new Exception("No associated image found for this page");
+
         }catch (Exception e){
             throw new RuntimeException(e);
         }

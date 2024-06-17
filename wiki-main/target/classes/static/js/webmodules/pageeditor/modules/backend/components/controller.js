@@ -30,8 +30,19 @@ export default class Controller {
 
     }
 
-    getPageUrlList(pageId) {
-        return fetch(this.fetch_url_image+ "/getPageImageUrls/" + pageId, {
+    getPageImageIds(pageId) {
+        return fetch(this.fetch_url_image + "/getPageImageIds/" + pageId, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).catch(error => {
+            console.error(error)
+        });
+    }
+
+    getPageUrlList(pageId, imageId) {
+        return fetch(this.fetch_url_image + "/getPageImageUrl/" + pageId + "/" + imageId, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*'

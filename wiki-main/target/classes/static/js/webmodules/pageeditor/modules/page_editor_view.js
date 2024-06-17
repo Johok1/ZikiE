@@ -129,10 +129,7 @@ class View {
 
                                 }
                                 // You can perform further processing with the filename and data here
-                                console.log(`Object ${index + 1}:`);
-                                console.log(`Filename: ${filename}`);
-                                console.log(`File: ${file}`);
-                                console.log(''); // Just for spacing between objects
+                              
                         });
 
                        

@@ -41,7 +41,7 @@ export default class Controller {
         });
     }
 
-    getPageUrlList(pageId, imageId) {
+    getPageImageUrl(pageId, imageId) {
         return fetch(this.fetch_url_image + "/getPageImageUrl/" + pageId + "/" + imageId, {
             method: 'GET',
             headers: {

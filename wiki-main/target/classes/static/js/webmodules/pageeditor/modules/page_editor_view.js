@@ -133,9 +133,9 @@ class View {
                                 console.log(`Filename: ${filename}`);
                                 console.log(`File: ${file}`);
                                 console.log(''); // Just for spacing between objects
-                            });
+                        });
 
-                        })
+                       
 
                 }
             })

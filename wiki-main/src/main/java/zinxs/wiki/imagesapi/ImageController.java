@@ -36,7 +36,7 @@ public class ImageController {
     }
     @CrossOrigin
     @GetMapping("getPageImageUrls/{pageId}")
-    public List<ImageObjResponse> getPageImageUrls(@PathVariable String pageId){
+    public List<Resource> getPageImageUrls(@PathVariable String pageId){
         return imageService.getPageImageUrls(pageId);
     }
     @CrossOrigin

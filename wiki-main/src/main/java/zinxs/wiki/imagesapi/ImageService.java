@@ -16,7 +16,6 @@ import zinxs.wiki.accountsapi.AccountRepository;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 import zinxs.wiki.pagesapi.Page;
 import zinxs.wiki.pagesapi.PageRepository;
-import zinxs.wiki.jsonobjects.ImageObjResponse;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,17 +41,16 @@ public class ImageService implements  ImageServiceInterface{
     private PageRepository pageRepository;
 
     @Override
-    public List<ImageObjResponse> getPageImageUrls(String pageId){
+    public List<Resource> getPageImageUrls(String pageId){
         try{
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-            List<ImageObjResponse> imageObjResponses = new ArrayList<>();
+            List<Resource> imageResources= new ArrayList<>();
             for(Image image : page.getImageObjs()){
-                ImageObjResponse response = new ImageObjResponse(
-                        image.getFilename(), new UrlResource(new File(image.getFilepath()).toURI())
-                );
-                imageObjResponses.add(response);
+
+                Resource imgResource = new UrlResource(new File(image.getFilepath()).toURI());
+                imageResources.add(imgResource);
             }
-            return imageObjResponses;
+            return imageResources;
         }catch (Exception e){
             throw new RuntimeException(e);
         }

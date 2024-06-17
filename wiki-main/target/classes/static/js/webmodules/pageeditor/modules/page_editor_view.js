@@ -99,8 +99,9 @@ class View {
                 let parsed = JSON.parse(response)
                 parsed.forEach((obj, index) => {
                     // Access properties of each object
-                    const filename = obj.filename;
-                    const file = obj.file;
+                   
+                    const file = obj.blob()
+                    const filename = file.filename
                     let imgList = document.querySelectorAll(".image-main")
                     for (let y = 0; y < imgList.length; y++) {
 
@@ -110,7 +111,7 @@ class View {
                         console.log("filename  " + filename)
                         if (imgId === filename) {
                             console.log("imgId === filename true")
-                            const binaryString = atob(file);
+                       /*     const binaryString = atob(file);
 
                             // Create ArrayBuffer from binary string
                             const arrayBuffer = new ArrayBuffer(binaryString.length);
@@ -119,8 +120,8 @@ class View {
                                 uint8Array[i] = binaryString.charCodeAt(i);
                             }
                             let url = URL.createObjectURL(new Blob([uint8Array], { type: "image/webp" }));
-
-                            imgList[y].src = url
+                            */
+                            imgList[y].src = file
                         } else {
                             console.log("imgId === filename false")
                         }

@@ -36,7 +36,9 @@ export default class Controller {
             headers: {
                 'Access-Control-Allow-Origin': '*'
             }
-        }
+        }).catch(error =>{
+            console.error(error)
+        })
     }
 
     getPageImageIds(pageId) {

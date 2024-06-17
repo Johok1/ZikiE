@@ -78,6 +78,29 @@ public class ImageService implements  ImageServiceInterface{
     }
 
     @Override
+    public String getImageName(String pageId, String imageId){
+        try{
+            Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+
+            ArrayList<Image> images = page.getImageObjs();
+
+
+
+            for(Image imgObj : images){
+                if(imgObj.getId().equals(Long.valueOf(imageId))){
+                    Resource imgResource = new UrlResource(new File(imgObj.getFilepath()).toURI());
+                    return imgResource.getFilename();
+                }
+            }
+
+            throw new Exception("No associated image found for this page");
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public String addPageImage(String memberId, String pageId, String filename, MultipartFile file){
         try{
             if(isPageCreator(memberId, pageId)){

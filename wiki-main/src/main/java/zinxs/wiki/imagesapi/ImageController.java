@@ -47,6 +47,12 @@ public class ImageController {
     }
 
     @CrossOrigin
+    @GetMapping("getImageName/{pageId}/{imageId}")
+    public String getImageName(@PathVariable String pageId, @PathVariable String imageId){
+        return imageService.getImageName(pageId, imageId);
+    }
+
+    @CrossOrigin
     @PostMapping("addPageImageUrl/{memberId}/{pageId}/{filename}")
     public String addPageImageUrl(@PathVariable String memberId, @PathVariable String pageId,
                                   @PathVariable String filename, @RequestBody MultipartFile file){

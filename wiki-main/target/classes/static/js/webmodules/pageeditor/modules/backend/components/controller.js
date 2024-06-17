@@ -30,6 +30,15 @@ export default class Controller {
 
     }
 
+    getImageName(pageId, imageId) {
+        return fetch(this.fetch_url_image + "/getImageName/" + pageId + "/" + imageId, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        }
+    }
+
     getPageImageIds(pageId) {
         return fetch(this.fetch_url_image + "/getPageImageIds/" + pageId, {
             method: 'GET',

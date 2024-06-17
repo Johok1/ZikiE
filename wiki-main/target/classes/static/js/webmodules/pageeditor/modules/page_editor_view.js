@@ -96,41 +96,48 @@ class View {
         let controller = this.controller
         this.controller.getPageImageIds(pageId)
             .then(response => response.text())
-            .then(response => {
-                let idList = response.split(",")
+            .then(ids => {
+                let idList = ids.split(",")
 
                 for (let x = 0; x < idList.length; x++) {
                     let imageId = idList[x];
 
                     if (imageId != "" && !imageId.includes(" ")) {
 
-                        controller.getPageImageUrl(pageId, imageId)
-                            .then(response => response.blob())
-                            .then(response => {
+                        controller.getImageName(pageId, imageId)
+                            .then(response => response.text())
+                            .then(name => {
+                                let filename = name 
+                                controller.getPageImageUrl(pageId, imageId)
+                                    .then(response => response.blob())
+                                    .then(response => {
 
-                                console.log(response)
-                                const filename = response.name
-                                console.log(response.name)
+                                        console.log(response)
+                                       
+                                       
 
-                                let imgList = document.querySelectorAll(".image-main")
-                                for (let y = 0; y < imgList.length; y++) {
+                                        let imgList = document.querySelectorAll(".image-main")
+                                        for (let y = 0; y < imgList.length; y++) {
 
-                                    let imgId = imgList[y].getAttribute("id");
-                                    console.log("imgList[y] " + imgList[y])
-                                    console.log("imgList[y] " + imgId)
-                                    console.log("filename  " + filename)
-                                    if (imgId === filename) {
-                                        console.log("imgId === filename true")
-                                        let logo = URL.createObjectURL(response)
-                                        imgList[y].src = logo
-                                    } else {
-                                        console.log("imgId === filename false")
-                                    }
+                                            let imgId = imgList[y].getAttribute("id");
+                                            console.log("imgList[y] " + imgList[y])
+                                            console.log("imgList[y] " + imgId)
+                                            console.log("filename  " + filename)
+                                            if (imgId === filename) {
+                                                console.log("imgId === filename true")
+                                                let logo = URL.createObjectURL(response)
+                                                imgList[y].src = logo
+                                            } else {
+                                                console.log("imgId === filename false")
+                                            }
 
-                                }
-                                // You can perform further processing with the filename and data here
+                                        }
+                                        // You can perform further processing with the filename and data here
 
-                            });
+                                    });
+                            })
+
+                     
 
                     }
 

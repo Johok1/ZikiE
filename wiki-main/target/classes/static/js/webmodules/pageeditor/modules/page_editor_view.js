@@ -99,16 +99,16 @@ class View {
             .then(response => {
                 let idList = response.split(",")
 
-                for (let x = 0; x < idList.length; x++){
-                     let imageId = idList[x];
+                for (let x = 0; x < idList.length; x++) {
+                    let imageId = idList[x];
 
+                    if (imageId != "" && !imageId.contains(" ")) {
 
+                        controller.getPageImageUrl(pageId, imageId)
+                            .then(response => response.blob())
+                            .then(response => {
 
-                    controller.getPageImageUrl(pageId, imageId)
-                        .then(response => response.blob())
-                        .then(response => {
-                           
-                                console.log(response)                         
+                                console.log(response)
                                 const filename = response.filename
                                 console.log(response.filename)
 
@@ -129,10 +129,10 @@ class View {
 
                                 }
                                 // You can perform further processing with the filename and data here
-                              
-                        });
 
-                       
+                            });
+
+                    }
 
                 }
             })

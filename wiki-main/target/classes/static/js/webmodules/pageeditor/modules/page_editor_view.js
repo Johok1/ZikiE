@@ -102,7 +102,7 @@ class View {
                 for (let x = 0; x < idList.length; x++) {
                     let imageId = idList[x];
 
-                    if (imageId != "" && !imageId.contains(" ")) {
+                    if (imageId != "" && !imageId.includes(" ")) {
 
                         controller.getPageImageUrl(pageId, imageId)
                             .then(response => response.blob())

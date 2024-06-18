@@ -49,7 +49,7 @@ public class PageController {
     }
 
     @CrossOrigin
-    @GetMapping("setPageToAccount/{PIN}/{pageId}/{email}")
+    @GetMapping("setPageToAccount/{pin}/{pageId}/{email}")
     public String setPageToAccount(@PathVariable String pin, @PathVariable String pageId, @PathVariable String email){
         return pageService.setPageToAccount(pin, pageId, email);
     }

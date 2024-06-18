@@ -35,10 +35,11 @@ public class PageService implements PageServiceInterface{
 
 
     @Override
-    public String setPageToAccount(String pin, String pageId, String email){
+    public String setPageToAccount(String pin, String pageName, String email){
         try{
             if(pin.equals("BUST")){
-                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                pageName = pageName.replaceAll(" ", "_");
+                Page page = pageRepository.findByPageName(pageName).get();
                 Account account = accountRepository.findByEmail(email).get();
                 page.setCreator(account);
                 pageRepository.save(page);
@@ -56,15 +57,16 @@ public class PageService implements PageServiceInterface{
     }
 
     @Override
-    public String registerPage(String pin, String pageId){
+    public String registerPage(String pin, String pageName){
         try{
             if(pin.equals("BUST")) {
                 Page page = new Page();
-
-                page.setId(Long.valueOf(pageId));
+                pageName = pageName.replaceAll(" ", "_");
+                page.setName(pageName);
+               // page.setId(Long.valueOf(pageId));
                 ArrayList<Image> pageImages = page.getImageObjs();
                 //Creating a File object for directory
-                File directoryPath = new File("/classes/static/pages/" + pageId + "/images/");
+                File directoryPath = new File("/classes/static/pages/" + pageName + "/images/");
                 //List of all files and directories
                 File filesList[] = directoryPath.listFiles();
 
@@ -86,7 +88,7 @@ public class PageService implements PageServiceInterface{
                 page.setImageObjs(pageImages);
                 pageRepository.save(page);
 
-                File pagePath = new File("/classes/static/pages/" + pageId + "/");
+                File pagePath = new File("/classes/static/pages/" + pageName + "/");
                 File pageFileList[] = pagePath.listFiles();
                 for (File file : pageFileList) {
                     if (file.isDirectory()) {
@@ -96,7 +98,7 @@ public class PageService implements PageServiceInterface{
                     }
                 }
 
-                File pageLogoPath = new File("/classes/static/pages/" + pageId + "/logos/");
+                File pageLogoPath = new File("/classes/static/pages/" + pageName + "/logos/");
                 File pageLogoFileList[] = pageLogoPath.listFiles();
                 for (File file : pageLogoFileList) {
                     if (file.isDirectory()) {
@@ -122,9 +124,12 @@ public class PageService implements PageServiceInterface{
             Page page = new Page();
             Account account = getAccount(token);
             page.setCreator(account);
+            pageName = pageName.replaceAll(" ", "_");
             page.setName(pageName);
+
+            pageRepository.save(page);
             ArrayList<Page> pages = account.getPages();
-            String basePath = "/classes/static/pages/"+page.getId()+"/";
+            String basePath = "/classes/static/pages/"+pageName+"/";
             String fileName = pageName+".txt";
             byte[] byteArray = {};
             InputStream input = new ByteArrayInputStream(byteArray);
@@ -182,6 +187,7 @@ public class PageService implements PageServiceInterface{
             if(isPageCreator(memberId, pageId)){
                 Account account = getAccount(memberId);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                pageName = pageName.replaceAll(" ", "_");
                 page.setName(pageName);
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);

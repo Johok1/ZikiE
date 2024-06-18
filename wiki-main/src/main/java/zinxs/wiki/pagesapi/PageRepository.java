@@ -11,7 +11,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface PageRepository extends JpaRepository<Page, Long> {
 
-    Optional<List<Page>> findByEmail(String email);
+    Optional<Page> findByPageName(String pageName);
 
     Optional<Page> findById(Long id);
 

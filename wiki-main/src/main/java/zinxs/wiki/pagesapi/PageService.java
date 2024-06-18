@@ -60,6 +60,8 @@ public class PageService implements PageServiceInterface{
         try{
             if(pin.equals("BUST")) {
                 Page page = new Page();
+
+                page.setId(Long.valueOf(pageId));
                 ArrayList<Image> pageImages = page.getImageObjs();
                 //Creating a File object for directory
                 File directoryPath = new File("/classes/static/pages/" + pageId + "/images/");
@@ -105,9 +107,9 @@ public class PageService implements PageServiceInterface{
                 }
 
                 pageRepository.save(page);
-                return "true";
+                return page.getId() + "";
             }else{
-                return "I'm watching you bitch";
+                return "I'm watching you 0-0";
             }
         }catch (Exception e){
             throw new RuntimeException(e);

@@ -43,7 +43,7 @@ public class PageController {
     }
 
     @CrossOrigin
-    @GetMapping("registerPage/{PIN}/{pageId}")
+    @GetMapping("registerPage/{pin}/{pageId}")
     public String registerPage(@PathVariable String pin, @PathVariable String pageId){
         return pageService.registerPage(pin, pageId);
     }

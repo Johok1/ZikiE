@@ -8,6 +8,11 @@ import zinxs.wiki.accountsapi.AccountRepository;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
 
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 @Service
@@ -31,12 +36,43 @@ public class PageService implements PageServiceInterface{
             page.setCreator(account);
             page.setName(pageName);
             ArrayList<Page> pages = account.getPages();
+            String basePath = "/classes/static/pages/"+page.getId()+"/";
+            String fileName = pageName+".txt";
+            byte[] byteArray = {};
+            InputStream input = new ByteArrayInputStream(byteArray);
+            String filepath = makeFileAtPathFromInput(basePath, fileName, input);
+            page.setFilePath(filepath);
             pages.add(page);
             account.setPages(pages);
             accountRepository.save(account);
             pageRepository.save(page);
 
             return String.valueOf(page.getId());
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String makeFileAtPathFromInput(String basePath, String fileName, InputStream input){
+
+        try {
+
+            Path directoryPath = Paths.get(basePath);
+            Files.createDirectories(directoryPath);
+            Path filePath = directoryPath.resolve(fileName);
+
+
+            File dir = new File(basePath, fileName);
+
+            if (dir.exists()) {
+                return "EXIST";
+            }
+
+
+            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            return filePath.toString();
+
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -78,8 +114,14 @@ public class PageService implements PageServiceInterface{
             Account account = getAccount(wixId);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
             if(account.getId().equals(page.getCreator().getId())) {
-                page.setPageContent(content);
+               // page.setPageContent(content);
                 pageRepository.save(page);
+
+                File pageFile = new File(page.getFilePath());
+
+                FileWriter writer = new FileWriter(pageFile);
+                writer.write(content);
+
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);
                 accountRepository.save(account);
@@ -98,7 +140,7 @@ public class PageService implements PageServiceInterface{
             Account account = getAccount(wixId);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
             if(page.getCreator().getId().equals(account.getId())) {
-                return page.getPageContent();
+                return new String(Files.readAllBytes(Paths.get(page.getFilePath())));
             }else {
                 throw new RuntimeException("Invalid Credentials");
             }

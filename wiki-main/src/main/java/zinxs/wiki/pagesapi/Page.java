@@ -31,8 +31,8 @@ public class Page implements Serializable {
     private String imgFilepath;
 
     private String email;
-    @Column(columnDefinition="text", length=10485760)
-    private String pageContent;
+
+    private String filePath;
     private ArrayList<String> bannedAccounts;
     private ArrayList<String> editAccessAccounts;
     private ArrayList<String> internalTags;

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -164,6 +166,31 @@ public class ImageService implements  ImageServiceInterface{
         }
     }
 
+
+    private String makeFileAtPathFromInput(String basePath, String fileName, InputStream input){
+
+        try {
+
+            Path directoryPath = Paths.get(basePath);
+            Files.createDirectories(directoryPath);
+            Path filePath = directoryPath.resolve(fileName);
+
+
+            File dir = new File(basePath, fileName);
+
+            if (dir.exists()) {
+                return "EXIST";
+            }
+
+
+            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            return filePath.toString();
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public String setPageImg(String token, String pageId, String fileName, MultipartFile multipartFile) {

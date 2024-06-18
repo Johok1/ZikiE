@@ -107,11 +107,13 @@ public class ImageService implements  ImageServiceInterface{
         try{
             if(isPageCreator(memberId, pageId)){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-
-                String basePath = "/classes/static/images/pages/images/" + pageId + "/";
+                Image image = new Image();
+                filename = image.getId().toString();
+                String basePath = "/classes/static/pages/" + pageId + "/images/";
 
                 Path directoryPath = Paths.get(basePath);
                 Files.createDirectories(directoryPath);
+
                 Path filePath = directoryPath.resolve(filename);
 
 
@@ -133,7 +135,7 @@ public class ImageService implements  ImageServiceInterface{
 
 
                 ArrayList<Image> imageObjs = page.getImageObjs();
-                Image image = new Image();
+
 
 
                 image.setFilepath(filePath.toString());
@@ -202,7 +204,7 @@ public class ImageService implements  ImageServiceInterface{
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
 
 
-                String basePath = "/classes/static/images/pages/logos/" + pageId + "/";
+                String basePath = "/classes/static/pages/" + pageId + "/logos/";
 
                 Path directoryPath = Paths.get(basePath);
                 Files.createDirectories(directoryPath);

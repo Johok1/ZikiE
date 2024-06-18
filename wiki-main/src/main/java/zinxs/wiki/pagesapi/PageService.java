@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import zinxs.wiki.accountsapi.Account;
 import zinxs.wiki.accountsapi.AccountRepository;
 import zinxs.wiki.accountsapi.utilities.AuthTokenUtils;
+import zinxs.wiki.imagesapi.Image;
+import zinxs.wiki.imagesapi.ImageRepository;
 
 
 import java.io.*;
@@ -27,6 +29,90 @@ public class PageService implements PageServiceInterface{
 
     @Autowired
     private AuthTokenUtils authTokenUtils;
+
+    @Autowired
+    private ImageRepository imageRepository;
+
+
+    @Override
+    public String setPageToAccount(String pin, String pageId, String email){
+        try{
+            if(pin.equals("BUST")){
+                Page page = pageRepository.findById(Long.valueOf(pageId)).get();
+                Account account = accountRepository.findByEmail(email).get();
+                page.setCreator(account);
+                pageRepository.save(page);
+                ArrayList<Page> pageList = account.getPages();
+                pageList.add(page);
+                account.setPages(pageList);
+                accountRepository.save(account);
+                return "true";
+            }else{
+                return "0-0";
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public String registerPage(String pin, String pageId){
+        try{
+            if(pin.equals("BUST")) {
+                Page page = new Page();
+                ArrayList<Image> pageImages = page.getImageObjs();
+                //Creating a File object for directory
+                File directoryPath = new File("/classes/static/pages/" + pageId + "/images/");
+                //List of all files and directories
+                File filesList[] = directoryPath.listFiles();
+
+                for (File file : filesList) {
+                    if (file.isDirectory()) {
+
+                    } else {
+                        Image image = new Image();
+                        image.setFilepath(file.getPath());
+                        image.setFilename(file.getName());
+                        imageRepository.save(image);
+                        pageImages.add(image);
+
+
+                    }
+
+
+                }
+                page.setImageObjs(pageImages);
+                pageRepository.save(page);
+
+                File pagePath = new File("/classes/static/pages/" + pageId + "/");
+                File pageFileList[] = pagePath.listFiles();
+                for (File file : pageFileList) {
+                    if (file.isDirectory()) {
+
+                    } else {
+                        page.setFilePath(file.getPath());
+                    }
+                }
+
+                File pageLogoPath = new File("/classes/static/pages/" + pageId + "/logos/");
+                File pageLogoFileList[] = pageLogoPath.listFiles();
+                for (File file : pageLogoFileList) {
+                    if (file.isDirectory()) {
+
+                    } else {
+                        page.setImgFilepath(file.getPath());
+                    }
+                }
+
+                pageRepository.save(page);
+                return "true";
+            }else{
+                return "I'm watching you bitch";
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public String newAccountPage(String token, String pageName){

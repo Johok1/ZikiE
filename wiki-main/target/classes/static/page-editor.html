@@ -10513,7 +10513,7 @@ a.text-dark:hover, a.text-dark:focus {
 		  <script src="js/jscolor.js"></script>
         <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start" id="sidenavAccordion">
             <!-- Sidenav Toggle Button-->
-            <button class="btn btn-icon btn-transparent-dark order-0 order-lg-0 me-0 ms-lg-2 me-lg-0" id="sidebarToggle"><img style="width: 100%; height: 100%;" src="assets/img/Zinks_png.png"></button>
+            <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" class="btn btn-icon btn-transparent-dark order-0 order-lg-0 me-0 ms-lg-2 me-lg-0" id="sidebarToggle"><img style="width: 100%; height: 100%;" src="assets/img/Zinks_png.png"></button>
             <!-- Navbar Brand-->
             <!-- * * Tip * * You can use text or an image for your navbar brand.-->
             <!-- * * * * * * When using an image, we recommend the SVG format.-->
@@ -10593,32 +10593,53 @@ a.text-dark:hover, a.text-dark:focus {
                 </li>
             </ul>
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sidenav shadow-right">
-                    <div class="sidenav-menu">
-                        <div class="nav accordion" id="accordionSidenav">
-                            <br><br><br><br><br><br><br><br><br><br>
-						    <br><br><br><br><br><br><br><br><br><br>
-							<br><br><br><br><br><br><br><br><br><br>
-						    
-                    </div>
-                    <!-- Sidenav Footer-->
-                    <div class="sidenav-footer">
-                        <div class="sidenav-footer-content">
-                               <div class="sidenav-footer-subtitle">Logged in as:</div>
-                            <div class="sidenav-footer-title">Display Name</div>
-                        </div>
-                    </div>
-                </nav>
-					
-            </div>
+		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+    </div>
+    <div class="dropdown mt-3">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+		
+      		<hr>
 				
             <div id="layoutSidenav_content">
                 <main >
 					<nav class="nav" style="margin-left: 2%; margin-top: 2%; "><img id="pageLogo" style="width: 6%; height: 8%;" id="pageLogo" src="assets/img/Zinks_png.png">
                         <h2 style="margin-left: 2%; margin-top: 3.5%; " id="pageName">Page Name</h2>
-						<div class="input-group-sm" style="margin: 2%;">
+						
+						
+					</nav>
+					<div class="row">
+					<div id="page"  class=" card" style="height: 190vh; width: 65vw; margin-left: 4vw; margin-top: 1vw; z-index: 4; opacity: 90%">
+				
+				
+				</div>
+					<div class="col" >
+						<div style="position: fixed">
+						<btn id="textUtilityBtn" class="btn" style="height:10%; margin-top:2.9%">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-type" data-feather="type" style="color: #BAA21F;"></svg>
+						</btn>
+						<btn id="imageUtilityBtn" class="btn" style="height:10%; margin-top:2.9%">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="image" class="feather feather-image" style="color: #BAA21F;"></svg>
+						</btn>
+						<a href="https://www.zinxswiki.com/pagesettings" style="height:10%; margin-top:2.9%"><btn class="btn" style="height:10%; margin-top:2.9%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings" data-feather="settings" style="color: #BAA21F;"><circle cx="12" cy="12" r="3"/></svg></btn></a>
+						
+							<div class="input-group-sm" style="margin: 2%;">
 							<label for="customRange1" class="form-label">Select a Layer</label>
 							<input id="selectLayerInput" type="range" style="width: 40%; margin-top: 5%" class="form-range" id="customRange1" value="1" min="1" max="20">
 							<btn id="selectLayerBtn" class ="btn" style="height:10%; margin-top:0%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="check" class="feather feather-check" style="color: #BAA21F;"></svg></btn>
@@ -10628,19 +10649,12 @@ a.text-dark:hover, a.text-dark:focus {
 							<input id="hideLayerInput" type="range" style="width: 40%; margin-top: 5%" class="form-range" id="customRange1" value="1" min="1" max="20">
 							<btn id="hideLayerBtn" class ="btn" style="height:10%; margin-top:0%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="check" class="feather feather-check"style="color: #BAA21F;"></svg></btn>
 						</div>
-						<btn id="textUtilityBtn" class="btn" style="height:10%; margin-top:2.9%">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-type" data-feather="type" style="color: #BAA21F;"></svg>
-						</btn>
-						<btn id="imageUtilityBtn" class="btn" style="height:10%; margin-top:2.9%">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="image" class="feather feather-image" style="color: #BAA21F;"></svg>
-						</btn>
-						<a href="https://www.zinxswiki.com/pagesettings" style="height:10%; margin-top:2.9%"><btn class="btn" style="height:10%; margin-top:2.9%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings" data-feather="settings" style="color: #BAA21F;"><circle cx="12" cy="12" r="3"/></svg></btn></a>
-					</nav>
-					<div id="page"  class=" card" style="height: 190vh; width: 65vw; margin-left: 4vw; margin-top: 1vw; z-index: 4; opacity: 90%">
-				
-				
-				</div>
+						</div>
+						</div>
+						
 					
+						
+					</div>
                 </main>
                 <footer class="footer-admin mt-auto">
                     <div class="container-xl px-4">

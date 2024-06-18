@@ -110,7 +110,7 @@ public class ImageService implements  ImageServiceInterface{
                 Image image = new Image();
 
 
-                String basePath = "/classes/static/pages/" + pageId + "/images/";
+                String basePath = "/classes/static/pages/" + page.getPageName() + "/images/";
 
                 Path directoryPath = Paths.get(basePath);
                 Files.createDirectories(directoryPath);
@@ -205,7 +205,7 @@ public class ImageService implements  ImageServiceInterface{
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
 
 
-                String basePath = "/classes/static/pages/" + pageId + "/logos/";
+                String basePath = "/classes/static/pages/" +page.getPageName() + "/logos/";
 
                 Path directoryPath = Paths.get(basePath);
                 Files.createDirectories(directoryPath);

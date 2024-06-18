@@ -41,4 +41,16 @@ public class PageController {
     public String postAccountPageContent(@PathVariable String wixId, @PathVariable String pageId, @RequestBody String content){
         return pageService.postAccountPageContent(wixId, pageId, content);
     }
+
+    @CrossOrigin
+    @GetMapping("registerPage/{PIN}/{pageId}")
+    public String registerPage(@PathVariable String pin, @PathVariable String pageId){
+        return pageService.registerPage(pin, pageId);
+    }
+
+    @CrossOrigin
+    @GetMapping("setPageToAccount/{PIN}/{pageId}/{email}")
+    public String setPageToAccount(@PathVariable String pin, @PathVariable String pageId, @PathVariable String email){
+        return pageService.setPageToAccount(pin, pageId, email);
+    }
 }

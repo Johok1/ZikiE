@@ -207,7 +207,7 @@ public class PageService implements PageServiceInterface{
 
                 FileWriter writer = new FileWriter(pageFile);
                 writer.write(content);
-
+                writer.close();
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);
                 accountRepository.save(account);

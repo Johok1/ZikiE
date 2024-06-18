@@ -108,8 +108,8 @@ public class ImageService implements  ImageServiceInterface{
             if(isPageCreator(memberId, pageId)){
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 Image image = new Image();
-                imageRepository.save(image);
-                filename = image.getId().toString();
+
+
                 String basePath = "/classes/static/pages/" + pageId + "/images/";
 
                 Path directoryPath = Paths.get(basePath);

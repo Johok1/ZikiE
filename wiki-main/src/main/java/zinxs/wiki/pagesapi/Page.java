@@ -44,7 +44,7 @@ public class Page implements Serializable {
     private ArrayList<Image> imageObjs;
 
     private boolean status;
-    private String name;
+    private String pageName;
 
     public Page(){
         this.bannedAccounts = new ArrayList<>();

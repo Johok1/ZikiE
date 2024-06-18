@@ -62,7 +62,7 @@ public class PageService implements PageServiceInterface{
             if(pin.equals("BUST")) {
                 Page page = new Page();
                 pageName = pageName.replaceAll(" ", "_");
-                page.setName(pageName);
+                page.setPageName(pageName);
                // page.setId(Long.valueOf(pageId));
                 ArrayList<Image> pageImages = page.getImageObjs();
                 //Creating a File object for directory
@@ -125,7 +125,7 @@ public class PageService implements PageServiceInterface{
             Account account = getAccount(token);
             page.setCreator(account);
             pageName = pageName.replaceAll(" ", "_");
-            page.setName(pageName);
+            page.setPageName(pageName);
 
             pageRepository.save(page);
             ArrayList<Page> pages = account.getPages();
@@ -175,7 +175,7 @@ public class PageService implements PageServiceInterface{
     public String getPageName(String pageId){
         try{
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
-            return page.getName();
+            return page.getPageName();
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -188,7 +188,7 @@ public class PageService implements PageServiceInterface{
                 Account account = getAccount(memberId);
                 Page page = pageRepository.findById(Long.valueOf(pageId)).get();
                 pageName = pageName.replaceAll(" ", "_");
-                page.setName(pageName);
+                page.setPageName(pageName);
                 pageRepository.save(page);
                 ArrayList<Page> newPageList = replacePageInList(account.getPages(), pageId, page);
                 account.setPages(newPageList);

@@ -63,7 +63,7 @@ public class ProfileService {
             for(Page page: pages){
                 AccountPageHeaderResponse response = new AccountPageHeaderResponse(
                         String.valueOf(page.getId()),
-                        page.getName()
+                        page.getPageName()
                 );
                 pageHeaders.add(response);
             }

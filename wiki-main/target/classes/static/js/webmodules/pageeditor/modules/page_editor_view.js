@@ -44,7 +44,35 @@ class View {
         this.loadPageContent()
 
         this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
-       
+
+        this.viewButton = document.getElementById("viewButton")
+        this.view = false;
+        this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
+    }
+
+    toggleViewMode = () => {
+        this.view = !this.view
+        let reset = this.utilityHelper.utilityHandlerModule.resetAllElementHandlers
+        let enableDragAll = this.utilityHelper.utilityTranslationModule.enableDragAll
+        let layerManager = this.utilityHelper.layerManagerModule 
+        let select = this.utilityHelper.utilitySelectionModule.selectFunc
+        let register = this.utilityHelper.utilityHandlerModule.registerAllHandlers
+
+        if (this.view) {
+            let list = document.getElementById("page").querySelectorAll(".utility")
+            for (let x = 0; x < list.length; x++) {
+                var new_element = list[x].cloneNode(true);
+                list[x].parentNode.replaceChild(new_element, list[x]);
+            }
+        } else {
+            let layer = layerManager.getCurrentSelectedLayer()
+
+            reset(select)
+
+            enableDragAll(layer)
+
+            register(select, layer)
+        }
     }
 
 

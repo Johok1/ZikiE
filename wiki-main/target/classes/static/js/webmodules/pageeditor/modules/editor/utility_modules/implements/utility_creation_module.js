@@ -3,7 +3,7 @@ export default class UtilityCreationModule{
 
 		this.page = document.getElementById("page")
         this.utilityHelper = utilityHelper
-        this.backDrop = document.getElementById("layoutSidenav_content")
+        this.backDrop = document.getElementById("creationDiv")
 	}
 
   
@@ -43,7 +43,7 @@ export default class UtilityCreationModule{
         utility.element.style.position = "fixed"
         utility.element.style.opacity = "50%"
 
-        document.getElementById("layoutSidenav_content").appendChild(utility.element)
+        document.getElementById("page").after(utility.element)
         utility.element.style.zIndex = "9999"
         this.utility = utility
         this.backDrop.onmousemove = this.stickUtilityToMouse.bind(this)
@@ -57,7 +57,7 @@ export default class UtilityCreationModule{
     }
 
     stickUtilityToMouse = (event) => {
-        this.utility.element.style.transform = 'translateY(' + (event.clientY - 80) + 'px)'
+        this.utility.element.style.transform = 'translateY(' + (event.clientY - 150) + 'px)'
         this.utility.element.style.transform += 'translateX(' + (event.clientX - 50) + 'px)';
 
       
@@ -82,7 +82,7 @@ export default class UtilityCreationModule{
             //utility.element.style.transform += 'translateX(' + (event.clientX - 110) + 'px)';
             utility.element.style.transform = ""
             utility.element.style.left = `${event.clientX-110 }px`
-            utility.element.style.top = `${event.clientY - 230}px`
+            utility.element.style.top = `${event.clientY - 170}px`
 
             let newRect = utility.element.getBoundingClientRect()
             let utilityList = this.page.querySelectorAll(".utility")

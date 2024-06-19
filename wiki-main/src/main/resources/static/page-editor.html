@@ -10594,23 +10594,16 @@ a.text-dark:hover, a.text-dark:focus {
             </ul>
         </nav>
 		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+  <div class="offcanvas-header" style="background-color: #343F3E;">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel"><img style="width: 3vw; margin-right: 1vw" src="assets/img/Zinks_png.png">Zinxs Wiki</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
+  <div class="offcanvas-body" style="background-color:  #505A5B">
     <div>
-      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+      
     </div>
     <div class="dropdown mt-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
+      
     </div>
   </div>
 </div>
@@ -10624,27 +10617,43 @@ a.text-dark:hover, a.text-dark:focus {
 						
 						
 					</nav>
-					<div class="row">
+					<div id="creationDiv" class="row">
 					<div id="page"  class=" card" style="height: 190vh; width: 65vw; margin-left: 4vw; margin-top: 1vw; z-index: 4; opacity: 90%">
 				
 				
 				</div>
 					<div class="col" >
 						<div style="position: fixed">
-						<btn id="textUtilityBtn" class="btn" style="height:10%; margin-top:2.9%">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-type" data-feather="type" style="color: #BAA21F;"></svg>
-						</btn>
-						<btn id="imageUtilityBtn" class="btn" style="height:10%; margin-top:2.9%">
+							<div>
+								
+									
+								
+								<btn id="viewButton"  class="btn">
+									<svg id="viewOnSvg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye" data-feather="eye" style="color: #BAA21F;"></svg>
+									
+									<svg id="viewOffSvg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off visually-hidden" data-feather="eye-off" style="color: #BAA21F;"></svg>
+								</btn>
+							
+								
+							</div>
+						  <div>
+							<btn id="textUtilityBtn" class="btn view" style="height:10%; margin-top:2.9%">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-type" data-feather="type" style="color: #BAA21F;"></svg>
+							</btn>
+						   </div>	
+						 <div>	
+						<btn id="imageUtilityBtn" class="btn view" style="height:10%; margin-top:2.9%">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="image" class="feather feather-image" style="color: #BAA21F;"></svg>
 						</btn>
-						<a href="https://www.zinxswiki.com/pagesettings" style="height:10%; margin-top:2.9%"><btn class="btn" style="height:10%; margin-top:2.9%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings" data-feather="settings" style="color: #BAA21F;"><circle cx="12" cy="12" r="3"/></svg></btn></a>
+					    </div>
+						<a href="https://www.zinxswiki.com/pagesettings"  style="height:10%; margin-top:2.9%"><btn class="btn" style="height:10%; margin-top:2.9%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings" data-feather="settings" style="color: #BAA21F;"><circle cx="12" cy="12" r="3"/></svg></btn></a>
 						
-							<div class="input-group-sm" style="margin: 2%;">
+							<div class="input-group-sm view" style="margin: 2%;">
 							<label for="customRange1" class="form-label">Select a Layer</label>
 							<input id="selectLayerInput" type="range" style="width: 40%; margin-top: 5%" class="form-range" id="customRange1" value="1" min="1" max="20">
 							<btn id="selectLayerBtn" class ="btn" style="height:10%; margin-top:0%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="check" class="feather feather-check" style="color: #BAA21F;"></svg></btn>
 						</div>
-						<div class="input-group-sm" style="margin: 2%;">
+						<div class="input-group-sm view" style="margin: 2%;">
 							<label for="customRange1" class="form-label">Hide a Layer</label>
 							<input id="hideLayerInput" type="range" style="width: 40%; margin-top: 5%" class="form-range" id="customRange1" value="1" min="1" max="20">
 							<btn id="hideLayerBtn" class ="btn" style="height:10%; margin-top:0%"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-feather="check" class="feather feather-check"style="color: #BAA21F;"></svg></btn>
@@ -10672,7 +10681,24 @@ a.text-dark:hover, a.text-dark:focus {
 				
         </div>
 			
-			
+				<script>
+									let viewButton = document.getElementById("viewButton")
+									
+									
+
+									viewButton.addEventListener( 'click', ()=>{
+										
+											document.getElementById("viewOnSvg").classList.toggle("visually-hidden")
+											document.getElementById("viewOffSvg").classList.toggle("visually-hidden")
+										   let list = document.querySelectorAll(".view")
+
+											for(let x = 0; x < list.length; x++){
+												list[x].classList.toggle("visually-hidden")
+
+											}
+									
+									})
+								</script>
 			
 
 			<script>/*

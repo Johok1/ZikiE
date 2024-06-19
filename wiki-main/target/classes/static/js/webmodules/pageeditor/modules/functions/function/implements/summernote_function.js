@@ -27,8 +27,9 @@ export default class SummernoteFunction extends Function{
         let width = this.element.style.width
         let height = this.element.style.height
 
-        this.createSummernoteEditor(top, left, width, height)
+         this.createSummernoteEditor(top, left, width, height)
 
+        document.getElementById("toolbar").appendChild(document.querySelector(".note-editor"))
 
         this.attachDisableEditButton(constructToolbar, this.element)
 
@@ -51,12 +52,11 @@ export default class SummernoteFunction extends Function{
 
     createSummernoteEditor = (top, left ,width, height) => {
         $('.summernote').summernote({
-            focus: true, airMode: true, popover: {
+            focus: true, airMode: false, popover: {
                 air: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
                     ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
                     ['insert', ['link']]
                 ]
             },
@@ -72,12 +72,9 @@ export default class SummernoteFunction extends Function{
         });
         $('.note-editor').css({
             color: "black",
-            position: "absolute",
-            top: top,
-            left: left,
-            width: width,
-            height: height
+            psition: "fixed"
         })
+        
     }
 
     attachDisableEditButton = (constructToolbar, element) => {

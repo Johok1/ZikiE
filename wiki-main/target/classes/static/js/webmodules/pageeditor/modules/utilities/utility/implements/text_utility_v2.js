@@ -15,6 +15,7 @@ export default class TextUtility extends Utility {
      
         this.functions.summernoteFunction.disableDragMode(this.element)
         this.element.querySelector(".main").style.border = "solid 2px red"
+        this.summernoteHandleEditText()
     }
 
     deselectElement = () => {
@@ -35,7 +36,7 @@ export default class TextUtility extends Utility {
     constructToolbar = () => {
         this.toolbar.constructToolbar()
         this.initBoxResizeBtn()
-        this.initEditTextBtn()
+      //  this.initEditTextBtn()
         this.initCancelSelectionBtn()
 
     }

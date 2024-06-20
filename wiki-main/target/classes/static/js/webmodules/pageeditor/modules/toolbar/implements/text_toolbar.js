@@ -41,7 +41,7 @@ export default class TextToolbar extends Toolbar{
         this.resizeButton.style.position = "absolute"
         this.resizeButton.style.zIndex = "100"
       
- 
+       /* 
         this.editTextBtn = document.createElement("btn")
 
         this.editTextSVG = document.createElement("svg")
@@ -64,7 +64,7 @@ export default class TextToolbar extends Toolbar{
         this.editTextBtn.style.position = "absolute"
         this.editTextBtn.style.zIndex = "100"
        
-   
+   */
 
         this.cancelSelectionBtn = document.createElement("btn")
 
@@ -94,12 +94,12 @@ export default class TextToolbar extends Toolbar{
      //   this.cancelSelectionBtn.style.left = "0px"
 
         let page = document.getElementById("page")
-        page.appendChild(this.editTextBtn)
+     //   page.appendChild(this.editTextBtn)
         page.appendChild(this.cancelSelectionBtn)
         page.appendChild(this.resizeButton)
 
 
-        this.positionEditBtn(this.element, this.editTextBtn)
+      //  this.positionEditBtn(this.element, this.editTextBtn)
         this.positionExitBtn(this.element, this.cancelSelectionBtn)
         this.positionResizeElement(this.element, this.resizeButton)
    
@@ -113,7 +113,7 @@ export default class TextToolbar extends Toolbar{
 
     updateToolbarPosition = () => {
 
-        this.positionEditBtn(this.element, this.editTextBtn)
+     //   this.positionEditBtn(this.element, this.editTextBtn)
         this.positionExitBtn(this.element, this.cancelSelectionBtn)
         this.positionResizeElement(this.element, this.resizeButton)
     }

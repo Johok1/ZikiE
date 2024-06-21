@@ -21,15 +21,15 @@ export default class TextToolbar extends Toolbar{
         this.resizeButtonSVG.setAttribute("xmlns", "http://www.w3.org/2000/svg")
         this.resizeButtonSVG.setAttribute("width", "24")
         this.resizeButtonSVG.setAttribute("height", "24")
-        this.resizeButtonSVG.style.width = "30px"
-        this.resizeButtonSVG.style.height = "30px"
+        this.resizeButtonSVG.style.width = "10px"
+        this.resizeButtonSVG.style.height = "10px"
         this.resizeButtonSVG.setAttribute("viewBox", "0 0 24 24")
         this.resizeButtonSVG.setAttribute("fill", "none")
         this.resizeButtonSVG.setAttribute("stroke", "currentColor")
-        this.resizeButtonSVG.setAttribute("stroke-width", "3")
+        this.resizeButtonSVG.setAttribute("stroke-width", "5")
         this.resizeButtonSVG.setAttribute("stroke-linecap", "round")
         this.resizeButtonSVG.setAttribute("stroke-linejoin", "round")
-        this.resizeButtonSVG.setAttribute("data-feather", "arrow-right")
+        this.resizeButtonSVG.setAttribute("data-feather", "circle")
         this.resizeButtonSVG.classList.add("feather")
         this.resizeButtonSVG.classList.add("feather-arrow-down-right")
         this.resizeButtonSVG.style.color = "#BAA21F"
@@ -39,7 +39,11 @@ export default class TextToolbar extends Toolbar{
         this.resizeButton.classList.add("text-popup")
         this.resizeButton.classList.add("resize-popup")
         this.resizeButton.style.position = "absolute"
+        this.resizeButton.style.width = "30px"
+        this.resizeButton.style.height = "30px"
         this.resizeButton.style.zIndex = "100"
+
+
       
        /* 
         this.editTextBtn = document.createElement("btn")
@@ -94,13 +98,14 @@ export default class TextToolbar extends Toolbar{
      //   this.cancelSelectionBtn.style.left = "0px"
 
         let page = document.getElementById("page")
+        let toolbar = document.getElementById("toolbar")
      //   page.appendChild(this.editTextBtn)
-        page.appendChild(this.cancelSelectionBtn)
+        toolbar.appendChild(this.cancelSelectionBtn)
         page.appendChild(this.resizeButton)
 
 
       //  this.positionEditBtn(this.element, this.editTextBtn)
-        this.positionExitBtn(this.element, this.cancelSelectionBtn)
+        //this.positionExitBtn(this.element, this.cancelSelectionBtn)
         this.positionResizeElement(this.element, this.resizeButton)
    
         document.feather.replace()
@@ -156,7 +161,7 @@ export default class TextToolbar extends Toolbar{
         // Set position of the second element
         element2.style.position = 'absolute';
         element2.style.left = (rect.width + (rect.left - pageRect.left)) + 'px';
-        element2.style.top = (rect.height + (rect.top - pageRect.top)) + 'px';
+        element2.style.top = (rect.height + (rect.top - pageRect.top) +15) + 'px';
     }
 
 

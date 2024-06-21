@@ -2,6 +2,90 @@ import Function from '../function.js'
 
 export default class ImageBackendFunction extends Function{
 
+
+    
+    imageInputConstructor() {
+        this.master = document.createElement("div");
+        this.master.classList.add("card");
+        this.master.classList.add("mb-2");
+
+        this.header = document.createElement("div");
+        this.header.classList.add("card-header");
+        this.header.innerHTML = "Image Input";
+
+        this.body = document.createElement("div");
+        this.body.classList.add("card-body");
+        this.body.classList.add("text-center");
+
+        this.image = document.createElement("img");
+        this.image.style.width = "5vw";
+
+        this.fileInput = document.createElement("input");
+        this.fileInput.classList.add("btn");
+        this.fileInput.setAttribute("type", "file");
+
+        this.body.appendChild(this.image);
+        this.body.appendChild(this.fileInput);
+
+        this.master.appendChild(this.header);
+        this.master.appendChild(this.body);
+
+        this.fileInput.addEventListener("change", (e) => {
+            this.element.querySelector(".image-main").style.backgroundColor = "transparent"
+            //this.element.querySelector(".image-main").style.width = ""
+            //  this.element.querySelector(".image-main").style.height = ""
+
+            let file = e.target.files.item(0)
+            this.addImageToBackend(file, file.name)
+
+            this.processFile(file)
+                .then(result => {
+                    console.log("process file result " + result)
+                    console.log("file " + file.name)
+
+                    this.element.querySelector(".image-main").src = URL.createObjectURL(result)
+
+
+
+
+                    this.element.querySelector(".image-main").id = file.name
+
+                    const addImageToBackend = this.addImageToBackend
+
+                    const reader = new FileReader();
+                    // Define a function to handle the FileReader's load event
+                    reader.onload = function (event) {
+                        // Access the ArrayBuffer representing the Blob's data
+                        const arrayBuffer = event.target.result;
+
+                        // Convert ArrayBuffer to Uint8Array (byte array)
+                        const byteArray = new Uint8Array(arrayBuffer);
+
+                        const base64String = btoa(String.fromCharCode.apply(null, byteArray));
+
+                        // Now you can send the byteArray to the backend
+                        //  addImageToBackend(base64String, file.name);
+                    };
+
+                    // Read the Blob as an ArrayBuffer
+                    reader.readAsArrayBuffer(result);
+
+
+
+
+                })
+        })
+
+        document.getElementById("toolbar").appendChild(this.master)
+    }
+
+    imageInputDestruct() {
+        this.master.remove()
+    }
+
+
+
+
     constructor(backendManager) {
         super()
         this.cookie = backendManager.cookie
@@ -25,6 +109,8 @@ export default class ImageBackendFunction extends Function{
         })
 
         this.element.querySelector(".image-main").addEventListener("drop", this.handleFileInput, false)
+
+        this.imageInputConstructor()
     }
 
     removeFileInputHandler = (element) => {
@@ -44,6 +130,8 @@ export default class ImageBackendFunction extends Function{
         })
 
         this.element.querySelector(".image-main").removeEventListener("drop", this.handleFileInput, false)
+
+        this.imageInputDestruct()
     }
 
     handleFileInput = (e) => {

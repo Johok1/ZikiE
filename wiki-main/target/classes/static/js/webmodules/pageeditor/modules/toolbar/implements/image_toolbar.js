@@ -23,17 +23,17 @@ export default class ImageToolbar extends Toolbar{
         this.resizeButtonSVG.setAttribute("xmlns" , "http://www.w3.org/2000/svg")
         this.resizeButtonSVG.setAttribute("width", "24")
         this.resizeButtonSVG.setAttribute("height", "24")
-        this.resizeButtonSVG.style.width = "40px"
-        this.resizeButtonSVG.style.height = "40px"
+        this.resizeButtonSVG.style.width = "10px"
+        this.resizeButtonSVG.style.height = "10px"
         this.resizeButtonSVG.setAttribute("viewBox" , "0 0 24 24")
         this.resizeButtonSVG.setAttribute("fill" , "none")
         this.resizeButtonSVG.setAttribute("stroke" ,"currentColor")
         this.resizeButtonSVG.setAttribute("stroke-width", "3")
         this.resizeButtonSVG.setAttribute("stroke-linecap", "round")
         this.resizeButtonSVG.setAttribute("stroke-linejoin", "round")
-        this.resizeButtonSVG.setAttribute("data-feather","arrow-down-right")
+        this.resizeButtonSVG.setAttribute("data-feather","circle")
         this.resizeButtonSVG.classList.add("feather")
-        this.resizeButtonSVG.classList.add("feather-arrow-down-right")
+        this.resizeButtonSVG.classList.add("feather-circle")
         this.resizeButtonSVG.style.color = "#BAA21F"
 
         this.resizeButton.appendChild(this.resizeButtonSVG)
@@ -43,6 +43,8 @@ export default class ImageToolbar extends Toolbar{
         this.resizeButton.classList.add("resize-popup")
         this.resizeButton.style.position = "absolute"
         this.resizeButton.style.zIndex = "100"
+        this.resizeButton.style.width = "30px"
+        this.resizeButton.style.height = "30px"
 
         this.cancelSelectionBtn = document.createElement("btn")
 
@@ -67,8 +69,10 @@ export default class ImageToolbar extends Toolbar{
         this.cancelSelectionBtn.style.position = "absolute"
         this.cancelSelectionBtn.style.zIndex = "100"
 
+        let toolbar = document.getElementById("toolbar")
+
         page.appendChild(this.resizeButton)
-        page.appendChild(this.cancelSelectionBtn)
+        toolbar.appendChild(this.cancelSelectionBtn)
        
         this.updateToolbarPosition()
         document.feather.replace()
@@ -78,7 +82,7 @@ export default class ImageToolbar extends Toolbar{
     updateToolbarPosition = () => {
 
 
-        this.positionExitBtn(this.element, this.cancelSelectionBtn)
+      //  this.positionExitBtn(this.element, this.cancelSelectionBtn)
         this.positionResizeElement(this.element, this.resizeButton)
     }
 

@@ -16,6 +16,7 @@ export default class TextUtility extends Utility {
         this.functions.summernoteFunction.disableDragMode(this.element)
         this.element.querySelector(".main").style.border = "solid 2px red"
         this.summernoteHandleEditText()
+        this.toolbar.deleteUtilityBtn.addEventListener("click", this.deleteUtility)
     }
 
     deselectElement = () => {
@@ -27,6 +28,11 @@ export default class TextUtility extends Utility {
         this.functions.summernoteFunction.enableDragMode(this.element)
         this.deconstructToolbar()
 
+    }
+
+    deleteUtility = () => {
+        this.deselectElement()
+        this.element.remove()
     }
 
     deconstructToolbar = () => {

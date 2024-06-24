@@ -18,7 +18,7 @@ class View {
 
         this.initPageDetails()
        
-
+        let page = this.page
 
         this.pageSubmitTimer = new PageSubmitTimer(page)
         this.pageSubmitTimer.setSubmitTimer(10)
@@ -48,6 +48,31 @@ class View {
         this.viewButton = document.getElementById("viewButton")
         this.view = false;
         this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
+
+        this.resizePageBtn = document.getElementById("resizePageBtn")
+         
+        this.resizePageBtn.onmousedown = this.resizePage.bind(this)
+        this.page.addEventListener("mouseup", () => {
+            console.log("weeee")
+            this.page.onmousemove = null  
+        })
+
+        this.page.addEventListener("mouseleave", () => {
+            this.page.onmousemove = null 
+        })
+    }
+
+    resizePage = () => {
+        this.page.onmousemove = this.pageResizeFunction.bind(this)
+    }
+
+    pageResizeFunction = ({ movementX, movementY }) => {
+        let height = parseFloat(this.page.style.height)
+        let newHeight = height + movementY
+        let margin = parseFloat(this.resizePageBtn.style.marginTop)
+        let newMargin = margin + movementY
+        this.resizePageBtn.style.marginTop = `${newMargin}vh`
+        this.page.style.height = `${newHeight}vh`
     }
 
     toggleViewMode = () => {

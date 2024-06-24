@@ -65,7 +65,8 @@ export default class SummernoteFunction extends Function{
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['font', ['strikethrough', 'superscript', 'subscript']],
                 ['fontsize', ['fontsize']],
-                ['color', ['color']]
+                ['color', ['color']],
+                ['view', ['fullscreen']]
             ],
             keyMap: {
                 pc: {
@@ -78,6 +79,7 @@ export default class SummernoteFunction extends Function{
         });
         $('.note-editor').css({
             color: "black",
+            width: "90%",
             backgroundColor: "white",
             psition: "fixed"
         })
@@ -91,6 +93,7 @@ export default class SummernoteFunction extends Function{
 
 
         $('.note-editor').append(disableEditBtn)
+       
 
        
 

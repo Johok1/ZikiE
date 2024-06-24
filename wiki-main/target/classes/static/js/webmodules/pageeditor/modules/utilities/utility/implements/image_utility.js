@@ -19,7 +19,15 @@ export default class ImageUtility extends Utility {
         this.functions.imageBackendFunction.disableDragMode(this.element)
         //   this.element.querySelector(".image-main").style.border = "3px solid red"
         this.functions.imageBackendFunction.attachFileInputHandler(this.element)
+        this.toolbar.deleteUtilityBtn.addEventListener("click", this.deleteUtility)
+    }
 
+    deleteUtility = () => {
+        this.deselectElement()
+           
+        this.element.remove()
+         
+       
     }
 
     deselectElement = () => {

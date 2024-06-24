@@ -57,8 +57,8 @@ export default class UtilityCreationModule{
     }
 
     stickUtilityToMouse = (event) => {
-        this.utility.element.style.transform = 'translateY(' + (event.clientY - 150) + 'px)'
-        this.utility.element.style.transform += 'translateX(' + (event.clientX - 50) + 'px)';
+        this.utility.element.style.transform = 'translateY(' + (event.clientY - 190) + 'px)'
+        this.utility.element.style.transform += 'translateX(' + (event.clientX - 40) + 'px)';
 
       
      

@@ -69,7 +69,33 @@ export default class ImageToolbar extends Toolbar{
         this.cancelSelectionBtn.style.position = "absolute"
         this.cancelSelectionBtn.style.zIndex = "100"
 
+        this.deleteUtilityBtn = document.createElement("btn")
+        this.deleteUtilityBtn.style.position = "absolute"
+        this.deleteUtilityBtn.style.zIndex = "100"
+        this.deleteUtilityBtn.classList.add("image-popup")
+        this.deleteUtilityBtn.style.left = "95%"
+
+        this.deleteUtilitySvg = document.createElement("svg")
+        this.deleteUtilitySvg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+        this.deleteUtilitySvg.setAttribute("width", "24")
+        this.deleteUtilitySvg.setAttribute("height", "24")
+        this.deleteUtilitySvg.setAttribute("viewBox", "0 0 24 24")
+        this.deleteUtilitySvg.setAttribute("fill", "none")
+        this.deleteUtilitySvg.setAttribute("stroke", "currentColor")
+        this.deleteUtilitySvg.setAttribute("stroke-width", "2")
+        this.deleteUtilitySvg.setAttribute("stroke-linecap", "round")
+        this.deleteUtilitySvg.setAttribute("stroke-linejoin", "round")
+        this.deleteUtilitySvg.setAttribute("data-feather", "trash-2")
+        this.deleteUtilitySvg.classList.add("feather")
+        this.deleteUtilitySvg.classList.add("feather-trash-2")
+        this.deleteUtilitySvg.style.color = "#BAA21F"
+
+        this.deleteUtilityBtn.appendChild(this.deleteUtilitySvg)
+
         let toolbar = document.getElementById("toolbar")
+
+        toolbar.appendChild(this.deleteUtilityBtn)
+
 
         page.appendChild(this.resizeButton)
         toolbar.appendChild(this.cancelSelectionBtn)

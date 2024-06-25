@@ -137,7 +137,9 @@ class View {
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
-                page.outerHTML = response
+                if (response != null || response != "" || response != undefined) {
+                    page.outerHTML = response
+                }
                 if (page.querySelector("#resizePageBtn") == null) {
                     page.appendChild(this.resizePageBtn)
                 } else {

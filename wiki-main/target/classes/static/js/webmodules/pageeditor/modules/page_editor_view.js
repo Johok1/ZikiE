@@ -49,14 +49,14 @@ class View {
         this.view = false;
         this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
         this.resizePageBtn = document.getElementById("resizePageBtn")
-        this.initResizeEvents()
+       
       
     }
 
     initResizeEvents = () => {
        
 
-        this.resizePageBtn.onmousedown = this.resizePage.bind(this)
+        document.getElementById("resizePageBtn").onmousedown = this.resizePage.bind(this)
         this.page.addEventListener("mouseup", () => {
             console.log("weeee")
             this.page.onmousemove = null
@@ -74,9 +74,9 @@ class View {
     pageResizeFunction = ({ movementX, movementY }) => {
         let height = parseFloat(this.page.style.height)
         let newHeight = height + movementY
-        let margin = parseFloat(this.resizePageBtn.style.marginTop)
+        let margin = parseFloat(document.getElementById("resizePageBtn").style.marginTop)
         let newMargin = margin + movementY
-        this.resizePageBtn.style.marginTop = `${newMargin}vh`
+        document.getElementById("resizePageBtn").style.marginTop = `${newMargin}vh`
         this.page.style.height = `${newHeight}vh`
     }
 
@@ -143,12 +143,9 @@ class View {
                     page.innerHTML = wrapper.firstChild.innerHTML
                     page.style.height = wrapper.firstChild.style.height 
                 }
-                if (page.querySelector("#resizePageBtn") == null) {
-                    page.appendChild(this.resizePageBtn)
-                } else {
-                    console.log(page.querySelector("#resizePageBtn"))
-                }
+                
                 initResizeEvents()
+
                 reset(select)
 
                 enableDragAll(layer)

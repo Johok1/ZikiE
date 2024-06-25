@@ -81,9 +81,10 @@ export default class UtilityCreationModule{
             //utility.element.style.transform = 'translateY(' + (event.clientY-230) + 'px)'
             //utility.element.style.transform += 'translateX(' + (event.clientX - 110) + 'px)';
             utility.element.style.transform = ""
-            utility.element.style.left = `${event.clientX-110 }px`
-            utility.element.style.top = `${event.clientY - 170}px`
-
+            utility.element.style.left = `${event.clientX - 110}px`
+            let scrollTop = document.querySelector("body").scrollTop
+            utility.element.style.top = `${event.clientY + scrollTop - 170}px`
+            console.log(window.scrollY)
             let newRect = utility.element.getBoundingClientRect()
             let utilityList = this.page.querySelectorAll(".utility")
             if (this.isUtilityCollision(utilityList, newRect,utility.element)) {

@@ -15,7 +15,8 @@ class View {
         this.utilityHelper = new UtilityHelper()
         this.page = document.getElementById("page")
 
-
+        this.viewButton = document.getElementById("viewButton")
+        this.viewButton.classList.add("visually-hidden")
         this.initPageDetails()
        
         let page = this.page
@@ -45,9 +46,9 @@ class View {
 
         this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
 
-        this.viewButton = document.getElementById("viewButton")
+       
         this.view = false;
-        this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
+        //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
         this.resizePageBtn = document.getElementById("resizePageBtn")
        
       

@@ -137,7 +137,7 @@ class View {
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
-                if (response != null || response != "" || response != undefined) {
+                if (response != null && response != "" && response != undefined) {
                     page.outerHTML = response
                 }
                 if (page.querySelector("#resizePageBtn") == null) {

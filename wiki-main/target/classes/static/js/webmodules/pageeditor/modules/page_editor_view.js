@@ -131,7 +131,7 @@ class View {
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
-                page.innerHTML = response
+                page.innerHTML += response
            
                 reset(select)
 

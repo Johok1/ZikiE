@@ -138,11 +138,10 @@ class View {
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
                 if (response != null && response != "" && response != undefined) {
-                    var doc = new DOMParser().parseFromString(response, "text/xml");
-                    console.log(doc)
-                    console.log(doc.firstChild)
-                    page.innerHTML = doc.firstChild.innerHTML
-                    page.style.height = doc.firstChild.style.height
+                    var wrapper = document.createElement('div');
+                    wrapper.innerHTML = response
+                    page.innerHTML = wrapper.firstChild.innerHTML
+                    page.style.height = wrapper.firstChild.style.height 
                 }
                 if (page.querySelector("#resizePageBtn") == null) {
                     page.appendChild(this.resizePageBtn)

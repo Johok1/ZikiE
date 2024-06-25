@@ -23,7 +23,7 @@ export default class PageSubmitTimer {
         let page = this.page 
         let cookie = this.backendManager.cookie
         if (!page.classList.contains("dragging") && !page.classList.contains("editing")) {
-            this.backendManager.controller.postAccountPageContent(cookie.getCookie("token"), cookie.getCookie("pageId"), page.innerHTML)
+            this.backendManager.controller.postAccountPageContent(cookie.getCookie("token"), cookie.getCookie("pageId"), page.outerHTML)
                 .then(response => response.text())
                 .then(response => {
                     console.log("post page response: " + response)

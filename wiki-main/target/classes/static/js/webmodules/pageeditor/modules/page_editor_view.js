@@ -48,17 +48,22 @@ class View {
         this.viewButton = document.getElementById("viewButton")
         this.view = false;
         this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
-
         this.resizePageBtn = document.getElementById("resizePageBtn")
-         
+        this.initResizeEvents()
+      
+    }
+
+    initResizeEvents = () => {
+       
+
         this.resizePageBtn.onmousedown = this.resizePage.bind(this)
         this.page.addEventListener("mouseup", () => {
             console.log("weeee")
-            this.page.onmousemove = null  
+            this.page.onmousemove = null
         })
 
         this.page.addEventListener("mouseleave", () => {
-            this.page.onmousemove = null 
+            this.page.onmousemove = null
         })
     }
 
@@ -127,16 +132,18 @@ class View {
         let enableDragAll = this.utilityHelper.utilityTranslationModule.enableDragAll
         let layerManager = this.utilityHelper.layerManagerModule 
         let loadPageImages = this.loadPageImages
+        let initResizeEvents = this.initResizeEvents
         this.controller.getAccountPageContent(this.cookie.getCookie("token"), this.cookie.getCookie("pageId"))
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
-                page.innerHTML = response
+                page.outerHTML = response
                 if (page.querySelector("#resizePageBtn") == null) {
                     page.appendChild(this.resizePageBtn)
                 } else {
                     console.log(page.querySelector("#resizePageBtn"))
                 }
+                initResizeEvents()
                 reset(select)
 
                 enableDragAll(layer)

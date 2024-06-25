@@ -131,8 +131,12 @@ class View {
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
-                page.innerHTML += response
-           
+                page.innerHTML = response
+                if (page.querySelector("#resizePageBtn") == null) {
+                    page.appendChild(this.resizePageBtn)
+                } else {
+                    console.log(page.querySelector("#resizePageBtn"))
+                }
                 reset(select)
 
                 enableDragAll(layer)

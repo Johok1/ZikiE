@@ -152,6 +152,7 @@ export default class SummernoteFunction extends Function{
    
 
     handleDisableEditText (constructToolbar, element){
+    document.querySelector(".note-editor").querySelector(".main").style.height = ""
         var markup = $('.summernote').summernote('code');
 
         //  this.element.innerHTML = markup

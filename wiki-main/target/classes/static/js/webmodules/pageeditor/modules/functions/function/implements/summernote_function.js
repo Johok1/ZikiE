@@ -57,7 +57,8 @@ export default class SummernoteFunction extends Function{
 
 
     createSummernoteEditor = (top, left ,width, height) => {
-        $('.summernote').summernote({ 
+        $('.summernote').summernote({
+            disableDragAndDrop:true,
             fontSizeUnits: ['px', 'pt'],
             fontColor: '#000000',
             toolbar: [
@@ -65,8 +66,7 @@ export default class SummernoteFunction extends Function{
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['font', ['strikethrough', 'superscript', 'subscript']],
                 ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['view', ['fullscreen']]
+                ['color', ['color']]
             ],
             keyMap: {
                 pc: {
@@ -77,13 +77,16 @@ export default class SummernoteFunction extends Function{
                 }
             }
         });
+        $('#summernote').summernote({
+            disableDragAndDrop:true
+        })
         $('.note-editor').css({
             color: "black",
             width: "90%",
-            backgroundColor: "white",
-            psition: "fixed"
+            backgroundColor: "white"
+
         })
-        
+       document.querySelector(".note-editor").querySelector(".main").style.height = "20vh"
     }
 
     attachDisableEditButton = (constructToolbar, element) => {
@@ -120,6 +123,10 @@ export default class SummernoteFunction extends Function{
             } else {
                 console.log("backspace not detected")
             }
+             if (event.ctrlKey && (event.key === 'v'
+                        || event.key === 'V')) {
+
+                        }
         });
     }
 

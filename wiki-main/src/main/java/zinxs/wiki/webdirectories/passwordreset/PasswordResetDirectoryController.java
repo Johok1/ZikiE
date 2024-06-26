@@ -31,6 +31,7 @@ public class PasswordResetDirectoryController {
         System.out.println("request endpoint token " + token + "\n"+"\n");
         try {
             Account account = getAccount(token);
+            System.out.println( "account:" + account.getEmail() + " " + account.isEnabled());
             if (account.isEnabled()) {
                 response.addCookie(new Cookie("token", token));
                 modelAndView.setViewName("auth-reset-password.html");
@@ -41,7 +42,7 @@ public class PasswordResetDirectoryController {
         }catch (Exception e){
             modelAndView.setViewName("redirect:/login");
             System.out.println( "request error: " + e.getMessage());
-            throw new RuntimeException(e);
+            return modelAndView;
 
         }
 

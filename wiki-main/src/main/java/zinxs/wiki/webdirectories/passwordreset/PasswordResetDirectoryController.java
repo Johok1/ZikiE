@@ -32,8 +32,8 @@ public class PasswordResetDirectoryController {
             Account account = getAccount(token);
             System.out.println( "account:" + account.getEmail() + " " + account.isEnabled());
             if (account.isEnabled()) {
-                response.addCookie(new Cookie("token", token));
-                modelAndView.setViewName("redirect:/resetpassword");
+               // response.addCookie(new Cookie("token", token));
+                modelAndView.setViewName("redirect:/resetpassword?token="+token);
             }else{
                 modelAndView.setViewName("redirect:/login");
             }

@@ -22,7 +22,7 @@ public class ResetPasswordDirectoryController {
 
     @CrossOrigin
     @GetMapping
-    public ModelAndView getPasswordResetPage(@CookieValue(value = "token", defaultValue = "none") String token){
+    public ModelAndView getPasswordResetPage(@RequestParam("token") String token){
         ModelAndView modelAndView = new ModelAndView();
         if(token.equals("none")){
             // System.out.println("Token was None");

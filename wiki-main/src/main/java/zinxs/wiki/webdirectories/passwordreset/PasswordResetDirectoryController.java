@@ -38,13 +38,15 @@ public class PasswordResetDirectoryController {
             }else{
                 modelAndView.setViewName("redirect:/login");
             }
-
+            System.out.println(modelAndView.toString());
         }catch (Exception e){
             modelAndView.setViewName("redirect:/login");
             System.out.println( "request error: " + e.getMessage());
             return modelAndView;
 
         }
+
+        System.out.println(modelAndView.toString());
 
         return modelAndView;
     }

@@ -7,6 +7,7 @@ class ResetPassword {
         this.resetPasswordBtn = document.getElementById("resetPasswordBtn")
         this.errorDiv = document.getElementById("errorDiv")
         this.errorDiv.classList.add("visually-hidden")
+        this.resetPasswordBtn.addEventListener("click", this.sendResetRequest.bind(this))
     }
 
     sendResetRequest = () => {

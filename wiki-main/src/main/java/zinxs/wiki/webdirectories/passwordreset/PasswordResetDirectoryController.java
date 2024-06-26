@@ -33,7 +33,7 @@ public class PasswordResetDirectoryController {
             System.out.println( "account:" + account.getEmail() + " " + account.isEnabled());
             if (account.isEnabled()) {
                 response.addCookie(new Cookie("token", token));
-                modelAndView.setViewName("auth-reset-password.html");
+                modelAndView.setViewName("redirect:/resetpassword");
             }else{
                 modelAndView.setViewName("redirect:/login");
             }

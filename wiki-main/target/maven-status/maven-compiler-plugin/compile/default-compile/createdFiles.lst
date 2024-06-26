@@ -17,6 +17,7 @@ zinxs\wiki\pagesapi\PageController.class
 zinxs\wiki\AlphaApplication.class
 zinxs\wiki\accountsapi\AccountRole.class
 zinxs\wiki\accountsapi\profilesettings\ProfileService.class
+zinxs\wiki\webdirectories\passwordreset\ResetPasswordDirectoryController.class
 zinxs\wiki\jsonobjects\AccountPageHeaderResponse.class
 zinxs\wiki\webdirectories\page\PageWizardDirectoryController.class
 zinxs\wiki\imagesapi\ImageServiceInterface.class

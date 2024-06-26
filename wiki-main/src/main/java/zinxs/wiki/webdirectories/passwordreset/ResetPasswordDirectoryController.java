@@ -35,7 +35,7 @@ public class ResetPasswordDirectoryController {
                     modelAndView.setViewName("auth-password-social.html");
                 } else {
                     //  System.out.println("token was valid");
-                    modelAndView.setViewName("auth-reset-password");
+                    modelAndView.setViewName("auth-reset-password.html");
                 }
             }catch (Exception e){
                 //  System.out.println("token process gave error :" + e);

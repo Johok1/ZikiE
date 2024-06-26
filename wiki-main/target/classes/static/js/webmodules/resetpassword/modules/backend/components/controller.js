@@ -5,7 +5,7 @@ export default class Controller {
 
     postNewPassword(token, password) {
         return fetch(this.fetch_url_profile + "/setPassword/" + token + "/" + password, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': '*'
             }

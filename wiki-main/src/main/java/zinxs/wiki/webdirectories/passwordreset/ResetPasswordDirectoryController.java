@@ -22,8 +22,9 @@ public class ResetPasswordDirectoryController {
 
     @CrossOrigin
     @GetMapping
-    public ModelAndView getPasswordResetPage(@RequestParam("token") String token){
+    public ModelAndView getPasswordResetPage(@CookieValue(value = "token", defaultValue = "none") String token){
         ModelAndView modelAndView = new ModelAndView();
+        System.out.println("token " + token);
         if(token.equals("none")){
             // System.out.println("Token was None");
             modelAndView.setViewName("auth-password-social.html");

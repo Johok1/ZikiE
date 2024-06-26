@@ -20,8 +20,6 @@ import zinxs.wiki.validationapi.confirmation.ConfirmationToken;
 import zinxs.wiki.validationapi.confirmation.ConfirmationTokenService;
 import zinxs.wiki.validationapi.email.EmailSender;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.Collections;
 
@@ -222,16 +220,16 @@ public class ValidationService {
         }
 
     }
-    public String resetPassword(String email, HttpServletResponse response){
+    public String resetPassword(String email){
         try{
             String token = authTokenUtils.generateTempTokenNoPassword(email,"none");
-            response.addCookie(new Cookie("token", token));
+
 
             new Thread(() -> {
                 Account account =(Account) accountRepository.findByEmail(email).get();
                 emailSender.send(
                         email,
-                        buildResetEmail(email, "https://www.zinxswiki.com/passwordreset/request"));
+                        buildResetEmail(email, "https://www.zinxswiki.com/passwordreset/request?token="+token));
             }).start();
             return "true";
         }catch (Exception e){

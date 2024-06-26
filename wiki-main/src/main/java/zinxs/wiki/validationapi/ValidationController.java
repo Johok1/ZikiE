@@ -7,8 +7,6 @@ import zinxs.wiki.jsonobjects.GoogleRegistrationRequest;
 import zinxs.wiki.jsonobjects.LoginRequest;
 import zinxs.wiki.jsonobjects.RegistrationRequest;
 
-import javax.servlet.http.HttpServletResponse;
-
 @RestController
 @RequestMapping(path = "api/v1/validation")
 @AllArgsConstructor
@@ -63,8 +61,8 @@ public class ValidationController {
 
     @CrossOrigin
     @PostMapping("resetPassword/{email}")
-    public String resetPassword(@PathVariable String email, HttpServletResponse response){
-        return validationService.resetPassword(email, response);
+    public String resetPassword(@PathVariable String email){
+        return validationService.resetPassword(email);
     }
 
     @CrossOrigin

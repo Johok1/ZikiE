@@ -24,10 +24,11 @@ public class PasswordResetDirectoryController {
     private AccountRepository accountRepository;
 
     @CrossOrigin
-    @GetMapping(path="request")
     @Transactional
-    public ModelAndView resetPasswordWithToken(@CookieValue(value = "token", defaultValue = "none") String token, HttpServletResponse response){
+    @GetMapping(path="request")
+    public ModelAndView resetPasswordWithToken(@RequestParam("token") String token, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView();
+        System.out.println("request endpoint token " + token + "\n"+"\n");
         try {
             Account account = accountRepository.findByEmail(authTokenUtils.decodeEmail(token)).get();
             if (account.isEnabled()) {

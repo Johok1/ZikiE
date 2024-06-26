@@ -30,7 +30,7 @@ public class PasswordResetDirectoryController {
         ModelAndView modelAndView = new ModelAndView();
         System.out.println("request endpoint token " + token + "\n"+"\n");
         try {
-            Account account = accountRepository.findByEmail(authTokenUtils.decodeEmail(token)).get();
+            Account account = getAccount(token);
             if (account.isEnabled()) {
                 response.addCookie(new Cookie("token", token));
                 modelAndView.setViewName("auth-reset-password.html");
@@ -40,14 +40,26 @@ public class PasswordResetDirectoryController {
 
         }catch (Exception e){
             modelAndView.setViewName("redirect:/login");
-            System.out.println(e.getMessage());
+            System.out.println( "request error: " + e.getMessage());
             throw new RuntimeException(e);
 
         }
 
         return modelAndView;
     }
-
+    private Account getAccount(String tempToken){
+        try{
+            String decodedToken = authTokenUtils.decodeEmail(tempToken);
+            Account targetAccount = accountRepository.findByEmail(decodedToken).get();
+            if(targetAccount.isEnabled()){
+                return targetAccount;
+            }else{
+                throw new RuntimeException("Account " + decodedToken + " is disabled!");
+            }
+        }catch (Exception e){
+            throw new RuntimeException("getAccount error " + e);
+        }
+    }
     @CrossOrigin
     @GetMapping
     public ModelAndView getPasswordResetPage(@CookieValue(value = "token", defaultValue = "none") String token){

@@ -37,7 +37,7 @@ class PageSettings {
             let file = e.target.files.item(0)
             let token = backendManager.cookie.getCookie("token")
             let pageId = backendManager.cookie.getCookie("pageId")
-            backendManager.controller.postPageImage(token, pageId, file)
+            backendManager.controller.postPageImage(token, pageId, file, file.name)
                 .then(() => {
                     fileUtilities.processFile(file)
                         .then(response => {

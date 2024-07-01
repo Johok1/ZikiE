@@ -8,6 +8,7 @@ class PageViewer {
         this.fileUtilities = new FileUtilities()
         this.cardDiv = document.getElementById("cardContainer")
         this.makePageList()
+
     }
 
     makePageList = () => {

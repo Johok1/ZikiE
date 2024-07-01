@@ -3,7 +3,7 @@ export default class UtilityCreationModule{
 
 		this.page = document.getElementById("page")
         this.utilityHelper = utilityHelper
-        this.backDrop = document.getElementById("layoutSidenav_content")
+        this.backDrop = document.getElementById("creationDiv")
 	}
 
   
@@ -43,7 +43,7 @@ export default class UtilityCreationModule{
         utility.element.style.position = "fixed"
         utility.element.style.opacity = "50%"
 
-        document.getElementById("layoutSidenav_content").appendChild(utility.element)
+        document.getElementById("page").after(utility.element)
         utility.element.style.zIndex = "9999"
         this.utility = utility
         this.backDrop.onmousemove = this.stickUtilityToMouse.bind(this)
@@ -57,8 +57,8 @@ export default class UtilityCreationModule{
     }
 
     stickUtilityToMouse = (event) => {
-        this.utility.element.style.transform = 'translateY(' + (event.clientY - 80) + 'px)'
-        this.utility.element.style.transform += 'translateX(' + (event.clientX - 50) + 'px)';
+        this.utility.element.style.transform = 'translateY(' + (event.clientY - 190) + 'px)'
+        this.utility.element.style.transform += 'translateX(' + (event.clientX - 40) + 'px)';
 
       
      
@@ -81,9 +81,10 @@ export default class UtilityCreationModule{
             //utility.element.style.transform = 'translateY(' + (event.clientY-230) + 'px)'
             //utility.element.style.transform += 'translateX(' + (event.clientX - 110) + 'px)';
             utility.element.style.transform = ""
-            utility.element.style.left = `${event.clientX-110 }px`
-            utility.element.style.top = `${event.clientY - 230}px`
-
+            utility.element.style.left = `${event.clientX - 110}px`
+            let scrollTop = document.querySelector("body").scrollTop
+            utility.element.style.top = `${event.clientY + scrollTop - 170}px`
+            console.log(window.scrollY)
             let newRect = utility.element.getBoundingClientRect()
             let utilityList = this.page.querySelectorAll(".utility")
             if (this.isUtilityCollision(utilityList, newRect,utility.element)) {

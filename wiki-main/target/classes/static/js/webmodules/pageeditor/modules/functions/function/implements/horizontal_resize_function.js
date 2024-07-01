@@ -3,7 +3,7 @@ import Function from '../function.js'
 export default class HorizontalResizeFunction extends Function {
 
     setElement = (element) => {
-        this.element = element 
+        this.element = element
     }
 
     onBoxResize = ({ movementX, movementY }) => {
@@ -12,7 +12,11 @@ export default class HorizontalResizeFunction extends Function {
         let resizeButton = document.getElementById("page").querySelector(".resize-popup")
 
         let oldResizeBtnPosition = resizeButton.style.left
+        //let oldResizeBtnPositionTop = resizeButton.style.top
         resizeButton.style.left = (movementX + parseInt(resizeButton.style.left)) + "px";
+
+
+       // resizeButton.style.top = (movementY + parseInt(resizeButton.style.top)) + "px";
 
         let newPosition = this.calculateNewLeftPosition({ movementX, movementY})
 
@@ -20,16 +24,25 @@ export default class HorizontalResizeFunction extends Function {
         let oldWidth = this.element.style.width
         this.element.style.width = `${newWidth}px`;
 
+      //  let newHeight = newPosition[1]
+       // let oldHeight = this.element.style.height
+
+      //  this.element.style.height = `${newHeight}px`;
+      //  this.element.querySelector(".main").style.height = `${newHeight}px`;
+
         let newRect = this.element.getBoundingClientRect()
         let utilityList = container.querySelectorAll(".utility")
         let utilityCollision = this.isUtilityCollision(utilityList, newRect)
 
         if (utilityCollision) {
             this.element.style.width = oldWidth
+          //  this.element.style.height = oldHeight
             resizeButton.style.left = oldResizeBtnPosition
-           
+          //  resizeButton.style.top = oldResizeBtnPositionTop
+          //  this.element.querySelector(".main").style.height = oldHeight
+
         } else {
-          
+
             for (let z = 0; z < utilityList.length; z++) {
                 utilityList[z].style.border = "none"
             }

@@ -10517,6 +10517,11 @@ textarea.form-control-lg {
   gap: 9rem !important;
 }
 
+.click:hover{
+	opacity: 60%;
+}
+
+
 .font-monospace {
   font-family: var(--bs-font-monospace) !important;
 }

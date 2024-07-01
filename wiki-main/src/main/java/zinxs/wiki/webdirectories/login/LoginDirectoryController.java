@@ -36,7 +36,7 @@ public class LoginDirectoryController {
                 modelAndView.setViewName("auth-login-social.html");
             }
         }
-
+        System.out.println("login model : " + modelAndView.toString());
         return modelAndView;
     }
 }

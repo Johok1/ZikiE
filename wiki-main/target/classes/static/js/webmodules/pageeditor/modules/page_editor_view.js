@@ -15,10 +15,11 @@ class View {
         this.utilityHelper = new UtilityHelper()
         this.page = document.getElementById("page")
 
-
+        this.viewButton = document.getElementById("viewButton")
+        this.viewButton.classList.add("visually-hidden")
         this.initPageDetails()
        
-
+        let page = this.page
 
         this.pageSubmitTimer = new PageSubmitTimer(page)
         this.pageSubmitTimer.setSubmitTimer(10)
@@ -44,7 +45,65 @@ class View {
         this.loadPageContent()
 
         this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
+
        
+        this.view = false;
+        //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
+        this.resizePageBtn = document.getElementById("resizePageBtn")
+       
+      
+    }
+
+    initResizeEvents = () => {
+       
+
+        document.getElementById("resizePageBtn").onmousedown = this.resizePage.bind(this)
+        this.page.addEventListener("mouseup", () => {
+            console.log("weeee")
+            this.page.onmousemove = null
+        })
+
+        this.page.addEventListener("mouseleave", () => {
+            this.page.onmousemove = null
+        })
+    }
+
+    resizePage = () => {
+        this.page.onmousemove = this.pageResizeFunction.bind(this)
+    }
+
+    pageResizeFunction = ({ movementX, movementY }) => {
+        let height = parseFloat(this.page.style.height)
+        let newHeight = height + movementY
+        let margin = parseFloat(document.getElementById("resizePageBtn").style.marginTop)
+        let newMargin = margin + movementY
+        document.getElementById("resizePageBtn").style.marginTop = `${newMargin}vh`
+        this.page.style.height = `${newHeight}vh`
+    }
+
+    toggleViewMode = () => {
+        this.view = !this.view
+        let reset = this.utilityHelper.utilityHandlerModule.resetAllElementHandlers
+        let enableDragAll = this.utilityHelper.utilityTranslationModule.enableDragAll
+        let layerManager = this.utilityHelper.layerManagerModule 
+        let select = this.utilityHelper.utilitySelectionModule.selectFunc
+        let register = this.utilityHelper.utilityHandlerModule.registerAllHandlers
+
+        if (this.view) {
+            let list = document.getElementById("page").querySelectorAll(".utility")
+            for (let x = 0; x < list.length; x++) {
+                var new_element = list[x].cloneNode(true);
+                list[x].parentNode.replaceChild(new_element, list[x]);
+            }
+        } else {
+            let layer = layerManager.getCurrentSelectedLayer()
+
+            reset(select)
+
+            enableDragAll(layer)
+
+            register(select, layer)
+        }
     }
 
 
@@ -74,12 +133,20 @@ class View {
         let enableDragAll = this.utilityHelper.utilityTranslationModule.enableDragAll
         let layerManager = this.utilityHelper.layerManagerModule 
         let loadPageImages = this.loadPageImages
+        let initResizeEvents = this.initResizeEvents
         this.controller.getAccountPageContent(this.cookie.getCookie("token"), this.cookie.getCookie("pageId"))
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
-                page.innerHTML = response
-           
+                if (response != null && response != "" && response != undefined) {
+                    var wrapper = document.createElement('div');
+                    wrapper.innerHTML = response
+                    page.innerHTML = wrapper.firstChild.innerHTML
+                    page.style.height = wrapper.firstChild.style.height 
+                }
+                
+                initResizeEvents()
+
                 reset(select)
 
                 enableDragAll(layer)

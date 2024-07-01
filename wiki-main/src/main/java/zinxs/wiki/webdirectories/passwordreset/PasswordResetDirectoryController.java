@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "passwordreset")
+@RequestMapping("/passwordreset")
 public class PasswordResetDirectoryController {
 
     @Autowired
@@ -24,26 +24,46 @@ public class PasswordResetDirectoryController {
     private AccountRepository accountRepository;
 
     @CrossOrigin
-    @GetMapping(path="request")
-    @Transactional
+    @GetMapping("/request")
     public ModelAndView resetPasswordWithToken(@RequestParam("token") String token, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView();
+        System.out.println("request endpoint token " + token + "\n"+"\n");
         try {
-            Account account = accountRepository.findByEmail(authTokenUtils.decodeEmail(token)).get();
+            Account account = getAccount(token);
+            System.out.println( "account:" + account.getEmail() + " " + account.isEnabled());
             if (account.isEnabled()) {
-                response.addCookie(new Cookie("token", token));
-                modelAndView.setViewName("auth-reset-password.html");
+                Cookie cookie = new Cookie("token", token);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+                modelAndView.setViewName("redirect:/resetpassword");
             }else{
                 modelAndView.setViewName("redirect:/login");
             }
-            return modelAndView;
+            System.out.println(modelAndView.toString());
         }catch (Exception e){
-            modelAndView.setViewName("redirect:/");
-            throw new RuntimeException(e);
+            modelAndView.setViewName("redirect:/login");
+            System.out.println( "request error: " + e.getMessage());
+            return modelAndView;
 
         }
-    }
 
+        System.out.println(modelAndView.toString());
+
+        return modelAndView;
+    }
+    private Account getAccount(String tempToken){
+        try{
+            String decodedToken = authTokenUtils.decodeEmail(tempToken);
+            Account targetAccount = accountRepository.findByEmail(decodedToken).get();
+            if(targetAccount.isEnabled()){
+                return targetAccount;
+            }else{
+                throw new RuntimeException("Account " + decodedToken + " is disabled!");
+            }
+        }catch (Exception e){
+            throw new RuntimeException("getAccount error " + e);
+        }
+    }
     @CrossOrigin
     @GetMapping
     public ModelAndView getPasswordResetPage(@CookieValue(value = "token", defaultValue = "none") String token){

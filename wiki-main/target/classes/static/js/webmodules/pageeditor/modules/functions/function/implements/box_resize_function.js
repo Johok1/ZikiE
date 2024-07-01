@@ -10,7 +10,7 @@ export default class BoxResizeFunction extends Function {
         let container = document.getElementById("page");
         let containerRect = container.getBoundingClientRect();
         let resizeButton = document.getElementById("page").querySelector(".resize-popup")
-        let cancelImageButton = document.getElementById("page").querySelector(".cancel-image")
+        let cancelImageButton = document.getElementById("toolbar").querySelector(".cancel-image")
         let elementStyles = window.getComputedStyle(this.element);
         let elementWidth = parseFloat(elementStyles.width) || 0; // Use 0 if width is not defined
         let elementHeight = parseFloat(elementStyles.height) || 0; // Use 0 if height is not defined
@@ -42,9 +42,9 @@ export default class BoxResizeFunction extends Function {
         resizeButton.style.left = (movementX + parseInt(resizeButton.style.left)) + "px";
         resizeButton.style.top = (movementY + parseInt(resizeButton.style.top)) + "px";
 
-        let oldCancelImageButtonStyleTop = cancelImageButton.style.top 
+       // let oldCancelImageButtonStyleTop = cancelImageButton.style.top 
 
-        cancelImageButton.style.top = (movementY + parseInt(resizeButton.style.top)) + "px";
+       // cancelImageButton.style.top = (movementY + parseInt(resizeButton.style.top)) + "px";
 
         let newImageWidth = imageWidth + movementX
         let newImageHeight = imageHeight + movementY
@@ -67,7 +67,7 @@ export default class BoxResizeFunction extends Function {
             this.element.style.height = oldHeight
             resizeButton.style.left = oldResizeButtonLeft
             resizeButton.style.top = oldResizeButtonTop
-            cancelImageButton.style.top = oldCancelImageButtonStyleTop
+          //  cancelImageButton.style.top = oldCancelImageButtonStyleTop
             this.element.querySelector(".image-main").style.width = oldImageWidth  
             this.element.querySelector(".image-main").style.height = oldImageHeight 
            

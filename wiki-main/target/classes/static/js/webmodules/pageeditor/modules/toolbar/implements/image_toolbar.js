@@ -23,17 +23,17 @@ export default class ImageToolbar extends Toolbar{
         this.resizeButtonSVG.setAttribute("xmlns" , "http://www.w3.org/2000/svg")
         this.resizeButtonSVG.setAttribute("width", "24")
         this.resizeButtonSVG.setAttribute("height", "24")
-        this.resizeButtonSVG.style.width = "40px"
-        this.resizeButtonSVG.style.height = "40px"
+        this.resizeButtonSVG.style.width = "10px"
+        this.resizeButtonSVG.style.height = "10px"
         this.resizeButtonSVG.setAttribute("viewBox" , "0 0 24 24")
         this.resizeButtonSVG.setAttribute("fill" , "none")
         this.resizeButtonSVG.setAttribute("stroke" ,"currentColor")
         this.resizeButtonSVG.setAttribute("stroke-width", "3")
         this.resizeButtonSVG.setAttribute("stroke-linecap", "round")
         this.resizeButtonSVG.setAttribute("stroke-linejoin", "round")
-        this.resizeButtonSVG.setAttribute("data-feather","arrow-down-right")
+        this.resizeButtonSVG.setAttribute("data-feather","circle")
         this.resizeButtonSVG.classList.add("feather")
-        this.resizeButtonSVG.classList.add("feather-arrow-down-right")
+        this.resizeButtonSVG.classList.add("feather-circle")
         this.resizeButtonSVG.style.color = "#BAA21F"
 
         this.resizeButton.appendChild(this.resizeButtonSVG)
@@ -43,6 +43,8 @@ export default class ImageToolbar extends Toolbar{
         this.resizeButton.classList.add("resize-popup")
         this.resizeButton.style.position = "absolute"
         this.resizeButton.style.zIndex = "100"
+        this.resizeButton.style.width = "30px"
+        this.resizeButton.style.height = "30px"
 
         this.cancelSelectionBtn = document.createElement("btn")
 
@@ -67,8 +69,36 @@ export default class ImageToolbar extends Toolbar{
         this.cancelSelectionBtn.style.position = "absolute"
         this.cancelSelectionBtn.style.zIndex = "100"
 
+        this.deleteUtilityBtn = document.createElement("btn")
+        this.deleteUtilityBtn.style.position = "absolute"
+        this.deleteUtilityBtn.style.zIndex = "100"
+        this.deleteUtilityBtn.classList.add("image-popup")
+        this.deleteUtilityBtn.style.left = "95%"
+
+        this.deleteUtilitySvg = document.createElement("svg")
+        this.deleteUtilitySvg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+        this.deleteUtilitySvg.setAttribute("width", "24")
+        this.deleteUtilitySvg.setAttribute("height", "24")
+        this.deleteUtilitySvg.setAttribute("viewBox", "0 0 24 24")
+        this.deleteUtilitySvg.setAttribute("fill", "none")
+        this.deleteUtilitySvg.setAttribute("stroke", "currentColor")
+        this.deleteUtilitySvg.setAttribute("stroke-width", "2")
+        this.deleteUtilitySvg.setAttribute("stroke-linecap", "round")
+        this.deleteUtilitySvg.setAttribute("stroke-linejoin", "round")
+        this.deleteUtilitySvg.setAttribute("data-feather", "trash-2")
+        this.deleteUtilitySvg.classList.add("feather")
+        this.deleteUtilitySvg.classList.add("feather-trash-2")
+        this.deleteUtilitySvg.style.color = "#BAA21F"
+
+        this.deleteUtilityBtn.appendChild(this.deleteUtilitySvg)
+
+        let toolbar = document.getElementById("toolbar")
+
+        toolbar.appendChild(this.deleteUtilityBtn)
+
+
         page.appendChild(this.resizeButton)
-        page.appendChild(this.cancelSelectionBtn)
+        toolbar.appendChild(this.cancelSelectionBtn)
        
         this.updateToolbarPosition()
         document.feather.replace()
@@ -78,7 +108,7 @@ export default class ImageToolbar extends Toolbar{
     updateToolbarPosition = () => {
 
 
-        this.positionExitBtn(this.element, this.cancelSelectionBtn)
+      //  this.positionExitBtn(this.element, this.cancelSelectionBtn)
         this.positionResizeElement(this.element, this.resizeButton)
     }
 

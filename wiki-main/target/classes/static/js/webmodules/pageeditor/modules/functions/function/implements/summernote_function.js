@@ -8,10 +8,16 @@ export default class SummernoteFunction extends Function{
     handleEditText(element, deconstructToolbar, constructToolbar){
         console.log(element)
         console.log(element.firstChild)
-        deconstructToolbar()
+      //  deconstructToolbar()
 
-        element.classList.add("summernote")
+
+        //element.classList.add("summernote")
         this.element = element
+        this.dupeElement = element.cloneNode()
+        this.dupeElement.innerHTML = this.element.innerHTML
+        document.getElementById("page").appendChild(this.dupeElement)
+        this.dupeElement.classList.add("summernote")
+
         this.deconstructToolbar = deconstructToolbar
         this.constructToolbar = constructToolbar
 
@@ -28,9 +34,10 @@ export default class SummernoteFunction extends Function{
         let height = this.element.style.height
 
         this.createSummernoteEditor(top, left, width, height)
+       
+        document.getElementById("toolbar").appendChild(document.querySelector(".note-editor"))
 
-
-        this.attachDisableEditButton(constructToolbar, this.element)
+        //this.attachDisableEditButton(constructToolbar, this.element)
 
         let parList = document.querySelector('.note-editable')
 
@@ -38,7 +45,7 @@ export default class SummernoteFunction extends Function{
         this.preventSummernotePasteWithFormatting(parList)
         this.preventSummernoteSelectAll(parList)
         this.moveSummernoteEditorToLayer(parList)
-
+        parList.addEventListener("keydown", this.setSummernoteTextToElementText)
       
 
     }
@@ -51,16 +58,16 @@ export default class SummernoteFunction extends Function{
 
     createSummernoteEditor = (top, left ,width, height) => {
         $('.summernote').summernote({
-            focus: true, airMode: true, popover: {
-                air: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['insert', ['link']]
-                ]
-            },
+            disableDragAndDrop:true,
+            fontSizeUnits: ['px', 'pt'],
             fontColor: '#000000',
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']]
+            ],
             keyMap: {
                 pc: {
                     'ENTER': ''
@@ -70,14 +77,16 @@ export default class SummernoteFunction extends Function{
                 }
             }
         });
+        $('#summernote').summernote({
+            disableDragAndDrop:true
+        })
         $('.note-editor').css({
             color: "black",
-            position: "absolute",
-            top: top,
-            left: left,
-            width: width,
-            height: height
+            width: "90%",
+            backgroundColor: "white"
+
         })
+       document.querySelector(".note-editor").querySelector(".main").style.height = "20vh"
     }
 
     attachDisableEditButton = (constructToolbar, element) => {
@@ -87,10 +96,19 @@ export default class SummernoteFunction extends Function{
 
 
         $('.note-editor').append(disableEditBtn)
+       
 
-        $('.disable-edit-button').on("click", () => this.handleDisableEditText(constructToolbar, element));
+       
+
+       // $('.disable-edit-button').on("click", () => this.handleDisableEditText(constructToolbar, element));
 
         document.feather.replace()
+       
+    }
+
+    setSummernoteTextToElementText = () => {
+        console.log("copy")
+        this.element.querySelector("p").innerHTML = document.querySelector(".note-editable").querySelector("p").innerHTML
     }
 
     preventSummernoteParagraphDeletion = (parList) => {
@@ -105,6 +123,10 @@ export default class SummernoteFunction extends Function{
             } else {
                 console.log("backspace not detected")
             }
+             if (event.ctrlKey && (event.key === 'v'
+                        || event.key === 'V')) {
+
+                        }
         });
     }
 
@@ -130,7 +152,13 @@ export default class SummernoteFunction extends Function{
    
 
     handleDisableEditText (constructToolbar, element){
+    if(document.querySelector(".note-editor") != null){
+    document.querySelector(".note-editor").querySelector(".main").style.height = ""
+
+        }
         var markup = $('.summernote').summernote('code');
+
+
 
         //  this.element.innerHTML = markup
 
@@ -138,10 +166,11 @@ export default class SummernoteFunction extends Function{
 
         $('.summernote').removeClass('summernote')
 
-        constructToolbar()
+     //   constructToolbar()
 
         element.style.height = (parseInt(element.querySelector(".textParagraph").style.height) + 50) + "px"
 
-
+        this.element.innerHTML = this.dupeElement.innerHTML
+        this.dupeElement.remove()
     }
 }

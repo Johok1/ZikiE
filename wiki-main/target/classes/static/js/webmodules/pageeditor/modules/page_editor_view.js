@@ -50,7 +50,7 @@ class View {
         this.view = false;
         //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
         this.resizePageBtn = document.getElementById("resizePageBtn")
-       
+       this.initResizeEvents()
       
     }
 
@@ -73,12 +73,14 @@ class View {
     }
 
     pageResizeFunction = ({ movementX, movementY }) => {
+        console.log("movementY: " + movementY)
         let height = parseFloat(this.page.style.height)
+
         let newHeight = height + movementY
         let margin = parseFloat(document.getElementById("resizePageBtn").style.marginTop)
         let newMargin = margin + movementY
-        document.getElementById("resizePageBtn").style.marginTop = `${newMargin}vh`
-        this.page.style.height = `${newHeight}vh`
+        document.getElementById("resizePageBtn").style.marginTop = `${newMargin}px`
+        this.page.style.height = `${newHeight}px`
     }
 
     toggleViewMode = () => {

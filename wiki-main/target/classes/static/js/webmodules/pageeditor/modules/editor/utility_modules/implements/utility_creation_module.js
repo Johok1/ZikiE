@@ -57,15 +57,10 @@ export default class UtilityCreationModule{
     }
 
     stickUtilityToMouse = (event) => {
-        console.log(0.0462962962962963*window.screen.height)
-        console.log(0.1236979166666667*window.screen.width)
-        let widthOffset = 0.1236979166666667*window.screen.width
-        let heightOffset = 0.0462962962962963*window.screen.height
+        this.utility.element.style.transform = 'translateY(' + (event.clientY - 190) + 'px)'
+        this.utility.element.style.transform += 'translateX(' + (event.clientX - 40) + 'px)';
 
-        this.utility.element.style.transform = 'translateY(' + (event.clientY - widthOffset-10) + 'px)'
-        this.utility.element.style.transform += 'translateX(' + (event.clientX - heightOffset) + 'px)';
-
-
+      
      
 
 

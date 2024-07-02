@@ -31,7 +31,7 @@ export default class UtilityFactory {
         let parDiv = document.createElement("div")
         parDiv.style.height = label.style.height
         parDiv.style.width = label.style.width
-       parDiv.style.overflowY = "auto"
+        parDiv.style.overflowY = "auto"
 
         parDiv.appendChild(label)
         parDiv.classList.add("main")

@@ -45,6 +45,7 @@ export default class SummernoteFunction extends Function{
         this.preventSummernotePasteWithFormatting(parList)
         this.preventSummernoteSelectAll(parList)
         this.moveSummernoteEditorToLayer(parList)
+        this.preventSummernoteEnterKeyParagraphCreation(parList)
         parList.addEventListener("keydown", this.setSummernoteTextToElementText)
       
 
@@ -109,6 +110,22 @@ export default class SummernoteFunction extends Function{
     setSummernoteTextToElementText = () => {
         console.log("copy")
         this.element.querySelector("p").innerHTML = document.querySelector(".note-editable").querySelector("p").innerHTML
+    }
+
+    preventSummernoteEnterKeyParagraphCreation = (parList) =>{
+        parList.addEventListener("keydown", ()=>{
+            if(event.keyCode === 13){
+                event.preventDefault();
+                const range = $.summernote.range;
+                const rng = range.create()
+                const node = rng.insertNode(document.createElement('br'))
+
+               // let br = document.createElement("br")
+              //  let listOrs = parList.querySelector(".main").querySelectorAll("p")
+              //  listOfPars[listOfPars.length-1].appendChild(br)
+            }
+
+        })
     }
 
     preventSummernoteParagraphDeletion = (parList) => {

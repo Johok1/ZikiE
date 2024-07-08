@@ -46,7 +46,7 @@ export default class SummernoteFunction extends Function{
         this.preventSummernoteSelectAll(parList)
         this.moveSummernoteEditorToLayer(parList)
         this.preventSummernoteEnterKeyParagraphCreation(parList)
-        parList.addEventListener("keydown", this.setSummernoteTextToElementText)
+        parList.addEventListener("keyup", this.setSummernoteTextToElementText)
       
 
     }
@@ -65,10 +65,13 @@ export default class SummernoteFunction extends Function{
             toolbar: [
                 // [groupName, [list of button]]
                 ['style', ['bold', 'italic', 'underline', 'clear']],
+
                 ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontname', ['fontname']],
                 ['fontsize', ['fontsize']],
                 ['color', ['color']]
             ],
+            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Merriweather'],
             keyMap: {
                 pc: {
                     'ENTER': ''

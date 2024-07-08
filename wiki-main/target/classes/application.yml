@@ -17,7 +17,7 @@ config:
 spring:
 
   datasource:
-    password: 21387866
+    password: postgres
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
   jpa:

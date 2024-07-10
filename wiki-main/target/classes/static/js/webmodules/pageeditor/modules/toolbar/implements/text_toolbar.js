@@ -145,7 +145,7 @@ export default class TextToolbar extends Toolbar{
     updateToolbarPosition = () => {
 
      //   this.positionEditBtn(this.element, this.editTextBtn)
-        this.positionExitBtn(this.element, this.cancelSelectionBtn)
+       // this.positionExitBtn(this.element, this.cancelSelectionBtn)
         this.positionResizeElement(this.element, this.resizeButton)
     }
 

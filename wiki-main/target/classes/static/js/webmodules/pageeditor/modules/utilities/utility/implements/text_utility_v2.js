@@ -8,6 +8,7 @@ export default class TextUtility extends Utility {
         this.toolbar.registerElement(this.element)
         this.functions = this.utilityFunctionInterface.functionFacade.textFunctionFacade
         this.functions.horizontalResizeFunction.setElement(this.element)
+        this.positionResize = this.toolbar.positionResizeElement
     }
 
     selectElement = () => {
@@ -69,6 +70,7 @@ export default class TextUtility extends Utility {
 
         document.addEventListener("mouseup", () => {
             // End resizing - remove mousemove from document
+            updateToolbar()
             toolbar.resizeButton.removeEventListener("mousemove", onBoxResize);
         });
 
@@ -79,7 +81,7 @@ export default class TextUtility extends Utility {
     }
 
     summernoteHandleEditText = () => {
-        this.functions.summernoteFunction.handleEditText(this.element, this.deconstructToolbar, this.constructToolbar)
+        this.functions.summernoteFunction.handleEditText(this.element, this.deconstructToolbar, this.constructToolbar,this.positionResize)
     }
 
 

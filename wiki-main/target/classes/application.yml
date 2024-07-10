@@ -2,8 +2,8 @@
 server:
   port: 443
   ssl:
-    key-store: j2vprojectkeystore.jks
-    key-store-password: LordhaveMercyImBoutToBust127590
+    key-store: keystore.jks
+    key-store-password: password
     keyStoreType: PKCS12
     keyAlias: 1
   error:

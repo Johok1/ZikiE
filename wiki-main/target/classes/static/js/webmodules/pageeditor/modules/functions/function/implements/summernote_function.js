@@ -5,7 +5,7 @@ export default class SummernoteFunction extends Function{
 
 
 
-    handleEditText(element, deconstructToolbar, constructToolbar){
+    handleEditText(element, deconstructToolbar, constructToolbar, positionResize){
         console.log(element)
         console.log(element.firstChild)
       //  deconstructToolbar()
@@ -13,6 +13,7 @@ export default class SummernoteFunction extends Function{
 
         //element.classList.add("summernote")
         this.element = element
+        this.positionResize = positionResize
         this.dupeElement = element.cloneNode()
         this.dupeElement.innerHTML = this.element.innerHTML
         document.getElementById("page").appendChild(this.dupeElement)
@@ -46,8 +47,7 @@ export default class SummernoteFunction extends Function{
         this.preventSummernoteSelectAll(parList)
         this.moveSummernoteEditorToLayer(parList)
         this.preventSummernoteEnterKeyParagraphCreation(parList)
-        parList.addEventListener("keyup", this.setSummernoteTextToElementText)
-      
+
 
     }
 
@@ -91,6 +91,9 @@ export default class SummernoteFunction extends Function{
 
         })
        document.querySelector(".note-editor").querySelector(".main").style.height = "20vh"
+        document.querySelector(".note-editable").addEventListener("keypress", this.setSummernoteTextToElementText)
+       document.querySelector(".note-editable").addEventListener("paste", this.setSummernoteTextToElementText)
+
     }
 
     attachDisableEditButton = (constructToolbar, element) => {
@@ -110,10 +113,26 @@ export default class SummernoteFunction extends Function{
        
     }
 
-    setSummernoteTextToElementText = () => {
+    setSummernoteTextToElementText = (e) => {
         console.log("copy")
-        this.element.querySelector("p").innerHTML = document.querySelector(".note-editable").querySelector("p").innerHTML
+      //  e.preventDefault()
+      //  document.querySelector(".note-editable").querySelector("p").textContent += e.key
+        setTimeout(()=>{
+          this.element.querySelector("p").innerHTML = document.querySelector(".note-editable").querySelector("p").innerHTML
+
+                  let positionResize = this.positionResize
+                          let element = this.element
+                            let resizeButton = document.getElementById("page").querySelector(".resize-popup")
+                  positionResize(element, resizeButton)
+        },100)
+
+
+
     }
+
+
+
+
 
     preventSummernoteEnterKeyParagraphCreation = (parList) =>{
         parList.addEventListener("keydown", ()=>{

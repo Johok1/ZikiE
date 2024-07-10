@@ -76,6 +76,7 @@ export default class ImageUtility extends Utility {
         let onBoxResize = this.functions.boxResizeFunction.onImageDrag.bind(this.element)
         let element = this.element
         let toolbar = this.toolbar
+         let updateToolbar = this.toolbar.updateToolbarPosition
         //  console.log(element)
         this.toolbar.resizeButton.addEventListener("mousedown", (event) => {
             // Initiate resizing - attach mousemove to document
@@ -84,6 +85,7 @@ export default class ImageUtility extends Utility {
         });
 
         document.addEventListener("mouseup", () => {
+         updateToolbar()
             // End resizing - remove mousemove from document
             toolbar.resizeButton.removeEventListener("mousemove", onBoxResize);
         });

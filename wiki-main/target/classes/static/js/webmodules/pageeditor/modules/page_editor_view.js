@@ -39,6 +39,13 @@ class View {
         this.hideLayerBtn.addEventListener("click", this.hideLayer.bind(this))
         this.textUtilityBtn.addEventListener("click", this.createTextBtnHandler.bind(this))
         this.imageUtilityBtn.addEventListener("click", this.createImageBtnHandler.bind(this))
+   this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
+
+
+        this.view = false;
+        //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
+        this.resizePageBtn = document.getElementById("resizePageBtn")
+        this.initResizeEvents()
 
         this.loadPageContent()
         .then(()=>{
@@ -46,13 +53,6 @@ class View {
                 this.pageSubmitTimer.setSubmitTimer(5)
         })
 
-        this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
-
-
-        this.view = false;
-        //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
-        this.resizePageBtn = document.getElementById("resizePageBtn")
-        this.initResizeEvents()
 
 
     }

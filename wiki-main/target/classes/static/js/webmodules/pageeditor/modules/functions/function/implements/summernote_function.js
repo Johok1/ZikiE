@@ -173,6 +173,16 @@ export default class SummernoteFunction extends Function{
         parList.addEventListener('keydown', event => {
             if (event.ctrlKey && 'a'.indexOf(event.key) !== -1) {
                 event.preventDefault()
+                // Create a new range and select the contents of the parList
+                const range = document.createRange();
+                range.selectNodeContents(parList);
+
+                // Get the current selection and remove all ranges
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+
+                // Add the new range
+                selection.addRange(range);
             }
         })
     } 

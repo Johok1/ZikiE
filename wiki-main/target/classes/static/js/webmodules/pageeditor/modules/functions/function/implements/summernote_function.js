@@ -40,11 +40,11 @@ export default class SummernoteFunction extends Function{
 
         //this.attachDisableEditButton(constructToolbar, this.element)
 
-        let parList = document.querySelector('.note-editable')
+        let parList = document.querySelector('.note-editable').querySelector(".main")
 
         this.preventSummernoteParagraphDeletion(parList)
         this.preventSummernotePasteWithFormatting(parList)
-        this.preventSummernoteSelectAll(parList)
+       // this.preventSummernoteSelectAll(parList)
         this.moveSummernoteEditorToLayer(parList)
         this.preventSummernoteEnterKeyParagraphCreation(parList)
 

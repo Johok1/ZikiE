@@ -44,7 +44,8 @@ export default class SummernoteFunction extends Function{
 
         this.preventSummernoteParagraphDeletion(parList)
         this.preventSummernotePasteWithFormatting(parList)
-       // this.preventSummernoteSelectAll(parList)
+        let main = parseList.querySelector(".main")
+        this.preventSummernoteSelectAll(main)
         this.moveSummernoteEditorToLayer(parList)
         this.preventSummernoteEnterKeyParagraphCreation(parList)
 

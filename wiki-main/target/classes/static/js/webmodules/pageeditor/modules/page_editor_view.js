@@ -48,7 +48,7 @@ class View {
 
         this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
 
-       
+
         this.view = false;
         //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
         this.resizePageBtn = document.getElementById("resizePageBtn")

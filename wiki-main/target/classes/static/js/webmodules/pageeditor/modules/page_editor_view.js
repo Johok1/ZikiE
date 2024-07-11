@@ -41,6 +41,10 @@ class View {
         this.imageUtilityBtn.addEventListener("click", this.createImageBtnHandler.bind(this))
 
         this.loadPageContent()
+        .then(()=>{
+                this.pageSubmitTimer = new PageSubmitTimer(page)
+                this.pageSubmitTimer.setSubmitTimer(5)
+        })
 
         this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
 
@@ -49,8 +53,7 @@ class View {
         //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
         this.resizePageBtn = document.getElementById("resizePageBtn")
         this.initResizeEvents()
-       this.pageSubmitTimer = new PageSubmitTimer(page)
-        this.pageSubmitTimer.setSubmitTimer(5)
+
 
     }
 

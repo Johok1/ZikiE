@@ -44,16 +44,15 @@ class View {
         .then(()=>{
                 this.pageSubmitTimer = new PageSubmitTimer(page)
                 this.pageSubmitTimer.setSubmitTimer(5)
-                 this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
-
-
-                        this.view = false;
-                        //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
-                        this.resizePageBtn = document.getElementById("resizePageBtn")
-                        this.initResizeEvents()
         })
 
+        this.utilityCreationModule = new UtilityCreationModule(this.utilityHelper)
 
+
+        this.view = false;
+        //this.viewButton.addEventListener("click", this.toggleViewMode.bind(this))
+        this.resizePageBtn = document.getElementById("resizePageBtn")
+        this.initResizeEvents()
 
 
     }
@@ -161,7 +160,6 @@ class View {
                 loadPageImages()
             
             })
-
     }
 
     loadPageImages = () => {

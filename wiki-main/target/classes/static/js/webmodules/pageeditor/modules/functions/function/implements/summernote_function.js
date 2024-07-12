@@ -48,6 +48,9 @@ export default class SummernoteFunction extends Function{
         this.moveSummernoteEditorToLayer(parList)
         this.preventSummernoteEnterKeyParagraphCreation(parList)
 
+        setInterval(this.removeImages, 100)
+
+
 
     }
 
@@ -84,7 +87,7 @@ export default class SummernoteFunction extends Function{
         $('.summernote').summernote({
             disableDragAndDrop:true
         })
-        $('.summernote').summernote('disable');
+
         $('.note-editor').css({
             color: "black",
             width: "90%",
@@ -130,6 +133,7 @@ export default class SummernoteFunction extends Function{
                   let element = this.element
                     let resizeButton = document.getElementById("page").querySelector(".resize-popup")
           positionResize(element, resizeButton)
+
 
 
         },100)
@@ -255,10 +259,27 @@ export default class SummernoteFunction extends Function{
 
     }
 
-   
+   removeImages = () =>{
+    if(document.querySelector(".note-editor") != null){
+        let parList = document.querySelector('.note-editable')
+        // Select all img elements within the parent element
+                                 var images = parList.querySelector("#par").querySelectorAll("img")
+                                  console.log("IMAGES LIST " + images)
+                                 // Convert the HTMLCollection to an array to safely remove elements while iterating
+                                 var imagesArray = Array.from(images);
+
+                                 // Loop through the array and remove each img element
+                                 imagesArray.forEach(function(image) {
+                                     image.parentNode.removeChild(image);
+                                 });
+                                 }
+
+   }
 
     handleDisableEditText (constructToolbar, element){
     if(document.querySelector(".note-editor") != null){
+
+
     document.querySelector(".note-editor").querySelector(".main").style.height = ""
 
         }

@@ -81,15 +81,17 @@ export default class SummernoteFunction extends Function{
                 }
             }
         });
-        $('#summernote').summernote({
+        $('.summernote').summernote({
             disableDragAndDrop:true
         })
+        $('.summernote').summernote('disable');
         $('.note-editor').css({
             color: "black",
             width: "90%",
             backgroundColor: "white"
 
         })
+
        document.querySelector(".note-editor").querySelector(".main").style.height = "20vh"
         document.querySelector(".note-editable").addEventListener("keypress", this.setSummernoteTextToElementText)
        document.querySelector(".note-editable").addEventListener("paste", this.setSummernoteTextToElementText)

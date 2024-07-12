@@ -8,7 +8,7 @@ export default class ImageUtility extends Utility {
         this.toolbar = this.toolbarInterface.imageToolbar
         this.toolbar.registerElement(this.element)
         this.functions = this.utilityFunctionInterface.functionFacade.imageFunctionFacade
-        this.functions.boxResizeFunction.setElement(element.querySelector(".image-main"))
+        this.functions.boxResizeFunction.setElement(element)
     }
 
 

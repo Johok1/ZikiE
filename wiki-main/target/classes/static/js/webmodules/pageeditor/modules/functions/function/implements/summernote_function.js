@@ -176,7 +176,7 @@ export default class SummernoteFunction extends Function{
                 // Create a new range and select the contents of the parList
                 const range = document.createRange();
                 let div = document.createElement("div")
-                div.appendChild(parList.innerHTML)
+                div.innerHTML = parList.innerHTML
                 range.selectNodeContents(div);
 
                 // Get the current selection and remove all ranges

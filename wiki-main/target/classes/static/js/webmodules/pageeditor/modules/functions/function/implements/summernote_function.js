@@ -118,12 +118,18 @@ export default class SummernoteFunction extends Function{
       //  e.preventDefault()
       //  document.querySelector(".note-editable").querySelector("p").textContent += e.key
         setTimeout(()=>{
-          this.element.querySelector("p").innerHTML = document.querySelector(".note-editable").querySelector("p").innerHTML
+         let fontTag = document.createElement("font")
+         fontTag.style.color = "black"
+         fontTag.innerHTML = document.querySelector(".note-editable").querySelector("p").innerHTML
+         this.element.querySelector("p").innerHTML = ""
+          this.element.querySelector("p").appendChild(fontTag)
 
-                  let positionResize = this.positionResize
-                          let element = this.element
-                            let resizeButton = document.getElementById("page").querySelector(".resize-popup")
-                  positionResize(element, resizeButton)
+          let positionResize = this.positionResize
+                  let element = this.element
+                    let resizeButton = document.getElementById("page").querySelector(".resize-popup")
+          positionResize(element, resizeButton)
+
+
         },100)
 
 
@@ -170,24 +176,71 @@ export default class SummernoteFunction extends Function{
     }
 
     preventSummernoteSelectAll = (parList) => {
+        parList.addEventListener("dblclick", event =>{
+                     event.preventDefault()
+                        console.log(parList)
+
+                 let font = document.createElement("font")
+                 font.style.color = "black"
+                 font.innerHTML = parList.querySelector("#par").innerHTML
+                 parList.querySelector("#par").innerHTML = ""
+                 parList.querySelector("#par").appendChild(font)
+                        for (const child of parList.querySelector("#par").children) {
+                            if(child.id == "par"){
+                                console.log("child id = par")
+                                console.log(child.id)
+
+                            }else{
+                                console.log(child)
+                                // Create a new range and select the contents of the parList
+                                             const range = document.createRange();
+
+                                             range.selectNodeContents(child);
+
+                                             // Get the current selection and remove all ranges
+                                             const selection = window.getSelection();
+                                             selection.removeAllRanges();
+
+                                             // Add the new range
+                                             selection.addRange(range);
+                            }
+                        }
+
+        })
         parList.addEventListener('keydown', event => {
             if (event.ctrlKey && 'a'.indexOf(event.key) !== -1) {
                 event.preventDefault()
-                // Create a new range and select the contents of the parList
-                const range = document.createRange();
-                let div = document.createElement("div")
-                div.innerHTML = parList.innerHTML
-                range.selectNodeContents(div);
+                console.log(parList)
 
-                // Get the current selection and remove all ranges
-                const selection = window.getSelection();
-                selection.removeAllRanges();
+                 let font = document.createElement("font")
+                 font.style.color = "black"
+                 font.innerHTML = parList.querySelector("#par").innerHTML
+                 parList.querySelector("#par").innerHTML = ""
+                 parList.querySelector("#par").appendChild(font)
 
-                // Add the new range
-                selection.addRange(range);
+                    for (const child of parList.querySelector("#par").children) {
+
+                            console.log(child)
+                            // Create a new range and select the contents of the parList
+                                         const range = document.createRange();
+
+                                         range.selectNodeContents(child);
+
+                                         // Get the current selection and remove all ranges
+                                         const selection = window.getSelection();
+                                         selection.removeAllRanges();
+
+                                         // Add the new range
+                                         selection.addRange(range);
+
+                    }
+
+
             }
         })
-    } 
+    }
+
+
 
     preventSummernotePasteWithFormatting = (parList) => {
         parList.addEventListener("paste", function (e) {

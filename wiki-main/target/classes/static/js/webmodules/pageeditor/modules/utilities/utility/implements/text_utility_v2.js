@@ -15,7 +15,7 @@ export default class TextUtility extends Utility {
         document.getElementById("page").classList.add("editing")
      
         this.functions.summernoteFunction.disableDragMode(this.element)
-        this.element.querySelector(".main").style.border = "solid 2px red"
+       // this.element.querySelector(".main").style.border = "solid 2px red"
         this.summernoteHandleEditText()
         this.toolbar.deleteUtilityBtn.addEventListener("click", this.deleteUtility)
     }
@@ -24,7 +24,7 @@ export default class TextUtility extends Utility {
 
         document.getElementById("page").classList.remove("editing")
 
-        this.element.querySelector(".main").style.border = "none"
+      //  this.element.querySelector(".main").style.border = "none"
         this.functions.summernoteFunction.handleDisableEditText(this.constructToolbar, this.element)
         this.functions.summernoteFunction.enableDragMode(this.element)
         this.deconstructToolbar()

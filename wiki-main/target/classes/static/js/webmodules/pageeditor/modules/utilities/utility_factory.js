@@ -15,7 +15,7 @@ export default class UtilityFactory {
     constructTextUtility = (layer) => {
         const page = document.getElementById("page");
         const font = this.createElement('font', { innerText: 'New Text' }, { color: 'black' });
-        const label = this.createElement('p', { draggable: false, className: 'textParagraph' }, {});
+        const label = this.createElement('p', { draggable: false, className: 'textParagraph main' }, {});
         label.style.overflowY ="auto"
         label.appendChild(font);
         label.id = "par"
@@ -34,7 +34,7 @@ export default class UtilityFactory {
         parDiv.style.overflowY = "auto"
 
         parDiv.appendChild(label)
-        parDiv.classList.add("main")
+
         // parDiv.style.zIndex = "2"
         labelDiv.setAttribute("layer", layer)
 

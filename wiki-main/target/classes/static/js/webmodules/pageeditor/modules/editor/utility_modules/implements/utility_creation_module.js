@@ -113,7 +113,7 @@ export default class UtilityCreationModule{
                     rect2.y + rect2.height < rect1.y)) {
                     utilityCollision = true
                     console.log("isColliding")
-                    utilityList[x].style.border = "2px solid red"
+                //  utilityList[x].style.border = "2px solid red"
                 }
             } else {
                 console.log("no collisions on different layers")

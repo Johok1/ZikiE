@@ -121,8 +121,8 @@ export default class ImageToolbar extends Toolbar{
         var pageRect = document.getElementById("page").getBoundingClientRect();
         // Set position of the second element
         element2.style.position = 'absolute';
-        element2.style.left = (rect.width + (rect.left-pageRect.left)) + 'px';
-        element2.style.top =  (rect.height + (rect.top-pageRect.top)) + 'px';
+        element2.style.left = (rect.width + (rect.left-pageRect.left-8)) + 'px';
+        element2.style.top =  (rect.height + (rect.top-pageRect.top-8)) + 'px';
     }
 
 

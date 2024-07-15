@@ -44,7 +44,7 @@ export default class HorizontalResizeFunction extends Function {
         } else {
 
             for (let z = 0; z < utilityList.length; z++) {
-                utilityList[z].style.border = "none"
+               // utilityList[z].style.border = "none"
             }
         }
 
@@ -90,7 +90,7 @@ export default class HorizontalResizeFunction extends Function {
                     rect2.y + rect2.height < rect1.y)) {
                     utilityCollision = true
                     console.log("isColliding")
-                    utilityList[x].style.border = "2px solid red"
+                  //  utilityList[x].style.border = "2px solid red"
                 }
             } else {
                 console.log("no collisions on different layers")

@@ -187,7 +187,7 @@ export default class TextToolbar extends Toolbar{
         // Set position of the second element
         element2.style.position = 'absolute';
         element2.style.left = (rect.width + (rect.left - pageRect.left)) + 'px';
-        element2.style.top = (rect.height + (rect.top - pageRect.top) +15) + 'px';
+        element2.style.top = (rect.height + (rect.top - pageRect.top) -17.5) + 'px';
     }
 
 

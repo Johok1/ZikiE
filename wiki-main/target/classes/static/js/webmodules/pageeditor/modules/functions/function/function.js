@@ -19,7 +19,7 @@ export default class Function extends FunctionPrototype{
     disableDragMode = (element) => {
 
         this.disableDragElement(element)
-        element.querySelector(".main").style.border = "2px red solid"
+   //     element.querySelector(".main").style.border = "2px red solid"
         //this.element.contentEditable = true
         element.style.userSelect = "default"
     }
@@ -54,7 +54,7 @@ export default class Function extends FunctionPrototype{
         page.classList.add("dragging")
         this.drag = this.onMouseDrag
        
-       this.element.querySelector(".main").style.border = "2px red solid"
+       //this.element.querySelector(".main").style.border = "2px red solid"
         
         
         event.currentTarget.addEventListener("mousemove", this.drag)
@@ -74,7 +74,7 @@ export default class Function extends FunctionPrototype{
         this.element.style.top = `${newTop}px`;
 
        
-        let newRect = this.element.getBoundingClientRect()
+        let newRect = this.element.querySelector(".main").getBoundingClientRect()
         let utilityList = container.querySelectorAll(".utility")
         let utilityCollision = this.isUtilityCollision(utilityList, newRect)
 
@@ -85,7 +85,7 @@ export default class Function extends FunctionPrototype{
            
         } else {
             for (let z = 0; z < utilityList.length; z++) {
-                utilityList[z].style.border = "none"
+          //      utilityList[z].style.border = "none"
             }
         }
     }
@@ -122,7 +122,7 @@ export default class Function extends FunctionPrototype{
         let utilityCollision = false
         for (let x = 0; x < utilityList.length; x++) {
             if ((utilityList[x].getAttribute("layer") == this.element.getAttribute("layer")) && utilityList[x] != this.element) {
-                let utilityRect = utilityList[x].getBoundingClientRect()
+                let utilityRect = utilityList[x].querySelector(".main").getBoundingClientRect()
                 let rect1 = newRect
                 let rect2 = utilityRect
                 console.log("same layer collision possible")
@@ -132,7 +132,7 @@ export default class Function extends FunctionPrototype{
                     rect2.y + rect2.height < rect1.y)) {
                     utilityCollision = true
                     console.log("isColliding")
-                    utilityList[x].style.border = "2px solid red"
+                //    utilityList[x].style.border = "2px solid red"
                 }
             } else {
                 console.log("no collisions on different layers")

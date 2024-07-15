@@ -60,7 +60,7 @@ export default class UtilityCreationModule{
         let yOffset = (window.screen.height/100)*47
         let xOffset = (window.screen.width/100)*2
         this.utility.element.style.transform = 'translateY(' + (event.clientY-155) + 'px)'
-        this.utility.element.style.transform += 'translateX(' + (event.clientX - 130) + 'px)';
+        this.utility.element.style.transform += 'translateX(' + (event.clientX - 160) + 'px)';
 
       
      
@@ -83,7 +83,7 @@ export default class UtilityCreationModule{
             //utility.element.style.transform = 'translateY(' + (event.clientY-230) + 'px)'
             //utility.element.style.transform += 'translateX(' + (event.clientX - 110) + 'px)';
             utility.element.style.transform = ""
-            utility.element.style.left = `${event.clientX - 130}px`
+            utility.element.style.left = `${event.clientX - 160}px`
             let scrollTop = document.querySelector("body").scrollTop
             utility.element.style.top = `${event.clientY + scrollTop - 155}px`
             console.log(window.scrollY)

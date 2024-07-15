@@ -24,7 +24,7 @@ export default class UtilityFactory {
 
         const labelDivStyles = {
             width: '300px', overflowY: 'auto',
-            position: 'absolute', wordWrap: 'break-word', zIndex: layer
+            position: 'absolute', wordWrap: 'break-word', zIndex: `${parseInt(layer) + 1}`
         };
         const labelDiv = this.createElement('div', { className: 'utility text drag' }, labelDivStyles);
 
@@ -70,7 +70,7 @@ export default class UtilityFactory {
         let div = this.createElement('div', { className: 'utility image drag', draggable: false }, imgStyles)
         div.style.width = img.style.width
         div.style.height = img.style.height
-        div.style.zIndex = layer
+        div.style.zIndex =`${parseInt(layer)+1}`
         div.setAttribute("layer",layer)
         div.appendChild(img)
        

@@ -121,6 +121,8 @@ export default class Function extends FunctionPrototype{
     isUtilityCollision = (utilityList, newRect) => {
         let utilityCollision = false
         for (let x = 0; x < utilityList.length; x++) {
+        if((utilityList[x].classList.contains("text") && this.element.classList.contains("text") )||
+            (utilityList[x].classList.contains("image") && this.element.classList.contains("image"))){
             if ((utilityList[x].getAttribute("layer") == this.element.getAttribute("layer")) && utilityList[x] != this.element) {
                 let utilityRect = utilityList[x].querySelector(".main").getBoundingClientRect()
                 let rect1 = newRect
@@ -137,6 +139,7 @@ export default class Function extends FunctionPrototype{
             } else {
                 console.log("no collisions on different layers")
             }
+        }
         }
         return utilityCollision;
     }

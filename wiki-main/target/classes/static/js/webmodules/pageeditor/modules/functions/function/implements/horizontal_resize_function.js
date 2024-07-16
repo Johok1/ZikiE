@@ -34,6 +34,35 @@ export default class HorizontalResizeFunction extends Function {
         let utilityList = container.querySelectorAll(".utility")
         let utilityCollision = this.isUtilityCollision(utilityList, newRect)
 
+        //ChatGPT Assisted Algorithm
+     console.log(this.element.querySelector("p").textContent);
+     let measureSpan = document.createElement("span");
+     measureSpan.textContent = this.element.querySelector("p").textContent;
+     //measureSpan.classList.add("visually-hidden");
+
+     // Apply the same styles as the main element to the span
+     const mainElementStyle = window.getComputedStyle(this.element.querySelector("p"));
+     measureSpan.style.fontSize = mainElementStyle.fontSize;
+     measureSpan.style.fontFamily = mainElementStyle.fontFamily;
+     measureSpan.style.fontWeight = mainElementStyle.fontWeight;
+     measureSpan.style.fontStyle = mainElementStyle.fontStyle;
+
+     // Append the span to the document to measure its width
+    document.body.appendChild(measureSpan);
+
+     // Get the computed width of the span
+     let measureSpanWidth = measureSpan.offsetWidth;
+     console.log("measureSpanWidth: " + measureSpanWidth);
+
+     // Compare the new width with the measured span width and adjust if necessary
+     if (newWidth > measureSpanWidth) {
+         this.element.style.width = (measureSpanWidth+3) + 'px';
+     }
+
+     // Remove the span from the DOM if it was only needed for measurement
+    // document.body.removeChild(measureSpan);
+
+
         if (utilityCollision) {
             this.element.style.width = oldWidth
           //  this.element.style.height = oldHeight

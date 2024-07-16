@@ -60,7 +60,7 @@ export default class HorizontalResizeFunction extends Function {
      }
 
      // Remove the span from the DOM if it was only needed for measurement
-    // document.body.removeChild(measureSpan);
+     document.body.removeChild(measureSpan);
 
 
         if (utilityCollision) {

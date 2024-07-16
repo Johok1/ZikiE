@@ -18,11 +18,11 @@ class View {
         this.viewButton = document.getElementById("viewButton")
         this.viewButton.classList.add("visually-hidden")
         this.initPageDetails()
-       
+
         let page = this.page
 
 
-       
+
 
         this.selectLayerInput = document.getElementById("selectLayerInput")
         this.selectLayerBtn = document.getElementById("selectLayerBtn")
@@ -33,7 +33,7 @@ class View {
         this.textUtilityBtn = document.getElementById("textUtilityBtn")
         this.imageUtilityBtn = document.getElementById("imageUtilityBtn")
 
-       
+
 
         this.selectLayerBtn.addEventListener("click", this.selectLayer.bind(this))
         this.hideLayerBtn.addEventListener("click", this.hideLayer.bind(this))
@@ -47,18 +47,22 @@ class View {
         this.resizePageBtn = document.getElementById("resizePageBtn")
         this.initResizeEvents()
 
-        this.loadPageContent()
-        .then(()=>{
-                this.pageSubmitTimer = new PageSubmitTimer(page)
-                this.pageSubmitTimer.setSubmitTimer(5)
-        })
 
+        this.loadPageContentThenStartSubmission()
 
 
     }
 
+    loadPageContentThenStartSubmission = () =>{
+      this.loadPageContent()
+            .then(()=>{
+                    this.pageSubmitTimer = new PageSubmitTimer(page)
+                    this.pageSubmitTimer.setSubmitTimer(5)
+            })
+    }
+
     initResizeEvents = () => {
-       
+
 
         document.getElementById("resizePageBtn").onmousedown = this.resizePage.bind(this)
         this.page.addEventListener("mouseup", () => {
@@ -89,7 +93,7 @@ class View {
         this.view = !this.view
         let reset = this.utilityHelper.utilityHandlerModule.resetAllElementHandlers
         let enableDragAll = this.utilityHelper.utilityTranslationModule.enableDragAll
-        let layerManager = this.utilityHelper.layerManagerModule 
+        let layerManager = this.utilityHelper.layerManagerModule
         let select = this.utilityHelper.utilitySelectionModule.selectFunc
         let register = this.utilityHelper.utilityHandlerModule.registerAllHandlers
 
@@ -114,7 +118,7 @@ class View {
 
     initPageDetails = () => {
         let pageId = this.backendManager.cookie.getCookie("pageId")
-        let token = this.backendManager.cookie.getCookie("token") 
+        let token = this.backendManager.cookie.getCookie("token")
         let pageLogo = this.pageLogo
         let pageName = this.pageName
         this.backendManager.controller.getPageImage(token, pageId)
@@ -135,10 +139,10 @@ class View {
         let register = this.utilityHelper.utilityHandlerModule.registerAllHandlers
         let reset = this.utilityHelper.utilityHandlerModule.resetAllElementHandlers
         let enableDragAll = this.utilityHelper.utilityTranslationModule.enableDragAll
-        let layerManager = this.utilityHelper.layerManagerModule 
+        let layerManager = this.utilityHelper.layerManagerModule
         let loadPageImages = this.loadPageImages
         let initResizeEvents = this.initResizeEvents
-        this.controller.getAccountPageContent(this.cookie.getCookie("token"), this.cookie.getCookie("pageId"))
+        return this.controller.getAccountPageContent(this.cookie.getCookie("token"), this.cookie.getCookie("pageId"))
             .then(response => response.text())
             .then(response => {
                 let layer = layerManager.getCurrentSelectedLayer()
@@ -146,19 +150,19 @@ class View {
                     var wrapper = document.createElement('div');
                     wrapper.innerHTML = response
                     page.innerHTML = wrapper.firstChild.innerHTML
-                    page.style.height = wrapper.firstChild.style.height 
+                    page.style.height = wrapper.firstChild.style.height
                 }
-                
+
                 initResizeEvents()
 
                 reset(select)
 
                 enableDragAll(layer)
-              
+
                 register(select, layer)
-           
+
                 loadPageImages()
-            
+                return true;
             })
     }
 
@@ -178,14 +182,14 @@ class View {
                         controller.getImageName(pageId, imageId)
                             .then(response => response.text())
                             .then(name => {
-                                let filename = name 
+                                let filename = name
                                 controller.getPageImageUrl(pageId, imageId)
                                     .then(response => response.blob())
                                     .then(response => {
 
                                         console.log(response)
-                                       
-                                       
+
+
 
                                         let imgList = document.querySelectorAll(".image-main")
                                         for (let y = 0; y < imgList.length; y++) {
@@ -208,20 +212,20 @@ class View {
                                     });
                             })
 
-                     
+
 
                     }
 
                 }
             })
-        
 
-       
+
+
     }
 
 
 
-    initializeViewElements() {
+    initializeViewElements = () => {
 
         this.page = document.getElementById("page");
         this.toolbarDiv = document.getElementById("toolbarDiv");
@@ -239,21 +243,21 @@ class View {
     }
 
 
-    createTextBtnHandler() {
+    createTextBtnHandler = () => {
         this.utilityCreationModule.createTextUtility()
 
     }
 
-    createImageBtnHandler() {
+    createImageBtnHandler = () => {
         this.utilityCreationModule.createImageUtility()
     }
 
-    hideLayer() {
+    hideLayer = () => {
         let layerManager = this.utilityHelper.layerManagerModule
         layerManager.toggleHideLayer(this.hideLayerInput.value)
     }
 
-    selectLayer() {
+    selectLayer = () => {
         let layerManager = this.utilityHelper.layerManagerModule
         layerManager.setSelectedLayer(this.selectLayerInput.value)
         this.utilityHelper.utilityHandlerModule.resetAllElementHandlers()
@@ -261,7 +265,7 @@ class View {
         this.utilityHelper.utilityTranslationModule.enableDragAll(this.selectLayerInput.value)
     }
 
- 
+
 
 
 

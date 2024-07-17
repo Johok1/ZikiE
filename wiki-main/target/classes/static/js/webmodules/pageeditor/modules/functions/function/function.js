@@ -49,6 +49,7 @@ export default class Function extends FunctionPrototype{
          document.onmousemove = this.stickUtilityToMouse
          this.element.querySelector(".main").onmouseup = null
          this.element.querySelector(".main").onmouseup = this.stopDrag
+         document.onmouseup = this.stopDrag
            }
     }
 

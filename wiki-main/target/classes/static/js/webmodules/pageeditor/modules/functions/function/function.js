@@ -34,10 +34,52 @@ export default class Function extends FunctionPrototype{
     dragElement = (elmnt) => {
 
 
-        elmnt.querySelector(".main").onmousedown = this.dragElementDown
-        elmnt.querySelector(".main").onmouseleave = this.stopDrag
-        elmnt.querySelector(".main").onmouseup = this.stopDrag
 
+          elmnt.querySelector(".main").onmousedown = this.startDrag
+
+
+
+      //  document.getElementById("page").onmouseup = this.stopDrag
+       // elmnt.querySelector(".main").onmouseup = this.stopDrag
+    }
+
+    startDrag = () =>{
+      if(!document.getElementById("page").classList.contains("resizing")){
+         this.element.querySelector(".main").onmousemove = this.stickUtilityToMouse
+         document.onmousemove = this.stickUtilityToMouse
+         this.element.querySelector(".main").onmouseup = null
+         this.element.querySelector(".main").onmouseup = this.stopDrag
+           }
+    }
+
+    stickUtilityToMouse = (event) =>{
+             let container = document.getElementById("page");
+             let containerRect = container.getBoundingClientRect();
+             let elementRect = this.element.querySelector(".main").getBoundingClientRect();
+
+             // Calculate the new position of the element based on the mouse position
+             let newLeft = event.clientX - containerRect.left - (elementRect.width / 2);
+             let newTop = event.clientY - containerRect.top - (elementRect.height / 2);
+
+             // Ensure the element stays within the boundaries
+             newLeft = Math.max(0, Math.min(newLeft, containerRect.width - elementRect.width));
+             newTop = Math.max(0, Math.min(newTop, containerRect.height - elementRect.height));
+               const oldLeft = this.element.style.left
+                     const oldTop = this.element.style.top
+             // Update the element's position
+             this.element.style.left = `${newLeft}px`;
+             this.element.style.top = `${newTop}px`;
+
+             let newRect = this.element.querySelector(".main").getBoundingClientRect()
+             let utilityList = container.querySelectorAll(".utility")
+             let utilityCollision = this.isUtilityCollision(utilityList, newRect)
+
+             if (utilityCollision) {
+
+                this.element.style.left = oldLeft
+                this.element.style.top = oldTop
+
+             }
     }
 
     stopDrag = (event) => {
@@ -46,7 +88,10 @@ export default class Function extends FunctionPrototype{
         }
         document.getElementById("page").classList.remove("dragging")
         event.currentTarget.removeEventListener("mousemove", this.drag)
+        this.element.querySelector(".main").onmousemove = null
         this.element.style.zIndex = this.element.getAttribute("layer")
+        this.element.querySelector(".main").onmouseup = this.startDrag
+        document.onmousemove = null
     }
 
     dragElementDown = (event) => {

@@ -79,15 +79,19 @@ export default class ImageUtility extends Utility {
          let updateToolbar = this.toolbar.updateToolbarPosition
         //  console.log(element)
         this.toolbar.resizeButton.addEventListener("mousedown", (event) => {
+            document.getElementById("page").classList.add("resizing")
             // Initiate resizing - attach mousemove to document
             toolbar.resizeButton.addEventListener("mousemove", onBoxResize);
+            document.addEventListener("mousemove", onBoxResize)
             event.preventDefault(); // Prevent default drag behavior
         });
 
         document.addEventListener("mouseup", () => {
+        document.getElementById("page").classList.remove("resizing")
          updateToolbar()
             // End resizing - remove mousemove from document
             toolbar.resizeButton.removeEventListener("mousemove", onBoxResize);
+            document.removeEventListener("mousemove", onBoxResize);
         });
     }
 

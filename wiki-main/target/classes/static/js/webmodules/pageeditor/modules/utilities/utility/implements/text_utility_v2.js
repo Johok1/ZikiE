@@ -64,6 +64,7 @@ export default class TextUtility extends Utility {
         this.toolbar.resizeButton.addEventListener("mousedown", (event) => {
             // Initiate resizing - attach mousemove to document
             toolbar.resizeButton.addEventListener("mousemove", onBoxResize);
+            document.addEventListener("mousemove", onBoxResize)
             //  updateToolbar()
             event.preventDefault(); // Prevent default drag behavior
         });
@@ -72,6 +73,7 @@ export default class TextUtility extends Utility {
             // End resizing - remove mousemove from document
             updateToolbar()
             toolbar.resizeButton.removeEventListener("mousemove", onBoxResize);
+            document.removeEventListener("mousemove",onBoxResize)
         });
 
     }

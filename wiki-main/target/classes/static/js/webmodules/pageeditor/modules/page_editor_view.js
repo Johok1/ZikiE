@@ -33,7 +33,14 @@ class View {
         this.textUtilityBtn = document.getElementById("textUtilityBtn")
         this.imageUtilityBtn = document.getElementById("imageUtilityBtn")
 
+        this.widthInput = document.getElementById("widthInput")
+        this.heightInput = document.getElementById("heightInput")
 
+        this.widthInput.value = parseInt(this.page.style.width)
+        this.heightInput.value = parseInt(this.page.style.height)
+
+        this.widthInput.addEventListener("change", this.adjustWidth.bind(this))
+        this.heightInput.addEventListener("change", this.adjustHeight.bind(this))
 
         this.selectLayerBtn.addEventListener("click", this.selectLayer.bind(this))
         this.hideLayerBtn.addEventListener("click", this.hideLayer.bind(this))
@@ -51,6 +58,17 @@ class View {
         this.loadPageContentThenStartSubmission()
 
 
+    }
+
+
+    adjustHeight = () =>{
+        let page = document.getElementById("page")
+        page.style.height = this.heightInput.value +"px"
+    }
+
+    adjustWidth = () =>{
+      let page = document.getElementById("page")
+      page.style.width = this.widthInput.value +"px"
     }
 
     loadPageContentThenStartSubmission = () =>{

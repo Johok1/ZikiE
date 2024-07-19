@@ -36,8 +36,7 @@ class View {
         this.widthInput = document.getElementById("widthInput")
         this.heightInput = document.getElementById("heightInput")
 
-        this.widthInput.value = parseInt(this.page.style.width)
-        this.heightInput.value = parseInt(this.page.style.height)
+
 
         this.widthInput.addEventListener("change", this.adjustWidth.bind(this))
         this.heightInput.addEventListener("change", this.adjustHeight.bind(this))
@@ -56,7 +55,8 @@ class View {
 
 
         this.loadPageContentThenStartSubmission()
-
+           this.widthInput.value = parseInt(this.page.style.width)
+                this.heightInput.value = parseInt(this.page.style.height)
 
     }
 

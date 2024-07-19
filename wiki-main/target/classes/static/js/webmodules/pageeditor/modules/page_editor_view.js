@@ -160,6 +160,8 @@ class View {
         let layerManager = this.utilityHelper.layerManagerModule
         let loadPageImages = this.loadPageImages
         let initResizeEvents = this.initResizeEvents
+        let widthInput = this.widthInput
+        let heightInput = this.heightInput
         return this.controller.getAccountPageContent(this.cookie.getCookie("token"), this.cookie.getCookie("pageId"))
             .then(response => response.text())
             .then(response => {
@@ -169,6 +171,10 @@ class View {
                     wrapper.innerHTML = response
                     page.innerHTML = wrapper.firstChild.innerHTML
                     page.style.height = wrapper.firstChild.style.height
+                    page.style.width = wrapper.firstChild.style.width
+
+                    widthInput.value = parseInt(page.style.width)
+                    heightInput.value = parseInt(page.style.height)
                 }
 
                 initResizeEvents()

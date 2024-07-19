@@ -110,7 +110,9 @@ public class ImageService implements  ImageServiceInterface{
                 Image image = new Image();
 
 
-                String basePath = "/classes/static/pages/" + page.getPageName() + "/images/";
+                imageRepository.save(image);
+                String pageName = page.getPageName().replaceAll(" ", "_");
+                String basePath = "/classes/static/pages/" +pageName  + "/images/";
 
                 Path directoryPath = Paths.get(basePath);
                 Files.createDirectories(directoryPath);
@@ -130,7 +132,6 @@ public class ImageService implements  ImageServiceInterface{
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-
 
 
 

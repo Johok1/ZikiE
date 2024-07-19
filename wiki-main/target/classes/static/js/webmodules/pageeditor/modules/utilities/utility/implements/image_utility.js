@@ -16,7 +16,7 @@ export default class ImageUtility extends Utility {
     selectElement = () => {
         document.getElementById("page").classList.add("editing")
     //    this.element.querySelector(".image-main").style.border = "2px solid red "
-        this.functions.imageBackendFunction.disableDragMode(this.element)
+      //  this.functions.imageBackendFunction.disableDragMode(this.element)
         //   this.element.querySelector(".image-main").style.border = "3px solid red"
         this.functions.imageBackendFunction.attachFileInputHandler(this.element)
         this.toolbar.deleteUtilityBtn.addEventListener("click", this.deleteUtility)

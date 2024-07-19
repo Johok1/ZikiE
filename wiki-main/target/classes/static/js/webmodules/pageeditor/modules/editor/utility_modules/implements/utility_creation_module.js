@@ -77,6 +77,7 @@ export default class UtilityCreationModule{
             this.backDrop.removeChild(utility.element)
             utility.element.style.position = "absolute"
             utility.element.style.opacity = "100%"
+            this.element = utility.element
             this.page.appendChild(utility.element)
             
             
@@ -99,28 +100,31 @@ export default class UtilityCreationModule{
         }
     }
 
-    isUtilityCollision = (utilityList, newRect, element) => {
-        let utilityCollision = false
-        for (let x = 0; x < utilityList.length; x++) {
-            if ((utilityList[x].getAttribute("layer") == element.getAttribute("layer")) && utilityList[x] != element) {
-                let utilityRect = utilityList[x].getBoundingClientRect()
-                let rect1 = newRect
-                let rect2 = utilityRect
-                console.log("same layer collision possible")
-                if (!(rect2.x > rect1.x + rect1.width ||
-                    rect2.x + rect2.width < rect1.x ||
-                    rect2.y > rect1.y + rect1.height ||
-                    rect2.y + rect2.height < rect1.y)) {
-                    utilityCollision = true
-                    console.log("isColliding")
-                //  utilityList[x].style.border = "2px solid red"
-                }
-            } else {
-                console.log("no collisions on different layers")
-            }
-        }
-        return utilityCollision;
-    }
+    isUtilityCollision = (utilityList, newRect) => {
+           let utilityCollision = false
+           for (let x = 0; x < utilityList.length; x++) {
+           if((utilityList[x].classList.contains("text") && this.element.classList.contains("text") )||
+               (utilityList[x].classList.contains("image") && this.element.classList.contains("image"))){
+               if ((utilityList[x].getAttribute("layer") == this.element.getAttribute("layer")) && utilityList[x] != this.element) {
+                   let utilityRect = utilityList[x].querySelector(".main").getBoundingClientRect()
+                   let rect1 = newRect
+                   let rect2 = utilityRect
+                   console.log("same layer collision possible")
+                   if (!(rect2.x > rect1.x + rect1.width ||
+                       rect2.x + rect2.width < rect1.x ||
+                       rect2.y > rect1.y + rect1.height ||
+                       rect2.y + rect2.height < rect1.y)) {
+                       utilityCollision = true
+                       console.log("isColliding")
+                   //    utilityList[x].style.border = "2px solid red"
+                   }
+               } else {
+                   console.log("no collisions on different layers")
+               }
+           }
+           }
+           return utilityCollision;
+       }
 
     //set utility to placement mode and add eventer for placement 
 

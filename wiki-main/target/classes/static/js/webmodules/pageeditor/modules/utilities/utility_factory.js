@@ -86,7 +86,7 @@ export default class UtilityFactory {
         } else if (element.classList.contains("image")) {
             return new ImageUtility(element);
         } else {
-            console.log("Invalid element");
+         //   console.log("Invalid element");
             return null; // It's better to return null for invalid cases for consistency
         }
     }

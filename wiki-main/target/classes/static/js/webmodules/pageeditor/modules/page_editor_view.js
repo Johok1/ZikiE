@@ -66,7 +66,7 @@ class View {
 
         document.getElementById("resizePageBtn").onmousedown = this.resizePage.bind(this)
         this.page.addEventListener("mouseup", () => {
-            console.log("weeee")
+          //  console.log("weeee")
             this.page.onmousemove = null
         })
 
@@ -187,7 +187,7 @@ class View {
                                     .then(response => response.blob())
                                     .then(response => {
 
-                                        console.log(response)
+                                      //  console.log(response)
 
 
 
@@ -195,15 +195,15 @@ class View {
                                         for (let y = 0; y < imgList.length; y++) {
 
                                             let imgId = imgList[y].getAttribute("id");
-                                            console.log("imgList[y] " + imgList[y])
-                                            console.log("imgList[y] " + imgId)
-                                            console.log("filename  " + filename)
+                                           // console.log("imgList[y] " + imgList[y])
+                                           // console.log("imgList[y] " + imgId)
+                                           // console.log("filename  " + filename)
                                             if (imgId === filename) {
-                                                console.log("imgId === filename true")
+                                             //   console.log("imgId === filename true")
                                                 let logo = URL.createObjectURL(response)
                                                 imgList[y].src = logo
                                             } else {
-                                                console.log("imgId === filename false")
+                                              //  console.log("imgId === filename false")
                                             }
 
                                         }
@@ -237,8 +237,8 @@ class View {
         const select = this.utilityHelper.utilitySelectionModule.selectFunc
         const register = this.utilityHelper.utilityHandlerModule.registerAllHandlers
         const layerManager = this.utilityHelper.layerManagerModule
-        console.log("select " + select)
-        console.log("register " + register)
+       // console.log("select " + select)
+       // console.log("register " + register)
         register(select, layerManager.getCurrentSelectedLayer())
     }
 

@@ -90,7 +90,8 @@ export default class Function extends FunctionPrototype{
         document.getElementById("page").classList.remove("dragging")
         event.currentTarget.removeEventListener("mousemove", this.drag)
         this.element.querySelector(".main").onmousemove = null
-        this.element.style.zIndex = this.element.getAttribute("layer")
+
+      //  this.element.style.zIndex = this.element.getAttribute("layer")
         this.element.querySelector(".main").onmouseup = this.startDrag
         document.onmousemove = null
     }

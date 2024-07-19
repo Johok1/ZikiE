@@ -77,6 +77,11 @@ export default class UtilityCreationModule{
             this.backDrop.removeChild(utility.element)
             utility.element.style.position = "absolute"
             utility.element.style.opacity = "100%"
+            if(utility.element.classList.contains("text")){
+                utility.element.style.zIndex = `${parseInt(utility.element.getAttribute("layer")) + 1}`;
+            }else{
+                utility.element.style.zIndex = `${parseInt(utility.element.getAttribute("layer"))}`;
+            }
             this.element = utility.element
             this.page.appendChild(utility.element)
             

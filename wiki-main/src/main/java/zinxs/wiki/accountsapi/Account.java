@@ -21,6 +21,11 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Table(name = "accounts", indexes = {
+        @Index(name = "idx_username", columnList = "username"),
+        @Index(name = "idx_email", columnList = "email", unique = true),
+        @Index(name = "idx_nickname", columnList = "nickname")
+})
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Account implements UserDetails {
 
@@ -38,6 +43,8 @@ public class Account implements UserDetails {
 
     private ArrayList<Page> pages;
     private String username, password, email, nickname;
+
+    @Lob
     private byte[] profileImage;
     private boolean locked = false, enabled = false;
     @Enumerated(EnumType.STRING)

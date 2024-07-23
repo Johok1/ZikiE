@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
-public class ImageService implements  ImageServiceInterface{
+public class ImageService implements ImageServiceInterface{
 
     //Isn't it interesting how the imageservice class has a
     // dependency on every single repository but the image repository

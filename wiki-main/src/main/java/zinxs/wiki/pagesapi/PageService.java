@@ -95,7 +95,7 @@ public class PageService implements PageServiceInterface{
                     if (file.isDirectory()) {
 
                     } else {
-                        page.setFilePath(file.getPath());
+                        page.setFilepath(file.getPath());
                     }
                 }
 
@@ -135,7 +135,7 @@ public class PageService implements PageServiceInterface{
             byte[] byteArray = {};
             InputStream input = new ByteArrayInputStream(byteArray);
             String filepath = makeFileAtPathFromInput(basePath, fileName, input);
-            page.setFilePath(filepath);
+            page.setFilepath(filepath);
             pages.add(page);
             account.setPages(pages);
             accountRepository.save(account);
@@ -213,7 +213,7 @@ public class PageService implements PageServiceInterface{
                // page.setPageContent(content);
                 pageRepository.save(page);
 
-                File pageFile = new File(page.getFilePath());
+                File pageFile = new File(page.getFilepath());
 
                 FileWriter writer = new FileWriter(pageFile);
                 writer.write(content);
@@ -236,7 +236,7 @@ public class PageService implements PageServiceInterface{
             Account account = getAccount(wixId);
             Page page = pageRepository.findById(Long.valueOf(pageId)).get();
             if(page.getCreator().getId().equals(account.getId())) {
-                return new String(Files.readAllBytes(Paths.get(page.getFilePath())));
+                return new String(Files.readAllBytes(Paths.get(page.getFilepath())));
             }else {
                 throw new RuntimeException("Invalid Credentials");
             }
